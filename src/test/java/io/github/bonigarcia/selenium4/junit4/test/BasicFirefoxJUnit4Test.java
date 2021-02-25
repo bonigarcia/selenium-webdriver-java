@@ -26,12 +26,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class ChromeTest {
+public class BasicFirefoxJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -39,12 +39,12 @@ public class ChromeTest {
 
     @BeforeClass
     public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
     }
 
     @Before
     public void setup() {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
     }
 
     @After
