@@ -16,6 +16,7 @@
         <junit4.version>4.13.2</junit4.version>
         <junit5.version>5.7.1</junit5.version>
         <testng.version>7.3.0</testng.version>
+        <selenium-jupiter.version>3.4.0</selenium-jupiter.version>
 
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <surefire-provider.version>3.0.0-M5</surefire-provider.version>
@@ -70,6 +71,22 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>selenium-jupiter</artifactId>
+            <version>${selenium-jupiter.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-java</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.github.bonigarcia</groupId>
+                    <artifactId>webdrivermanager</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
