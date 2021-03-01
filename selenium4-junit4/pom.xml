@@ -12,11 +12,9 @@
         <logback.version>1.2.3</logback.version>
 
         <selenium-java.version>4.0.0-beta-1</selenium-java.version>
-        <webdrivermanager.version>4.3.1</webdrivermanager.version>
+        <wdm.version>4.3.1</wdm.version>
         <junit4.version>4.13.2</junit4.version>
         <truth.version>1.1.2</truth.version>
-
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
         <java.version>1.8</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -48,7 +46,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
+            <version>${wdm.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
