@@ -20,8 +20,8 @@ jobs:
     - name: Start Xvfb
       run: Xvfb :99 &
     - name: Test with Maven
+      run: mvn test
       env:
         DISPLAY: :99
         WDM_GITHUBTOKENNAME: ${{ secrets.WDM_GITHUBTOKENNAME }}
         WDM_GITHUBTOKENSECRET: ${{ secrets.WDM_GITHUBTOKENSECRET }}
-      run: mvn -B test
