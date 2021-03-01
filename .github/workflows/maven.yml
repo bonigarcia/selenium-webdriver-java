@@ -11,10 +11,6 @@ jobs:
 
     runs-on: macos-latest
 
-    env:
-      WDM_GITHUBTOKENNAME: ${{ secrets.WDM_GITHUBTOKENNAME }}
-      WDM_GITHUBTOKENSECRET: ${{ secrets.WDM_GITHUBTOKENSECRET }}
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
@@ -22,4 +18,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Test with Maven
+      env:
+        WDM_GITHUBTOKENNAME: ${{ secrets.WDM_GITHUBTOKENNAME }}
+        WDM_GITHUBTOKENSECRET: ${{ secrets.WDM_GITHUBTOKENSECRET }}
       run: mvn -B test
