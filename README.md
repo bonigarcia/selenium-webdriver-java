@@ -2,7 +2,7 @@
 [![License badge](https://img.shields.io/badge/license-Apache2-green.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Twitter Follow](https://img.shields.io/twitter/follow/boni_gg.svg?style=social)](https://twitter.com/boni_gg)
 
-# Selenium 4 Java
+# Hand-ons Selenium WebDriver 4 with Java
 
 This repository contains a basic project using [Selenium WebDriver] with **Java** as language binding. This code is open source, released under the terms of [Apache 2.0 License].
 
