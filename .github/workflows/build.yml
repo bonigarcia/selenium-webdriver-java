@@ -26,3 +26,5 @@ jobs:
       run: Xvfb :99 &
     - name: Test with Maven
       run: mvn -B test
+    - name: Test with Gradle
+      run: ./gradlew test

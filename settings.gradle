@@ -1,0 +1,4 @@
+include ':selenium4-junit4'
+include ':selenium4-junit5'
+include ':selenium4-testng'
+include ':selenium4-seljup'
