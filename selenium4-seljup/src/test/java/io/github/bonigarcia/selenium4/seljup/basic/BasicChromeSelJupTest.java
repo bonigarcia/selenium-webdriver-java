@@ -35,11 +35,12 @@ class BasicChromeSelJupTest {
 
     @Test
     void test(ChromeDriver driver) {
-        String sutUrl = "https://bonigarcia.github.io/selenium-jupiter/";
+        String sutUrl = "https://github.com/bonigarcia/webdrivermanager";
         driver.get(sutUrl);
         String title = driver.getTitle();
         log.debug("The title of {} is {}", sutUrl, title);
-        assertThat(title, containsString("JUnit 5 extension for Selenium"));
+        assertThat(title, containsString(
+                "Automated driver management for Selenium WebDriver"));
     }
 
 }
