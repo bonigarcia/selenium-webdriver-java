@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/bonigarcia/selenium4-java/workflows/build/badge.svg)](https://github.com/bonigarcia/selenium4-java/actions)
+[![Build Status](https://github.com/bonigarcia/selenium4-java/workflows/workflow/badge.svg)](https://github.com/bonigarcia/selenium4-java/actions)
 [![License badge](https://img.shields.io/badge/license-Apache2-green.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Twitter Follow](https://img.shields.io/twitter/follow/boni_gg.svg?style=social)](https://twitter.com/boni_gg)
 
