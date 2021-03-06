@@ -16,8 +16,9 @@
  */
 package io.github.bonigarcia.selenium4.testng.basic;
 
-import static com.google.common.truth.Truth.assertThat;
 import static java.lang.invoke.MethodHandles.lookup;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.openqa.selenium.WebDriver;
@@ -59,7 +60,7 @@ public class BasicChromeTestNGTest {
         driver.get(sutUrl);
         String title = driver.getTitle();
         log.debug("The title of {} is {}", sutUrl, title);
-        assertThat(title).containsMatch("JUnit 5 extension for Selenium");
+        assertThat(title, containsString("JUnit 5 extension for Selenium"));
     }
 
 }

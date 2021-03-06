@@ -9,7 +9,7 @@ ext {
     seleniumVersion  = '4.0.0-beta-1'
     junit5Version = '5.7.1'
     selJupDriver = '3.4.0'
-    truthVersion = '1.1.2'
+    hamcrestVersion = '1.1.2'
 }
 
 apply plugin: 'java'
@@ -45,7 +45,5 @@ dependencies {
     testImplementation("io.github.bonigarcia:selenium-jupiter:${selJupDriver}") {
         exclude group: "org.seleniumhq.selenium", module: "*"
     }
-    testImplementation("com.google.truth:truth:${truthVersion}") {
-        exclude group: "com.google.guava", module: "guava"
-    }
+    testImplementation("org.hamcrest:hamcrest-all:${hamcrestVersion}")
 }
