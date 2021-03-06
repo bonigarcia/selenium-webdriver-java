@@ -1,4 +1,4 @@
-name: workflow
+name: build
 
 on:
   push:
@@ -12,7 +12,7 @@ env:
   WDM_GITHUBTOKENSECRET: ${{ secrets.WDM_GITHUBTOKENSECRET }}
 
 jobs:
-  build:
+  tests:
 
     runs-on: ubuntu-latest
 
