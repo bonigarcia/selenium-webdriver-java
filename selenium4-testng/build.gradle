@@ -6,7 +6,7 @@ ext {
     slf4jVersion  = '1.7.30'
     logbackVersion  = '1.2.3'
 
-    seleniumVersion  = '4.0.0-beta-1'
+    seleniumVersion  = '4.0.0-beta-2'
     wdmVersion = '4.3.1'
     testNgVersion = '7.4.0'
     hamcrestVersion = '1.3'
