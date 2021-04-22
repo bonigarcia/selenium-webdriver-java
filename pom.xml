@@ -3,16 +3,16 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.bonigarcia</groupId>
-    <artifactId>selenium4-java</artifactId>
+    <artifactId>selenium-webdriver-java</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
     <modules>
-        <module>selenium4-junit4</module>
-        <module>selenium4-junit5</module>
-        <module>selenium4-testng</module>
-        <module>selenium4-seljup</module>
+        <module>selenium-webdriver-junit4</module>
+        <module>selenium-webdriver-junit5</module>
+        <module>selenium-webdriver-testng</module>
+        <module>selenium-webdriver-seljup</module>
     </modules>
 
 </project>
