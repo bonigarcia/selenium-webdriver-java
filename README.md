@@ -6,7 +6,7 @@
 
 # Hands-on Selenium WebDriver with Java
 
-This repository contains a comprehensive collection of examples about [Selenium WebDriver] 4 using [Java] as language binding. It has been implemented as multi-module project (usin [Maven] and [Gradle] as build tools) composed by tests based on different frameworks: [JUnit 4], [JUnit 5], [TestNG], and [Selenium-Jupiter].
+This repository contains a comprehensive collection of examples about [Selenium WebDriver] 4 using [Java] as language binding. It has been implemented as a multi-module project (using [Maven] and [Gradle] as build tools) composed of tests based on different frameworks: [JUnit 4], [JUnit 5], [TestNG], and [Selenium-Jupiter].
 
 ## About
 
