@@ -1,0 +1,45 @@
+{
+  "id": "eca16196-ef97-4602-aa1e-26f0f62d2fbe",
+  "version": "2.0",
+  "name": "hello-selenium-ide",
+  "url": "https://bonigarcia.github.io",
+  "tests": [{
+    "id": "97da2b0e-8787-44e3-b3d0-7e4aa8fa9b56",
+    "name": "basicTest",
+    "commands": [{
+      "id": "19b30111-cd1a-4228-974c-0c14aba12c15",
+      "comment": "",
+      "command": "open",
+      "target": "/selenium-webdriver-java/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1e7b4ef4-a310-466a-afdc-a50cf2a2bfdc",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Selenium WebDriver",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c0eeb230-285a-42b3-874a-114469057648",
+      "comment": "",
+      "command": "assertText",
+      "target": "xpath=//h1",
+      "targets": [
+        ["css=h1:nth-child(1)", "css:finder"],
+        ["xpath=//h1", "xpath:position"]
+      ],
+      "value": "Selenium automates browsers. That's it!"
+    }]
+  }],
+  "suites": [{
+    "id": "c7cc8038-4e23-4c19-be75-e21dce1531b1",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["97da2b0e-8787-44e3-b3d0-7e4aa8fa9b56"]
+  }],
+  "urls": ["https://bonigarcia.github.io/"],
+  "plugins": []
+}
