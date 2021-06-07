@@ -55,12 +55,14 @@ class BasicChromeJUnit5Test {
 
     @Test
     void test() {
-        String sutUrl = "https://github.com/bonigarcia/webdrivermanager";
+        // Exercise
+        String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
         driver.get(sutUrl);
         String title = driver.getTitle();
         log.debug("The title of {} is {}", sutUrl, title);
-        assertThat(title).containsMatch(
-                "Automated driver management for Selenium WebDriver");
+
+        // Verify
+        assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
     }
 
 }
