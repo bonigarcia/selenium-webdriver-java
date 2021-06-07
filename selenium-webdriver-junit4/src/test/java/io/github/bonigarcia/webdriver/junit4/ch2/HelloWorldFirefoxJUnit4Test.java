@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.selenium.junit4.basic;
+package io.github.bonigarcia.webdriver.junit4.ch2;
 
 import static com.google.common.truth.Truth.assertThat;
 import static java.lang.invoke.MethodHandles.lookup;
@@ -30,7 +30,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class BasicFirefoxJUnit4Test {
+public class HelloWorldFirefoxJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 

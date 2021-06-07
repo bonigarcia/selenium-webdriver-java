@@ -14,39 +14,39 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.selenium.junit4.basic;
+package io.github.bonigarcia.webdriver.testng.ch2;
 
 import static com.google.common.truth.Truth.assertThat;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class BasicChromeJUnit4Test {
+public class HelloWorldFirefoxTestNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
-    @BeforeClass
-    public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+    @BeforeSuite
+    public void setupSuite() {
+        WebDriverManager.firefoxdriver().setup();
     }
 
-    @Before
+    @BeforeTest
     public void setup() {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
     }
 
-    @After
+    @AfterTest
     public void teardown() {
         if (driver != null) {
             driver.quit();

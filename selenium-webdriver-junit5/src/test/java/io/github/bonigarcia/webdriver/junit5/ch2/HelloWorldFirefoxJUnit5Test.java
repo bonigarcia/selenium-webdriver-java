@@ -14,26 +14,47 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.selenium.seljup.basic;
+package io.github.bonigarcia.webdriver.junit5.ch2;
 
 import static com.google.common.truth.Truth.assertThat;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-@ExtendWith(SeleniumJupiter.class)
-class BasicChromeSelJupTest {
+class HelloWorldFirefoxJUnit5Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
+    private WebDriver driver;
+
+    @BeforeAll
+    static void setupClass() {
+        WebDriverManager.firefoxdriver().setup();
+    }
+
+    @BeforeEach
+    void setup() {
+        driver = new FirefoxDriver();
+    }
+
+    @AfterEach
+    void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
     @Test
-    void test(ChromeDriver driver) {
+    void test() {
         // Exercise
         String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
         driver.get(sutUrl);
