@@ -16,9 +16,8 @@
  */
 package io.github.bonigarcia.selenium.seljup.basic;
 
+import static com.google.common.truth.Truth.assertThat;
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.junit.jupiter.api.Test;
@@ -39,8 +38,8 @@ class BasicFirefoxSelJupTest {
         driver.get(sutUrl);
         String title = driver.getTitle();
         log.debug("The title of {} is {}", sutUrl, title);
-        assertThat(title, containsString(
-                "Automated driver management for Selenium WebDriver"));
+        assertThat(title).containsMatch(
+                "Automated driver management for Selenium WebDriver");
     }
 
 }
