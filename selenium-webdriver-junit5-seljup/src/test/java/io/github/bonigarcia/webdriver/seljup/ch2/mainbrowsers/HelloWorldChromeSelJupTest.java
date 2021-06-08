@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch2.majorbrowsers;
+package io.github.bonigarcia.webdriver.seljup.ch2.mainbrowsers;
 
 import static com.google.common.truth.Truth.assertThat;
 import static java.lang.invoke.MethodHandles.lookup;
@@ -22,18 +22,18 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
-class HelloWorldFirefoxSelJupTest {
+class HelloWorldChromeSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     @Test
-    void test(FirefoxDriver driver) {
+    void test(ChromeDriver driver) {
         // Exercise
         String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
         driver.get(sutUrl);
