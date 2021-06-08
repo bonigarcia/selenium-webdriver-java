@@ -8,7 +8,7 @@ ext {
 
     seleniumVersion  = '4.0.0-beta-4'
     wdmVersion = '4.4.3'
-    junit5Version = '5.7.1'
+    junit5Version = '5.7.2'
     truthVersion = '1.1.3'
 }
 
