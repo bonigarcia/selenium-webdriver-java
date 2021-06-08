@@ -45,5 +45,7 @@ dependencies {
     testImplementation("io.github.bonigarcia:selenium-jupiter:${selJupDriver}") {
         exclude group: "org.seleniumhq.selenium", module: "*"
     }
-    testImplementation("com.google.truth:truth:${truthVersion}")
+    testImplementation("com.google.truth:truth:${truthVersion}") {
+        exclude group: "com.google.guava", module: "guava"
+    }
 }
