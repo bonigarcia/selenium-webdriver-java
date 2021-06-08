@@ -27,13 +27,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.opera.OperaDriver;
 import org.slf4j.Logger;
 import org.testng.SkipException;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class HelloWorldOperaTestNGTest {
 
@@ -44,13 +46,15 @@ public class HelloWorldOperaTestNGTest {
     @BeforeSuite
     public void setupSuite() {
         if (!Files.exists(getBrowserPath())) {
-            throw new SkipException("Opera not installed in this machine");
+            throw new SkipException("Opera not available");
         }
+
+        WebDriverManager.operadriver().setup();
     }
 
     @BeforeTest
     public void setup() {
-        driver = new SafariDriver();
+        driver = new OperaDriver();
     }
 
     @AfterTest
@@ -76,13 +80,14 @@ public class HelloWorldOperaTestNGTest {
         Path browserPath;
         if (IS_OS_WINDOWS) {
             browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
-                    "/Chromium/Application/chrome.exe");
+                    "/Programs/Opera/launcher.exe");
         } else if (IS_OS_MAC) {
             browserPath = Paths
-                    .get("/Applications/Chromium.app/Contents/MacOS/Chromium");
+                    .get("/Applications/Opera.app/Contents/MacOS/Opera");
         } else {
-            browserPath = Paths.get("/usr/bin/chromium-browser");
+            browserPath = Paths.get("/usr/bin/opera");
         }
         return browserPath;
     }
+
 }

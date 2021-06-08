@@ -42,7 +42,7 @@ public class HelloWorldSafariTestNGTest {
     @BeforeSuite
     public void setupSuite() {
         if (!exists(getBrowserPath())) {
-            throw new SkipException("Safari not installed in this machine");
+            throw new SkipException("Safari not available");
         }
     }
 

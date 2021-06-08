@@ -27,13 +27,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.testng.SkipException;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class HelloWorldChromiumTestNGTest {
 
@@ -45,14 +48,19 @@ public class HelloWorldChromiumTestNGTest {
 
     @BeforeSuite
     public void setupSuite() {
-        if (!Files.exists(getBrowserPath())) {
-            throw new SkipException("Chromium not installed in this machine");
+        browserPath = getBrowserPath();
+        if (!Files.exists(browserPath)) {
+            throw new SkipException("Chromium not available");
         }
+
+        WebDriverManager.chromiumdriver().setup();
     }
 
     @BeforeTest
     public void setup() {
-        driver = new SafariDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.setBinary(browserPath.toFile());
+        driver = new ChromeDriver(options);
     }
 
     @AfterTest
