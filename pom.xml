@@ -11,8 +11,8 @@
     <modules>
         <module>selenium-webdriver-junit4</module>
         <module>selenium-webdriver-junit5</module>
+        <module>selenium-webdriver-junit5-seljup</module>
         <module>selenium-webdriver-testng</module>
-        <module>selenium-webdriver-seljup</module>
     </modules>
 
 </project>

@@ -19,13 +19,13 @@ updates:
     time: '06:00'
   open-pull-requests-limit: 99
 - package-ecosystem: gradle
-  directory: "/selenium-webdriver-testng"
+  directory: "/selenium-webdriver-junit5-seljup"
   schedule:
     interval: daily
     time: '06:00'
   open-pull-requests-limit: 99
 - package-ecosystem: gradle
-  directory: "/selenium-webdriver-seljup"
+  directory: "/selenium-webdriver-testng"
   schedule:
     interval: daily
     time: '06:00'

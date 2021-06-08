@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.bonigarcia</groupId>
-    <artifactId>selenium-webdriver-seljup</artifactId>
+    <artifactId>selenium-webdriver-junit5-seljup</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
