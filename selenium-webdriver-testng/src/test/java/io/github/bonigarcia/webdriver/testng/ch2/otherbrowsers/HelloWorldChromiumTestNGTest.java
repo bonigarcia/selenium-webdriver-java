@@ -41,6 +41,8 @@ public class HelloWorldChromiumTestNGTest {
 
     private WebDriver driver;
 
+    private static Path browserPath;
+
     @BeforeSuite
     public void setupSuite() {
         if (!Files.exists(getBrowserPath())) {
@@ -73,7 +75,6 @@ public class HelloWorldChromiumTestNGTest {
     }
 
     private static Path getBrowserPath() {
-        Path browserPath;
         if (IS_OS_WINDOWS) {
             browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
                     "/Chromium/Application/chrome.exe");

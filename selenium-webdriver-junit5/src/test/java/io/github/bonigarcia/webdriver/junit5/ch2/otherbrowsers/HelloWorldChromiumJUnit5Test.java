@@ -79,7 +79,6 @@ class HelloWorldChromiumJUnit5Test {
     }
 
     static boolean browserAvailable() {
-        Path browserPath;
         if (IS_OS_WINDOWS) {
             browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
                     "/Programs/Opera/launcher.exe");

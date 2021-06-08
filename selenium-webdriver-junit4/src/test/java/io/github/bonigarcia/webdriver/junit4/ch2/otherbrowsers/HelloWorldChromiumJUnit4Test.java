@@ -81,7 +81,6 @@ public class HelloWorldChromiumJUnit4Test {
     }
 
     private static Path getBrowserPath() {
-        Path browserPath;
         if (IS_OS_WINDOWS) {
             browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
                     "/Chromium/Application/chrome.exe");
