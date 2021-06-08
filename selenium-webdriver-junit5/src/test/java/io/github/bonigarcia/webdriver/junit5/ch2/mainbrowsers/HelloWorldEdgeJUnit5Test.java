@@ -14,47 +14,47 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch2;
+package io.github.bonigarcia.webdriver.junit5.ch2.mainbrowsers;
 
 import static com.google.common.truth.Truth.assertThat;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.slf4j.Logger;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldChromeTestNGTest {
+class HelloWorldEdgeJUnit5Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
-    @BeforeSuite
-    public void setupSuite() {
-        WebDriverManager.chromedriver().setup();
+    @BeforeAll
+    static void setupClass() {
+        WebDriverManager.edgedriver().setup();
     }
 
-    @BeforeTest
-    public void setup() {
-        driver = new ChromeDriver();
+    @BeforeEach
+    void setup() {
+        driver = new EdgeDriver();
     }
 
-    @AfterTest
-    public void teardown() {
+    @AfterEach
+    void teardown() {
         if (driver != null) {
             driver.quit();
         }
     }
 
     @Test
-    public void test() {
+    void test() {
         // Exercise
         String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
         driver.get(sutUrl);
