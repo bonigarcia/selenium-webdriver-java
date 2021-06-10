@@ -17,7 +17,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 
 jar {
-    archiveBaseName = 'selenium-webdriver-seljup'
+    archiveBaseName = 'selenium-webdriver-junit5-seljup'
     archiveVersion = '1.0.0-SNAPSHOT'
 }
 
@@ -28,6 +28,8 @@ test {
         events "passed", "skipped", "failed"
         showStandardStreams = true
     }
+
+    systemProperties System.properties
 }
 
 compileTestJava {

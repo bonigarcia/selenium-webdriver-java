@@ -21,6 +21,15 @@ jar {
     archiveVersion = '1.0.0-SNAPSHOT'
 }
 
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+
+    systemProperties System.properties
+}
+
 compileTestJava {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8

@@ -28,6 +28,8 @@ test {
         events "passed", "skipped", "failed"
         showStandardStreams = true
     }
+
+    systemProperties System.properties
 }
 
 compileTestJava {
