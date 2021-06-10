@@ -1,24 +1,16 @@
-repositories {
-    mavenCentral()
-}
-
-ext {
-    slf4jVersion  = '1.7.30'
-    logbackVersion  = '1.2.3'
-
-    seleniumVersion  = '4.0.0-beta-4'
-    junit5Version = '5.7.2'
-    selJupDriver = '3.4.0'
-    truthVersion = '1.1.3'
-}
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "idea"
 
 jar {
-    archiveBaseName = 'selenium-webdriver-junit5-seljup'
-    archiveVersion = '1.0.0-SNAPSHOT'
+    archiveBaseName = "selenium-webdriver-junit5-seljup"
+    archiveVersion = "1.0.0-SNAPSHOT"
+}
+
+compileTestJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    options.compilerArgs += "-parameters"
 }
 
 test {
@@ -32,11 +24,16 @@ test {
     systemProperties System.properties
 }
 
-compileTestJava {
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-    options.compilerArgs += '-parameters'
+ext {
+    slf4jVersion  = "1.7.30"
+    logbackVersion  = "1.2.3"
+
+    seleniumVersion  = "4.0.0-beta-4"
+    junit5Version = "5.7.2"
+    selJupDriver = "3.4.0"
+    truthVersion = "1.1.3"
 }
+
 
 dependencies {
     implementation("org.slf4j:slf4j-api:${slf4jVersion}")
@@ -50,4 +47,8 @@ dependencies {
     testImplementation("com.google.truth:truth:${truthVersion}") {
         exclude group: "com.google.guava", module: "guava"
     }
+}
+
+repositories {
+    mavenCentral()
 }
