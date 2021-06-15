@@ -7,3 +7,5 @@ target
 /.idea
 *.iml
 build
+bin
+test-output
