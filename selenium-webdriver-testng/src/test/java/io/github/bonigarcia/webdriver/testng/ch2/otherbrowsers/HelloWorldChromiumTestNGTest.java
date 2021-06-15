@@ -31,9 +31,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.testng.SkipException;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -46,8 +46,8 @@ public class HelloWorldChromiumTestNGTest {
 
     private static Path browserPath;
 
-    @BeforeSuite
-    public void setupSuite() {
+    @BeforeClass
+    public void setupClass() {
         browserPath = getBrowserPath();
         if (!Files.exists(browserPath)) {
             throw new SkipException("Chromium not available");
@@ -56,14 +56,14 @@ public class HelloWorldChromiumTestNGTest {
         WebDriverManager.chromiumdriver().setup();
     }
 
-    @BeforeTest
+    @BeforeMethod
     public void setup() {
         ChromeOptions options = new ChromeOptions();
         options.setBinary(browserPath.toFile());
         driver = new ChromeDriver(options);
     }
 
-    @AfterTest
+    @AfterMethod
     public void teardown() {
         if (driver != null) {
             driver.quit();

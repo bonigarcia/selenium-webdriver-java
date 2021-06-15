@@ -30,9 +30,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.slf4j.Logger;
 import org.testng.SkipException;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -43,8 +43,8 @@ public class HelloWorldOperaTestNGTest {
 
     private WebDriver driver;
 
-    @BeforeSuite
-    public void setupSuite() {
+    @BeforeClass
+    public void setupClass() {
         if (!Files.exists(getBrowserPath())) {
             throw new SkipException("Opera not available");
         }
@@ -52,12 +52,12 @@ public class HelloWorldOperaTestNGTest {
         WebDriverManager.operadriver().setup();
     }
 
-    @BeforeTest
+    @BeforeMethod
     public void setup() {
         driver = new OperaDriver();
     }
 
-    @AfterTest
+    @AfterMethod
     public void teardown() {
         if (driver != null) {
             driver.quit();

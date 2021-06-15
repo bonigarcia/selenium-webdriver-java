@@ -29,8 +29,8 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 import org.testng.SkipException;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class HelloWorldSafariTestNGTest {
@@ -39,14 +39,14 @@ public class HelloWorldSafariTestNGTest {
 
     private WebDriver driver;
 
-    @BeforeSuite
+    @BeforeClass
     public void setupSuite() {
         if (!exists(getBrowserPath())) {
             throw new SkipException("Safari not available");
         }
     }
 
-    @BeforeTest
+    @BeforeMethod
     public void setup() {
         driver = new SafariDriver();
     }
