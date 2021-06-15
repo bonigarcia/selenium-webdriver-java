@@ -1,4 +1,6 @@
-include ':selenium-webdriver-junit4'
-include ':selenium-webdriver-junit5'
-include ':selenium-webdriver-junit5-seljup'
-include ':selenium-webdriver-testng'
+rootProject.name = 'selenium-webdriver-java'
+
+include('selenium-webdriver-junit4')
+include('selenium-webdriver-junit5')
+include('selenium-webdriver-junit5-seljup')
+include('selenium-webdriver-testng')
