@@ -35,8 +35,7 @@ ext {
 
 dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:${junit5Version}")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:${junit5Version}")
+    testImplementation("org.junit.jupiter:junit-jupiter:${junit5Version}")
     testImplementation("com.google.truth:truth:${truthVersion}") {
         exclude group: "com.google.guava", module: "guava"
     }
