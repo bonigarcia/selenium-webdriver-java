@@ -16,9 +16,9 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch2.otherbrowsers;
 
-import static com.google.common.truth.Truth.assertThat;
 import static java.lang.invoke.MethodHandles.lookup;
 import static java.nio.file.Files.exists;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Path;

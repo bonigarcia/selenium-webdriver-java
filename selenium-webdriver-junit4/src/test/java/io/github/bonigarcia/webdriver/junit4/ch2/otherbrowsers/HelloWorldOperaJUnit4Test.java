@@ -16,10 +16,10 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch2.otherbrowsers;
 
-import static com.google.common.truth.Truth.assertThat;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assume.assumeTrue;
 import static org.slf4j.LoggerFactory.getLogger;
 

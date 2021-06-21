@@ -31,7 +31,7 @@ repositories {
 ext {
     seleniumVersion  = "4.0.0-beta-4"
     testNgVersion = "7.4.0"
-    truthVersion = "1.1.3"
+    assertjVersion  = '3.20.2'
     wdmVersion = "4.4.3"
     slf4jVersion  = "1.7.30"
     logbackVersion  = "1.2.3"
@@ -40,9 +40,7 @@ ext {
 dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
     testImplementation("org.testng:testng:${testNgVersion}")
-    testImplementation("com.google.truth:truth:${truthVersion}") {
-        exclude group: "com.google.guava", module: "guava"
-    }
+    testImplementation("org.assertj:assertj-core:${assertjVersion}")
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
     testImplementation("org.slf4j:slf4j-api:${slf4jVersion}")
     testImplementation("ch.qos.logback:logback-classic:${logbackVersion}")
