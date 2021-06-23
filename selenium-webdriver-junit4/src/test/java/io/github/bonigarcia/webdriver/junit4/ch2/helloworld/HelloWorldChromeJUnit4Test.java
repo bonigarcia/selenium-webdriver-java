@@ -14,31 +14,47 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch2.otherbrowsers;
+package io.github.bonigarcia.webdriver.junit4.ch2.helloworld;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIf;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.safari.SafariDriver;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-@EnabledIf("browserAvailable")
-@ExtendWith(SeleniumJupiter.class)
-class HelloWorldSafariSelJupTest {
+public class HelloWorldChromeJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
+    private WebDriver driver;
+
+    @BeforeClass
+    public static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
+
+    @Before
+    public void setup() {
+        driver = new ChromeDriver();
+    }
+
+    @After
+    public void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
     @Test
-    void test(SafariDriver driver) {
+    public void test() {
         // Exercise
         String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
         driver.get(sutUrl);
@@ -47,11 +63,6 @@ class HelloWorldSafariSelJupTest {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
-    }
-
-    static boolean browserAvailable() {
-        return Files.exists(
-                Paths.get("/Applications/Safari.app/Contents/MacOS/Safari"));
     }
 
 }

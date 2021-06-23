@@ -14,23 +14,23 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch2.otherbrowsers;
+package io.github.bonigarcia.webdriver.junit5.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assume.assumeTrue;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -38,7 +38,8 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldChromiumJUnit4Test {
+@EnabledIf("browserAvailable")
+class HelloWorldChromiumJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -46,30 +47,27 @@ public class HelloWorldChromiumJUnit4Test {
 
     private static Path browserPath;
 
-    @BeforeClass
-    public static void setupClass() {
-        browserPath = getBrowserPath();
-        assumeTrue(Files.exists(browserPath));
-
+    @BeforeAll
+    static void setupClass() {
         WebDriverManager.chromiumdriver().setup();
     }
 
-    @Before
-    public void setup() {
+    @BeforeEach
+    void setup() {
         ChromeOptions options = new ChromeOptions();
         options.setBinary(browserPath.toFile());
         driver = new ChromeDriver(options);
     }
 
-    @After
-    public void teardown() {
+    @AfterEach
+    void teardown() {
         if (driver != null) {
             driver.quit();
         }
     }
 
     @Test
-    public void test() {
+    void test() {
         // Exercise
         String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
         driver.get(sutUrl);
@@ -80,17 +78,17 @@ public class HelloWorldChromiumJUnit4Test {
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
     }
 
-    private static Path getBrowserPath() {
+    static boolean browserAvailable() {
         if (IS_OS_WINDOWS) {
             browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
-                    "/Chromium/Application/chrome.exe");
+                    "/Programs/Opera/launcher.exe");
         } else if (IS_OS_MAC) {
             browserPath = Paths
-                    .get("/Applications/Chromium.app/Contents/MacOS/Chromium");
+                    .get("/Applications/Opera.app/Contents/MacOS/Opera");
         } else {
-            browserPath = Paths.get("/usr/bin/chromium-browser");
+            browserPath = Paths.get("/usr/bin/opera");
         }
-        return browserPath;
+        return Files.exists(browserPath);
     }
 
 }

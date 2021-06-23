@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch2.otherbrowsers;
+package io.github.bonigarcia.webdriver.junit5.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
@@ -26,22 +26,43 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 @EnabledIf("browserAvailable")
-@ExtendWith(SeleniumJupiter.class)
-class HelloWorldOperaSelJupTest {
+class HelloWorldOperaJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
+    private WebDriver driver;
+
+    @BeforeAll
+    static void setupClass() {
+        WebDriverManager.operadriver().setup();
+    }
+
+    @BeforeEach
+    void setup() {
+        driver = new OperaDriver();
+    }
+
+    @AfterEach
+    void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
     @Test
-    void test(OperaDriver driver) {
+    void test() {
         // Exercise
         String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
         driver.get(sutUrl);

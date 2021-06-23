@@ -14,36 +14,51 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch2.mainbrowsers;
+package io.github.bonigarcia.webdriver.junit4.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
+import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assume.assumeTrue;
 import static org.slf4j.LoggerFactory.getLogger;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldEdgeJUnit4Test {
+public class HelloWorldChromiumJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
+    private static Path browserPath;
+
     @BeforeClass
     public static void setupClass() {
-        WebDriverManager.edgedriver().setup();
+        browserPath = getBrowserPath();
+        assumeTrue(Files.exists(browserPath));
+
+        WebDriverManager.chromiumdriver().setup();
     }
 
     @Before
     public void setup() {
-        driver = new EdgeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.setBinary(browserPath.toFile());
+        driver = new ChromeDriver(options);
     }
 
     @After
@@ -63,6 +78,19 @@ public class HelloWorldEdgeJUnit4Test {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
+    }
+
+    private static Path getBrowserPath() {
+        if (IS_OS_WINDOWS) {
+            browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
+                    "/Chromium/Application/chrome.exe");
+        } else if (IS_OS_MAC) {
+            browserPath = Paths
+                    .get("/Applications/Chromium.app/Contents/MacOS/Chromium");
+        } else {
+            browserPath = Paths.get("/usr/bin/chromium-browser");
+        }
+        return browserPath;
     }
 
 }

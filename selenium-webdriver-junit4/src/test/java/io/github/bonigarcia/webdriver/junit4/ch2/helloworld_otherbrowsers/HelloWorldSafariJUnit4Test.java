@@ -14,60 +14,50 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit5.ch2.otherbrowsers;
+package io.github.bonigarcia.webdriver.junit4.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assume.assumeTrue;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-@EnabledIf("browserAvailable")
-class HelloWorldChromiumJupiterTest {
+public class HelloWorldSafariJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
-    private static Path browserPath;
-
-    @BeforeAll
-    static void setupClass() {
-        WebDriverManager.chromiumdriver().setup();
+    @BeforeClass
+    public static void setupClass() {
+        assumeTrue(Files.exists(getBrowserPath()));
     }
 
-    @BeforeEach
-    void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.setBinary(browserPath.toFile());
-        driver = new ChromeDriver(options);
+    @Before
+    public void setup() {
+        driver = new SafariDriver();
     }
 
-    @AfterEach
-    void teardown() {
+    @After
+    public void teardown() {
         if (driver != null) {
             driver.quit();
         }
     }
 
     @Test
-    void test() {
+    public void test() {
         // Exercise
         String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
         driver.get(sutUrl);
@@ -78,17 +68,8 @@ class HelloWorldChromiumJupiterTest {
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
     }
 
-    static boolean browserAvailable() {
-        if (IS_OS_WINDOWS) {
-            browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
-                    "/Programs/Opera/launcher.exe");
-        } else if (IS_OS_MAC) {
-            browserPath = Paths
-                    .get("/Applications/Opera.app/Contents/MacOS/Opera");
-        } else {
-            browserPath = Paths.get("/usr/bin/opera");
-        }
-        return Files.exists(browserPath);
+    private static Path getBrowserPath() {
+        return Paths.get("/Applications/Safari.app/Contents/MacOS/Safari");
     }
 
 }

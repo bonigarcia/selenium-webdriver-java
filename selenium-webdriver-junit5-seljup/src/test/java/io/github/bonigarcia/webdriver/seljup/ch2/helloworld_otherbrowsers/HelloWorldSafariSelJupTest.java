@@ -14,50 +14,31 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch2.otherbrowsers;
+package io.github.bonigarcia.webdriver.seljup.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assume.assumeTrue;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 
-public class HelloWorldSafariJUnit4Test {
+import io.github.bonigarcia.seljup.SeleniumJupiter;
+
+@EnabledIf("browserAvailable")
+@ExtendWith(SeleniumJupiter.class)
+class HelloWorldSafariSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    private WebDriver driver;
-
-    @BeforeClass
-    public static void setupClass() {
-        assumeTrue(Files.exists(getBrowserPath()));
-    }
-
-    @Before
-    public void setup() {
-        driver = new SafariDriver();
-    }
-
-    @After
-    public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-
     @Test
-    public void test() {
+    void test(SafariDriver driver) {
         // Exercise
         String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
         driver.get(sutUrl);
@@ -68,8 +49,9 @@ public class HelloWorldSafariJUnit4Test {
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
     }
 
-    private static Path getBrowserPath() {
-        return Paths.get("/Applications/Safari.app/Contents/MacOS/Safari");
+    static boolean browserAvailable() {
+        return Files.exists(
+                Paths.get("/Applications/Safari.app/Contents/MacOS/Safari"));
     }
 
 }

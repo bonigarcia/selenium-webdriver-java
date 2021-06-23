@@ -14,36 +14,33 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit5.ch2.mainbrowsers;
+package io.github.bonigarcia.webdriver.junit5.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-class HelloWorldEdgeJupiterTest {
+@EnabledIf("browserAvailable")
+class HelloWorldSafariJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
-    @BeforeAll
-    static void setupClass() {
-        WebDriverManager.edgedriver().setup();
-    }
-
     @BeforeEach
     void setup() {
-        driver = new EdgeDriver();
+        driver = new SafariDriver();
     }
 
     @AfterEach
@@ -63,6 +60,11 @@ class HelloWorldEdgeJupiterTest {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
+    }
+
+    static boolean browserAvailable() {
+        return Files.exists(
+                Paths.get("/Applications/Safari.app/Contents/MacOS/Safari"));
     }
 
 }

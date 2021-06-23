@@ -14,56 +14,47 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch2.otherbrowsers;
+package io.github.bonigarcia.webdriver.junit5.ch2.helloworld;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assume.assumeTrue;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldOperaJUnit4Test {
+class HelloWorldEdgeJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
-    @BeforeClass
-    public static void setupClass() {
-        assumeTrue(Files.exists(getBrowserPath()));
-
-        WebDriverManager.operadriver().setup();
+    @BeforeAll
+    static void setupClass() {
+        WebDriverManager.edgedriver().setup();
     }
 
-    @Before
-    public void setup() {
-        driver = new OperaDriver();
+    @BeforeEach
+    void setup() {
+        driver = new EdgeDriver();
     }
 
-    @After
-    public void teardown() {
+    @AfterEach
+    void teardown() {
         if (driver != null) {
             driver.quit();
         }
     }
 
     @Test
-    public void test() {
+    void test() {
         // Exercise
         String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
         driver.get(sutUrl);
@@ -72,20 +63,6 @@ public class HelloWorldOperaJUnit4Test {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
-    }
-
-    private static Path getBrowserPath() {
-        Path browserPath;
-        if (IS_OS_WINDOWS) {
-            browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
-                    "/Programs/Opera/launcher.exe");
-        } else if (IS_OS_MAC) {
-            browserPath = Paths
-                    .get("/Applications/Opera.app/Contents/MacOS/Opera");
-        } else {
-            browserPath = Paths.get("/usr/bin/opera");
-        }
-        return browserPath;
     }
 
 }
