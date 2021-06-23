@@ -14,22 +14,15 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch2.otherbrowsers;
+package io.github.bonigarcia.webdriver.testng.ch2.mainbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
-import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -37,7 +30,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldOperaTestNGTest {
+public class HelloWorldChromeNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -45,16 +38,12 @@ public class HelloWorldOperaTestNGTest {
 
     @BeforeClass
     public void setupClass() {
-        if (!Files.exists(getBrowserPath())) {
-            throw new SkipException("Opera not available");
-        }
-
-        WebDriverManager.operadriver().setup();
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeMethod
     public void setup() {
-        driver = new OperaDriver();
+        driver = new ChromeDriver();
     }
 
     @AfterMethod
@@ -74,20 +63,6 @@ public class HelloWorldOperaTestNGTest {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
-    }
-
-    private static Path getBrowserPath() {
-        Path browserPath;
-        if (IS_OS_WINDOWS) {
-            browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
-                    "/Programs/Opera/launcher.exe");
-        } else if (IS_OS_MAC) {
-            browserPath = Paths
-                    .get("/Applications/Opera.app/Contents/MacOS/Opera");
-        } else {
-            browserPath = Paths.get("/usr/bin/opera");
-        }
-        return browserPath;
     }
 
 }

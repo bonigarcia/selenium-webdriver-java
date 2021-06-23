@@ -17,7 +17,7 @@
 package io.github.bonigarcia.webdriver.testng.ch2.skeletons;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -25,18 +25,18 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class SkeletonFirefoxTestNGTest {
+public class SkeletonEdgeNGTest {
 
     private WebDriver driver;
 
     @BeforeClass
     public void setupClass() {
-        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.edgedriver().setup();
     }
 
     @BeforeMethod
     public void setup() {
-        driver = new FirefoxDriver();
+        driver = new EdgeDriver();
     }
 
     @AfterMethod

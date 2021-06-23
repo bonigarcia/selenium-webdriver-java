@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldFirefoxTestNGTest {
+public class HelloWorldEdgeNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -38,12 +38,12 @@ public class HelloWorldFirefoxTestNGTest {
 
     @BeforeClass
     public void setupClass() {
-        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.edgedriver().setup();
     }
 
     @BeforeMethod
     public void setup() {
-        driver = new FirefoxDriver();
+        driver = new EdgeDriver();
     }
 
     @AfterMethod

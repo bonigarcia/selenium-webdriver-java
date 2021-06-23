@@ -14,10 +14,15 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch2.skeletons;
+package io.github.bonigarcia.webdriver.testng.ch2.mainbrowsers;
+
+import static java.lang.invoke.MethodHandles.lookup;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -25,18 +30,20 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class SkeletonEdgeTestNGTest {
+public class HelloWorldFirefoxNGTest {
+
+    static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
     @BeforeClass
     public void setupClass() {
-        WebDriverManager.edgedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
     }
 
     @BeforeMethod
     public void setup() {
-        driver = new EdgeDriver();
+        driver = new FirefoxDriver();
     }
 
     @AfterMethod
@@ -48,7 +55,14 @@ public class SkeletonEdgeTestNGTest {
 
     @Test
     public void test() {
-        // TODO: use variable "driver" to call the Selenium WebDriver API
+        // Exercise
+        String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
+        driver.get(sutUrl);
+        String title = driver.getTitle();
+        log.debug("The title of {} is {}", sutUrl, title);
+
+        // Verify
+        assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
     }
 
 }

@@ -14,15 +14,10 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch2.mainbrowsers;
-
-import static java.lang.invoke.MethodHandles.lookup;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
+package io.github.bonigarcia.webdriver.testng.ch2.skeletons;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.slf4j.Logger;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -30,20 +25,18 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldEdgeTestNGTest {
-
-    static final Logger log = getLogger(lookup().lookupClass());
+public class SkeletonChromeNGTest {
 
     private WebDriver driver;
 
     @BeforeClass
     public void setupClass() {
-        WebDriverManager.edgedriver().setup();
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeMethod
     public void setup() {
-        driver = new EdgeDriver();
+        driver = new ChromeDriver();
     }
 
     @AfterMethod
@@ -55,14 +48,7 @@ public class HelloWorldEdgeTestNGTest {
 
     @Test
     public void test() {
-        // Exercise
-        String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
-        driver.get(sutUrl);
-        String title = driver.getTitle();
-        log.debug("The title of {} is {}", sutUrl, title);
-
-        // Verify
-        assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
+        // TODO: use variable "driver" to call the Selenium WebDriver API
     }
 
 }
