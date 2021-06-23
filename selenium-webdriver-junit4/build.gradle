@@ -31,7 +31,7 @@ ext {
     junit4Version = "4.13.2"
     assertjVersion  = '3.20.2'
     wdmVersion = "4.4.3"
-    slf4jVersion  = "1.7.30"
+    slf4jVersion  = "1.7.31"
     logbackVersion  = "1.2.3"
 }
 
