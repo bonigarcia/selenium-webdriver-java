@@ -14,36 +14,49 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit5.ch2.mainbrowsers;
+package io.github.bonigarcia.webdriver.junit5.ch2.otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
+import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class HelloWorldFirefoxJUnit5Test {
+@EnabledIf("browserAvailable")
+class HelloWorldChromiumJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
+    private static Path browserPath;
+
     @BeforeAll
     static void setupClass() {
-        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.chromiumdriver().setup();
     }
 
     @BeforeEach
     void setup() {
-        driver = new FirefoxDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.setBinary(browserPath.toFile());
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
@@ -63,6 +76,19 @@ class HelloWorldFirefoxJUnit5Test {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
+    }
+
+    static boolean browserAvailable() {
+        if (IS_OS_WINDOWS) {
+            browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
+                    "/Programs/Opera/launcher.exe");
+        } else if (IS_OS_MAC) {
+            browserPath = Paths
+                    .get("/Applications/Opera.app/Contents/MacOS/Opera");
+        } else {
+            browserPath = Paths.get("/usr/bin/opera");
+        }
+        return Files.exists(browserPath);
     }
 
 }

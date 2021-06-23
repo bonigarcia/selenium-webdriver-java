@@ -14,29 +14,36 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit5.ch2.skeletons;
+package io.github.bonigarcia.webdriver.junit5.ch2.mainbrowsers;
+
+import static java.lang.invoke.MethodHandles.lookup;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class SkeletonFirefoxJUnit5Test {
+class HelloWorldChromeJupiterTest {
+
+    static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
     @BeforeAll
     static void setupClass() {
-        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
     void setup() {
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
     }
 
     @AfterEach
@@ -48,7 +55,14 @@ class SkeletonFirefoxJUnit5Test {
 
     @Test
     void test() {
-        // TODO: use variable "driver" to call the Selenium WebDriver API
+        // Exercise
+        String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
+        driver.get(sutUrl);
+        String title = driver.getTitle();
+        log.debug("The title of {} is {}", sutUrl, title);
+
+        // Verify
+        assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
     }
 
 }

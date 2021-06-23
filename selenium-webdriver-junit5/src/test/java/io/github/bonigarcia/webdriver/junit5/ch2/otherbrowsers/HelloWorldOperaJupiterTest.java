@@ -38,7 +38,7 @@ import org.slf4j.Logger;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 @EnabledIf("browserAvailable")
-class HelloWorldOperaJUnit5Test {
+class HelloWorldOperaJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
