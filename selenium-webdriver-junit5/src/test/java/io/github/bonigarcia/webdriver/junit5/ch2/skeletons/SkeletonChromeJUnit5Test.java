@@ -48,7 +48,7 @@ class SkeletonChromeJUnit5Test {
 
     @Test
     void test() {
-        // TODO: use variable "webdriver" to call Selenium WebDriver API
+        // TODO: use variable "driver" to call the Selenium WebDriver API
     }
 
 }

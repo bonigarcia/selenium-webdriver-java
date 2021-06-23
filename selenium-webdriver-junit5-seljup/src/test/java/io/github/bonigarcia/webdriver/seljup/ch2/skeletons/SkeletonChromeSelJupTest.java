@@ -27,7 +27,7 @@ class SkeletonChromeSelJupTest {
 
     @Test
     void test(ChromeDriver driver) {
-        // TODO: use variable "webdriver" to call Selenium WebDriver API
+        // TODO: use variable "driver" to call the Selenium WebDriver API
     }
 
 }

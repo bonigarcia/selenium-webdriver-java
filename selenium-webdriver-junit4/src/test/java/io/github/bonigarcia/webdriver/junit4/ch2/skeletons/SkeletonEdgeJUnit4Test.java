@@ -48,7 +48,7 @@ public class SkeletonEdgeJUnit4Test {
 
     @Test
     public void test() {
-        // TODO: use variable "webdriver" to call Selenium WebDriver API
+        // TODO: use variable "driver" to call the Selenium WebDriver API
     }
 
 }

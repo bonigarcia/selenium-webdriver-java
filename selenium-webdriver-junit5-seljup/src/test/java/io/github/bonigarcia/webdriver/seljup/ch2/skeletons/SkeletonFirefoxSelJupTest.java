@@ -27,7 +27,7 @@ class SkeletonFirefoxSelJupTest {
 
     @Test
     void test(FirefoxDriver driver) {
-        // TODO: use variable "webdriver" to call Selenium WebDriver API
+        // TODO: use variable "driver" to call the Selenium WebDriver API
     }
 
 }

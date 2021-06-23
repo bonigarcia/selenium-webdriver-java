@@ -27,7 +27,7 @@ class SkeletonEdgeSelJupTest {
 
     @Test
     void test(EdgeDriver driver) {
-        // TODO: use variable "webdriver" to call Selenium WebDriver API
+        // TODO: use variable "driver" to call the Selenium WebDriver API
     }
 
 }
