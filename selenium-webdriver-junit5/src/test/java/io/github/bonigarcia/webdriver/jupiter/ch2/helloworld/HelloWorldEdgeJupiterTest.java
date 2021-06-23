@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit5.ch2.helloworld;
+package io.github.bonigarcia.webdriver.jupiter.ch2.helloworld;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,12 +25,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class HelloWorldFirefoxJupiterTest {
+class HelloWorldEdgeJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -38,12 +38,12 @@ class HelloWorldFirefoxJupiterTest {
 
     @BeforeAll
     static void setupClass() {
-        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.edgedriver().setup();
     }
 
     @BeforeEach
     void setup() {
-        driver = new FirefoxDriver();
+        driver = new EdgeDriver();
     }
 
     @AfterEach

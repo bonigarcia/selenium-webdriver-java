@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit5.ch2.skeletons;
+package io.github.bonigarcia.webdriver.jupiter.ch2.skeletons;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

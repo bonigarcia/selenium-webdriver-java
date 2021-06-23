@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit5.ch2.helloworld_otherbrowsers;
+package io.github.bonigarcia.webdriver.jupiter.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
@@ -32,31 +32,26 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.opera.OperaDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 @EnabledIf("browserAvailable")
-class HelloWorldChromiumJupiterTest {
+class HelloWorldOperaJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
-    private static Path browserPath;
-
     @BeforeAll
     static void setupClass() {
-        WebDriverManager.chromiumdriver().setup();
+        WebDriverManager.operadriver().setup();
     }
 
     @BeforeEach
     void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.setBinary(browserPath.toFile());
-        driver = new ChromeDriver(options);
+        driver = new OperaDriver();
     }
 
     @AfterEach
@@ -79,6 +74,7 @@ class HelloWorldChromiumJupiterTest {
     }
 
     static boolean browserAvailable() {
+        Path browserPath;
         if (IS_OS_WINDOWS) {
             browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
                     "/Programs/Opera/launcher.exe");

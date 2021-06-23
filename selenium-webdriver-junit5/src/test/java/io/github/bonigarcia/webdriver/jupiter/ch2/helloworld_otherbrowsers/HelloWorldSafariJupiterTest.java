@@ -14,44 +14,33 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit5.ch2.helloworld_otherbrowsers;
+package io.github.bonigarcia.webdriver.jupiter.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
 @EnabledIf("browserAvailable")
-class HelloWorldOperaJupiterTest {
+class HelloWorldSafariJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
 
-    @BeforeAll
-    static void setupClass() {
-        WebDriverManager.operadriver().setup();
-    }
-
     @BeforeEach
     void setup() {
-        driver = new OperaDriver();
+        driver = new SafariDriver();
     }
 
     @AfterEach
@@ -74,17 +63,8 @@ class HelloWorldOperaJupiterTest {
     }
 
     static boolean browserAvailable() {
-        Path browserPath;
-        if (IS_OS_WINDOWS) {
-            browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
-                    "/Programs/Opera/launcher.exe");
-        } else if (IS_OS_MAC) {
-            browserPath = Paths
-                    .get("/Applications/Opera.app/Contents/MacOS/Opera");
-        } else {
-            browserPath = Paths.get("/usr/bin/opera");
-        }
-        return Files.exists(browserPath);
+        return Files.exists(
+                Paths.get("/Applications/Safari.app/Contents/MacOS/Safari"));
     }
 
 }
