@@ -1,6 +1,4 @@
 apply plugin: "java"
-apply plugin: "eclipse"
-apply plugin: "idea"
 
 jar {
     archiveBaseName = "selenium-webdriver-junit4"
