@@ -51,6 +51,10 @@ public class HelloWorldChromiumJUnit4Test {
         browserPath = getBrowserPath();
         assumeTrue(Files.exists(browserPath));
 
+        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
+        // Optional<Path> browserPath = WebDriverManager.chromiumdriver().getBrowserPath();
+        // assumeTrue(browserPath.isPresent() && Files.exists(browserPath.get()));
+
         WebDriverManager.chromiumdriver().setup();
     }
 

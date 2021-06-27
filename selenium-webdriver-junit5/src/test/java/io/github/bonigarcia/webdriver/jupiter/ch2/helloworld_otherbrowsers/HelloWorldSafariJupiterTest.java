@@ -62,6 +62,7 @@ class HelloWorldSafariJupiterTest {
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
     }
 
+    // TODO: Use WebDriverManager 5 (not released yet) to get browser path
     static boolean browserAvailable() {
         return Files.exists(
                 Paths.get("/Applications/Safari.app/Contents/MacOS/Safari"));

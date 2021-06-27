@@ -41,7 +41,13 @@ public class HelloWorldSafariJUnit4Test {
 
     @BeforeClass
     public static void setupClass() {
-        assumeTrue(Files.exists(getBrowserPath()));
+        Path browserPath = getBrowserPath();
+
+        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
+        // Optional<Path> browserPath = WebDriverManager.safaridriver().getBrowserPath();
+        // assumeTrue(browserPath.isPresent() && Files.exists(browserPath.get()));
+
+        assumeTrue(Files.exists(browserPath));
     }
 
     @Before

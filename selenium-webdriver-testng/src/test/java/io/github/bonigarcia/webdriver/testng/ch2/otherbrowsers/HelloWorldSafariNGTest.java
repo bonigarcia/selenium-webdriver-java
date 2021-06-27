@@ -41,6 +41,10 @@ public class HelloWorldSafariNGTest {
 
     @BeforeClass
     public void setupSuite() {
+        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
+        // Optional<Path> browserPath = WebDriverManager.safaridriver().getBrowserPath();
+        // browserPath.orElseThrow(() -> new SkipException("Safari not available"));
+
         if (!exists(getBrowserPath())) {
             throw new SkipException("Safari not available");
         }

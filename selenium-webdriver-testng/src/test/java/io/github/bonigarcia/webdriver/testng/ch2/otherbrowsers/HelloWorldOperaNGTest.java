@@ -45,6 +45,10 @@ public class HelloWorldOperaNGTest {
 
     @BeforeClass
     public void setupClass() {
+        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
+        // Optional<Path> browserPath = WebDriverManager.operadriver().getBrowserPath();
+        // browserPath.orElseThrow(() -> new SkipException("Opera not available"));
+
         if (!Files.exists(getBrowserPath())) {
             throw new SkipException("Opera not available");
         }

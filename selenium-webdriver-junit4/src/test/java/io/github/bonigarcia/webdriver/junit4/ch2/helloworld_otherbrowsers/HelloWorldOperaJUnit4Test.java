@@ -45,7 +45,12 @@ public class HelloWorldOperaJUnit4Test {
 
     @BeforeClass
     public static void setupClass() {
-        assumeTrue(Files.exists(getBrowserPath()));
+        Path browserPath = getBrowserPath();
+        assumeTrue(Files.exists(browserPath));
+
+        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
+        // Optional<Path> browserPath = WebDriverManager.operadriver().getBrowserPath();
+        // assumeTrue(browserPath.isPresent() && Files.exists(browserPath.get()));
 
         WebDriverManager.operadriver().setup();
     }

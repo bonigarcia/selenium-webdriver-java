@@ -73,6 +73,7 @@ class HelloWorldOperaJupiterTest {
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
     }
 
+    // TODO: Use WebDriverManager 5 (not released yet) to get browser path
     static boolean browserAvailable() {
         Path browserPath;
         if (IS_OS_WINDOWS) {

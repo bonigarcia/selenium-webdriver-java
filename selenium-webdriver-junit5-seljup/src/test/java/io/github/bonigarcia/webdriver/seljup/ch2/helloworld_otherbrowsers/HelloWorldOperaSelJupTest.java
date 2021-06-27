@@ -34,6 +34,8 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+// TODO: Use Selenium-Jupiter 4 (not released yet) for conditional enabling
+// @EnabledIfBrowserAvailable
 @EnabledIf("browserAvailable")
 @ExtendWith(SeleniumJupiter.class)
 class HelloWorldOperaSelJupTest {

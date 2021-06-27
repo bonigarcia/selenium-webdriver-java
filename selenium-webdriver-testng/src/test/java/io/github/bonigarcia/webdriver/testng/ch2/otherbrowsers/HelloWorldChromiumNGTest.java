@@ -49,6 +49,11 @@ public class HelloWorldChromiumNGTest {
     @BeforeClass
     public void setupClass() {
         browserPath = getBrowserPath();
+
+        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
+        // Optional<Path> browserPath = WebDriverManager.chromiumdriver().getBrowserPath();
+        // browserPath.orElseThrow(() -> new SkipException("Chromium not available"));
+
         if (!Files.exists(browserPath)) {
             throw new SkipException("Chromium not available");
         }
