@@ -17,13 +17,13 @@
 package io.github.bonigarcia.webdriver.jupiter.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static java.nio.file.Files.exists;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -50,7 +50,7 @@ class HelloWorldChromiumJupiterTest {
     static void setupClass() {
         browserPath = getBrowserPath();
         // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-        assumeThat(Files.exists(browserPath));
+        assumeThat(exists(browserPath));
 
         WebDriverManager.chromiumdriver().setup();
 

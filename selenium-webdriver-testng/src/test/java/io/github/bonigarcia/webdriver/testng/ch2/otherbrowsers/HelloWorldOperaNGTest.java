@@ -17,12 +17,12 @@
 package io.github.bonigarcia.webdriver.testng.ch2.otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static java.nio.file.Files.exists;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -49,7 +49,7 @@ public class HelloWorldOperaNGTest {
         // Optional<Path> browserPath = WebDriverManager.operadriver().getBrowserPath();
         // browserPath.orElseThrow(() -> new SkipException("Opera not available"));
 
-        if (!Files.exists(getBrowserPath())) {
+        if (!exists(getBrowserPath())) {
             throw new SkipException("Opera not available");
         }
 

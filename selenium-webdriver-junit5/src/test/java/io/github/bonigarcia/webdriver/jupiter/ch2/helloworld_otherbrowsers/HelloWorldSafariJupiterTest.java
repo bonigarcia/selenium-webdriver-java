@@ -17,11 +17,11 @@
 package io.github.bonigarcia.webdriver.jupiter.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static java.nio.file.Files.exists;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -45,8 +45,7 @@ class HelloWorldSafariJupiterTest {
     void setupClass() {
         Path browserPath = getBrowserPath();
         // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-
-        assumeThat(Files.exists(browserPath));
+        assumeThat(exists(browserPath));
     }
 
     @BeforeEach
