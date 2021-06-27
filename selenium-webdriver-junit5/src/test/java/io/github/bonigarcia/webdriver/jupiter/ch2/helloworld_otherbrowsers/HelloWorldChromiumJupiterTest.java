@@ -20,6 +20,7 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Files;
@@ -30,7 +31,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIf;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -38,7 +38,6 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@EnabledIf("browserAvailable")
 class HelloWorldChromiumJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
@@ -49,7 +48,12 @@ class HelloWorldChromiumJupiterTest {
 
     @BeforeAll
     static void setupClass() {
+        browserPath = getBrowserPath();
+        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
+        assumeThat(Files.exists(browserPath));
+
         WebDriverManager.chromiumdriver().setup();
+
     }
 
     @BeforeEach
@@ -78,8 +82,7 @@ class HelloWorldChromiumJupiterTest {
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
     }
 
-    // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-    static boolean browserAvailable() {
+    static Path getBrowserPath() {
         if (IS_OS_WINDOWS) {
             browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
                     "/Programs/Opera/launcher.exe");
@@ -89,7 +92,7 @@ class HelloWorldChromiumJupiterTest {
         } else {
             browserPath = Paths.get("/usr/bin/opera");
         }
-        return Files.exists(browserPath);
+        return browserPath;
     }
 
 }

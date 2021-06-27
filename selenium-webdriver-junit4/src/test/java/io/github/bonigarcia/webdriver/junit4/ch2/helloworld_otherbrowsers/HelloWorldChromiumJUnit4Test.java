@@ -20,7 +20,7 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assume.assumeTrue;
+import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Files;
@@ -49,7 +49,7 @@ public class HelloWorldChromiumJUnit4Test {
     @BeforeClass
     public static void setupClass() {
         browserPath = getBrowserPath();
-        assumeTrue(Files.exists(browserPath));
+        assumeThat(Files.exists(browserPath));
 
         // TODO: Use WebDriverManager 5 (not released yet) to get browser path
         // Optional<Path> browserPath = WebDriverManager.chromiumdriver().getBrowserPath();

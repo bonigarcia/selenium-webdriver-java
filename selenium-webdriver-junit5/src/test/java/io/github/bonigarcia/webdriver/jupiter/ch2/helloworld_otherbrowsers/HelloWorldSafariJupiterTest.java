@@ -18,12 +18,15 @@ package io.github.bonigarcia.webdriver.jupiter.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
@@ -37,6 +40,14 @@ class HelloWorldSafariJupiterTest {
     static final Logger log = getLogger(lookup().lookupClass());
 
     private WebDriver driver;
+
+    @BeforeAll
+    void setupClass() {
+        Path browserPath = getBrowserPath();
+        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
+
+        assumeThat(Files.exists(browserPath));
+    }
 
     @BeforeEach
     void setup() {
@@ -62,10 +73,8 @@ class HelloWorldSafariJupiterTest {
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
     }
 
-    // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-    static boolean browserAvailable() {
-        return Files.exists(
-                Paths.get("/Applications/Safari.app/Contents/MacOS/Safari"));
+    private static Path getBrowserPath() {
+        return Paths.get("/Applications/Safari.app/Contents/MacOS/Safari");
     }
 
 }

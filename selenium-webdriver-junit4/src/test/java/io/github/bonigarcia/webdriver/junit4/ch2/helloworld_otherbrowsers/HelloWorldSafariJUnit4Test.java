@@ -18,7 +18,7 @@ package io.github.bonigarcia.webdriver.junit4.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assume.assumeTrue;
+import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Files;
@@ -42,12 +42,11 @@ public class HelloWorldSafariJUnit4Test {
     @BeforeClass
     public static void setupClass() {
         Path browserPath = getBrowserPath();
+        assumeThat(Files.exists(browserPath));
 
         // TODO: Use WebDriverManager 5 (not released yet) to get browser path
         // Optional<Path> browserPath = WebDriverManager.safaridriver().getBrowserPath();
         // assumeTrue(browserPath.isPresent() && Files.exists(browserPath.get()));
-
-        assumeTrue(Files.exists(browserPath));
     }
 
     @Before
