@@ -11,7 +11,7 @@
         <slf4j.version>1.7.31</slf4j.version>
         <logback.version>1.2.3</logback.version>
 
-        <selenium-java.version>4.0.0-beta-4</selenium-java.version>
+        <selenium.version>4.0.0-beta-4</selenium.version>
         <testng.version>7.4.0</testng.version>
         <assertj.version>3.20.2</assertj.version>
         <wdm.version>4.4.3</wdm.version>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>${selenium-java.version}</version>
+            <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
