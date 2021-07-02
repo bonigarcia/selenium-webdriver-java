@@ -17,7 +17,6 @@
 package io.github.bonigarcia.webdriver.junit4.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static java.nio.file.Files.exists;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,11 +45,8 @@ public class HelloWorldOperaJUnit4Test {
     @BeforeClass
     public static void setupClass() {
         Path browserPath = getBrowserPath();
-        assumeThat(exists(browserPath));
-
         // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-        // Optional<Path> browserPath = WebDriverManager.operadriver().getBrowserPath();
-        // assumeTrue(browserPath.isPresent() && Files.exists(browserPath.get()));
+        assumeThat(browserPath).exists();
 
         WebDriverManager.operadriver().setup();
     }

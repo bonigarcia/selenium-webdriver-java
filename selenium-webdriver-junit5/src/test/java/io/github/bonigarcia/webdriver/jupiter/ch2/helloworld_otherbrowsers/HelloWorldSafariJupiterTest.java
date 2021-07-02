@@ -17,7 +17,6 @@
 package io.github.bonigarcia.webdriver.jupiter.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static java.nio.file.Files.exists;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -29,12 +28,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIf;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 
-@EnabledIf("browserAvailable")
 class HelloWorldSafariJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
@@ -45,7 +42,7 @@ class HelloWorldSafariJupiterTest {
     void setupClass() {
         Path browserPath = getBrowserPath();
         // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-        assumeThat(exists(browserPath));
+        assumeThat(browserPath).exists();
     }
 
     @BeforeEach

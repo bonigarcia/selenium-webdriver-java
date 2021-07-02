@@ -17,8 +17,8 @@
 package io.github.bonigarcia.webdriver.testng.ch2.otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static java.nio.file.Files.exists;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Path;
@@ -27,7 +27,6 @@ import java.nio.file.Paths;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
-import org.testng.SkipException;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -41,13 +40,9 @@ public class HelloWorldSafariNGTest {
 
     @BeforeClass
     public void setupClass() {
+        Path browserPath = getBrowserPath();
         // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-        // Optional<Path> browserPath = WebDriverManager.safaridriver().getBrowserPath();
-        // browserPath.orElseThrow(() -> new SkipException("Safari not available"));
-
-        if (!exists(getBrowserPath())) {
-            throw new SkipException("Safari not available");
-        }
+        assumeThat(browserPath).exists();
     }
 
     @BeforeMethod
