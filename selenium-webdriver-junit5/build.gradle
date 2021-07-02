@@ -27,19 +27,21 @@ repositories {
 }
 
 ext {
-    seleniumVersion  = "4.0.0-beta-4"
-    junit5Version = "5.7.2"
-    assertjVersion  = '3.20.2'
-    wdmVersion = "4.4.3"
     slf4jVersion  = "1.7.31"
     logbackVersion  = "1.2.3"
+
+    seleniumVersion  = "4.0.0-beta-4"
+    junit5Version = "5.7.2"
+    assertjVersion  = "3.20.2"
+    wdmVersion = "4.4.3"
 }
 
 dependencies {
+    implementation("org.slf4j:slf4j-api:${slf4jVersion}")
+    implementation("ch.qos.logback:logback-classic:${logbackVersion}")
+
     testImplementation("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter:${junit5Version}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
-    testImplementation("org.slf4j:slf4j-api:${slf4jVersion}")
-    testImplementation("ch.qos.logback:logback-classic:${logbackVersion}")
 }

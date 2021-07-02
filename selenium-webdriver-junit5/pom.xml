@@ -8,12 +8,13 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
+        <slf4j.version>1.7.31</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+
         <selenium-java.version>4.0.0-beta-4</selenium-java.version>
         <junit5.version>5.7.2</junit5.version>
         <assertj.version>3.20.2</assertj.version>
         <wdm.version>4.4.3</wdm.version>
-        <slf4j.version>1.7.31</slf4j.version>
-        <logback.version>1.2.3</logback.version>
 
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
@@ -27,6 +28,17 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -49,18 +61,6 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${wdm.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

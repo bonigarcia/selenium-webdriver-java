@@ -27,22 +27,24 @@ repositories {
 }
 
 ext {
+    slf4jVersion  = "1.7.31"
+    logbackVersion  = "1.2.3"
+
     seleniumVersion  = "4.0.0-beta-4"
     junit5Version = "5.7.2"
     selJupVersion = "3.4.0"
-    assertjVersion  = '3.20.2'
-    slf4jVersion  = "1.7.31"
-    logbackVersion  = "1.2.3"
+    assertjVersion  = "3.20.2"
 }
 
 
 dependencies {
+    implementation("org.slf4j:slf4j-api:${slf4jVersion}")
+    implementation("ch.qos.logback:logback-classic:${logbackVersion}")
+
     testImplementation("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter:${junit5Version}")
     testImplementation("io.github.bonigarcia:selenium-jupiter:${selJupVersion}") {
         exclude group: "org.seleniumhq.selenium", module: "*"
     }
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
-    testImplementation("org.slf4j:slf4j-api:${slf4jVersion}")
-    testImplementation("ch.qos.logback:logback-classic:${logbackVersion}")
 }
