@@ -39,7 +39,7 @@ class HelloWorldSafariJupiterTest {
     private WebDriver driver;
 
     @BeforeAll
-    void setupClass() {
+    static void setupClass() {
         Path browserPath = getBrowserPath();
         // TODO: Use WebDriverManager 5 (not released yet) to get browser path
         assumeThat(browserPath).exists();
