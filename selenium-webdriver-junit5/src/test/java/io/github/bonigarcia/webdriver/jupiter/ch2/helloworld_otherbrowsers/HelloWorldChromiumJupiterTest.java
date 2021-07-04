@@ -17,14 +17,12 @@
 package io.github.bonigarcia.webdriver.jupiter.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -43,22 +41,20 @@ class HelloWorldChromiumJupiterTest {
 
     private WebDriver driver;
 
-    private static Path browserPath;
+    private static Optional<Path> browserPath;
 
     @BeforeAll
     static void setupClass() {
-        browserPath = getBrowserPath();
-        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-        assumeThat(browserPath).exists();
+        browserPath = WebDriverManager.chromiumdriver().getBrowserPath();
+        assumeThat(browserPath).isPresent();
 
         WebDriverManager.chromiumdriver().setup();
-
     }
 
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
-        options.setBinary(browserPath.toFile());
+        options.setBinary(browserPath.get().toFile());
         driver = new ChromeDriver(options);
     }
 
@@ -79,19 +75,6 @@ class HelloWorldChromiumJupiterTest {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
-    }
-
-    static Path getBrowserPath() {
-        if (IS_OS_WINDOWS) {
-            browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
-                    "/Programs/Opera/launcher.exe");
-        } else if (IS_OS_MAC) {
-            browserPath = Paths
-                    .get("/Applications/Opera.app/Contents/MacOS/Opera");
-        } else {
-            browserPath = Paths.get("/usr/bin/opera");
-        }
-        return browserPath;
     }
 
 }

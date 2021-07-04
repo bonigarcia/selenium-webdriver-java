@@ -17,14 +17,12 @@
 package io.github.bonigarcia.webdriver.testng.ch2.otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.opera.OperaDriver;
@@ -44,9 +42,9 @@ public class HelloWorldOperaNGTest {
 
     @BeforeClass
     public void setupClass() {
-        Path browserPath = getBrowserPath();
-        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-        assumeThat(browserPath).exists();
+        Optional<Path> browserPath = WebDriverManager.operadriver()
+                .getBrowserPath();
+        assumeThat(browserPath).isPresent();
 
         WebDriverManager.operadriver().setup();
     }
@@ -73,20 +71,6 @@ public class HelloWorldOperaNGTest {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
-    }
-
-    private static Path getBrowserPath() {
-        Path browserPath;
-        if (IS_OS_WINDOWS) {
-            browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
-                    "/Programs/Opera/launcher.exe");
-        } else if (IS_OS_MAC) {
-            browserPath = Paths
-                    .get("/Applications/Opera.app/Contents/MacOS/Opera");
-        } else {
-            browserPath = Paths.get("/usr/bin/opera");
-        }
-        return browserPath;
     }
 
 }

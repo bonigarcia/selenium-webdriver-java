@@ -17,14 +17,12 @@
 package io.github.bonigarcia.webdriver.junit4.ch2.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.After;
 import org.junit.Before;
@@ -43,13 +41,12 @@ public class HelloWorldChromiumJUnit4Test {
 
     private WebDriver driver;
 
-    private static Path browserPath;
+    private static Optional<Path> browserPath;
 
     @BeforeClass
     public static void setupClass() {
-        browserPath = getBrowserPath();
-        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-        assumeThat(browserPath).exists();
+        browserPath = WebDriverManager.chromiumdriver().getBrowserPath();
+        assumeThat(browserPath).isPresent();
 
         WebDriverManager.chromiumdriver().setup();
     }
@@ -57,7 +54,7 @@ public class HelloWorldChromiumJUnit4Test {
     @Before
     public void setup() {
         ChromeOptions options = new ChromeOptions();
-        options.setBinary(browserPath.toFile());
+        options.setBinary(browserPath.get().toFile());
         driver = new ChromeDriver(options);
     }
 
@@ -78,19 +75,6 @@ public class HelloWorldChromiumJUnit4Test {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
-    }
-
-    private static Path getBrowserPath() {
-        if (IS_OS_WINDOWS) {
-            browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
-                    "/Chromium/Application/chrome.exe");
-        } else if (IS_OS_MAC) {
-            browserPath = Paths
-                    .get("/Applications/Chromium.app/Contents/MacOS/Chromium");
-        } else {
-            browserPath = Paths.get("/usr/bin/chromium-browser");
-        }
-        return browserPath;
     }
 
 }

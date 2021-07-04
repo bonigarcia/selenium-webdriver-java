@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -32,6 +32,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class HelloWorldSafariNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
@@ -40,9 +42,9 @@ public class HelloWorldSafariNGTest {
 
     @BeforeClass
     public void setupClass() {
-        Path browserPath = getBrowserPath();
-        // TODO: Use WebDriverManager 5 (not released yet) to get browser path
-        assumeThat(browserPath).exists();
+        Optional<Path> browserPath = WebDriverManager.safaridriver()
+                .getBrowserPath();
+        assumeThat(browserPath).isPresent();
     }
 
     @BeforeMethod
@@ -67,10 +69,6 @@ public class HelloWorldSafariNGTest {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
-    }
-
-    private static Path getBrowserPath() {
-        return Paths.get("/Applications/Safari.app/Contents/MacOS/Safari");
     }
 
 }
