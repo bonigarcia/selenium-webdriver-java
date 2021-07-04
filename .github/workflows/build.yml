@@ -8,8 +8,7 @@ on:
 
 env:
   DISPLAY: :99
-  WDM_GITHUBTOKENNAME: ${{ secrets.WDM_GITHUBTOKENNAME }}
-  WDM_GITHUBTOKENSECRET: ${{ secrets.WDM_GITHUBTOKENSECRET }}
+  WDM_GITHUBTOKEN: ${{ secrets.WDM_GITHUBTOKEN }}
 
 jobs:
   tests:
