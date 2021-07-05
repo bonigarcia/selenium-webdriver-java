@@ -56,12 +56,6 @@
             <artifactId>selenium-jupiter</artifactId>
             <version>${selenium-jupiter.version}</version>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-java</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
