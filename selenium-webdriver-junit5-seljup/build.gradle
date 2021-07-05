@@ -33,7 +33,7 @@ ext {
 
     seleniumVersion  = "4.0.0-beta-4"
     junit5Version = "5.7.2"
-    selJupVersion = "3.4.0"
+    selJupVersion = "4.0.0-SNAPSHOT"
     assertjVersion  = "3.20.2"
 }
 
