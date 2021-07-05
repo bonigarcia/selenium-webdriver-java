@@ -16,27 +16,20 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch2.helloworld_otherbrowsers;
 
+import static io.github.bonigarcia.seljup.Browser.CHROMIUM;
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.chromium.ChromiumDriver;
 import org.slf4j.Logger;
 
+import io.github.bonigarcia.seljup.EnabledIfBrowserAvailable;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-// TODO: Use Selenium-Jupiter 4 (not released yet) for conditional enabling
-// @EnabledIfBrowserAvailable
-@EnabledIf("browserAvailable")
+@EnabledIfBrowserAvailable(CHROMIUM)
 @ExtendWith(SeleniumJupiter.class)
 class HelloWorldChromiumSelJupTest {
 
@@ -52,20 +45,6 @@ class HelloWorldChromiumSelJupTest {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
-    }
-
-    static boolean browserAvailable() {
-        Path browserPath;
-        if (IS_OS_WINDOWS) {
-            browserPath = Paths.get(System.getenv("LOCALAPPDATA"),
-                    "/Programs/Opera/launcher.exe");
-        } else if (IS_OS_MAC) {
-            browserPath = Paths
-                    .get("/Applications/Opera.app/Contents/MacOS/Opera");
-        } else {
-            browserPath = Paths.get("/usr/bin/opera");
-        }
-        return Files.exists(browserPath);
     }
 
 }

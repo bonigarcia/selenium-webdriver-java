@@ -16,24 +16,20 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch2.helloworld_otherbrowsers;
 
+import static io.github.bonigarcia.seljup.Browser.SAFARI;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 
+import io.github.bonigarcia.seljup.EnabledIfBrowserAvailable;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-// TODO: Use Selenium-Jupiter 4 (not released yet) for conditional enabling
-// @EnabledIfBrowserAvailable
-@EnabledIf("browserAvailable")
+@EnabledIfBrowserAvailable(SAFARI)
 @ExtendWith(SeleniumJupiter.class)
 class HelloWorldSafariSelJupTest {
 
@@ -49,11 +45,6 @@ class HelloWorldSafariSelJupTest {
 
         // Verify
         assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
-    }
-
-    static boolean browserAvailable() {
-        return Files.exists(
-                Paths.get("/Applications/Safari.app/Contents/MacOS/Safari"));
     }
 
 }
