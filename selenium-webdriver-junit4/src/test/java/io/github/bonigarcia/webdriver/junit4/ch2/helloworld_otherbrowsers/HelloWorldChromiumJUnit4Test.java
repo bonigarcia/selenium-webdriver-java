@@ -19,6 +19,7 @@ package io.github.bonigarcia.webdriver.junit4.ch2.helloworld_otherbrowsers;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
+import static org.openqa.selenium.net.PortProber.findFreePort;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Path;
@@ -54,6 +55,7 @@ public class HelloWorldChromiumJUnit4Test {
     @Before
     public void setup() {
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-debugging-port=" + findFreePort());
         options.setBinary(browserPath.get().toFile());
         driver = new ChromeDriver(options);
     }
