@@ -26,7 +26,7 @@ repositories {
 }
 
 ext {
-    slf4jVersion  = "1.7.31"
+    slf4jVersion  = "1.7.32"
     logbackVersion  = "1.2.3"
 
     seleniumVersion  = "4.0.0-beta-4"
