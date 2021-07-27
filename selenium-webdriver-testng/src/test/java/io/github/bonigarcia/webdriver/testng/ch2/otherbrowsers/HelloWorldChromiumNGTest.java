@@ -70,7 +70,7 @@ public class HelloWorldChromiumNGTest {
     @Test
     public void test() {
         // Exercise
-        String sutUrl = "https://bonigarcia.github.io/selenium-webdriver-java/";
+        String sutUrl = "https://bonigarcia.org/selenium-webdriver-java/";
         driver.get(sutUrl);
         String title = driver.getTitle();
         log.debug("The title of {} is {}", sutUrl, title);
