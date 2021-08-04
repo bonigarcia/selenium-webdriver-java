@@ -20,5 +20,5 @@ selenium-webdriver-java (Copyright &copy; 2021) is an open-source project create
 [JUnit 5]: https://junit.org/junit5/docs/current/user-guide/
 [Maven]: https://maven.apache.org/
 [Selenium WebDriver]: https://docs.seleniumhq.org/projects/webdriver/
-[Selenium-Jupiter]: https://bonigarcia.github.io/selenium-jupiter/
+[Selenium-Jupiter]: https://bonigarcia.org/selenium-jupiter/
 [TestNG]: https://testng.org/doc/
