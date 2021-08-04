@@ -38,7 +38,7 @@ public class HelloWorldFirefoxJUnit4Test {
 
     @BeforeClass
     public static void setupClass() {
-        WebDriverManager.firefoxdriver().driverVersion("0.29.1").setup();
+        WebDriverManager.firefoxdriver().setup();
     }
 
     @Before
