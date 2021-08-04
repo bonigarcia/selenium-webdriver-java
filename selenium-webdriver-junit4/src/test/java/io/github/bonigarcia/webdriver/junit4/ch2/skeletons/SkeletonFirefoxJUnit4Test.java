@@ -19,12 +19,14 @@ package io.github.bonigarcia.webdriver.junit4.ch2.skeletons;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore
 public class SkeletonFirefoxJUnit4Test {
 
     private WebDriver driver;
