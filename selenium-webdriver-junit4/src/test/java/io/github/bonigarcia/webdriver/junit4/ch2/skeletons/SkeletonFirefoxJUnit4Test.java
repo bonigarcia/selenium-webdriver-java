@@ -41,9 +41,7 @@ public class SkeletonFirefoxJUnit4Test {
 
     @After
     public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
 
     @Test

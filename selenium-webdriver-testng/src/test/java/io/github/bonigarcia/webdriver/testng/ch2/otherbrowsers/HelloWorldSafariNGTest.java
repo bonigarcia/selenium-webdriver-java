@@ -54,9 +54,7 @@ public class HelloWorldSafariNGTest {
 
     @AfterTest
     public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
 
     @Test

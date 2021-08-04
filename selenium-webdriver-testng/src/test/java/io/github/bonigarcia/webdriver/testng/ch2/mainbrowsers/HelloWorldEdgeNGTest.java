@@ -48,9 +48,7 @@ public class HelloWorldEdgeNGTest {
 
     @AfterMethod
     public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
 
     @Test
