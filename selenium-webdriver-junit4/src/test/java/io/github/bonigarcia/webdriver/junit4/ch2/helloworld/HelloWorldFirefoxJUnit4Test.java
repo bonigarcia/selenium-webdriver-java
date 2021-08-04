@@ -23,6 +23,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -30,6 +31,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore
 public class HelloWorldFirefoxJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
