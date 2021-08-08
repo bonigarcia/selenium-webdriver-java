@@ -27,7 +27,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class SkeletonFirefoxNGTest {
 
-    private WebDriver driver;
+    WebDriver driver;
 
     @BeforeClass
     public void setupClass() {

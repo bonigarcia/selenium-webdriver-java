@@ -27,7 +27,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class SkeletonChromeJUnit4Test {
 
-    private WebDriver driver;
+    WebDriver driver;
 
     @BeforeClass
     public static void setupClass() {

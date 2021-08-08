@@ -34,7 +34,7 @@ public class HelloWorldChromeNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    private WebDriver driver;
+    WebDriver driver;
 
     @BeforeClass
     public void setupClass() {

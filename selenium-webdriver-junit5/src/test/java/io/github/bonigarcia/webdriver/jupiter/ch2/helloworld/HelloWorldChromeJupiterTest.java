@@ -34,7 +34,7 @@ class HelloWorldChromeJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    private WebDriver driver;
+    WebDriver driver;
 
     @BeforeAll
     static void setupClass() {

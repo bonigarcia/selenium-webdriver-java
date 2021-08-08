@@ -40,9 +40,9 @@ public class HelloWorldChromiumJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    private WebDriver driver;
+    WebDriver driver;
 
-    private static Optional<Path> browserPath;
+    static Optional<Path> browserPath;
 
     @BeforeClass
     public static void setupClass() {

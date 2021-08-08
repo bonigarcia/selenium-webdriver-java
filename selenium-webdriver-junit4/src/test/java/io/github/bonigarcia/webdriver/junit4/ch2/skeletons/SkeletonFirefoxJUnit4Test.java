@@ -27,7 +27,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class SkeletonFirefoxJUnit4Test {
 
-    private WebDriver driver;
+    WebDriver driver;
 
     @BeforeClass
     public static void setupClass() {

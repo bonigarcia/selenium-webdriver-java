@@ -34,7 +34,7 @@ public class HelloWorldChromeJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    private WebDriver driver;
+    WebDriver driver;
 
     @BeforeClass
     public static void setupClass() {
