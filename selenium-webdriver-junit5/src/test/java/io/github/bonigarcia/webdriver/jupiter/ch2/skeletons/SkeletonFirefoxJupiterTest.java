@@ -27,7 +27,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 class SkeletonFirefoxJupiterTest {
 
-    private WebDriver driver;
+    WebDriver driver;
 
     @BeforeAll
     static void setupClass() {
