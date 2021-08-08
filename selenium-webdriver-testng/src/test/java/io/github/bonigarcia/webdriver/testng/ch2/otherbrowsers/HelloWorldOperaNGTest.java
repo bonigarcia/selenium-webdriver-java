@@ -56,9 +56,7 @@ public class HelloWorldOperaNGTest {
 
     @AfterMethod
     public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
 
     @Test

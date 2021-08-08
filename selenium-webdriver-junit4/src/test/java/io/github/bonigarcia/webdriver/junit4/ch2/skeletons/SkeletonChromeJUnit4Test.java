@@ -41,9 +41,7 @@ public class SkeletonChromeJUnit4Test {
 
     @After
     public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
 
     @Test

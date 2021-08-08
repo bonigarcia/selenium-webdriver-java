@@ -41,9 +41,7 @@ public class SkeletonEdgeNGTest {
 
     @AfterMethod
     public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
 
     @Test
