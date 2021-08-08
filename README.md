@@ -4,16 +4,18 @@
 [![Support badge](https://img.shields.io/badge/stackoverflow-selenium_webdriver-green.svg?logo=stackoverflow)](https://stackoverflow.com/questions/tagged/selenium-webdriver)
 [![Twitter Follow](https://img.shields.io/twitter/follow/boni_gg.svg?style=social)](https://twitter.com/boni_gg)
 
-# Hands-on Selenium WebDriver with Java
+# Hands-on Selenium WebDriver with Java [![][Logo]][GitHub Repository]
 
 This repository contains a comprehensive collection of examples about [Selenium WebDriver] 4 using [Java] as language binding. It has been implemented as a multi-module project (using [Maven] and [Gradle] as build tools) composed of tests based on different frameworks: [JUnit 4], [JUnit 5] (alone or extended with [Selenium-Jupiter]), and [TestNG].
 
 ## About
 
-selenium-webdriver-java (Copyright &copy; 2021) is an open-source project created and maintained by [Boni GarcÃ­a], licensed under the terms of [Apache 2.0 License].
+selenium-webdriver-java (Copyright &copy; 2021) is an open-source project created and maintained by [Boni García], licensed under the terms of [Apache 2.0 License].
 
+[Logo]: https://bonigarcia.org/selenium-webdriver-java/img/hands-on-icon.png
+[GitHub Repository]: https://github.com/bonigarcia/selenium-webdriver-java/
 [Apache 2.0 License]: https://www.apache.org/licenses/LICENSE-2.0
-[Boni GarcÃ­a]: https://bonigarcia.github.io/
+[Boni García]: https://bonigarcia.org/
 [Gradle]: https://gradle.org/
 [Java]: https://www.java.com/
 [JUnit 4]: https://junit.org/junit4/
