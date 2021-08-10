@@ -211,9 +211,9 @@
               </select>
             </div>
             <div class="mb-1">
-              <label for="exampleDataList" class="form-label">Dropdown (datalist)</label>
-              <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-              <datalist id="datalistOptions">
+              <label for="my-datalist" class="form-label">Dropdown (datalist)</label>
+              <input class="form-control" list="my-options" id="my-datalist" placeholder="Type to search...">
+              <datalist id="my-options">
                 <option value="San Francisco">
                 <option value="New York">
                 <option value="Seattle">
@@ -227,28 +227,28 @@
             </div>
             <div class="mb-3">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="" id="my-checkbox-1">
+                <label class="form-check-label" for="my-checkbox-1">
                   Default checkbox
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
+                <input class="form-check-input" type="checkbox" value="" id="my-checkbox-2" checked>
+                <label class="form-check-label" for="my-checkbox-2">
                   Checked checkbox
                 </label>
               </div>
             </div>
             <div class="mb-4">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="my-radio" id="my-radio-1">
+                <label class="form-check-label" for="my-radio-1">
                   Default radio
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
+                <input class="form-check-input" type="radio" name="my-radio" id="my-radio-2" checked>
+                <label class="form-check-label" for="my-radio-2">
                   Default checked radio
                 </label>
               </div>
@@ -260,8 +260,8 @@
 
           <div class="col-md-4 py-2">
             <div class="mb-3">
-              <label for="exampleColorInput" class="form-label">Color picker</label>
-              <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c"
+              <label for="my-colors" class="form-label">Color picker</label>
+              <input type="color" class="form-control form-control-color" id="my-colors" value="#563d7c"
                 title="Choose your color">
             </div>
             <div class="mb-3">
@@ -269,11 +269,13 @@
               <input type="text" class="form-control" id="my-date">
             </div>
             <div class="mb-3">
-              <label for="customRange1" class="form-label">Example range</label>
-              <input type="range" class="form-range" id="customRange1">
+              <label for="my-range" class="form-label">Example range</label>
+              <input type="range" class="form-range" id="my-range">
+            </div>
+            <div class="mb-3">
+              <input type="hidden" name="my-hidden">
             </div>
           </div>
-
         </div>
       </form>
     </div>
