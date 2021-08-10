@@ -1,5 +1,3 @@
-const delay = 5000; // ms
-
 const calculator = {
   displayValue: '0',
   firstOperand: null,
@@ -40,10 +38,14 @@ function handleOperator(nextOperator) {
   } else if (operator) {
     const currentValue = firstOperand || 0;
 
-    setTimeout(function () {
+    var spinner = document.getElementById("spinner");
+	spinner.style.display = "inline-block";
+    var delay = document.getElementById("delay").value * 1000;
+	setTimeout(function () {
       makeCalculation(operator, currentValue, inputValue, nextOperator);
       calculator.waitingForSecondOperand = true;
       calculator.operator = nextOperator;
+	  spinner.style.display = "none";
     }, delay);
     return;
 

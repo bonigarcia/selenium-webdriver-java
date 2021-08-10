@@ -38,14 +38,16 @@
       <div class="row">
         <div class="col-sm-12">
           <h1 class="display-6">Slow calculator</h1>
-          <p class="lead">This calculator has been rigged to take much longer than expected to perform basic operations.
+          <p class="lead">This calculator waits <input type="text" id="delay" style="width: 32px;" value="5"> seconds to
+            get the result of basic aritmetic operations.
+            <span class="spinner-border" role="status" id="spinner" style="display: none;"></span>
           </p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12 py-10">
           <div class="calculator card">
-            <input type="text" class="calculator-screen z-depth-1" value="" disabled />
+            <input type="text" class="calculator-screen z-depth-1" id="result" value="" disabled />
             <div class="calculator-keys">
               <button type="button" class="operator btn btn-outline-warning" value="+">+</button>
               <button type="button" class="operator btn btn-outline-warning" value="-">-</button>
