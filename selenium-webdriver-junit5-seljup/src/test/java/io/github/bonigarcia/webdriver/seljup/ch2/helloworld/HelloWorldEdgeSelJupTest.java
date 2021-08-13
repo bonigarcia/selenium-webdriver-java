@@ -35,7 +35,7 @@ class HelloWorldEdgeSelJupTest {
     @Test
     void test(EdgeDriver driver) {
         // Exercise
-        String sutUrl = "https://bonigarcia.org/selenium-webdriver-java/";
+        String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
         driver.get(sutUrl);
         String title = driver.getTitle();
         log.debug("The title of {} is {}", sutUrl, title);
