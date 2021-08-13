@@ -10,17 +10,17 @@ This repository contains a comprehensive collection of examples about [Selenium 
 
 ## About
 
-selenium-webdriver-java (Copyright &copy; 2021) is an open-source project created and maintained by [Boni García], licensed under the terms of [Apache 2.0 License].
+selenium-webdriver-java (Copyright &copy; 2021) is an open-source project created and maintained by [Boni Garcia], licensed under the terms of [Apache 2.0 License].
 
-[Logo]: https://bonigarcia.org/selenium-webdriver-java/img/hands-on-icon.png
+[Logo]: https://bonigarcia.dev/selenium-webdriver-java/img/hands-on-icon.png
 [GitHub Repository]: https://github.com/bonigarcia/selenium-webdriver-java/
 [Apache 2.0 License]: https://www.apache.org/licenses/LICENSE-2.0
-[Boni García]: https://bonigarcia.org/
+[Boni Garcia]: https://bonigarcia.dev/
 [Gradle]: https://gradle.org/
 [Java]: https://www.java.com/
 [JUnit 4]: https://junit.org/junit4/
 [JUnit 5]: https://junit.org/junit5/docs/current/user-guide/
 [Maven]: https://maven.apache.org/
 [Selenium WebDriver]: https://docs.seleniumhq.org/projects/webdriver/
-[Selenium-Jupiter]: https://bonigarcia.org/selenium-jupiter/
+[Selenium-Jupiter]: https://bonigarcia.dev/selenium-jupiter/
 [TestNG]: https://testng.org/doc/
