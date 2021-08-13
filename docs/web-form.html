@@ -47,49 +47,45 @@
       <form>
         <div class="row">
           <div class="col-md-4 py-2">
-            <div class="mb-1">
-              <label for="my-text" class="form-label">Text input</label>
-              <input type="text" class="form-control" id="my-text" name="my-text-name" myprop="myvalue">
-            </div>
-            <div class="mb-1">
-              <label for="my-password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="my-password">
-            </div>
-            <div class="mb-1">
-              <label for="my-textarea" class="form-label">Textarea</label>
-              <textarea class="form-control" id="my-textarea" rows="3"></textarea>
-            </div>
-            <div class="mb-1">
-              <label for="my-disabled" class="form-label">Disabled input</label>
-              <input class="form-control" type="text" id="my-disabled" placeholder="Disabled input"
-                aria-label="Disabled input example" disabled>
-            </div>
-            <div class="mb-3">
-              <label for="my-readonly" class="form-label">Disabled readonly input</label>
-              <input class="form-control" type="text" id="my-readonly" value="Disabled readonly input"
-                aria-label="Disabled input example" disabled readonly>
-            </div>
-            <div class="mb-3">
-              <div class="form-group tp-align-right">
-                <a id="back" href="./index.html">
-                  Return to index
-                </a>
-              </div>
+            <label class="form-label w-100">Text input
+              <input type="text" class="form-control" name="my-text" id="my-text-id" myprop="myvalue">
+            </label>
+
+            <label class="form-label w-100">Password
+              <input type="password" class="form-control" name="my-password">
+            </label>
+
+            <label class="form-label w-100">Textarea
+              <textarea class="form-control" name="my-textarea" rows="3"></textarea>
+            </label>
+
+            <label class="form-label w-100">Disabled input
+              <input class="form-control" type="text" name="my-disabled" placeholder="Disabled input" disabled>
+            </label>
+
+            <label class="form-label w-100">Disabled readonly input
+              <input class="form-control" type="text" name="my-readonly" value="Disabled readonly input" disabled
+                readonly>
+            </label>
+
+            <div class="form-group tp-align-right mt-3">
+              <a id="back" href="./index.html">
+                Return to index
+              </a>
             </div>
           </div>
 
           <div class="col-md-4 py-2">
-            <div class="mb-1">
-              <label for="my-select" class="form-label">Dropdown (select)</label>
-              <select class="form-select" aria-label="Default select example" id="my-select">
+            <label class="form-label w-100">Dropdown (select)
+              <select class="form-select" aria-label="Default select example" name="my-select">
                 <option selected>Open this select menu</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </select>
-            </div>
-            <div class="mb-1">
-              <label for="my-datalist" class="form-label">Dropdown (datalist)</label>
+            </label>
+
+            <label class="form-label w-100">Dropdown (datalist)
               <input class="form-control" list="my-options" id="my-datalist" placeholder="Type to search...">
               <datalist id="my-options">
                 <option value="San Francisco">
@@ -98,61 +94,56 @@
                 <option value="Los Angeles">
                 <option value="Chicago">
               </datalist>
+            </label>
+
+            <label class="form-label w-100">File input
+              <input class="form-control" type="file" name="my-file">
+            </label>
+
+            <div class="form-check">
+              <label class="form-check-label w-100">
+                <input class="form-check-input" type="checkbox" name="my-checkbox" id="my-checkbox-1">
+                Default checkbox
+              </label>
+
+              <label class="form-check-label w-100">
+                <input class="form-check-input" type="checkbox" name="my-checkbox" id="my-checkbox-2" checked>
+                Checked checkbox
+              </label>
             </div>
-            <div class="mb-3">
-              <label for="formFile" class="form-label">File input</label>
-              <input class="form-control" type="file" id="formFile">
-            </div>
-            <div class="mb-3">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="my-checkbox-1">
-                <label class="form-check-label" for="my-checkbox-1">
-                  Default checkbox
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="my-checkbox-2" checked>
-                <label class="form-check-label" for="my-checkbox-2">
-                  Checked checkbox
-                </label>
-              </div>
-            </div>
-            <div class="mb-4">
-              <div class="form-check">
+
+            <div class="form-check">
+              <label class="form-check-label  w-100">
                 <input class="form-check-input" type="radio" name="my-radio" id="my-radio-1">
-                <label class="form-check-label" for="my-radio-1">
-                  Default radio
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="my-radio" id="my-radio-2" checked>
-                <label class="form-check-label" for="my-radio-2">
-                  Default checked radio
-                </label>
-              </div>
+                Default radio
+              </label>
             </div>
-            <div class="mb-3">
-              <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-check">
+              <label class="form-check-label w-100">
+                <input class="form-check-input" type="radio" name="my-radio" id="my-radio-2" checked> Default checked
+                radio
+              </label>
             </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
           </div>
 
           <div class="col-md-4 py-2">
-            <div class="mb-3">
-              <label for="my-colors" class="form-label">Color picker</label>
+            <label class="form-label w-100">Color picker
               <input type="color" class="form-control form-control-color" id="my-colors" value="#563d7c"
                 title="Choose your color">
-            </div>
-            <div class="mb-3">
-              <label for="my-date" class="form-label">Date picker</label>
+            </label>
+
+            <label class="form-label w-100">Date picker
               <input type="text" class="form-control" id="my-date">
-            </div>
-            <div class="mb-3">
-              <label for="my-range" class="form-label">Example range</label>
+            </label>
+
+            <label class="form-label w-100">Example range
               <input type="range" class="form-range" id="my-range">
-            </div>
-            <div class="mb-3">
-              <input type="hidden" name="my-hidden">
-            </div>
+            </label>
+
+            <input type="hidden" name="my-hidden">
           </div>
         </div>
       </form>
