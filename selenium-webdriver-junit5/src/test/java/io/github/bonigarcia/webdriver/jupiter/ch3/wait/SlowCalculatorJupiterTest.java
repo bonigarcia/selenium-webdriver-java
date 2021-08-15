@@ -22,6 +22,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,20 +46,25 @@ class SlowCalculatorJupiterTest {
 
     @Test
     void test() {
-        driver.manage().window().maximize();
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
 
         // 1 + 2
-        driver.findElement(By.xpath("//button[@value='1']")).click();
-        driver.findElement(By.xpath("//button[@value='+']")).click();
-        driver.findElement(By.xpath("//button[@value='2']")).click();
-        driver.findElement(By.xpath("//button[@value='=']")).click();
+        clickElement("//button[@value='1']");
+        clickElement("//button[@value='+']");
+        clickElement("//button[@value='2']");
+        clickElement("//button[@value='=']");
 
         // ... should be 3
         WebElement result = driver.findElement(By.id("result"));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.attributeToBe(result, "value", "3"));
+    }
+
+    void clickElement(String xpath) {
+        WebElement element = driver.findElement(By.xpath(xpath));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+                element);
     }
 
 }
