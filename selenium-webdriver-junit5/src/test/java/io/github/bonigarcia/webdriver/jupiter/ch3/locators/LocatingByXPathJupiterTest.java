@@ -61,23 +61,23 @@ class LocatingByXPathJupiterTest {
     void testAdvancedXPath() {
         WebElement checkbox1 = driver
                 .findElement(By.xpath("//*[@type='checkbox' and @checked]"));
-        assertThat(checkbox1.getAttribute("id")).isEqualTo("my-checkbox-2");
+        assertThat(checkbox1.getAttribute("id")).isEqualTo("my-checkbox-1");
         assertThat(checkbox1.isSelected()).isTrue();
 
         WebElement checkbox2 = driver.findElement(
                 By.xpath("//*[@type='checkbox' and not(@checked)]"));
         assertThat(checkbox2.isSelected()).isFalse();
-        assertThat(checkbox2.getAttribute("id")).isEqualTo("my-checkbox-1");
+        assertThat(checkbox2.getAttribute("id")).isEqualTo("my-checkbox-2");
 
         WebElement radio1 = driver
                 .findElement(By.xpath("//*[@type='radio' and @checked]"));
-        assertThat(radio1.getAttribute("id")).isEqualTo("my-radio-2");
+        assertThat(radio1.getAttribute("id")).isEqualTo("my-radio-1");
         assertThat(radio1.isSelected()).isTrue();
 
         WebElement radio2 = driver
                 .findElement(By.xpath("//*[@type='radio' and not(@checked)]"));
         assertThat(radio2.isSelected()).isFalse();
-        assertThat(radio2.getAttribute("id")).isEqualTo("my-radio-1");
+        assertThat(radio2.getAttribute("id")).isEqualTo("my-radio-2");
     }
 
 }
