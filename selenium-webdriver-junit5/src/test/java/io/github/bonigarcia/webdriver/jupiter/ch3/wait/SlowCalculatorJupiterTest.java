@@ -23,6 +23,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -48,6 +50,12 @@ class SlowCalculatorJupiterTest {
     void test() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
+
+        String screenshot = ((TakesScreenshot) driver)
+                .getScreenshotAs(OutputType.BASE64);
+        System.out.println("*********************");
+        System.out.println("data:image/png;base64," + screenshot);
+        System.out.println("*********************");
 
         // 1 + 2
         clickElement("//button[@value='1']");
