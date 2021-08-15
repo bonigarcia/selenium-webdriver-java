@@ -47,16 +47,28 @@ class SlowCalculatorJupiterTest {
     void test() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // 1 + 2
-        driver.findElement(By.xpath("//button[@value='1']")).click();
-        driver.findElement(By.xpath("//button[@value='+']")).click();
-        driver.findElement(By.xpath("//button[@value='2']")).click();
-        driver.findElement(By.xpath("//button[@value='=']")).click();
+        WebElement one = driver.findElement(By.xpath("//button[@value='1']"));
+        wait.until(ExpectedConditions.elementToBeClickable(one));
+        one.click();
+
+        WebElement plus = driver.findElement(By.xpath("//button[@value='+']"));
+        wait.until(ExpectedConditions.elementToBeClickable(plus));
+        plus.click();
+
+        WebElement two = driver.findElement(By.xpath("//button[@value='2']"));
+        wait.until(ExpectedConditions.elementToBeClickable(two));
+        two.click();
+
+        WebElement equalTo = driver
+                .findElement(By.xpath("//button[@value='=']"));
+        wait.until(ExpectedConditions.elementToBeClickable(equalTo));
+        equalTo.click();
 
         // ... should be 3
         WebElement result = driver.findElement(By.id("result"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.attributeToBe(result, "value", "3"));
     }
 
