@@ -26,8 +26,9 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: ${{ matrix.java }}
-    - name: Start Xvfb
-      run: Xvfb :99 -screen 0 1280x1024x16 &
+    - name: Start Xvfb on Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: Xvfb :99 &
     - name: Install Edge on Linux
       if: matrix.os == 'ubuntu-latest'
       run: |
