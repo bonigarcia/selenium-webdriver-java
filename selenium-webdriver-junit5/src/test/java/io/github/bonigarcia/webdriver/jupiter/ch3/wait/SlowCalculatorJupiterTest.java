@@ -45,7 +45,7 @@ class SlowCalculatorJupiterTest {
 
     @Test
     void test() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
 
