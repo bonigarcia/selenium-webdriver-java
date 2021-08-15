@@ -45,31 +45,41 @@ class SlowCalculatorJupiterTest {
 
     @Test
     void test() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            driver.get(
+                    "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // 1 + 2
-        WebElement one = driver.findElement(By.xpath("//button[@value='1']"));
-        wait.until(ExpectedConditions.elementToBeClickable(one));
-        one.click();
+            // 1 + 2
+            WebElement one = driver.findElement(By.xpath("//button[@value='1']"));
+            System.out.println(one.getLocation());
+            wait.until(ExpectedConditions.elementToBeClickable(one));
+            one.click();
 
-        WebElement plus = driver.findElement(By.xpath("//button[@value='+']"));
-        wait.until(ExpectedConditions.elementToBeClickable(plus));
-        plus.click();
+            WebElement plus = driver.findElement(By.xpath("//button[@value='+']"));
+            System.out.println(plus.getLocation());
+            wait.until(ExpectedConditions.elementToBeClickable(plus));
+            plus.click();
 
-        WebElement two = driver.findElement(By.xpath("//button[@value='2']"));
-        wait.until(ExpectedConditions.elementToBeClickable(two));
-        two.click();
+            WebElement two = driver.findElement(By.xpath("//button[@value='2']"));
+            System.out.println(two.getLocation());
+            wait.until(ExpectedConditions.elementToBeClickable(two));
+            two.click();
 
-        WebElement equalTo = driver
-                .findElement(By.xpath("//button[@value='=']"));
-        wait.until(ExpectedConditions.elementToBeClickable(equalTo));
-        equalTo.click();
+            WebElement equalTo = driver
+                    .findElement(By.xpath("//button[@value='=']"));
+            wait.until(ExpectedConditions.elementToBeClickable(equalTo));
+            System.out.println(equalTo.getLocation());
+            equalTo.click();
 
-        // ... should be 3
-        WebElement result = driver.findElement(By.id("result"));
-        wait.until(ExpectedConditions.attributeToBe(result, "value", "3"));
+            // ... should be 3
+            WebElement result = driver.findElement(By.id("result"));
+            wait.until(ExpectedConditions.attributeToBe(result, "value", "3"));
+        } catch (Exception e) {
+            System.out.println("******************************");
+            e.printStackTrace();
+            System.out.println("******************************");
+        }
     }
 
 }
