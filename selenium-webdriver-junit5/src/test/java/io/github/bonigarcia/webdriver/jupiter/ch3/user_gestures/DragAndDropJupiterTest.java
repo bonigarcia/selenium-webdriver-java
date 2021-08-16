@@ -18,8 +18,6 @@ package io.github.bonigarcia.webdriver.jupiter.ch3.user_gestures;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.time.Duration;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,42 +36,30 @@ class DragAndDropJupiterTest {
     @BeforeEach
     void setupTest() {
         driver = WebDriverManager.chromedriver().create();
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/drag-and-drop.html");
     }
 
     @AfterEach
-    void teardown() throws InterruptedException {
-        // FIXME: active wait for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    void teardown() {
         driver.quit();
     }
 
     @Test
-    void testDragAndDrop() {
-        WebElement draggable = driver.findElement(By.id("draggable"));
-        WebElement target = driver.findElement(By.id("target"));
+    void test() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/drag-and-drop.html");
+        Actions actions = new Actions(driver);
 
-        new Actions(driver).dragAndDrop(draggable, target).build().perform();
-
-        Point targetLocation = target.getLocation();
-        Point finalLocation = draggable.getLocation();
-        assertThat(finalLocation).isEqualTo(targetLocation);
-    }
-
-    @Test
-    void testDragAndDropBy() {
         WebElement draggable = driver.findElement(By.id("draggable"));
         Point initLocation = draggable.getLocation();
-
-        new Actions(driver).dragAndDropBy(draggable, 100, 0)
+        actions.dragAndDropBy(draggable, 100, 0)
                 .dragAndDropBy(draggable, 0, 100)
                 .dragAndDropBy(draggable, -100, 0)
                 .dragAndDropBy(draggable, 0, -100).build().perform();
+        assertThat(initLocation).isEqualTo(draggable.getLocation());
 
-        Point finalLocation = draggable.getLocation();
-        assertThat(initLocation).isEqualTo(finalLocation);
+        WebElement target = driver.findElement(By.id("target"));
+        actions.dragAndDrop(draggable, target).build().perform();
+        assertThat(target.getLocation()).isEqualTo(draggable.getLocation());
     }
 
 }
