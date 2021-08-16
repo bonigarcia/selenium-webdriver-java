@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch3.keyboard;
+package io.github.bonigarcia.webdriver.jupiter.ch4.downdown;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,19 +26,16 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class DropDownJupiterTest {
+class DataListJupiterTest {
 
     WebDriver driver;
 
     @BeforeEach
     void setupTest() {
         driver = WebDriverManager.chromedriver().create();
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
     }
 
     @AfterEach
@@ -50,17 +47,10 @@ class DropDownJupiterTest {
     }
 
     @Test
-    void testSelect() {
-        Select select = new Select(driver.findElement(By.name("my-select")));
-        String optionLabel = "Three";
-        select.selectByVisibleText(optionLabel);
-
-        assertThat(select.getFirstSelectedOption().getText())
-                .isEqualTo(optionLabel);
-    }
-
-    @Test
     void testDatalist() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+
         WebElement datalist = driver.findElement(By.name("my-datalist"));
         datalist.click();
 
