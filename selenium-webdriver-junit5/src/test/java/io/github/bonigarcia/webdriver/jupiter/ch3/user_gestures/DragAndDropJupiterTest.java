@@ -50,11 +50,12 @@ class DragAndDropJupiterTest {
         Actions actions = new Actions(driver);
 
         WebElement draggable = driver.findElement(By.id("draggable"));
+        int offset = 100;
         Point initLocation = draggable.getLocation();
-        actions.dragAndDropBy(draggable, 100, 0)
-                .dragAndDropBy(draggable, 0, 100)
-                .dragAndDropBy(draggable, -100, 0)
-                .dragAndDropBy(draggable, 0, -100).build().perform();
+        actions.dragAndDropBy(draggable, offset, 0)
+                .dragAndDropBy(draggable, 0, offset)
+                .dragAndDropBy(draggable, -offset, 0)
+                .dragAndDropBy(draggable, 0, -offset).build().perform();
         assertThat(initLocation).isEqualTo(draggable.getLocation());
 
         WebElement target = driver.findElement(By.id("target"));
