@@ -42,7 +42,7 @@ class CheckboxAndRadioJupiterTest {
 
     @AfterEach
     void teardown() throws InterruptedException {
-        // FIXME: this is an active wait to check the browser
+        // FIXME: active wait for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
 
         driver.quit();

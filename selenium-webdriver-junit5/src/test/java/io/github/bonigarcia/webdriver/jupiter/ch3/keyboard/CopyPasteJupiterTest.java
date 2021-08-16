@@ -18,6 +18,8 @@ package io.github.bonigarcia.webdriver.jupiter.ch3.keyboard;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.Duration;
+
 import org.apache.commons.lang.SystemUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +42,10 @@ class CopyPasteJupiterTest {
     }
 
     @AfterEach
-    void teardown() {
+    void teardown() throws InterruptedException {
+        // FIXME: active wait for manual browser inspection
+        Thread.sleep(Duration.ofSeconds(3).toMillis());
+
         driver.quit();
     }
 
@@ -54,7 +59,9 @@ class CopyPasteJupiterTest {
 
         Keys ctrl = SystemUtils.IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL;
         String textValue = "hello world";
-        new Actions(driver).sendKeys(inputText, textValue).keyDown(ctrl)
+        Actions actions = new Actions(driver);
+
+        actions.sendKeys(inputText, textValue).keyDown(ctrl)
                 .sendKeys(inputText, "a").sendKeys(inputText, "c")
                 .sendKeys(textarea, "v").perform();
 

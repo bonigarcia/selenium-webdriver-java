@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch3.mouse;
+package io.github.bonigarcia.webdriver.jupiter.ch3.user_gestures;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -44,7 +44,7 @@ class DragAndDropJupiterTest {
 
     @AfterEach
     void teardown() throws InterruptedException {
-        // FIXME: this is an active wait to check the browser
+        // FIXME: active wait for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
 
         driver.quit();

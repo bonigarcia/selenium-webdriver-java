@@ -20,6 +20,8 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
+import java.time.Duration;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +45,10 @@ class SliderJupiterTest {
     }
 
     @AfterEach
-    void teardown() {
+    void teardown() throws InterruptedException {
+        // FIXME: active wait for manual browser inspection
+        Thread.sleep(Duration.ofSeconds(3).toMillis());
+
         driver.quit();
     }
 
@@ -63,7 +68,6 @@ class SliderJupiterTest {
         String endValue = slider.getAttribute("value");
         log.debug("The final value of the slider is {}", endValue);
         assertThat(initValue).isNotEqualTo(endValue);
-
     }
 
 }
