@@ -16,14 +16,11 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch3.wait;
 
-import static org.junit.jupiter.api.condition.OS.MAC;
-
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,7 +29,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@DisabledOnOs(MAC)
 class SlowCalculatorJupiterTest {
 
     WebDriver driver;
@@ -52,16 +48,16 @@ class SlowCalculatorJupiterTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
 
-        // 1 + 2
-        clickElement("//button[@value='1']");
+        // 7 + 8
+        clickElement("//button[@value='7']");
         clickElement("//button[@value='+']");
-        clickElement("//button[@value='2']");
+        clickElement("//button[@value='8']");
         clickElement("//button[@value='=']");
 
-        // ... should be 3
+        // ... should be 15
         WebElement result = driver.findElement(By.id("result"));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.attributeToBe(result, "value", "3"));
+        wait.until(ExpectedConditions.attributeToBe(result, "value", "15"));
     }
 
     void clickElement(String xpath) {
