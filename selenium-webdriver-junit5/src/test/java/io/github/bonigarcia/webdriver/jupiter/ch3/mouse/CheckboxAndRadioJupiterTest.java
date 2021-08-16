@@ -36,8 +36,6 @@ class CheckboxAndRadioJupiterTest {
     @BeforeEach
     void setupTest() {
         driver = WebDriverManager.chromedriver().create();
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
     }
 
     @AfterEach
@@ -49,14 +47,14 @@ class CheckboxAndRadioJupiterTest {
     }
 
     @Test
-    void testCheckbox() {
+    void test() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+
         WebElement checkbox2 = driver.findElement(By.id("my-checkbox-2"));
         checkbox2.click();
         assertThat(checkbox2.isSelected()).isTrue();
-    }
 
-    @Test
-    void testRadio() {
         WebElement radio2 = driver.findElement(By.id("my-radio-2"));
         radio2.click();
         assertThat(radio2.isSelected()).isTrue();
