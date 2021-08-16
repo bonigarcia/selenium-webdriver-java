@@ -47,7 +47,7 @@ class MouseOverJupiterTest {
     }
 
     @Test
-    void test() throws InterruptedException {
+    void test() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/mouse-over.html");
         Actions actions = new Actions(driver);
