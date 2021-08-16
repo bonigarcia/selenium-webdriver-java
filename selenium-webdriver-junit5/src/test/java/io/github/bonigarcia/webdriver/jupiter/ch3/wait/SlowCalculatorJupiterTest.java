@@ -16,20 +16,23 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch3.wait;
 
+import static org.junit.jupiter.api.condition.OS.MAC;
+
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@DisabledOnOs(MAC)
 class SlowCalculatorJupiterTest {
 
     WebDriver driver;
@@ -63,8 +66,7 @@ class SlowCalculatorJupiterTest {
 
     void clickElement(String xpath) {
         WebElement element = driver.findElement(By.xpath(xpath));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element).click().build().perform();
+        element.click();
     }
 
 }
