@@ -18,7 +18,6 @@ package io.github.bonigarcia.webdriver.jupiter.ch3.user_gestures;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,24 +50,19 @@ class MouseOverJupiterTest {
     void test() throws InterruptedException {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/mouse-over.html");
-
-        List<String> list = Arrays.asList("compass", "calendar", "award",
-                "landscape");
-
         Actions actions = new Actions(driver);
-        for (String name : list) {
-            String xpath = String.format("//img[@src='img/%s.png']", name);
+
+        List<String> imageList = Arrays.asList("compass", "calendar", "award",
+                "landscape");
+        for (String imageName : imageList) {
+            String xpath = String.format("//img[@src='img/%s.png']", imageName);
             WebElement image = driver.findElement(By.xpath(xpath));
-
             actions.moveToElement(image).build().perform();
-
-            // FIXME: active wait for manual browser inspection
-            Thread.sleep(Duration.ofSeconds(2).toMillis());
 
             WebElement caption = driver.findElement(
                     RelativeLocator.with(By.tagName("div")).near(image));
 
-            assertThat(caption.getText()).containsIgnoringCase(name);
+            assertThat(caption.getText()).containsIgnoringCase(imageName);
         }
     }
 

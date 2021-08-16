@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch3.keyboard;
+package io.github.bonigarcia.webdriver.jupiter.ch3.user_gestures;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
