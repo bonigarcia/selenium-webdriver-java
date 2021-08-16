@@ -16,12 +16,14 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch2.skeletons;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.edge.EdgeDriver;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@Disabled
 @ExtendWith(SeleniumJupiter.class)
 class SkeletonEdgeSelJupTest {
 
