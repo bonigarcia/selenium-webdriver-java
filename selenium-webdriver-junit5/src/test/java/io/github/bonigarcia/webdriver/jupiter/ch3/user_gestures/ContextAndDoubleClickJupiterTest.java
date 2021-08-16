@@ -18,6 +18,8 @@ package io.github.bonigarcia.webdriver.jupiter.ch3.user_gestures;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.Duration;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,31 +37,31 @@ class ContextAndDoubleClickJupiterTest {
     @BeforeEach
     void setupTest() {
         driver = WebDriverManager.chromedriver().create();
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/dropdown-menu.html");
     }
 
     @AfterEach
-    void teardown() {
+    void teardown() throws InterruptedException {
+        // FIXME: active wait for manual browser inspection
+        Thread.sleep(Duration.ofSeconds(3).toMillis());
+
         driver.quit();
     }
 
     @Test
-    void testContextClick() {
-        WebElement dropdown = driver.findElement(By.id("my-dropdown-2"));
-        new Actions(driver).contextClick(dropdown).build().perform();
-        WebElement contextMenu = driver.findElement(By.id("context-menu-2"));
+    void test() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/dropdown-menu.html");
+        Actions actions = new Actions(driver);
 
-        assertThat(contextMenu.isDisplayed()).isTrue();
-    }
+        WebElement dropdown2 = driver.findElement(By.id("my-dropdown-2"));
+        actions.contextClick(dropdown2).build().perform();
+        WebElement contextMenu2 = driver.findElement(By.id("context-menu-2"));
+        assertThat(contextMenu2.isDisplayed()).isTrue();
 
-    @Test
-    void testDoubleClick() {
-        WebElement dropdown = driver.findElement(By.id("my-dropdown-3"));
-        new Actions(driver).doubleClick(dropdown).build().perform();
-        WebElement contextMenu = driver.findElement(By.id("context-menu-3"));
-
-        assertThat(contextMenu.isDisplayed()).isTrue();
+        WebElement dropdown3 = driver.findElement(By.id("my-dropdown-3"));
+        actions.doubleClick(dropdown3).build().perform();
+        WebElement contextMenu3 = driver.findElement(By.id("context-menu-3"));
+        assertThat(contextMenu3.isDisplayed()).isTrue();
     }
 
 }
