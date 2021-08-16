@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch3.wait;
+package io.github.bonigarcia.webdriver.jupiter.ch4.javascript;
 
 import java.time.Duration;
 
@@ -22,6 +22,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -48,10 +49,10 @@ class SlowCalculatorJupiterTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
 
-        // 7 + 8
-        clickElement("//button[@value='7']");
+        // 1 + 1
+        clickElement("//button[@value='1']");
         clickElement("//button[@value='+']");
-        clickElement("//button[@value='8']");
+        clickElement("//button[@value='1']");
         clickElement("//button[@value='=']");
 
         // ... should be 15
@@ -62,7 +63,8 @@ class SlowCalculatorJupiterTest {
 
     void clickElement(String xpath) {
         WebElement element = driver.findElement(By.xpath(xpath));
-        element.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+                element);
     }
 
 }
