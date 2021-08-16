@@ -14,9 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch3.mouse;
-
-import static org.assertj.core.api.Assertions.assertThat;
+package io.github.bonigarcia.webdriver.jupiter.ch3.user_gestures;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,15 +26,13 @@ import org.openqa.selenium.interactions.Actions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class ContextAndDoubleClickJupiterTest {
+class DrawInCanvasJupiterTest {
 
     WebDriver driver;
 
     @BeforeEach
     void setupTest() {
         driver = WebDriverManager.chromedriver().create();
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/dropdown-menu.html");
     }
 
     @AfterEach
@@ -45,21 +41,25 @@ class ContextAndDoubleClickJupiterTest {
     }
 
     @Test
-    void testContextClick() {
-        WebElement dropdown = driver.findElement(By.id("my-dropdown-2"));
-        new Actions(driver).contextClick(dropdown).build().perform();
-        WebElement contextMenu = driver.findElement(By.id("context-menu-2"));
+    void test() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/draw-in-canvas.html");
 
-        assertThat(contextMenu.isDisplayed()).isTrue();
-    }
+        WebElement canvas = driver.findElement(By.tagName("canvas"));
+        Actions actions = new Actions(driver).moveToElement(canvas)
+                .clickAndHold();
 
-    @Test
-    void testDoubleClick() {
-        WebElement dropdown = driver.findElement(By.id("my-dropdown-3"));
-        new Actions(driver).doubleClick(dropdown).build().perform();
-        WebElement contextMenu = driver.findElement(By.id("context-menu-3"));
+        int numPoints = 10;
+        int radius = 30;
+        for (int i = 0; i <= numPoints; i++) {
+            double angle = Math.toRadians(360 * i / numPoints);
+            double x = Math.sin(angle) * radius;
+            double y = Math.cos(angle) * radius;
+            actions.moveByOffset((int) x, (int) y);
+        }
 
-        assertThat(contextMenu.isDisplayed()).isTrue();
+        actions.release(canvas);
+        actions.build().perform();
     }
 
 }

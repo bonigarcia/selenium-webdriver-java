@@ -63,7 +63,6 @@ class UploadFileJupiterTest {
         inputFile.sendKeys(filename);
 
         driver.findElement(By.tagName("form")).submit();
-
         assertThat(driver.getCurrentUrl()).isNotEqualTo(initUrl);
     }
 
