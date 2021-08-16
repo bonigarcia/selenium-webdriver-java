@@ -44,10 +44,10 @@ class DrawInCanvasJupiterTest {
     void test() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/draw-in-canvas.html");
+        Actions actions = new Actions(driver);
 
         WebElement canvas = driver.findElement(By.tagName("canvas"));
-        Actions actions = new Actions(driver).moveToElement(canvas)
-                .clickAndHold();
+        actions.moveToElement(canvas).clickAndHold();
 
         int numPoints = 10;
         int radius = 30;
@@ -58,8 +58,7 @@ class DrawInCanvasJupiterTest {
             actions.moveByOffset((int) x, (int) y);
         }
 
-        actions.release(canvas);
-        actions.build().perform();
+        actions.release(canvas).build().perform();
     }
 
 }
