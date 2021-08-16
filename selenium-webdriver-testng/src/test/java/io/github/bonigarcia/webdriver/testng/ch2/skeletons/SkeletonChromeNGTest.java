@@ -44,7 +44,7 @@ public class SkeletonChromeNGTest {
         driver.quit();
     }
 
-    @Test
+    @Test(enabled = false)
     public void test() {
         // TODO: use variable "driver" to call the Selenium WebDriver API
     }
