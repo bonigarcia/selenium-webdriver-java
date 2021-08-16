@@ -49,16 +49,16 @@ class SlowCalculatorJupiterTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
 
-        // 1 + 1
+        // 1 + 2
         clickElement("//button[@value='1']");
         clickElement("//button[@value='+']");
-        clickElement("//button[@value='1']");
+        clickElement("//button[@value='2']");
         clickElement("//button[@value='=']");
 
-        // ... should be 15
+        // ... should be 3
         WebElement result = driver.findElement(By.id("result"));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.attributeToBe(result, "value", "15"));
+        wait.until(ExpectedConditions.attributeToBe(result, "value", "3"));
     }
 
     void clickElement(String xpath) {
