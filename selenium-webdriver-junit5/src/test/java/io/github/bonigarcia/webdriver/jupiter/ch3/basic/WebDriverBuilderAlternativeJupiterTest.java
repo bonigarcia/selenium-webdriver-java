@@ -16,7 +16,6 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch3.basic;
 
-import static org.apache.commons.lang.SystemUtils.IS_OS_MAC;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterEach;
@@ -24,10 +23,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -54,12 +51,13 @@ class WebDriverBuilderAlternativeJupiterTest {
 
     @Test
     void test() {
-        Class<? extends WebDriver> driverClass = driver.getClass();
-        if (IS_OS_MAC) {
-            assertThat(driverClass).isEqualTo(SafariDriver.class);
-        } else {
-            assertThat(driverClass).isEqualTo(ChromeDriver.class);
-        }
+        String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
+        driver.get(sutUrl);
+
+        assertThat(driver.getTitle())
+                .isEqualTo("Hands-on Selenium WebDriver with Java");
+        assertThat(driver.getCurrentUrl()).isEqualTo(sutUrl);
+        assertThat(driver.getPageSource()).containsIgnoringCase("</html>");
     }
 
 }
