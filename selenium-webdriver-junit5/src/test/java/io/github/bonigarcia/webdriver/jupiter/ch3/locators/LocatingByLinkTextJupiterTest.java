@@ -49,6 +49,7 @@ class LocatingByLinkTextJupiterTest {
         WebElement linkByText = driver
                 .findElement(By.linkText("Return to index"));
         assertThat(linkByText.getTagName()).isEqualTo("a");
+        assertThat(linkByText.getCssValue("cursor")).isEqualTo("pointer");
 
         WebElement linkByPartialText = driver
                 .findElement(By.partialLinkText("index"));
