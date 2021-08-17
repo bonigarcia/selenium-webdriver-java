@@ -45,7 +45,7 @@ class SlowCalculatorJupiterTest {
     @Test
     void test() {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator2.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
 
         // 1 + 3
         driver.findElement(By.xpath("//span[text()='1']")).click();
