@@ -49,18 +49,17 @@ class FluentWaitJupiterTest {
 
     @Test
     void test() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/loading-images.html");
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(NoSuchElementException.class);
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/loading-images.html");
 
         WebElement landscape = wait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("landscape")));
         assertThat(landscape.getAttribute("src"))
                 .containsIgnoringCase("landscape");
-
     }
 
 }

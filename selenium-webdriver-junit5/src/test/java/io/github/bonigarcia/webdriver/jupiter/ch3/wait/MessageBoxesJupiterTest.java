@@ -59,11 +59,9 @@ class MessageBoxesJupiterTest {
     void testAlert() {
         driver.findElement(By.id("my-alert")).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-
-        String alertText = alert.getText();
-        assertThat(alertText).isEqualTo("This is an alert");
-
+        assertThat(alert.getText()).isEqualTo("This is an alert");
         alert.accept();
     }
 
@@ -71,33 +69,31 @@ class MessageBoxesJupiterTest {
     void testConfirm() {
         driver.findElement(By.id("my-confirm")).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 
-        String alertText = alert.getText();
-        assertThat(alertText).isEqualTo("Press a button");
-        alert.dismiss();
+        Alert confirm = wait.until(ExpectedConditions.alertIsPresent());
+        assertThat(confirm.getText()).isEqualTo("Press a button");
+        confirm.dismiss();
     }
 
     @Test
     void testPrompt() {
         driver.findElement(By.id("my-prompt")).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 
-        alert.sendKeys("John Doe");
-        String alertText = alert.getText();
-        assertThat(alertText).isEqualTo("Please enter your name");
-        alert.accept();
+        Alert prompt = wait.until(ExpectedConditions.alertIsPresent());
+        prompt.sendKeys("John Doe");
+        assertThat(prompt.getText()).isEqualTo("Please enter your name");
+        prompt.accept();
     }
 
     @Test
     void testModal() {
         driver.findElement(By.id("my-modal")).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
         WebElement close = driver
                 .findElement(By.xpath("//button[text() = 'Close']"));
         assertThat(close.getTagName()).isEqualTo("button");
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(close));
         close.click();
     }

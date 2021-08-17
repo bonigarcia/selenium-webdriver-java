@@ -45,9 +45,9 @@ class ImplicitWaitJupiterTest {
 
     @Test
     void test() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/loading-images.html");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         WebElement landscape = driver.findElement(By.id("landscape"));
         assertThat(landscape.getAttribute("src"))
