@@ -22,6 +22,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -62,9 +63,8 @@ class SlowCalculatorJupiterTest {
 
     void clickElement(String xpath) {
         WebElement element = driver.findElement(By.xpath(xpath));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+                element);
     }
 
 }
