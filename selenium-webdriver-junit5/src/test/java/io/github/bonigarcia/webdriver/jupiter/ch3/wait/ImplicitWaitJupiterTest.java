@@ -34,7 +34,7 @@ class ImplicitWaitJupiterTest {
     WebDriver driver;
 
     @BeforeEach
-    void setupTest() {
+    void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 

@@ -35,7 +35,7 @@ class ContextAndDoubleClickJupiterTest {
     WebDriver driver;
 
     @BeforeEach
-    void setupTest() {
+    void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 

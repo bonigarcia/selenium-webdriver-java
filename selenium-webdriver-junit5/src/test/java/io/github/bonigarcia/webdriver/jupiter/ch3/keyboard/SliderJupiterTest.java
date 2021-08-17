@@ -40,7 +40,7 @@ class SliderJupiterTest {
     WebDriver driver;
 
     @BeforeEach
-    void setupTest() {
+    void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 
