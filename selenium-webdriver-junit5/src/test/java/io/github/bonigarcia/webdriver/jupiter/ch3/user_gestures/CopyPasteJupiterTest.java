@@ -53,20 +53,18 @@ class CopyPasteJupiterTest {
     void test() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+        Actions actions = new Actions(driver);
 
         WebElement inputText = driver.findElement(By.name("my-text"));
         WebElement textarea = driver.findElement(By.name("my-textarea"));
 
-        Keys ctrl = SystemUtils.IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL;
-        String textValue = "hello world";
-        Actions actions = new Actions(driver);
-
-        actions.sendKeys(inputText, textValue).keyDown(ctrl)
+        Keys modifier = SystemUtils.IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL;
+        actions.sendKeys(inputText, "hello world").keyDown(modifier)
                 .sendKeys(inputText, "a").sendKeys(inputText, "c")
-                .sendKeys(textarea, "v").perform();
+                .sendKeys(textarea, "v").build().perform();
 
-        assertThat(inputText.getAttribute("value")).isEqualTo(textValue);
-        assertThat(textarea.getAttribute("value")).isEqualTo(textValue);
+        assertThat(inputText.getAttribute("value"))
+                .isEqualTo(textarea.getAttribute("value"));
     }
 
 }
