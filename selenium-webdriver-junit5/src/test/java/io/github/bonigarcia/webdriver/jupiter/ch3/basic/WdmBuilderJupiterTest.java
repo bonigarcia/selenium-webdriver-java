@@ -40,7 +40,7 @@ class WdmBuilderJupiterTest {
     }
 
     @Test
-    void test() {
+    void testBasicWebDriver() {
         String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
         driver.get(sutUrl);
 

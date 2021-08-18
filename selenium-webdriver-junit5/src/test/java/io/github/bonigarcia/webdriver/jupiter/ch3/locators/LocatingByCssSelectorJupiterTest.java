@@ -41,8 +41,6 @@ class LocatingByCssSelectorJupiterTest {
     @BeforeEach
     void setup() {
         driver = new ChromeDriver();
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
     }
 
     @AfterEach
@@ -51,14 +49,20 @@ class LocatingByCssSelectorJupiterTest {
     }
 
     @Test
-    void testBasicSelector() {
+    void testBasicCssSelector() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+
         WebElement hidden = driver
                 .findElement(By.cssSelector("input[type=hidden]"));
         assertThat(hidden.isDisplayed()).isFalse();
     }
 
     @Test
-    void testAdvancedSelector() {
+    void testAdvancedCssSelector() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+
         WebElement checkbox1 = driver
                 .findElement(By.cssSelector("[type=checkbox]:checked"));
         assertThat(checkbox1.getAttribute("id")).isEqualTo("my-checkbox-1");
@@ -66,8 +70,8 @@ class LocatingByCssSelectorJupiterTest {
 
         WebElement checkbox2 = driver
                 .findElement(By.cssSelector("[type=checkbox]:not(:checked)"));
-        assertThat(checkbox2.isSelected()).isFalse();
         assertThat(checkbox2.getAttribute("id")).isEqualTo("my-checkbox-2");
+        assertThat(checkbox2.isSelected()).isFalse();
 
         WebElement radio1 = driver
                 .findElement(By.cssSelector("[type=radio]:checked"));
@@ -76,8 +80,8 @@ class LocatingByCssSelectorJupiterTest {
 
         WebElement radio2 = driver
                 .findElement(By.cssSelector("[type=radio]:not(:checked)"));
-        assertThat(radio2.isSelected()).isFalse();
         assertThat(radio2.getAttribute("id")).isEqualTo("my-radio-2");
+        assertThat(radio2.isSelected()).isFalse();
     }
 
 }

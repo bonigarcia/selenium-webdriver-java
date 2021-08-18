@@ -42,7 +42,7 @@ class LocatingByLinkTextJupiterTest {
     }
 
     @Test
-    void test() {
+    void testByLinkText() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 

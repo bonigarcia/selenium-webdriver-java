@@ -42,7 +42,7 @@ class LocatingByTagNameJupiterTest {
     }
 
     @Test
-    void test() {
+    void testByTagName() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 

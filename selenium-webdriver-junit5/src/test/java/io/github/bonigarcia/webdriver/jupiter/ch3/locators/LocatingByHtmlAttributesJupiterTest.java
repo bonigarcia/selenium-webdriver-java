@@ -44,7 +44,7 @@ class LocatingByHtmlAttributesJupiterTest {
     }
 
     @Test
-    void test() {
+    void testByHtmlAttr() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 

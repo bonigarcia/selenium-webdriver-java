@@ -41,8 +41,6 @@ class LocatingByXPathJupiterTest {
     @BeforeEach
     void setup() {
         driver = new ChromeDriver();
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
     }
 
     @AfterEach
@@ -52,6 +50,9 @@ class LocatingByXPathJupiterTest {
 
     @Test
     void testBasicXPath() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+
         WebElement hidden = driver
                 .findElement(By.xpath("//input[@type='hidden']"));
         assertThat(hidden.isDisplayed()).isFalse();
@@ -59,6 +60,9 @@ class LocatingByXPathJupiterTest {
 
     @Test
     void testAdvancedXPath() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+
         WebElement checkbox1 = driver
                 .findElement(By.xpath("//*[@type='checkbox' and @checked]"));
         assertThat(checkbox1.getAttribute("id")).isEqualTo("my-checkbox-1");
