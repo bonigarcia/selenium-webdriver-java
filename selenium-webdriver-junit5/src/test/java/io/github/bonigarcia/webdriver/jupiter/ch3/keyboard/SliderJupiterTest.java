@@ -53,7 +53,7 @@ class SliderJupiterTest {
     }
 
     @Test
-    void test() {
+    void testSlider() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 

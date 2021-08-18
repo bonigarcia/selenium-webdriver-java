@@ -29,7 +29,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class LocatingByXPathJupiterTest {
+class ByXPathJupiterTest {
 
     WebDriver driver;
 
@@ -49,7 +49,7 @@ class LocatingByXPathJupiterTest {
     }
 
     @Test
-    void testBasicXPath() {
+    void testByXPathBasic() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
@@ -59,7 +59,7 @@ class LocatingByXPathJupiterTest {
     }
 
     @Test
-    void testAdvancedXPath() {
+    void testByXPathAdvanced() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
@@ -70,8 +70,8 @@ class LocatingByXPathJupiterTest {
 
         WebElement checkbox2 = driver.findElement(
                 By.xpath("//*[@type='checkbox' and not(@checked)]"));
-        assertThat(checkbox2.isSelected()).isFalse();
         assertThat(checkbox2.getAttribute("id")).isEqualTo("my-check-2");
+        assertThat(checkbox2.isSelected()).isFalse();
 
         WebElement radio1 = driver
                 .findElement(By.xpath("//*[@type='radio' and @checked]"));
@@ -80,8 +80,8 @@ class LocatingByXPathJupiterTest {
 
         WebElement radio2 = driver
                 .findElement(By.xpath("//*[@type='radio' and not(@checked)]"));
-        assertThat(radio2.isSelected()).isFalse();
         assertThat(radio2.getAttribute("id")).isEqualTo("my-radio-2");
+        assertThat(radio2.isSelected()).isFalse();
     }
 
 }

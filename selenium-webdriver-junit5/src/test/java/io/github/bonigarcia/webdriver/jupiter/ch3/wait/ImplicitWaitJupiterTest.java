@@ -44,7 +44,7 @@ class ImplicitWaitJupiterTest {
     }
 
     @Test
-    void test() {
+    void testImplicitWait() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/loading-images.html");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

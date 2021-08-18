@@ -14,20 +14,18 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch3.locators;
+package io.github.bonigarcia.webdriver.jupiter.ch3.basic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class LocatingByTagNameJupiterTest {
+class BasicMethodsJupiterTest {
 
     WebDriver driver;
 
@@ -42,12 +40,14 @@ class LocatingByTagNameJupiterTest {
     }
 
     @Test
-    void testByTagName() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+    void testBasicMethods() {
+        String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
+        driver.get(sutUrl);
 
-        WebElement textarea = driver.findElement(By.tagName("textarea"));
-        assertThat(textarea.getDomAttribute("rows")).isEqualTo("3");
+        assertThat(driver.getTitle())
+                .isEqualTo("Hands-on Selenium WebDriver with Java");
+        assertThat(driver.getCurrentUrl()).isEqualTo(sutUrl);
+        assertThat(driver.getPageSource()).containsIgnoringCase("</html>");
     }
 
 }

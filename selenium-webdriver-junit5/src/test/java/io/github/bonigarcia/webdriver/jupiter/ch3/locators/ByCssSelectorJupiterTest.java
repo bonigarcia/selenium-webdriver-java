@@ -29,7 +29,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class LocatingByCssSelectorJupiterTest {
+class ByCssSelectorJupiterTest {
 
     WebDriver driver;
 
@@ -49,7 +49,7 @@ class LocatingByCssSelectorJupiterTest {
     }
 
     @Test
-    void testBasicCssSelector() {
+    void testByCssSelectorBasic() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
@@ -59,7 +59,7 @@ class LocatingByCssSelectorJupiterTest {
     }
 
     @Test
-    void testAdvancedCssSelector() {
+    void testByCssSelectorAdvanced() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 

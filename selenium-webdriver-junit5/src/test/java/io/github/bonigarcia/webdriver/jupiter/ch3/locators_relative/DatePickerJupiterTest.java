@@ -52,7 +52,7 @@ class DatePickerJupiterTest {
     }
 
     @Test
-    void test() {
+    void testDatePicker() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 

@@ -14,21 +14,23 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch3.mouse;
+package io.github.bonigarcia.webdriver.jupiter.ch3.locators_compound;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.time.Duration;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.pagefactory.ByAll;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class NavigationJupiterTest {
+class ByAllJupiterTest {
 
     WebDriver driver;
 
@@ -38,25 +40,18 @@ class NavigationJupiterTest {
     }
 
     @AfterEach
-    void teardown() throws InterruptedException {
-        // FIXME: active wait for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    void teardown() {
         driver.quit();
     }
 
     @Test
-    void testNavigation() {
-        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+    void testByAll() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        driver.findElement(By.xpath("//a[text()='Navigation']")).click();
-        driver.findElement(By.xpath("//a[text()='Next']")).click();
-        driver.findElement(By.xpath("//a[text()='3']")).click();
-        driver.findElement(By.xpath("//a[text()='2']")).click();
-        driver.findElement(By.xpath("//a[text()='Previous']")).click();
-
-        String bodyText = driver.findElement(By.tagName("body")).getText();
-        assertThat(bodyText).contains("Lorem ipsum");
+        List<WebElement> rowsInForm = driver.findElements(
+                new ByAll(By.tagName("form"), By.className("row")));
+        assertThat(rowsInForm.size()).isEqualTo(5);
     }
 
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch3.locators;
+package io.github.bonigarcia.webdriver.jupiter.ch3.locators_relative;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,10 +24,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.locators.RelativeLocator;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class LocatingByLinkTextJupiterTest {
+class RelativeLocatorsJupiterTest {
 
     WebDriver driver;
 
@@ -42,20 +43,15 @@ class LocatingByLinkTextJupiterTest {
     }
 
     @Test
-    void testByLinkText() {
+    void testRelativeLocators() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        WebElement linkByText = driver
-                .findElement(By.linkText("Return to index"));
-        assertThat(linkByText.getTagName()).isEqualTo("a");
-        assertThat(linkByText.getCssValue("cursor")).isEqualTo("pointer");
-
-        WebElement linkByPartialText = driver
-                .findElement(By.partialLinkText("index"));
-        assertThat(linkByPartialText.getLocation())
-                .isEqualTo(linkByText.getLocation());
-        assertThat(linkByPartialText.getRect()).isEqualTo(linkByText.getRect());
+        By link = By.linkText("Return to index");
+        WebElement readOnlyElement = driver.findElement(
+                RelativeLocator.with(By.tagName("input")).above(link));
+        assertThat(readOnlyElement.getAttribute("name"))
+                .isEqualTo("my-readonly");
     }
 
 }

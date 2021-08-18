@@ -16,8 +16,6 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch3.basic;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,14 +48,8 @@ class WebDriverBuilderAlternativeJupiterTest {
     }
 
     @Test
-    void testBasicWebDriver() {
-        String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
-        driver.get(sutUrl);
-
-        assertThat(driver.getTitle())
-                .isEqualTo("Hands-on Selenium WebDriver with Java");
-        assertThat(driver.getCurrentUrl()).isEqualTo(sutUrl);
-        assertThat(driver.getPageSource()).containsIgnoringCase("</html>");
+    void test() {
+        // TODO: use variable "driver" to call the Selenium WebDriver API
     }
 
 }

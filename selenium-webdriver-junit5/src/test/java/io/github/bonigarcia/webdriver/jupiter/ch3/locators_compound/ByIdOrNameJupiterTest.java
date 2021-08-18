@@ -18,19 +18,16 @@ package io.github.bonigarcia.webdriver.jupiter.ch3.locators_compound;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.pagefactory.ByChained;
+import org.openqa.selenium.support.ByIdOrName;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class LocatingByChainedJupiterTest {
+class ByIdOrNameJupiterTest {
 
     WebDriver driver;
 
@@ -45,13 +42,13 @@ class LocatingByChainedJupiterTest {
     }
 
     @Test
-    void test() {
+    void testByIdOrName() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        List<WebElement> rowsInForm = driver.findElements(
-                new ByChained(By.tagName("form"), By.className("row")));
-        assertThat(rowsInForm.size()).isEqualTo(1);
+        WebElement fileElement = driver.findElement(new ByIdOrName("my-file"));
+        assertThat(fileElement.getAttribute("id")).isBlank();
+        assertThat(fileElement.getAttribute("name")).isNotBlank();
     }
 
 }

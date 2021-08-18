@@ -14,9 +14,11 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch3.locators_relative;
+package io.github.bonigarcia.webdriver.jupiter.ch3.locators_compound;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,11 +26,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.pagefactory.ByChained;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class BasicRelativeLocatorsJupiterTest {
+class ByChainedJupiterTest {
 
     WebDriver driver;
 
@@ -43,15 +45,13 @@ class BasicRelativeLocatorsJupiterTest {
     }
 
     @Test
-    void test() {
+    void testByChained() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        By link = By.linkText("Return to index");
-        WebElement readOnlyElement = driver.findElement(
-                RelativeLocator.with(By.tagName("input")).above(link));
-        assertThat(readOnlyElement.getAttribute("name"))
-                .isEqualTo("my-readonly");
+        List<WebElement> rowsInForm = driver.findElements(
+                new ByChained(By.tagName("form"), By.className("row")));
+        assertThat(rowsInForm.size()).isEqualTo(1);
     }
 
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch3.locators_compound;
+package io.github.bonigarcia.webdriver.jupiter.ch3.locators;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,11 +26,10 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.pagefactory.ByAll;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class LocatingByAllJupiterTest {
+class ByHtmlAttributesJupiterTest {
 
     WebDriver driver;
 
@@ -45,13 +44,30 @@ class LocatingByAllJupiterTest {
     }
 
     @Test
-    void test() {
+    void testByHtmlAttributes() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        List<WebElement> rowsInForm = driver.findElements(
-                new ByAll(By.tagName("form"), By.className("row")));
-        assertThat(rowsInForm.size()).isEqualTo(5);
+        // By name
+        WebElement textByName = driver.findElement(By.name("my-text"));
+        assertThat(textByName.isEnabled()).isTrue();
+
+        // By id
+        WebElement textById = driver.findElement(By.id("my-text-id"));
+        assertThat(textById.getAttribute("type")).isEqualTo("text");
+        assertThat(textById.getDomAttribute("type")).isEqualTo("text");
+        assertThat(textById.getDomProperty("type")).isEqualTo("text");
+
+        assertThat(textById.getAttribute("myprop")).isEqualTo("myvalue");
+        assertThat(textById.getDomAttribute("myprop")).isEqualTo("myvalue");
+        assertThat(textById.getDomProperty("myprop")).isNull();
+
+        // By class name
+        List<WebElement> byClassName = driver
+                .findElements(By.className("form-control"));
+        assertThat(byClassName.size()).isPositive();
+        assertThat(byClassName.get(0).getAttribute("name"))
+                .isEqualTo("my-text");
     }
 
 }

@@ -43,7 +43,7 @@ class SlowCalculatorJupiterTest {
     }
 
     @Test
-    void test() {
+    void testSlowCalculator() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
 

@@ -46,7 +46,7 @@ class ExplicitWaitJupiterTest {
     }
 
     @Test
-    void test() {
+    void testExplicitWait() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/loading-images.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

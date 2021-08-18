@@ -48,7 +48,7 @@ class FluentWaitJupiterTest {
     }
 
     @Test
-    void test() {
+    void testFluentWait() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/loading-images.html");
         Wait<WebDriver> wait = new FluentWait<>(driver)

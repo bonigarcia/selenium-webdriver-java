@@ -51,7 +51,7 @@ class UploadFileJupiterTest {
     }
 
     @Test
-    void test() throws IOException {
+    void testUploadFile() throws IOException {
         String initUrl = "https://bonigarcia.dev/selenium-webdriver-java/web-form.html";
         driver.get(initUrl);
 

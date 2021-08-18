@@ -16,23 +16,17 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch3.user_gestures;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.time.Duration;
-
-import org.apache.commons.lang.SystemUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class CopyPasteJupiterTest {
+class ClickAndHoldJupiterTest {
 
     WebDriver driver;
 
@@ -42,29 +36,29 @@ class CopyPasteJupiterTest {
     }
 
     @AfterEach
-    void teardown() throws InterruptedException {
-        // FIXME: active wait for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    void teardown() {
         driver.quit();
     }
 
     @Test
-    void test() {
+    void testClickAndHold() {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/draw-in-canvas.html");
         Actions actions = new Actions(driver);
 
-        WebElement inputText = driver.findElement(By.name("my-text"));
-        WebElement textarea = driver.findElement(By.name("my-textarea"));
+        WebElement canvas = driver.findElement(By.tagName("canvas"));
+        actions.moveToElement(canvas).clickAndHold();
 
-        Keys modifier = SystemUtils.IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL;
-        actions.sendKeys(inputText, "hello world").keyDown(modifier)
-                .sendKeys(inputText, "a").sendKeys(inputText, "c")
-                .sendKeys(textarea, "v").build().perform();
+        int numPoints = 10;
+        int radius = 30;
+        for (int i = 0; i <= numPoints; i++) {
+            double angle = Math.toRadians(360 * i / numPoints);
+            double x = Math.sin(angle) * radius;
+            double y = Math.cos(angle) * radius;
+            actions.moveByOffset((int) x, (int) y);
+        }
 
-        assertThat(inputText.getAttribute("value"))
-                .isEqualTo(textarea.getAttribute("value"));
+        actions.release(canvas).build().perform();
     }
 
 }

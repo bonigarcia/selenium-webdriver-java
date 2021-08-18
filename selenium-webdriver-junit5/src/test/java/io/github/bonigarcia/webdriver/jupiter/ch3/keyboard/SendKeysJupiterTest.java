@@ -47,7 +47,7 @@ class SendKeysJupiterTest {
     }
 
     @Test
-    void test() {
+    void testSendKeys() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 

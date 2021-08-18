@@ -47,7 +47,7 @@ class CheckboxAndRadioJupiterTest {
     }
 
     @Test
-    void test() {
+    void testCheckboxAndRadio() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 

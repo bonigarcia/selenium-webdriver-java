@@ -44,7 +44,7 @@ class DragAndDropJupiterTest {
     }
 
     @Test
-    void test() {
+    void testDragAndDrop() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/drag-and-drop.html");
         Actions actions = new Actions(driver);
