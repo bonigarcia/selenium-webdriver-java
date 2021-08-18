@@ -63,16 +63,6 @@ class ByXPathJupiterTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        WebElement checkbox1 = driver
-                .findElement(By.xpath("//*[@type='checkbox' and @checked]"));
-        assertThat(checkbox1.getAttribute("id")).isEqualTo("my-check-1");
-        assertThat(checkbox1.isSelected()).isTrue();
-
-        WebElement checkbox2 = driver.findElement(
-                By.xpath("//*[@type='checkbox' and not(@checked)]"));
-        assertThat(checkbox2.getAttribute("id")).isEqualTo("my-check-2");
-        assertThat(checkbox2.isSelected()).isFalse();
-
         WebElement radio1 = driver
                 .findElement(By.xpath("//*[@type='radio' and @checked]"));
         assertThat(radio1.getAttribute("id")).isEqualTo("my-radio-1");

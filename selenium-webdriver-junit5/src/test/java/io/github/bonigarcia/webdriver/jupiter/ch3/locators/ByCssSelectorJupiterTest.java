@@ -72,16 +72,6 @@ class ByCssSelectorJupiterTest {
                 .findElement(By.cssSelector("[type=checkbox]:not(:checked)"));
         assertThat(checkbox2.getAttribute("id")).isEqualTo("my-check-2");
         assertThat(checkbox2.isSelected()).isFalse();
-
-        WebElement radio1 = driver
-                .findElement(By.cssSelector("[type=radio]:checked"));
-        assertThat(radio1.getAttribute("id")).isEqualTo("my-radio-1");
-        assertThat(radio1.isSelected()).isTrue();
-
-        WebElement radio2 = driver
-                .findElement(By.cssSelector("[type=radio]:not(:checked)"));
-        assertThat(radio2.getAttribute("id")).isEqualTo("my-radio-2");
-        assertThat(radio2.isSelected()).isFalse();
     }
 
 }
