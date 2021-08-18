@@ -51,7 +51,7 @@ class CheckboxAndRadioJupiterTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        WebElement checkbox2 = driver.findElement(By.id("my-checkbox-2"));
+        WebElement checkbox2 = driver.findElement(By.id("my-check-2"));
         checkbox2.click();
         assertThat(checkbox2.isSelected()).isTrue();
 
