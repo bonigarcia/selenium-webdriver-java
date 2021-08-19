@@ -18,11 +18,13 @@ package io.github.bonigarcia.webdriver.jupiter.ch3.basic;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Disabled
 class WdmBuilderJupiterTest {
 
     WebDriver driver;
@@ -38,7 +40,7 @@ class WdmBuilderJupiterTest {
     }
 
     @Test
-    void testBasicWebDriver() {
+    void test() {
         // TODO: use variable "driver" to call the Selenium WebDriver API
     }
 

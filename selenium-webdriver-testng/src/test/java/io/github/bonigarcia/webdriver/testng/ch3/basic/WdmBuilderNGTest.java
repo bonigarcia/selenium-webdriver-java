@@ -37,8 +37,8 @@ public class WdmBuilderNGTest {
         driver.quit();
     }
 
-    @Test
-    public void testBasicWebDriver() {
+    @Test(enabled = false)
+    public void test() {
         // TODO: use variable "driver" to call the Selenium WebDriver API
     }
 

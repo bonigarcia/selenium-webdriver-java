@@ -19,6 +19,7 @@ package io.github.bonigarcia.webdriver.junit4.ch3.basic;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -27,6 +28,7 @@ import org.openqa.selenium.safari.SafariOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore
 public class WebDriverBuilderAlternativeJUnit4Test {
 
     WebDriver driver;

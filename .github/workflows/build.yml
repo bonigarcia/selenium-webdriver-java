@@ -40,4 +40,4 @@ jobs:
     - name: Test with Maven
       run: mvn -B test
     - name: Test with Gradle
-      run: ./gradlew test --debug
+      run: ./gradlew test

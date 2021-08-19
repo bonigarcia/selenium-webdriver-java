@@ -18,11 +18,13 @@ package io.github.bonigarcia.webdriver.junit4.ch3.basic;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore
 public class WdmBuilderJUnit4Test {
 
     WebDriver driver;
@@ -38,7 +40,7 @@ public class WdmBuilderJUnit4Test {
     }
 
     @Test
-    public void testBasicWebDriver() {
+    public void test() {
         // TODO: use variable "driver" to call the Selenium WebDriver API
     }
 
