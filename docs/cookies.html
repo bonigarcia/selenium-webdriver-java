@@ -61,7 +61,11 @@
       var cookiesList = document.getElementById("cookies-list");
       var cookies = document.cookie.split(';');
       cookiesList.innerText = "";
-      cookies.forEach(cookie => cookiesList.innerText += cookie + "\n");
+      cookies.forEach(cookie => {
+        if (!cookie.startsWith("_g")) { // Not showing Google Analytics cookies
+          cookiesList.innerText += cookie + "\n"
+        }
+      });
     });
   </script>
 
