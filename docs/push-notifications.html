@@ -40,7 +40,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 py-2">
-          <button class="btn btn-outline-primary" onclick="notify()">Notify me</button>
+          <button class="btn btn-outline-primary" id="notify-me">Notify me</button>
         </div>
       </div>
       <div class="row">
@@ -66,7 +66,7 @@
         Notification.requestPermission();
     });
 
-    function notify() {
+    document.getElementById("notify-me").addEventListener("click", function () {
       if (Notification.permission !== "granted") {
         Notification.requestPermission();
       }
@@ -76,7 +76,7 @@
           body: 'Hey there!'
         });
       }
-    }
+    });
   </script>
 </body>
 
