@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.jupiter.ch4.javascript;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
@@ -51,15 +52,16 @@ class AsyncScriptJupiterTest {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        long waitMillis = Duration.ofSeconds(2).toMillis();
+        Duration pause = Duration.ofSeconds(2);
         String script = "const callback = arguments[arguments.length - 1];"
-                + "window.setTimeout(callback, " + waitMillis + ");";
+                + "window.setTimeout(callback, " + pause.toMillis() + ");";
 
         long initMillis = System.currentTimeMillis();
         js.executeAsyncScript(script);
-        long elapsedMillis = System.currentTimeMillis() - initMillis;
-        log.debug("The time elapsed in the script execution was {} ms",
-                elapsedMillis);
+        Duration elapsed = Duration
+                .ofMillis(System.currentTimeMillis() - initMillis);
+        log.debug("The script took {} ms to be executed", elapsed.toMillis());
+        assertThat(elapsed).isGreaterThanOrEqualTo(pause);
     }
 
 }
