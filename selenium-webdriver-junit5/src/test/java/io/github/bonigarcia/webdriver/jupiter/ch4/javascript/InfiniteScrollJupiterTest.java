@@ -51,8 +51,8 @@ class InfiniteScrollJupiterTest {
     void testInfiniteScroll() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/infinite-scroll.html");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         final int iterations = 3;
         int numParagraphs = 0;

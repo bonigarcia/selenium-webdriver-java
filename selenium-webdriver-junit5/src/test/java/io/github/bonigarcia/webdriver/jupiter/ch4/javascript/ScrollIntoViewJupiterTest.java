@@ -50,10 +50,12 @@ class ScrollIntoViewJupiterTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/long-page.html");
         JavascriptExecutor js = (JavascriptExecutor) driver;
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        WebElement footer = driver.findElement(By.tagName("footer"));
+        WebElement lastElememt = driver
+                .findElement(By.cssSelector("p:last-child"));
         String script = "arguments[0].scrollIntoView();";
-        js.executeScript(script, footer);
+        js.executeScript(script, lastElememt);
     }
 
 }
