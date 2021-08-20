@@ -55,7 +55,9 @@ class IFramesJupiterTest {
         wait.until(ExpectedConditions
                 .frameToBeAvailableAndSwitchToIt("my-iframe"));
 
-        List<WebElement> paragraphs = driver.findElements(By.tagName("p"));
+        By pName = By.tagName("p");
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(pName, 0));
+        List<WebElement> paragraphs = driver.findElements(pName);
         assertThat(paragraphs).hasSize(20);
     }
 
