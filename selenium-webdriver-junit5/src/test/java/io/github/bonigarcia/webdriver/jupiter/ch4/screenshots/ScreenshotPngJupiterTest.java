@@ -60,7 +60,7 @@ class ScreenshotPngJupiterTest {
         File screenshot = takesScreenshot.getScreenshotAs(OutputType.FILE);
         log.debug("Screenshot created on {}", screenshot);
 
-        Path destination = Paths.get("myscreenshot.png");
+        Path destination = Paths.get("screenshot.png");
         Files.move(screenshot.toPath(), destination);
         log.debug("Screenshot moved to {}", destination);
 

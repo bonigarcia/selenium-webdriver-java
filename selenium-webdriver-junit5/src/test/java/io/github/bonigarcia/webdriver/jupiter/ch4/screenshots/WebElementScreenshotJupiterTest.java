@@ -60,7 +60,7 @@ class WebElementScreenshotJupiterTest {
 
         WebElement form = driver.findElement(By.tagName("form"));
         File screenshot = form.getScreenshotAs(OutputType.FILE);
-        Path destination = Paths.get("only-form.png");
+        Path destination = Paths.get("webelement-screenshot.png");
         Files.move(screenshot.toPath(), destination);
 
         assertThat(destination).exists();

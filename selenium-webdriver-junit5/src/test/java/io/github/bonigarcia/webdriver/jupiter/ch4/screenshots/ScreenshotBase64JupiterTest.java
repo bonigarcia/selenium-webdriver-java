@@ -20,8 +20,6 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,7 +47,7 @@ class ScreenshotBase64JupiterTest {
     }
 
     @Test
-    void testScreenshotBase64() throws IOException {
+    void testScreenshotBase64() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
 
