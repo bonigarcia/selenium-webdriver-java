@@ -60,19 +60,18 @@ class ColorPickerJupiterTest {
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         WebElement colorPicker = driver.findElement(By.name("my-colors"));
-        String initColorValue = colorPicker.getAttribute("value");
-        log.debug("The initial color is {}", initColorValue);
+        String initColor = colorPicker.getAttribute("value");
+        log.debug("The initial color is {}", initColor);
 
-        Color pickedColor = new Color(255, 0, 0, 1); // red
+        Color red = new Color(255, 0, 0, 1);
         String script = String.format(
-                "arguments[0].setAttribute('value', '%s')",
-                pickedColor.asHex());
+                "arguments[0].setAttribute('value', '%s');", red.asHex());
         js.executeScript(script, colorPicker);
 
-        String finalColorValue = colorPicker.getAttribute("value");
-        log.debug("The final color is {}", finalColorValue);
-        assertThat(initColorValue).isNotEqualTo(finalColorValue);
-        assertThat(pickedColor).isEqualTo(Color.fromString(finalColorValue));
+        String finalColor = colorPicker.getAttribute("value");
+        log.debug("The final color is {}", finalColor);
+        assertThat(finalColor).isNotEqualTo(initColor);
+        assertThat(Color.fromString(finalColor)).isEqualTo(red);
     }
 
 }
