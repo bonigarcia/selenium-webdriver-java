@@ -21,10 +21,8 @@ import java.time.Duration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -51,9 +49,8 @@ class ScrollByJupiterTest {
                 "https://bonigarcia.dev/selenium-webdriver-java/long-page.html");
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        WebElement footer = driver.findElement(By.tagName("footer"));
         String script = "window.scrollBy(0, 1000);";
-        js.executeScript(script, footer);
+        js.executeScript(script);
     }
 
 }
