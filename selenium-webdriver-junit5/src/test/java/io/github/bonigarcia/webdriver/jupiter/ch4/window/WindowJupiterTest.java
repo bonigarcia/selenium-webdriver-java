@@ -20,7 +20,6 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.io.IOException;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
@@ -54,7 +53,7 @@ class WindowJupiterTest {
     }
 
     @Test
-    void testWindow() throws IOException {
+    void testWindow() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         Window window = driver.manage().window();
 
