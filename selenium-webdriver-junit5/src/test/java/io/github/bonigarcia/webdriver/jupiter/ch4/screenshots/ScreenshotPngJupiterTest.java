@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.jupiter.ch4.screenshots;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -61,7 +62,7 @@ class ScreenshotPngJupiterTest {
         log.debug("Screenshot created on {}", screenshot);
 
         Path destination = Paths.get("screenshot.png");
-        Files.move(screenshot.toPath(), destination);
+        Files.move(screenshot.toPath(), destination, REPLACE_EXISTING);
         log.debug("Screenshot moved to {}", destination);
 
         assertThat(destination).exists();

@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.jupiter.ch4.screenshots;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -61,7 +62,7 @@ class WebElementScreenshotJupiterTest {
         WebElement form = driver.findElement(By.tagName("form"));
         File screenshot = form.getScreenshotAs(OutputType.FILE);
         Path destination = Paths.get("webelement-screenshot.png");
-        Files.move(screenshot.toPath(), destination);
+        Files.move(screenshot.toPath(), destination, REPLACE_EXISTING);
 
         assertThat(destination).exists();
     }
