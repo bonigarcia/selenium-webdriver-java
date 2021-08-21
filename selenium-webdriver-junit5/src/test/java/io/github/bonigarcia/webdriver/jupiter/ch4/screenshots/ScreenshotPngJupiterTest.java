@@ -55,9 +55,9 @@ class ScreenshotPngJupiterTest {
     @Test
     void testScreenshotPng() throws IOException {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
-        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+        TakesScreenshot ts = (TakesScreenshot) driver;
 
-        File screenshot = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        File screenshot = ts.getScreenshotAs(OutputType.FILE);
         log.debug("Screenshot created on {}", screenshot);
 
         Path destination = Paths.get("screenshot.png");

@@ -49,12 +49,12 @@ class ScreenshotBase64JupiterTest {
     @Test
     void testScreenshotBase64() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
-        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+        TakesScreenshot ts = (TakesScreenshot) driver;
 
-        String screenshot = takesScreenshot.getScreenshotAs(OutputType.BASE64);
+        String screenshot = ts.getScreenshotAs(OutputType.BASE64);
         log.debug("Screenshot in base64 "
                 + "(you can copy and paste this string a browser navigation bar to watch it)\n"
-                + "data:image/jpeg;base64,{}", screenshot);
+                + "data:image/png;base64,{}", screenshot);
         assertThat(screenshot).isNotEmpty();
     }
 
