@@ -56,7 +56,7 @@ class NewTabWithKeysJupiterTest {
     @Test
     void testNewTabWithKeys() {
         String initPage = "https://bonigarcia.dev/selenium-webdriver-java/";
-        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        driver.get(initPage);
 
         Keys modifier = SystemUtils.IS_OS_MAC ? Keys.COMMAND : Keys.CONTROL;
         String openInNewTab = Keys.chord(modifier, Keys.RETURN);

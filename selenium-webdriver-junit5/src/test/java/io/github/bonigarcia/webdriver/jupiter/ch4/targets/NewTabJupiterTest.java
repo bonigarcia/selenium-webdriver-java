@@ -46,7 +46,7 @@ class NewTabJupiterTest {
     }
 
     @Test
-    void testNewWindow() {
+    void testNewTab() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         String initHandle = driver.getWindowHandle();
 
