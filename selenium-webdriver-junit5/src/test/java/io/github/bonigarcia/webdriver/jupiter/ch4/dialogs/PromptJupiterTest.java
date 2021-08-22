@@ -41,7 +41,10 @@ class PromptJupiterTest {
     }
 
     @AfterEach
-    void teardown() {
+    void teardown() throws InterruptedException {
+        // FIXME: active wait for manual browser inspection
+        Thread.sleep(Duration.ofSeconds(3).toMillis());
+
         driver.quit();
     }
 

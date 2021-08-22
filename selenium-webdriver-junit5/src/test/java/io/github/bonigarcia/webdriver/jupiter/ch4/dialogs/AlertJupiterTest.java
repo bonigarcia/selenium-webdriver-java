@@ -41,7 +41,10 @@ class AlertJupiterTest {
     }
 
     @AfterEach
-    void teardown() {
+    void teardown() throws InterruptedException {
+        // FIXME: active wait for manual browser inspection
+        Thread.sleep(Duration.ofSeconds(3).toMillis());
+
         driver.quit();
     }
 
@@ -54,7 +57,7 @@ class AlertJupiterTest {
         driver.findElement(By.id("my-alert")).click();
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
-        assertThat(alert.getText()).isEqualTo("This is an alert");
+        assertThat(alert.getText()).isEqualTo("Hello world!");
         alert.accept();
     }
 
@@ -66,7 +69,7 @@ class AlertJupiterTest {
 
         driver.findElement(By.id("my-alert")).click();
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        assertThat(alert.getText()).isEqualTo("This is an alert");
+        assertThat(alert.getText()).isEqualTo("Hello world!");
         alert.accept();
     }
 

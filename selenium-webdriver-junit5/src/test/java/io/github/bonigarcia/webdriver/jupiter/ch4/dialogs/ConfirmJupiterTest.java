@@ -41,7 +41,10 @@ class ConfirmJupiterTest {
     }
 
     @AfterEach
-    void teardown() {
+    void teardown() throws InterruptedException {
+        // FIXME: active wait for manual browser inspection
+        Thread.sleep(Duration.ofSeconds(3).toMillis());
+
         driver.quit();
     }
 
@@ -54,7 +57,7 @@ class ConfirmJupiterTest {
         driver.findElement(By.id("my-confirm")).click();
         wait.until(ExpectedConditions.alertIsPresent());
         Alert confirm = driver.switchTo().alert();
-        assertThat(confirm.getText()).isEqualTo("Press a button");
+        assertThat(confirm.getText()).isEqualTo("Is this correct?");
         confirm.dismiss();
     }
 
@@ -66,7 +69,7 @@ class ConfirmJupiterTest {
 
         driver.findElement(By.id("my-confirm")).click();
         Alert confirm = wait.until(ExpectedConditions.alertIsPresent());
-        assertThat(confirm.getText()).isEqualTo("Press a button");
+        assertThat(confirm.getText()).isEqualTo("Is this correct?");
         confirm.dismiss();
     }
 
