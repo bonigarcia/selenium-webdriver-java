@@ -46,13 +46,14 @@ class ConfirmJupiterTest {
     }
 
     @Test
-    void testConfirm1() {
+    void testConfirm() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/message-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-confirm")).click();
-        Alert confirm = wait.until(ExpectedConditions.alertIsPresent());
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert confirm = driver.switchTo().alert();
         assertThat(confirm.getText()).isEqualTo("Press a button");
         confirm.dismiss();
     }
@@ -64,8 +65,7 @@ class ConfirmJupiterTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-confirm")).click();
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert confirm = driver.switchTo().alert();
+        Alert confirm = wait.until(ExpectedConditions.alertIsPresent());
         assertThat(confirm.getText()).isEqualTo("Press a button");
         confirm.dismiss();
     }

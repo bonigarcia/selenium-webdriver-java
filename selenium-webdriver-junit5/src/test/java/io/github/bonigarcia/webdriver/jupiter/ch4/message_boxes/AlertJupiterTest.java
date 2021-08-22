@@ -46,13 +46,14 @@ class AlertJupiterTest {
     }
 
     @Test
-    void testAlert1() {
+    void testAlert() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/message-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-alert")).click();
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
         assertThat(alert.getText()).isEqualTo("This is an alert");
         alert.accept();
     }
@@ -64,8 +65,7 @@ class AlertJupiterTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-alert")).click();
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         assertThat(alert.getText()).isEqualTo("This is an alert");
         alert.accept();
     }

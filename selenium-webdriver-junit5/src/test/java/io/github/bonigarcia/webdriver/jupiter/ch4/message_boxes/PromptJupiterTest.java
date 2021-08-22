@@ -46,13 +46,14 @@ class PromptJupiterTest {
     }
 
     @Test
-    void testPrompt1() {
+    void testPrompt() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/message-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-prompt")).click();
-        Alert prompt = wait.until(ExpectedConditions.alertIsPresent());
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert prompt = driver.switchTo().alert();
         prompt.sendKeys("John Doe");
         assertThat(prompt.getText()).isEqualTo("Please enter your name");
         prompt.accept();
@@ -65,8 +66,7 @@ class PromptJupiterTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-prompt")).click();
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert prompt = driver.switchTo().alert();
+        Alert prompt = wait.until(ExpectedConditions.alertIsPresent());
         prompt.sendKeys("John Doe");
         assertThat(prompt.getText()).isEqualTo("Please enter your name");
         prompt.accept();
