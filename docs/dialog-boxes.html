@@ -40,39 +40,33 @@
       </div>
       <div class="row">
         <div class="col-sm-2 py-2">
-          <button type="button" class="btn btn-outline-primary" id="my-alert" onclick="alert('This is an alert')">
-            Launch alert
-          </button>
+          <button type="button" class="btn btn-outline-primary" id="my-alert">Launch alert</button>
         </div>
         <div class="col-sm-2 py-2">
-          <button type="button" class="btn btn-outline-success" id="my-confirm" onclick="confirm('Press a button')">
-            Launch confirm
-          </button>
+          <button type="button" class="btn btn-outline-success" id="my-confirm">Launch confirm</button>
+          <p id="confirm-text" class="lead"></p>
         </div>
         <div class="col-sm-2 py-2">
-          <button type="button" class="btn btn-outline-danger" id="my-prompt" onclick="prompt('Please enter your name')">
-            Launch prompt
-          </button>
+          <button type="button" class="btn btn-outline-danger" id="my-prompt">Launch prompt</button>
+          <p id="prompt-text" class="lead"></p>
         </div>
         <div class="col-sm-2 py-2">
           <button type="button" class="btn btn-outline-warning" id="my-modal" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">
-            Launch modal
-          </button>
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+            data-bs-target="#example-modal">Launch modal</button>
+          <p id="modal-text" class="lead"></p>
+          <div class="modal fade" id="example-modal" tabindex="-1">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   This is the modal body
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary model-button" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary model-button" data-bs-dismiss="modal">Save
+                    changes</button>
                 </div>
               </div>
             </div>
@@ -86,6 +80,29 @@
       <span class="text-muted">Copyright &copy; 2021 <a href="https://bonigarcia.dev/">Boni Garc&iacute;a</a></span>
     </div>
   </footer>
+
+  <script>
+    document.getElementById("my-alert").addEventListener("click", function () {
+      alert("Hello world!");
+    });
+    document.getElementById("my-confirm").addEventListener("click", function () {
+      let correct = confirm("Is this correct?");
+      updateTextElement("confirm-text", "You chose: " + correct);
+    });
+    document.getElementById("my-prompt").addEventListener("click", function () {
+      let username = prompt("Please enter your name");
+      updateTextElement("prompt-text", "You typed: " + username);
+    });
+    document.querySelectorAll(".model-button").forEach(button => {
+      button.addEventListener("click", function () {
+        updateTextElement("modal-text", "You chose: " + this.innerText);
+      });
+    });
+    function updateTextElement(elementId, text) {
+      document.getElementById(elementId).innerText = text;
+    }
+  </script>
+
 </body>
 
 </html>
