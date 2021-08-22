@@ -43,7 +43,7 @@ public class CopyAndPasteJUnit4Test {
 
     @After
     public void teardown() throws InterruptedException {
-        // FIXME: active wait for manual browser inspection
+        // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
 
         driver.quit();
