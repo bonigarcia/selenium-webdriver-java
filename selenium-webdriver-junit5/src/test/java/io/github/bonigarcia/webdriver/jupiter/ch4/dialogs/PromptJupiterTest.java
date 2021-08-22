@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch4.message_boxes;
+package io.github.bonigarcia.webdriver.jupiter.ch4.dialogs;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,7 +31,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class ConfirmJupiterTest {
+class PromptJupiterTest {
 
     WebDriver driver;
 
@@ -46,28 +46,30 @@ class ConfirmJupiterTest {
     }
 
     @Test
-    void testConfirm() {
+    void testPrompt() {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/message-boxes.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        driver.findElement(By.id("my-confirm")).click();
+        driver.findElement(By.id("my-prompt")).click();
         wait.until(ExpectedConditions.alertIsPresent());
-        Alert confirm = driver.switchTo().alert();
-        assertThat(confirm.getText()).isEqualTo("Press a button");
-        confirm.dismiss();
+        Alert prompt = driver.switchTo().alert();
+        prompt.sendKeys("John Doe");
+        assertThat(prompt.getText()).isEqualTo("Please enter your name");
+        prompt.accept();
     }
 
     @Test
-    void testConfirm2() {
+    void testPrompt2() {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/message-boxes.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        driver.findElement(By.id("my-confirm")).click();
-        Alert confirm = wait.until(ExpectedConditions.alertIsPresent());
-        assertThat(confirm.getText()).isEqualTo("Press a button");
-        confirm.dismiss();
+        driver.findElement(By.id("my-prompt")).click();
+        Alert prompt = wait.until(ExpectedConditions.alertIsPresent());
+        prompt.sendKeys("John Doe");
+        assertThat(prompt.getText()).isEqualTo("Please enter your name");
+        prompt.accept();
     }
 
 }

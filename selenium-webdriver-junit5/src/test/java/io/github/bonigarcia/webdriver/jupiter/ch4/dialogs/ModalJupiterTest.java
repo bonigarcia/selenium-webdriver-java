@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch4.message_boxes;
+package io.github.bonigarcia.webdriver.jupiter.ch4.dialogs;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,7 +48,7 @@ class ModalJupiterTest {
     @Test
     void testModal() {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/message-boxes.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-modal")).click();

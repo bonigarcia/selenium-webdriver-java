@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch4.message_boxes;
+package io.github.bonigarcia.webdriver.jupiter.ch4.dialogs;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,7 +31,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class PromptJupiterTest {
+class ConfirmJupiterTest {
 
     WebDriver driver;
 
@@ -46,30 +46,28 @@ class PromptJupiterTest {
     }
 
     @Test
-    void testPrompt() {
+    void testConfirm() {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/message-boxes.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        driver.findElement(By.id("my-prompt")).click();
+        driver.findElement(By.id("my-confirm")).click();
         wait.until(ExpectedConditions.alertIsPresent());
-        Alert prompt = driver.switchTo().alert();
-        prompt.sendKeys("John Doe");
-        assertThat(prompt.getText()).isEqualTo("Please enter your name");
-        prompt.accept();
+        Alert confirm = driver.switchTo().alert();
+        assertThat(confirm.getText()).isEqualTo("Press a button");
+        confirm.dismiss();
     }
 
     @Test
-    void testPrompt2() {
+    void testConfirm2() {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/message-boxes.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        driver.findElement(By.id("my-prompt")).click();
-        Alert prompt = wait.until(ExpectedConditions.alertIsPresent());
-        prompt.sendKeys("John Doe");
-        assertThat(prompt.getText()).isEqualTo("Please enter your name");
-        prompt.accept();
+        driver.findElement(By.id("my-confirm")).click();
+        Alert confirm = wait.until(ExpectedConditions.alertIsPresent());
+        assertThat(confirm.getText()).isEqualTo("Press a button");
+        confirm.dismiss();
     }
 
 }
