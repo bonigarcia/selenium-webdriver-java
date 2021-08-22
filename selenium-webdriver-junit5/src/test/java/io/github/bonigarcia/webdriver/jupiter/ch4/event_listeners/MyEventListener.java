@@ -42,7 +42,15 @@ public class MyEventListener implements WebDriverListener {
     @Override
     public void afterGet(WebDriver driver, String url) {
         WebDriverListener.super.afterGet(driver, url);
+        takeScreenshot(driver);
+    }
 
+    @Override
+    public void beforeQuit(WebDriver driver) {
+        takeScreenshot(driver);
+    }
+
+    private void takeScreenshot(WebDriver driver) {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File screenshot = ts.getScreenshotAs(OutputType.FILE);
         SessionId sessionId = ((RemoteWebDriver) driver).getSessionId();

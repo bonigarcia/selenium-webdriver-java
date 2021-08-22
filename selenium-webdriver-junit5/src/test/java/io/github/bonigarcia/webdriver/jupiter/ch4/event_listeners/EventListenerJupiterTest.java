@@ -48,11 +48,7 @@ class EventListenerJupiterTest {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle())
                 .isEqualTo("Hands-on Selenium WebDriver with Java");
-
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
-        String bodyText = driver.findElement(By.tagName("body")).getText();
-        assertThat(bodyText).containsIgnoringCase("web form");
+        driver.findElement(By.linkText("Web form")).click();
     }
 
 }
