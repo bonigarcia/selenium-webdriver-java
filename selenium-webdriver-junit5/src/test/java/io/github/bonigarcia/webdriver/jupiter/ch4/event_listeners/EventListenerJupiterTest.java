@@ -21,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
@@ -47,6 +48,11 @@ class EventListenerJupiterTest {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle())
                 .isEqualTo("Hands-on Selenium WebDriver with Java");
+
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+        String bodyText = driver.findElement(By.tagName("body")).getText();
+        assertThat(bodyText).containsIgnoringCase("web form");
     }
 
 }

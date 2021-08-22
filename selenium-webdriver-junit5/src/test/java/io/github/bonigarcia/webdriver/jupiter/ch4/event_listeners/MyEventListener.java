@@ -48,7 +48,7 @@ public class MyEventListener implements WebDriverListener {
         SessionId sessionId = ((RemoteWebDriver) driver).getSessionId();
         Date today = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy.MM.dd_HH.mm.ss");
+                "yyyy.MM.dd_HH.mm.ss.SSS");
         String screenshotFileName = String.format("%s-%s.png",
                 dateFormat.format(today), sessionId.toString());
         Path destination = Paths.get(screenshotFileName);
