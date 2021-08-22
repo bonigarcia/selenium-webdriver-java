@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch4.events;
+package io.github.bonigarcia.webdriver.jupiter.ch4.event_listeners;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
