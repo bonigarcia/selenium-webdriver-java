@@ -36,7 +36,6 @@ public class ScriptTimeoutJUnit4Test {
     @Before
     public void setup() {
         driver = WebDriverManager.chromedriver().create();
-        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
     }
 
     @After

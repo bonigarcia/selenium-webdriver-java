@@ -36,7 +36,6 @@ class ScriptTimeoutJupiterTest {
     @BeforeEach
     void setup() {
         driver = WebDriverManager.chromedriver().create();
-        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
     }
 
     @AfterEach

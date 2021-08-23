@@ -36,7 +36,6 @@ public class ScriptTimeoutNGTest {
     @BeforeMethod
     public void setup() {
         driver = WebDriverManager.chromedriver().create();
-        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
     }
 
     @AfterMethod
