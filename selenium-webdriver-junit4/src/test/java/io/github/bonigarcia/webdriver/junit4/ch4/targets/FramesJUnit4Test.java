@@ -47,7 +47,7 @@ public class FramesJUnit4Test {
     }
 
     @Test
-    public void test() {
+    public void testFrames() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/frames.html");
 

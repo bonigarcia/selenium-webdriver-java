@@ -47,7 +47,7 @@ class FramesJupiterTest {
     }
 
     @Test
-    void test() {
+    void testFrames() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/frames.html");
 
