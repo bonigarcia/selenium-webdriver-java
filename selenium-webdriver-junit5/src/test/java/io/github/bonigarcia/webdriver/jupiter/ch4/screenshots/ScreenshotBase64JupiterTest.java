@@ -53,7 +53,7 @@ class ScreenshotBase64JupiterTest {
 
         String screenshot = ts.getScreenshotAs(OutputType.BASE64);
         log.debug("Screenshot in base64 "
-                + "(you can copy and paste this string a browser navigation bar to watch it)\n"
+                + "(you can copy and paste it into a browser navigation bar to watch it)\n"
                 + "data:image/png;base64,{}", screenshot);
         assertThat(screenshot).isNotEmpty();
     }
