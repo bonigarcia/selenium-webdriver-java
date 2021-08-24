@@ -39,9 +39,14 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 py-2">
-          <video id="gum-local" autoplay playsinline></video>
-          <button class="btn btn-outline-primary" id="show-video">Open camera</button>      
+        <div class="col-12">
+          <video class="border rounded w-100" id="my-video" autoplay playsinline></video>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-outline-primary" id="start">Start</button>
+        </div>
+        <div class="col-10">
+          <p id="video-device" class="lead"></p>
         </div>
       </div>
     </div>
@@ -52,9 +57,9 @@
     </div>
   </footer>
 
-  <link rel="stylesheet" href="css/user-media.css">
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <script type="text/javascript" src="js/user-media.js"></script>
 
 </body>
+
 </html>
