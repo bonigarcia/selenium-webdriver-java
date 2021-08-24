@@ -18,6 +18,7 @@ package io.github.bonigarcia.webdriver.seljup.ch4.event_listeners;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -30,18 +31,26 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 @ExtendWith(SeleniumJupiter.class)
 class EventListenerSelJupTest {
 
-    @Test
-    void testEventListener(ChromeDriver originalDriver) {
-        MyEventListener listener = new MyEventListener();
-        WebDriver driver = new EventFiringDecorator(listener)
-                .decorate(originalDriver);
+    WebDriver driver;
 
+    public EventListenerSelJupTest(ChromeDriver originalDriver) {
+        MyEventListener listener = new MyEventListener();
+        driver = new EventFiringDecorator(listener).decorate(originalDriver);
+    }
+
+    @AfterEach
+    void teardown() {
+        // We manually invoke to driver.quit() since this method is being
+        // listened in the decorated instance (to make an screenshot at the end)
+        driver.quit();
+    }
+
+    @Test
+    void testEventListener() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle())
                 .isEqualTo("Hands-on Selenium WebDriver with Java");
         driver.findElement(By.linkText("Web form")).click();
-
-        driver.quit();
     }
 
 }
