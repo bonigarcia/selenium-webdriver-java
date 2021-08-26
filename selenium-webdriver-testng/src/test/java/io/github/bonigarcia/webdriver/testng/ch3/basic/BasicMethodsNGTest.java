@@ -45,7 +45,7 @@ public class BasicMethodsNGTest {
         driver.get(sutUrl);
 
         assertThat(driver.getTitle())
-                .isEqualTo("Hands-on Selenium WebDriver with Java");
+                .isEqualTo("Hands-On Selenium WebDriver with Java");
         assertThat(driver.getCurrentUrl()).isEqualTo(sutUrl);
         assertThat(driver.getPageSource()).containsIgnoringCase("</html>");
     }

@@ -4,7 +4,7 @@
 [![Support badge](https://img.shields.io/badge/stackoverflow-selenium_webdriver-green.svg?logo=stackoverflow)](https://stackoverflow.com/questions/tagged/selenium-webdriver)
 [![Twitter Follow](https://img.shields.io/twitter/follow/boni_gg.svg?style=social)](https://twitter.com/boni_gg)
 
-# Hands-on Selenium WebDriver with Java [![][Logo]][GitHub Repository]
+# Hands-On Selenium WebDriver with Java [![][Logo]][GitHub Repository]
 
 This repository contains a comprehensive collection of examples about [Selenium WebDriver] 4 using [Java] as language binding. It has been implemented as a multi-module project (using [Maven] and [Gradle] as build tools) composed of tests based on different frameworks: [JUnit 4], [JUnit 5] (alone or extended with [Selenium-Jupiter]), and [TestNG].
 

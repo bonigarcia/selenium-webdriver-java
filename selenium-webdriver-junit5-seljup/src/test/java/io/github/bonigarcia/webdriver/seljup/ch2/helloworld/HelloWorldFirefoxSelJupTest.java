@@ -41,7 +41,7 @@ class HelloWorldFirefoxSelJupTest {
         log.debug("The title of {} is {}", sutUrl, title);
 
         // Verify
-        assertThat(title).isEqualTo("Hands-on Selenium WebDriver with Java");
+        assertThat(title).isEqualTo("Hands-On Selenium WebDriver with Java");
     }
 
 }

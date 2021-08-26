@@ -49,7 +49,7 @@ class EventListenerSelJupTest {
     void testEventListener() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle())
-                .isEqualTo("Hands-on Selenium WebDriver with Java");
+                .isEqualTo("Hands-On Selenium WebDriver with Java");
         driver.findElement(By.linkText("Web form")).click();
     }
 
