@@ -81,8 +81,8 @@ class DatePickerJupiterTest {
         monthPastYear.click();
 
         // Click on the present day in that month
-        WebElement dayElement = driver.findElement(By.xpath(
-                String.format("//td[contains(text(),'%d')]", currentDay)));
+        WebElement dayElement = driver.findElement(By.xpath(String.format(
+                "//td[@class='day' and contains(text(),'%d')]", currentDay)));
         dayElement.click();
 
         // Get the final date on the input text
