@@ -40,7 +40,7 @@
       </div>
       <div class="row">
         <div class="col-2 py-2">
-          <button class="btn btn-outline-primary" id="refresh-local">Display local storage</button>
+          <button class="btn btn-outline-primary" id="display-local">Display local storage</button>
         </div>
         <div class="col-10 py-2">
           <p id="local-storage" class="lead"></p>
@@ -48,7 +48,7 @@
       </div>
       <div class="row">
         <div class="col-2 py-2">
-          <button class="btn btn-outline-primary" id="refresh-session">Display session storage</button>
+          <button class="btn btn-outline-primary" id="display-session">Display session storage</button>
         </div>
         <div class="col-10 py-2">
           <p id="session-storage" class="lead"></p>
@@ -67,11 +67,11 @@
     sessionStorage.setItem("name", "John");
     sessionStorage.setItem("lastname", "Doe");
 
-    document.getElementById("refresh-local").addEventListener("click", function () {
+    document.getElementById("display-local").addEventListener("click", function () {
       refresh(localStorage, "local-storage");
     });
 
-    document.getElementById("refresh-session").addEventListener("click", function () {
+    document.getElementById("display-session").addEventListener("click", function () {
       refresh(sessionStorage, "session-storage");
     });
 
