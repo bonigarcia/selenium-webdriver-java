@@ -54,10 +54,9 @@ class InfiniteScrollSelJupTest {
                     .numberOfElementsToBeMoreThan(paragraphs, numParagraphs));
             numParagraphs = driver.findElements(paragraphs).size();
 
-            WebElement lastElememt = driver
-                    .findElement(By.cssSelector("p:last-child"));
+            WebElement footer = driver.findElement(By.tagName("footer"));
             String script = "arguments[0].scrollIntoView();";
-            js.executeScript(script, lastElememt);
+            js.executeScript(script, footer);
         }
     }
 
