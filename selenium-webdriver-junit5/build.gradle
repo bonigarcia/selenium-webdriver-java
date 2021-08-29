@@ -35,6 +35,8 @@ ext {
     junit5Version = "5.7.2"
     assertjVersion  = "3.20.2"
     wdmVersion = "5.0.0-SNAPSHOT"
+
+    mockserverVersion = "5.11.2"
 }
 
 dependencies {
@@ -45,4 +47,6 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:${junit5Version}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
+
+    testImplementation("org.mock-server:mockserver-netty:${mockserverVersion}")
 }

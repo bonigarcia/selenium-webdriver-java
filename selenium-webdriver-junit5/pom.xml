@@ -16,6 +16,8 @@
         <assertj.version>3.20.2</assertj.version>
         <wdm.version>5.0.0-SNAPSHOT</wdm.version>
 
+        <mockserver.version>5.11.2</mockserver.version>
+
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
         <java.version>11</java.version>
@@ -61,6 +63,14 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${wdm.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- The following dependency is required for mocked proxy (chapter 5) -->
+        <dependency>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-netty</artifactId>
+            <version>${mockserver.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
