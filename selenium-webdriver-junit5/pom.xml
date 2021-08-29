@@ -63,14 +63,6 @@
             <version>${wdm.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- The following dependency is not required for remote tests -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-grid</artifactId>
-            <version>${selenium.version}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
