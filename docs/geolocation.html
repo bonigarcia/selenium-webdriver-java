@@ -68,6 +68,9 @@
     function showPosition(position) {
       document.getElementById("coordinates").innerHTML = "Latitude: " + position.coords.latitude +
         "°<br>Longitude: " + position.coords.longitude + "°";
+      if (position.coords.altitude) {
+        document.getElementById("coordinates").innerHTML += "<br>Altitude: " + position.coords.altitude + "m";
+      }
     }
   </script>
 </body>
