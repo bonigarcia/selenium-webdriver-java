@@ -44,6 +44,7 @@ class GeolocationEdgeJupiterTest {
 
         EdgeOptions options = new EdgeOptions();
         options.setExperimentalOption("prefs", prefs);
+        options.addArguments("--enable-strict-powerful-feature-restrictions");
 
         driver = WebDriverManager.edgedriver().capabilities(options).create();
     }

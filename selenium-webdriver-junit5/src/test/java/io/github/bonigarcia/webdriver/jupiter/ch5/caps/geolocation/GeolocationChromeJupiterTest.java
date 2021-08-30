@@ -46,6 +46,7 @@ class GeolocationChromeJupiterTest {
 
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
+        options.addArguments("--enable-strict-powerful-feature-restrictions");
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
