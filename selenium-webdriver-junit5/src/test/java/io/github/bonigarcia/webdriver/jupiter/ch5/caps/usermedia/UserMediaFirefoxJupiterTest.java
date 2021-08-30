@@ -60,7 +60,6 @@ class UserMediaFirefoxJupiterTest {
                 "https://bonigarcia.dev/selenium-webdriver-java/get-user-media.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        driver.manage().window().maximize();
         driver.findElement(By.id("start")).click();
         By videoDevice = By.id("video-device");
         Pattern nonEmptyString = Pattern.compile(".+");
