@@ -53,7 +53,7 @@ class WebAuthnFirefoxJupiterTest {
     void testWebAuthn() {
         assertThatThrownBy(() -> {
             driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
-            driver.findElement(By.linkText("WebAuthn")).click();
+            driver.findElement(By.linkText("Web authentication")).click();
 
             WebDriverWait wait = new WebDriverWait(driver,
                     Duration.ofSeconds(10));
