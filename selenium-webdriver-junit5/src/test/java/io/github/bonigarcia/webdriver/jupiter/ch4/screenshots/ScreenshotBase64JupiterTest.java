@@ -48,7 +48,8 @@ class ScreenshotBase64JupiterTest {
 
     @Test
     void testScreenshotBase64() {
-        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/get-user-media.html");
         TakesScreenshot ts = (TakesScreenshot) driver;
 
         String screenshot = ts.getScreenshotAs(OutputType.BASE64);
