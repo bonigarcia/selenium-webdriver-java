@@ -60,13 +60,15 @@ class GeolocationFirefoxJupiterTest {
     void testGeolocation() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/geolocation.html");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        driver.findElement(By.id("get-coordinates")).click();
+        WebElement getCoordinates = driver
+                .findElement(By.id("get-coordinates"));
+        wait.until(ExpectedConditions.elementToBeClickable(getCoordinates));
+        getCoordinates.click();
+
         WebElement coordinates = driver.findElement(By.id("coordinates"));
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(coordinates));
-
         assertThat(coordinates.getText()).contains("Latitude")
                 .contains("Longitude");
     }
