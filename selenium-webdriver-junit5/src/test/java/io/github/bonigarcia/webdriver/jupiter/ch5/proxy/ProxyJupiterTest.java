@@ -16,7 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch5.proxy;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,6 +25,8 @@ import org.mockserver.integration.ClientAndServer;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -62,7 +64,8 @@ class ProxyJupiterTest {
     @Test
     void test() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
-        assertThat(driver.getTitle()).contains("Selenium WebDriver");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.titleContains("Selenium WebDriver"));
     }
 
 }
