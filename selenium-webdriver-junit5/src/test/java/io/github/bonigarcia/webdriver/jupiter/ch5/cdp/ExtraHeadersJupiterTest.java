@@ -38,7 +38,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class BasicAuthJupiterTest {
+class ExtraHeadersJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -60,7 +60,7 @@ class BasicAuthJupiterTest {
     }
 
     @Test
-    void testBasicAuth() {
+    void testExtraHeaders() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
                 Optional.empty()));
         String userName = "guest";
