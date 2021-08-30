@@ -16,35 +16,27 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch5.proxy;
 
-import static org.openqa.selenium.net.PortProber.findFreePort;
-
-import java.time.Duration;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.mockserver.integration.ClientAndServer;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Disabled
 class ProxyJupiterTest {
-
-    ClientAndServer mockServer;
 
     WebDriver driver;
 
     @BeforeEach
     void setup() {
-        int proxyPort = findFreePort();
-        mockServer = ClientAndServer.startClientAndServer(proxyPort);
-
         Proxy proxy = new Proxy();
-        String proxyStr = "localhost:" + proxyPort;
+        String proxyStr = "proxy:port";
         proxy.setHttpProxy(proxyStr);
         proxy.setSslProxy(proxyStr);
 
@@ -60,15 +52,12 @@ class ProxyJupiterTest {
     @AfterEach
     void teardown() {
         driver.quit();
-
-        mockServer.close();
     }
 
     @Test
     void testProxy() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.titleContains("Selenium WebDriver"));
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 
 }

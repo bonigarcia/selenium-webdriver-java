@@ -47,6 +47,4 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:${junit5Version}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
-
-    testImplementation("org.mock-server:mockserver-netty:${mockserverVersion}")
 }

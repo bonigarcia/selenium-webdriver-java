@@ -65,14 +65,6 @@
             <version>${wdm.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- The following dependency is required for mocked proxy (chapter 5) -->
-        <dependency>
-            <groupId>org.mock-server</groupId>
-            <artifactId>mockserver-netty</artifactId>
-            <version>${mockserver.version}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
