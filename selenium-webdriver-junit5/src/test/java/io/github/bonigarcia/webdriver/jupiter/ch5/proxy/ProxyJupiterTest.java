@@ -39,6 +39,7 @@ class ProxyJupiterTest {
     @BeforeEach
     void setup() {
         mockServer = ClientAndServer.startClientAndServer(0);
+        mockServer.withSecure(true);
 
         Proxy proxy = new Proxy();
         String proxyStr = "localhost:" + mockServer.getPort();
