@@ -42,7 +42,6 @@ class GeolocationChromeJupiterTest {
     void setup() {
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("profile.default_content_setting_values.geolocation", 1);
-        prefs.put("profile.managed_default_content_settings.geolocation", 1);
 
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
@@ -70,15 +69,17 @@ class GeolocationChromeJupiterTest {
         wait.until(ExpectedConditions.elementToBeClickable(getCoordinates));
         getCoordinates.click();
 
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        String screenshot = ts.getScreenshotAs(OutputType.BASE64);
-        System.out.println("*****************");
-        System.out.println("data:image/png;base64,{}" + screenshot);
-        System.out.println("*****************");
-
-        WebElement coordinates = driver.findElement(By.id("coordinates"));
-        wait.until(ExpectedConditions.textToBePresentInElement(coordinates,
-                "Longitude"));
+        try {
+            WebElement coordinates = driver.findElement(By.id("coordinates"));
+            wait.until(ExpectedConditions.textToBePresentInElement(coordinates,
+                    "Longitude"));
+        } catch (Exception e) {
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            String screenshot = ts.getScreenshotAs(OutputType.BASE64);
+            System.out.println("*****************");
+            System.out.println("data:image/png;base64," + screenshot);
+            System.out.println("*****************");
+        }
     }
 
 }
