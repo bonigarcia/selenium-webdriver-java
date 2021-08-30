@@ -16,6 +16,8 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch5.proxy;
 
+import static org.openqa.selenium.net.PortProber.findFreePort;
+
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
@@ -38,11 +40,11 @@ class ProxyJupiterTest {
 
     @BeforeEach
     void setup() {
-        mockServer = ClientAndServer.startClientAndServer(0);
-        mockServer.openUI();
+        int proxyPort = findFreePort();
+        mockServer = ClientAndServer.startClientAndServer(proxyPort);
 
         Proxy proxy = new Proxy();
-        String proxyStr = "localhost:" + mockServer.getPort();
+        String proxyStr = "localhost:" + proxyPort;
         proxy.setHttpProxy(proxyStr);
         proxy.setSslProxy(proxyStr);
 
@@ -63,7 +65,7 @@ class ProxyJupiterTest {
     }
 
     @Test
-    void test() {
+    void testProxy() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.titleContains("Selenium WebDriver"));
