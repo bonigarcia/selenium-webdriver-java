@@ -42,6 +42,7 @@ class GeolocationEdgeJupiterTest {
     void setup() {
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("profile.default_content_setting_values.geolocation", 1);
+        prefs.put("googlegeolocationaccess.enabled", true);
 
         EdgeOptions options = new EdgeOptions();
         options.setExperimentalOption("prefs", prefs);
