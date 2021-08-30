@@ -26,7 +26,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -60,10 +59,7 @@ class UserMediaEdgeJupiterTest {
                 "https://bonigarcia.dev/selenium-webdriver-java/get-user-media.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement start = driver.findElement(By.id("start"));
-        wait.until(ExpectedConditions.elementToBeClickable(start));
-        start.click();
-
+        driver.findElement(By.id("start")).click();
         By videoDevice = By.id("video-device");
         Pattern nonEmptyString = Pattern.compile(".+");
         wait.until(ExpectedConditions.textMatches(videoDevice, nonEmptyString));
