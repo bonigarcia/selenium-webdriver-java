@@ -43,7 +43,6 @@ class GeolocationEdgeJupiterTest {
 
         EdgeOptions options = new EdgeOptions();
         options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--enable-strict-powerful-feature-restrictions");
 
         driver = WebDriverManager.edgedriver().capabilities(options).create();
     }
@@ -62,14 +61,9 @@ class GeolocationEdgeJupiterTest {
                 "https://bonigarcia.dev/selenium-webdriver-java/geolocation.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement getCoordinates = driver
-                .findElement(By.id("get-coordinates"));
-        wait.until(ExpectedConditions.elementToBeClickable(getCoordinates));
-        getCoordinates.click();
-
+        driver.findElement(By.id("get-coordinates")).click();
         WebElement coordinates = driver.findElement(By.id("coordinates"));
-        wait.until(ExpectedConditions.textToBePresentInElement(coordinates,
-                "Longitude"));
+        wait.until(ExpectedConditions.visibilityOf(coordinates));
     }
 
 }
