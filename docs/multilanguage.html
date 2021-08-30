@@ -72,7 +72,7 @@
         "_contact": "Contacto",
       }
     };
-    var lang = localStorage.getItem("lang") || navigator.language.slice(0, 2);
+    var lang = navigator.language.slice(0, 2);
 
     $(".lang").each(function (index, element) {
       $(this).text(arrLang[lang][$(this).attr("key")]);

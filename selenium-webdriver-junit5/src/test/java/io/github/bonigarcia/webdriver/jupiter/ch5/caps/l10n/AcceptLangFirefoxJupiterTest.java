@@ -39,7 +39,7 @@ class AcceptLangFirefoxJupiterTest {
 
     @BeforeEach
     void setup() {
-        lang = "en-US";
+        lang = "es-ES";
         FirefoxOptions options = new FirefoxOptions();
         options.addPreference("intl.accept_languages", lang);
 

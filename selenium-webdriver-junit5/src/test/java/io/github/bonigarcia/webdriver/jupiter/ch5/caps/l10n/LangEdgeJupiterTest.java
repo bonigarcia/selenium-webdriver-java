@@ -39,7 +39,7 @@ class LangEdgeJupiterTest {
 
     @BeforeEach
     void setup() {
-        lang = "es-ES";
+        lang = "en-US";
         EdgeOptions options = new EdgeOptions();
         options.addArguments("--lang=" + lang);
 

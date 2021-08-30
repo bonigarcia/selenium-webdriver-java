@@ -39,7 +39,7 @@ class LangChromeJupiterTest {
 
     @BeforeEach
     void setup() {
-        lang = "es-ES";
+        lang = "en-US";
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--lang=" + lang);
 
