@@ -28,7 +28,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -42,9 +41,7 @@ class PushNotificationsFirefoxJupiterTest {
     @BeforeEach
     void setup() {
         FirefoxOptions options = new FirefoxOptions();
-        FirefoxProfile profile = new FirefoxProfile();
-        profile.setPreference("permissions.default.desktop-notification", 1);
-        options.setProfile(profile);
+        options.addPreference("permissions.default.desktop-notification", 1);
 
         driver = WebDriverManager.firefoxdriver().capabilities(options)
                 .create();
@@ -66,17 +63,19 @@ class PushNotificationsFirefoxJupiterTest {
 
         String script = String.join("\n",
                 "const callback = arguments[arguments.length - 1];",
-                "const originalNotification = window.Notification;",
-                "window.Notification = function(title, options) {",
-                "    const newNotification = new originalNotification(title, options);",
-                "    newNotification.onshow = function() {",
-                "        window.Notification = originalNotification;",
-                "        callback(newNotification.body);", "    }", "}",
+                "const OldNotify = window.Notification;",
+                "function newNotification(title, options) {",
+                "    callback(title);",
+                "    return new OldNotify(title, options);", "}",
+                "newNotification.requestPermission = OldNotify.requestPermission.bind(OldNotify);",
+                "Object.defineProperty(newNotification, 'permission', {",
+                "    get: function() {", "        return OldNotify.permission;",
+                "    }", "});", "window.Notification = newNotification;",
                 "document.getElementById('notify-me').click();");
         log.debug("Executing the following script asynchronously:\n{}", script);
 
-        Object notificationBody = js.executeAsyncScript(script);
-        assertThat(notificationBody).isEqualTo("Hey there!");
+        Object notificationTitle = js.executeAsyncScript(script);
+        assertThat(notificationTitle).isEqualTo("This is a notification");
     }
 
 }
