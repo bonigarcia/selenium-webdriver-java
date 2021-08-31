@@ -26,6 +26,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
@@ -71,6 +73,12 @@ class PushNotificationsFirefoxJupiterTest {
                 "        callback(newNotification.body);", "    }", "}",
                 "document.getElementById('notify-me').click();");
         log.debug("Executing the following script asynchronously:\n{}", script);
+
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        String screenshot = ts.getScreenshotAs(OutputType.BASE64);
+        log.debug("****** Screenshot in base64 "
+                + "(you can copy and paste it into a browser navigation bar to watch it)\n"
+                + "data:image/png;base64,{}", screenshot);
 
         Object notificationBody = js.executeAsyncScript(script);
         assertThat(notificationBody).isEqualTo("Hey there!");
