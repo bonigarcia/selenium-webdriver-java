@@ -37,10 +37,9 @@ class GeolocationEdgeJupiterTest {
 
     @BeforeEach
     void setup() {
+        EdgeOptions options = new EdgeOptions();
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("profile.default_content_setting_values.geolocation", 1);
-
-        EdgeOptions options = new EdgeOptions();
         options.setExperimentalOption("prefs", prefs);
 
         driver = WebDriverManager.edgedriver().capabilities(options).create();

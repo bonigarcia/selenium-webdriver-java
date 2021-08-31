@@ -19,6 +19,7 @@ package io.github.bonigarcia.webdriver.jupiter.ch5.caps.l10n;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -42,8 +43,9 @@ class AcceptLangEdgeJupiterTest {
     void setup() {
         lang = "es-ES";
         EdgeOptions options = new EdgeOptions();
-        options.setExperimentalOption("prefs",
-                Map.of("intl.accept_languages", lang));
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("intl.accept_languages", lang);
+        options.setExperimentalOption("prefs", prefs);
 
         driver = WebDriverManager.edgedriver().capabilities(options).create();
     }

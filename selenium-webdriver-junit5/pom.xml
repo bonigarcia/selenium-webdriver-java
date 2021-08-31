@@ -14,12 +14,13 @@
         <selenium.version>4.0.0-beta-4</selenium.version>
         <junit5.version>5.7.2</junit5.version>
         <assertj.version>3.20.2</assertj.version>
-        <wdm.version>5.0.0</wdm.version>
+        <wdm.version>5.0.1</wdm.version>
 
+        <browsermob.version>2.1.5</browsermob.version>
 
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
 
@@ -62,6 +63,22 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${wdm.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- The following dependency is required for remote tests (chapter 6) -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-grid</artifactId>
+            <version>${selenium.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- The following dependency is required for proxy tests (chapter 9) -->
+        <dependency>
+            <groupId>net.lightbody.bmp</groupId>
+            <artifactId>browsermob-core</artifactId>
+            <version>${browsermob.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

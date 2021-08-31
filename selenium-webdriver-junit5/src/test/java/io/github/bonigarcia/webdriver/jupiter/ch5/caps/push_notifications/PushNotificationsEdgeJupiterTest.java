@@ -21,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.AfterEach;
@@ -42,8 +43,9 @@ class PushNotificationsEdgeJupiterTest {
     @BeforeEach
     void setup() {
         EdgeOptions options = new EdgeOptions();
-        options.setExperimentalOption("prefs", Map
-                .of("profile.default_content_setting_values.notifications", 1));
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("profile.default_content_setting_values.notifications", 1);
+        options.setExperimentalOption("prefs", prefs);
 
         driver = WebDriverManager.edgedriver().capabilities(options).create();
     }
@@ -55,6 +57,7 @@ class PushNotificationsEdgeJupiterTest {
 
         driver.quit();
     }
+
     @Test
     void testPushNotifications() {
         driver.get(
@@ -72,7 +75,7 @@ class PushNotificationsEdgeJupiterTest {
                 "document.getElementById('notify-me').click();");
         log.debug("Executing the following script asynchronously:\n{}", script);
 
-        var notificationBody = js.executeAsyncScript(script);
+        Object notificationBody = js.executeAsyncScript(script);
         assertThat(notificationBody).isEqualTo("Hey there!");
     }
 

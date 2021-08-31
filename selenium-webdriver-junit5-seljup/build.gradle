@@ -6,8 +6,8 @@ jar {
 }
 
 compileTestJava {
-    sourceCompatibility = 11
-    targetCompatibility = 11
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
     options.compilerArgs += "-parameters"
 }
 
@@ -32,7 +32,7 @@ ext {
 
     seleniumVersion  = "4.0.0-beta-4"
     junit5Version = "5.7.2"
-    selJupVersion = "4.0.0"
+    selJupVersion = "4.0.1"
     assertjVersion  = "3.20.2"
 }
 

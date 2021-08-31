@@ -6,8 +6,8 @@ jar {
 }
 
 compileTestJava {
-    sourceCompatibility = 11
-    targetCompatibility = 11
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
     options.compilerArgs += "-parameters"
 }
 
@@ -33,8 +33,9 @@ ext {
     seleniumVersion  = "4.0.0-beta-4"
     junit5Version = "5.7.2"
     assertjVersion  = "3.20.2"
-    wdmVersion = "5.0.0"
+    wdmVersion = "5.0.1"
 
+    browsermobVersion = "2.1.5"
 }
 
 dependencies {
@@ -45,4 +46,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:${junit5Version}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
+
+    testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
+    testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
 }

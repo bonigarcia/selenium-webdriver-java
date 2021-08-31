@@ -72,7 +72,7 @@ class PushNotificationsFirefoxJupiterTest {
                 "document.getElementById('notify-me').click();");
         log.debug("Executing the following script asynchronously:\n{}", script);
 
-        var notificationBody = js.executeAsyncScript(script);
+        Object notificationBody = js.executeAsyncScript(script);
         assertThat(notificationBody).isEqualTo("Hey there!");
     }
 
