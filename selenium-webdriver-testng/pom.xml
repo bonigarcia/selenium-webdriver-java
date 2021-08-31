@@ -14,7 +14,7 @@
         <selenium.version>4.0.0-beta-4</selenium.version>
         <testng.version>7.4.0</testng.version>
         <assertj.version>3.20.2</assertj.version>
-        <wdm.version>5.0.0-SNAPSHOT</wdm.version>
+        <wdm.version>5.0.0</wdm.version>
 
         <java.version>11</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -62,18 +62,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>oss.sonatype.org-snapshot</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
 </project>

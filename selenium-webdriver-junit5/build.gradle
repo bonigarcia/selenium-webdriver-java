@@ -24,7 +24,6 @@ test {
 
 repositories {
     mavenCentral()
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 ext {
@@ -34,9 +33,8 @@ ext {
     seleniumVersion  = "4.0.0-beta-4"
     junit5Version = "5.7.2"
     assertjVersion  = "3.20.2"
-    wdmVersion = "5.0.0-SNAPSHOT"
+    wdmVersion = "5.0.0"
 
-    mockserverVersion = "5.11.2"
 }
 
 dependencies {
