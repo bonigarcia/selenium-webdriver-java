@@ -25,7 +25,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -62,8 +61,8 @@ class GeolocationChromeJupiterTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         driver.findElement(By.id("get-coordinates")).click();
-        WebElement coordinates = driver.findElement(By.id("coordinates"));
-        wait.until(ExpectedConditions.visibilityOf(coordinates));
+        wait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("coordinates")));
     }
 
 }
