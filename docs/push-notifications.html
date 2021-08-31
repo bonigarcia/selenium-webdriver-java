@@ -57,21 +57,28 @@
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("notify-me").addEventListener("click", function () {
       if (!Notification) {
         alert("Desktop notifications not available in your browser");
-        return;
       }
-      if (Notification.permission !== "granted")
-        Notification.requestPermission();
+      else if (Notification.permission === "granted") {
+        notify();
+      }
+      else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(function (permission) {
+          if (permission === "granted") {
+            notify();
+          }
+        });
+      }
     });
 
-    document.getElementById("notify-me").addEventListener("click", function () {
+    function notify() {
       var notification = new Notification("This is a notification", {
         icon: 'https://bonigarcia.dev/selenium-webdriver-java/img/hands-on-icon.png',
         body: 'Hey there!'
       });
-    });
+    }
   </script>
 </body>
 
