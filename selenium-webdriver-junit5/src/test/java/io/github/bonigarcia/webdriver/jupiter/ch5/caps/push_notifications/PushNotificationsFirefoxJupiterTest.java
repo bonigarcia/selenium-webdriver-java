@@ -24,16 +24,15 @@ import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled
 class PushNotificationsFirefoxJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
@@ -43,7 +42,9 @@ class PushNotificationsFirefoxJupiterTest {
     @BeforeEach
     void setup() {
         FirefoxOptions options = new FirefoxOptions();
-        options.addPreference("permissions.default.desktop-notification", 1);
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference("permissions.default.desktop-notification", 1);
+        options.setProfile(profile);
 
         driver = WebDriverManager.firefoxdriver().capabilities(options)
                 .create();
