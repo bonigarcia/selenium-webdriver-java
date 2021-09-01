@@ -54,18 +54,15 @@ class InfiniteScrollJupiterTest {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        final int iterations = 3;
-        int numParagraphs = 0;
-        for (int i = 0; i < iterations; i++) {
-            By paragraphs = By.tagName("p");
-            wait.until(ExpectedConditions
-                    .numberOfElementsToBeMoreThan(paragraphs, numParagraphs));
-            numParagraphs = driver.findElements(paragraphs).size();
+        By paragraphs = By.tagName("p");
+        int initParagraphsNumber = driver.findElements(paragraphs).size();
 
-            WebElement footer = driver.findElement(By.tagName("footer"));
-            String script = "arguments[0].scrollIntoView();";
-            js.executeScript(script, footer);
-        }
+        WebElement footer = driver.findElement(By.tagName("footer"));
+        String script = "arguments[0].scrollIntoView();";
+        js.executeScript(script, footer);
+
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(paragraphs,
+                initParagraphsNumber));
     }
 
 }
