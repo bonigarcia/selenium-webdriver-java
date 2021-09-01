@@ -21,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -57,9 +56,10 @@ class NetworkInterceptorFirefoxJupiterTest {
     }
 
     @Test
-    void testNetworkInterceptor() throws IOException {
+    void testNetworkInterceptor() throws Exception {
         assertThatThrownBy(() -> {
-            Path img = Paths.get("../docs/img/award.png");
+            Path img = Paths
+                    .get(ClassLoader.getSystemResource("tools.png").toURI());
             byte[] bytes = Files.readAllBytes(img);
 
             try (NetworkInterceptor interceptor = new NetworkInterceptor(driver,

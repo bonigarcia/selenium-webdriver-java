@@ -18,7 +18,9 @@ package io.github.bonigarcia.webdriver.jupiter.ch5.caps.extensions;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.File;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
@@ -36,10 +38,12 @@ class LoadExtensionChromeJupiterTest {
     WebDriver driver;
 
     @BeforeEach
-    void setup() {
-        File extension = new File("..", "web-extension");
+    void setup() throws URISyntaxException {
+        Path extension = Paths
+                .get(ClassLoader.getSystemResource("web-extension").toURI());
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--load-extension=" + extension.getAbsolutePath());
+        options.addArguments(
+                "--load-extension=" + extension.toAbsolutePath().toString());
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }

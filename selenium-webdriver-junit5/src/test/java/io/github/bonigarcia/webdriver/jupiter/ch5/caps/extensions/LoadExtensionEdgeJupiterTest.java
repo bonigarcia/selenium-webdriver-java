@@ -18,7 +18,9 @@ package io.github.bonigarcia.webdriver.jupiter.ch5.caps.extensions;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.File;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
@@ -27,7 +29,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -36,10 +38,12 @@ class LoadExtensionEdgeJupiterTest {
     WebDriver driver;
 
     @BeforeEach
-    void setup() {
-        File extension = new File("..", "web-extension");
-        EdgeOptions options = new EdgeOptions();
-        options.addArguments("--load-extension=" + extension.getAbsolutePath());
+    void setup() throws URISyntaxException {
+        Path extension = Paths
+                .get(ClassLoader.getSystemResource("web-extension").toURI());
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments(
+                "--load-extension=" + extension.toAbsolutePath().toString());
 
         driver = WebDriverManager.edgedriver().capabilities(options).create();
     }
