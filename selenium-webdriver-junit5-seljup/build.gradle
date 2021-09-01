@@ -20,6 +20,25 @@ test {
     }
 
     systemProperties System.properties
+
+    ext.failedTests = []
+
+    tasks.withType(Test) {
+        afterTest { TestDescriptor descriptor, TestResult result ->
+            if(result.resultType == org.gradle.api.tasks.testing.TestResult.ResultType.FAILURE) {
+                failedTests << ["${descriptor.className}::${descriptor.name}"]
+            }
+        }
+    }
+
+    gradle.buildFinished {
+        if(!failedTests.empty){
+            println "Failed test(s) for ${project.name}:"
+            failedTests.each { failedTest ->
+                println failedTest
+            }
+        }
+    }
 }
 
 repositories {
