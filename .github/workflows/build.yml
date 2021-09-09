@@ -39,5 +39,5 @@ jobs:
         sudo apt update && sudo apt install microsoft-edge-beta
     - name: Test with Gradle
       run: ./gradlew test
-   - name: Test with Maven
+    - name: Test with Maven
       run: mvn -B test
