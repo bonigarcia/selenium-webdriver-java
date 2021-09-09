@@ -37,7 +37,7 @@ jobs:
         sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
         sudo rm microsoft.gpg
         sudo apt update && sudo apt install microsoft-edge-beta
-    - name: Test with Maven
-      run: mvn -B test
     - name: Test with Gradle
       run: ./gradlew test
+   - name: Test with Maven
+      run: mvn -B test
