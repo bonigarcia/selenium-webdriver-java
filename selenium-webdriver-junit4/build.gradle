@@ -47,7 +47,7 @@ ext {
     slf4jVersion  = "1.7.32"
     logbackVersion  = "1.2.5"
 
-    seleniumVersion  = "4.0.0-rc-1"
+    seleniumVersion  = "4.0.0-beta-4"
     junit4Version = "4.13.2"
     assertjVersion  = "3.20.2"
     wdmVersion = "5.0.1"
