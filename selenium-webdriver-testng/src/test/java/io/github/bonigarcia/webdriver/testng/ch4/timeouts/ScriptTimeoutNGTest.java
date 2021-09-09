@@ -47,7 +47,7 @@ public class ScriptTimeoutNGTest {
     public void testScriptTimeout() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(3));
+        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(3));
 
         assertThatThrownBy(() -> {
             long waitMillis = Duration.ofSeconds(5).toMillis();
