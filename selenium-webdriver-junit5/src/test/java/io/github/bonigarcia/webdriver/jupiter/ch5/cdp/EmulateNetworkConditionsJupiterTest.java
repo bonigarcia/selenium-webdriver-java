@@ -29,8 +29,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v92.network.Network;
-import org.openqa.selenium.devtools.v92.network.model.ConnectionType;
+import org.openqa.selenium.devtools.v91.network.Network;
+import org.openqa.selenium.devtools.v91.network.model.ConnectionType;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
