@@ -38,6 +38,6 @@ jobs:
         sudo rm microsoft.gpg
         sudo apt update && sudo apt install microsoft-edge-beta
     - name: Test with Maven
-      run: mvn test
+      run: mvn -B -U test
     - name: Test with Gradle
       run: ./gradlew test
