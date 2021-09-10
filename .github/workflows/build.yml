@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        java: [ 8 ]
+        java: [ 11 ]
 
     steps:
     - name: Checkout GitHub repo
@@ -38,6 +38,6 @@ jobs:
         sudo rm microsoft.gpg
         sudo apt update && sudo apt install microsoft-edge-beta
     - name: Test with Maven
-      run: mvn -B -U test
+      run: mvn -B test
     - name: Test with Gradle
       run: ./gradlew test
