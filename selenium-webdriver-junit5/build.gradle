@@ -52,7 +52,7 @@ ext {
     seleniumVersion  = "4.0.0-rc-1"
     junit5Version = "5.7.2"
     assertjVersion  = "3.20.2"
-    wdmVersion = "5.0.1"
+    wdmVersion = "5.0.2"
 
     browsermobVersion = "2.1.5"
 }
