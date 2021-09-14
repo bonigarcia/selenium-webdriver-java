@@ -14,7 +14,7 @@
         <selenium.version>4.0.0-rc-1</selenium.version>
         <junit5.version>5.7.2</junit5.version>
         <assertj.version>3.20.2</assertj.version>
-        <wdm.version>5.0.1</wdm.version>
+        <wdm.version>5.0.2</wdm.version>
 
         <browsermob.version>2.1.5</browsermob.version>
 

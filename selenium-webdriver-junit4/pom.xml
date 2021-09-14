@@ -14,7 +14,7 @@
         <selenium.version>4.0.0-rc-1</selenium.version>
         <junit4.version>4.13.2</junit4.version>
         <assertj.version>3.20.2</assertj.version>
-        <wdm.version>5.0.1</wdm.version>
+        <wdm.version>5.0.2</wdm.version>
 
         <java.version>1.8</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
