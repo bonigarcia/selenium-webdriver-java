@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch5.caps.pageload;
+package io.github.bonigarcia.webdriver.jupiter.ch8.parameterized;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,15 +29,15 @@ import org.junit.jupiter.params.provider.EnumSource;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class PameterizedPageLoadFirefoxJupiterTest {
+class PameterizedPageLoadChromeJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -45,7 +45,7 @@ class PameterizedPageLoadFirefoxJupiterTest {
 
     @BeforeAll
     static void setupClass() {
-        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.chromedriver().setup();
     }
 
     @AfterEach
@@ -56,9 +56,9 @@ class PameterizedPageLoadFirefoxJupiterTest {
     @ParameterizedTest
     @EnumSource(PageLoadStrategy.class)
     void testPameterizedPageLoad(PageLoadStrategy pageLoadStrategy) {
-        FirefoxOptions options = new FirefoxOptions();
+        ChromeOptions options = new ChromeOptions();
         options.setPageLoadStrategy(pageLoadStrategy);
-        driver = new FirefoxDriver(options);
+        driver = new ChromeDriver(options);
 
         long initMillis = System.currentTimeMillis();
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");

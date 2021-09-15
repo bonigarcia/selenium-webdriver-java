@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch5.caps.pageload;
+package io.github.bonigarcia.webdriver.jupiter.ch8.parameterized;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,15 +29,15 @@ import org.junit.jupiter.params.provider.EnumSource;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class PameterizedPageLoadEdgeJupiterTest {
+class PameterizedPageLoadFirefoxJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -45,7 +45,7 @@ class PameterizedPageLoadEdgeJupiterTest {
 
     @BeforeAll
     static void setupClass() {
-        WebDriverManager.edgedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
     }
 
     @AfterEach
@@ -56,9 +56,9 @@ class PameterizedPageLoadEdgeJupiterTest {
     @ParameterizedTest
     @EnumSource(PageLoadStrategy.class)
     void testPameterizedPageLoad(PageLoadStrategy pageLoadStrategy) {
-        EdgeOptions options = new EdgeOptions();
+        FirefoxOptions options = new FirefoxOptions();
         options.setPageLoadStrategy(pageLoadStrategy);
-        driver = new EdgeDriver(options);
+        driver = new FirefoxDriver(options);
 
         long initMillis = System.currentTimeMillis();
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
