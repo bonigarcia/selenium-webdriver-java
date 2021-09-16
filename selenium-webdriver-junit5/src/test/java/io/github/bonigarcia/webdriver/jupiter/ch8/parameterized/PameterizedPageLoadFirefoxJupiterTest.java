@@ -71,7 +71,7 @@ class PameterizedPageLoadFirefoxJupiterTest {
                 .getCapability(CapabilityType.PAGE_LOAD_STRATEGY);
         String browserName = capabilities.getBrowserName();
         log.debug(
-                "The page took {} ms to be loaded using a '{}' page load strategy in {}",
+                "The page took {} ms to be loaded using a '{}' strategy in {}",
                 elapsed.toMillis(), pageLoad, browserName);
 
         assertThat(pageLoad).isEqualTo(pageLoadStrategy.toString());
