@@ -19,10 +19,12 @@ package io.github.bonigarcia.webdriver.jupiter.ch5.caps.headless;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -30,14 +32,19 @@ class HeadlessEdgeJupiterTest {
 
     WebDriver driver;
 
+    @BeforeAll
+    static void setupClass() {
+        WebDriverManager.edgedriver().setup();
+    }
+
     @BeforeEach
     void setup() {
         EdgeOptions options = new EdgeOptions();
-        options.addArguments("--headless");
+        options.setHeadless(true);
         // The previous line is equivalent to:
-        // options.setHeadless(true);
+        // options.addArguments("--headless");
 
-        driver = WebDriverManager.edgedriver().capabilities(options).create();
+        driver = RemoteWebDriver.builder().oneOf(options).build();
     }
 
     @AfterEach

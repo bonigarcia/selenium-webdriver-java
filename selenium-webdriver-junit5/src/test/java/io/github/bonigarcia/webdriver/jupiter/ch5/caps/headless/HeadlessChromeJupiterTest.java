@@ -19,9 +19,11 @@ package io.github.bonigarcia.webdriver.jupiter.ch5.caps.headless;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -30,14 +32,19 @@ class HeadlessChromeJupiterTest {
 
     WebDriver driver;
 
+    @BeforeAll
+    static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
+
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+        options.setHeadless(true);
         // The previous line is equivalent to:
-        // options.setHeadless(true);
+        // options.addArguments("--headless");
 
-        driver = WebDriverManager.chromedriver().capabilities(options).create();
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach

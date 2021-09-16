@@ -33,9 +33,9 @@ class HeadlessFirefoxJupiterTest {
     @BeforeEach
     void setup() {
         FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("--headless");
+        options.setHeadless(true);
         // The previous line is equivalent to:
-        // options.setHeadless(true);
+        // options.addArguments("--headless");
 
         driver = WebDriverManager.firefoxdriver().capabilities(options)
                 .create();
