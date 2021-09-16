@@ -37,7 +37,7 @@ class DeviceEmulationChromeJupiterTest {
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
-        Map<String, String> mobileEmulation = new HashMap<>();
+        Map<String, Object> mobileEmulation = new HashMap<>();
         mobileEmulation.put("deviceName", "iPhone 6/7/8");
         options.setExperimentalOption("mobileEmulation", mobileEmulation);
 
