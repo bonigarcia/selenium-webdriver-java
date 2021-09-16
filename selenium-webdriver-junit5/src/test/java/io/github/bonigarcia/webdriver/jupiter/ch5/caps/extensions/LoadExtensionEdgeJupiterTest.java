@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -41,7 +41,7 @@ class LoadExtensionEdgeJupiterTest {
     void setup() throws URISyntaxException {
         Path extension = Paths
                 .get(ClassLoader.getSystemResource("web-extension").toURI());
-        ChromeOptions options = new ChromeOptions();
+        EdgeOptions options = new EdgeOptions();
         options.addArguments(
                 "--load-extension=" + extension.toAbsolutePath().toString());
 
