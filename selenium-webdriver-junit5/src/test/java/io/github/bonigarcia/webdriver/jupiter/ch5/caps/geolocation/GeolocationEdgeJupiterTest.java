@@ -16,6 +16,8 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch5.caps.geolocation;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +65,9 @@ class GeolocationEdgeJupiterTest {
         driver.findElement(By.id("get-coordinates")).click();
         WebElement coordinates = driver.findElement(By.id("coordinates"));
         wait.until(ExpectedConditions.visibilityOf(coordinates));
+        assertThat(coordinates.getText()).contains("Latitude")
+                .contains("Longitude");
+
     }
 
 }
