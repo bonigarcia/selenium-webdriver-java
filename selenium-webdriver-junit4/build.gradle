@@ -50,7 +50,7 @@ ext {
     seleniumVersion  = "4.0.0-rc-1"
     junit4Version = "4.13.2"
     assertjVersion  = "3.20.2"
-    wdmVersion = "5.0.2"
+    wdmVersion = "5.0.3"
 }
 
 dependencies {
