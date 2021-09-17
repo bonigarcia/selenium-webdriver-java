@@ -61,12 +61,12 @@
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
       } else {
-        showError();
+        document.getElementById("coordinates").innerHTML = "Geolocation is not supported by this browser";
       }
     }
 
     function showError() {
-      document.getElementById("coordinates").innerHTML = "Geolocation is not supported by this browser";
+      document.getElementById("coordinates").innerHTML = "Error accessing to current geolocation position";
     }
 
     function showPosition(position) {
