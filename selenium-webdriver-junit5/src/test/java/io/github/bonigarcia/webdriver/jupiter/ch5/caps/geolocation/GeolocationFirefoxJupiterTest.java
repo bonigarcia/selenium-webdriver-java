@@ -40,9 +40,8 @@ class GeolocationFirefoxJupiterTest {
     void setup() {
         FirefoxOptions options = new FirefoxOptions();
         options.addPreference("geo.enabled", true);
-        options.addPreference("geo.provider.use_corelocation", true);
         options.addPreference("geo.prompt.testing", true);
-        options.addPreference("geo.prompt.testing.allow", true);
+        options.addPreference("geo.provider.use_corelocation", true);
 
         driver = WebDriverManager.firefoxdriver().capabilities(options)
                 .create();
