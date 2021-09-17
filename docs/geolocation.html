@@ -58,7 +58,11 @@
 
   <script>
     function getLocation() {
-      const options = { timeout: 5000 };
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      };
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError, options);
       } else {
