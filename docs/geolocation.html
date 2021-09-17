@@ -58,8 +58,9 @@
 
   <script>
     function getLocation() {
+      const options = { timeout: 5000 };
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
+        navigator.geolocation.getCurrentPosition(showPosition, showError, options);
       } else {
         document.getElementById("coordinates").innerHTML = "Geolocation is not supported by this browser";
       }
