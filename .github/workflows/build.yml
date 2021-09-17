@@ -41,6 +41,6 @@ jobs:
         sudo rm microsoft.gpg
         sudo apt update && sudo apt install microsoft-edge-beta
     - name: Test with Maven
-      run: mvn -B test
+      run: mvn -B test -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120
     - name: Test with Gradle
       run: ./gradlew test
