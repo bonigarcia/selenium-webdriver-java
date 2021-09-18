@@ -53,8 +53,7 @@ class BasicAuthChromeJupiterTest {
         ((HasAuthentication) driver)
                 .register(() -> new UsernameAndPassword("guest", "guest"));
 
-        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
-        driver.findElement(By.linkText("Basic authentication")).click();
+        driver.get("https://jigsaw.w3.org/HTTP/Basic/");
 
         WebElement body = driver.findElement(By.tagName("body"));
         assertThat(body.getText()).contains("Your browser made it!");

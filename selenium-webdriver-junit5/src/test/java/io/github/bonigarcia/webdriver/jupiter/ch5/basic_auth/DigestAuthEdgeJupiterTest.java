@@ -24,18 +24,20 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.HasAuthentication;
+import org.openqa.selenium.UsernameAndPassword;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class GenericBasicAuthChromeJupiterTest {
+class DigestAuthEdgeJupiterTest {
 
     WebDriver driver;
 
     @BeforeEach
     void setup() {
-        driver = WebDriverManager.chromedriver().create();
+        driver = WebDriverManager.edgedriver().create();
     }
 
     @AfterEach
@@ -47,8 +49,11 @@ class GenericBasicAuthChromeJupiterTest {
     }
 
     @Test
-    void testGenericBasicAuth() {
-        driver.get("https://guest:guest@jigsaw.w3.org/HTTP/Basic/");
+    void testDigestAuth() {
+        ((HasAuthentication) driver)
+                .register(() -> new UsernameAndPassword("guest", "guest"));
+
+        driver.get("https://jigsaw.w3.org/HTTP/Digest/");
 
         WebElement body = driver.findElement(By.tagName("body"));
         assertThat(body.getText()).contains("Your browser made it!");
