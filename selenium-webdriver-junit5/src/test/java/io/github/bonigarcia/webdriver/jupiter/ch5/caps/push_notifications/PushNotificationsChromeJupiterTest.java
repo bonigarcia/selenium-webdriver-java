@@ -69,11 +69,15 @@ class PushNotificationsChromeJupiterTest {
                 "const OldNotify = window.Notification;",
                 "function newNotification(title, options) {",
                 "    callback(title);",
-                "    return new OldNotify(title, options);", "}",
+                "    return new OldNotify(title, options);",
+                "}",
                 "newNotification.requestPermission = OldNotify.requestPermission.bind(OldNotify);",
                 "Object.defineProperty(newNotification, 'permission', {",
-                "    get: function() {", "        return OldNotify.permission;",
-                "    }", "});", "window.Notification = newNotification;",
+                "    get: function() {",
+                "        return OldNotify.permission;",
+                "    }",
+                "});",
+                "window.Notification = newNotification;",
                 "document.getElementById('notify-me').click();");
         log.debug("Executing the following script asynchronously:\n{}", script);
 
