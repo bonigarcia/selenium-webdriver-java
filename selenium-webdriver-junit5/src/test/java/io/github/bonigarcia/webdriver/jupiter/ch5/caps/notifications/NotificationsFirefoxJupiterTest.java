@@ -14,27 +14,25 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch5.caps.push_notifications;
+package io.github.bonigarcia.webdriver.jupiter.ch5.caps.notifications;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class PushNotificationsChromeJupiterTest {
+class NotificationsFirefoxJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -42,12 +40,11 @@ class PushNotificationsChromeJupiterTest {
 
     @BeforeEach
     void setup() {
-        ChromeOptions options = new ChromeOptions();
-        Map<String, Object> prefs = new HashMap<>();
-        prefs.put("profile.default_content_setting_values.notifications", 1);
-        options.setExperimentalOption("prefs", prefs);
+        FirefoxOptions options = new FirefoxOptions();
+        options.addPreference("permissions.default.desktop-notification", 1);
 
-        driver = WebDriverManager.chromedriver().capabilities(options).create();
+        driver = WebDriverManager.firefoxdriver().capabilities(options)
+                .create();
     }
 
     @AfterEach
@@ -59,7 +56,7 @@ class PushNotificationsChromeJupiterTest {
     }
 
     @Test
-    void testPushNotifications() {
+    void testNotifications() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/push-notifications.html");
         JavascriptExecutor js = (JavascriptExecutor) driver;

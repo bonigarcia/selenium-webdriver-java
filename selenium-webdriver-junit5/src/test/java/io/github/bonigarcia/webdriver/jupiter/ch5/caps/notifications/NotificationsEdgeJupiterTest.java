@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch5.caps.push_notifications;
+package io.github.bonigarcia.webdriver.jupiter.ch5.caps.notifications;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,7 +34,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class PushNotificationsEdgeJupiterTest {
+class NotificationsEdgeJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -59,7 +59,7 @@ class PushNotificationsEdgeJupiterTest {
     }
 
     @Test
-    void testPushNotifications() {
+    void testNotifications() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/push-notifications.html");
         JavascriptExecutor js = (JavascriptExecutor) driver;
