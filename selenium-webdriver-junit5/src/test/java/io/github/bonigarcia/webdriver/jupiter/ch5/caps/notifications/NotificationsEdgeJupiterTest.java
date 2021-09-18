@@ -61,7 +61,7 @@ class NotificationsEdgeJupiterTest {
     @Test
     void testNotifications() {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/push-notifications.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/notifications.html");
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         String script = String.join("\n",
