@@ -65,10 +65,10 @@ class AcceptLangChromeJupiterTest {
 
         ResourceBundle strings = ResourceBundle.getBundle("strings",
                 Locale.forLanguageTag(lang));
-        String home = strings.getString("_home");
-        String content = strings.getString("_content");
-        String about = strings.getString("_about");
-        String contact = strings.getString("_contact");
+        String home = strings.getString("home");
+        String content = strings.getString("content");
+        String about = strings.getString("about");
+        String contact = strings.getString("contact");
 
         String bodyText = driver.findElement(By.tagName("body")).getText();
         assertThat(bodyText).contains(home).contains(content).contains(about)
