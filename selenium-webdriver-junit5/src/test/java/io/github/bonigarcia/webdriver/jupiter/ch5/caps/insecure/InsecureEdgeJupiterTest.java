@@ -25,8 +25,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.support.Color;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -52,10 +52,12 @@ class InsecureEdgeJupiterTest {
 
     @Test
     void testInsecure() {
-        driver.get("https://untrusted-root.badssl.com/");
-        WebElement footer = driver.findElement(By.id("footer"));
-        assertThat(footer.getText()).contains(
-                "The certificate for this site is signed using an untrusted root");
+        driver.get("https://expired.badssl.com/");
+
+        String bgColor = driver.findElement(By.tagName("body"))
+                .getCssValue("background-color");
+        Color red = new Color(255, 0, 0, 1);
+        assertThat(Color.fromString(bgColor)).isEqualTo(red);
     }
 
 }
