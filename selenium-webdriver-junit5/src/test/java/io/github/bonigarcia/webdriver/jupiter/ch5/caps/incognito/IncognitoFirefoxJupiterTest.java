@@ -33,7 +33,7 @@ class IncognitoFirefoxJupiterTest {
     @BeforeEach
     void setup() {
         FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("--private");
+        options.addArguments("-private");
 
         driver = WebDriverManager.firefoxdriver().capabilities(options)
                 .create();
