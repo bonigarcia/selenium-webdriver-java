@@ -39,7 +39,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class BidiEdgeJupiterTest {
+class DomMutationChromeJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -47,7 +47,7 @@ class BidiEdgeJupiterTest {
 
     @BeforeEach
     void setup() {
-        driver = WebDriverManager.edgedriver().create();
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @AfterEach
@@ -59,10 +59,9 @@ class BidiEdgeJupiterTest {
     }
 
     @Test
-    void testBidi() throws InterruptedException {
+    void testDomMutation() throws InterruptedException {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
 
-        // HasLogEvents is available only for Chromium-based browsers
         HasLogEvents logger = (HasLogEvents) driver;
         JavascriptExecutor js = (JavascriptExecutor) driver;
 

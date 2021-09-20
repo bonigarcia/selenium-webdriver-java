@@ -18,29 +18,23 @@ package io.github.bonigarcia.webdriver.jupiter.ch5.bidi;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.events.CdpEventTypes;
-import org.openqa.selenium.devtools.events.DomMutationEvent;
 import org.openqa.selenium.logging.HasLogEvents;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class BidiFirefoxJupiterTest {
+class ConsoleEventsChromeJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -48,7 +42,7 @@ class BidiFirefoxJupiterTest {
 
     @BeforeEach
     void setup() {
-        driver = WebDriverManager.firefoxdriver().create();
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @AfterEach
@@ -60,30 +54,20 @@ class BidiFirefoxJupiterTest {
     }
 
     @Test
-    void testBidi() throws InterruptedException {
-        assertThatThrownBy(() -> {
-            driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+    void testConsoleEvents() throws InterruptedException {
+        HasLogEvents logger = (HasLogEvents) driver;
 
-            // HasLogEvents is available only for Chromium-based browsers
-            HasLogEvents logger = (HasLogEvents) driver;
-            JavascriptExecutor js = (JavascriptExecutor) driver;
+        CountDownLatch latch = new CountDownLatch(4);
+        logger.onLogEvent(CdpEventTypes.consoleEvent(consoleEvent -> {
+            log.debug("{} {}: {}", consoleEvent.getTimestamp(),
+                    consoleEvent.getType(), consoleEvent.getMessages());
+            latch.countDown();
+        }));
 
-            AtomicReference<DomMutationEvent> seen = new AtomicReference<>();
-            CountDownLatch latch = new CountDownLatch(1);
-            logger.onLogEvent(CdpEventTypes.domMutation(mutation -> {
-                seen.set(mutation);
-                latch.countDown();
-            }));
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/console-logs.html");
 
-            WebElement img = driver.findElement(By.tagName("img"));
-            String newSrc = "img/award.png";
-            String script = String.format("arguments[0].src = '%s';", newSrc);
-            js.executeScript(script, img);
-
-            assertThat(latch.await(10, TimeUnit.SECONDS)).isTrue();
-            assertThat(seen.get().getElement().getAttribute("src"))
-                    .endsWith(newSrc);
-        }).isInstanceOf(ClassCastException.class);
+        assertThat(latch.await(10, TimeUnit.SECONDS)).isTrue();
     }
 
 }
