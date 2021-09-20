@@ -62,7 +62,7 @@ class BlockUrlJupiterTest {
     }
 
     @Test
-    void testBasicAuth() {
+    void testBlockUrl() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
                 Optional.empty()));
 
@@ -76,5 +76,6 @@ class BlockUrlJupiterTest {
         });
 
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 }

@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.jupiter.ch5.cdp;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
@@ -62,20 +63,22 @@ class DeviceEmulationJupiterTest {
     @Test
     void testDeviceEmulation() {
         // 1. Override user agent (Apple iPhone 6)
-        String userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4";
+        String userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) "
+                + "AppleWebKit/600.1.3 (KHTML, like Gecko) "
+                + "Version/8.0 Mobile/12A4345d Safari/600.1.4";
         devTools.send(Network.setUserAgentOverride(userAgent, Optional.empty(),
                 Optional.empty(), Optional.empty()));
 
-        // 2. Simulate device dimension
+        // 2. Emulate device dimension
         Map<String, Object> deviceMetrics = new HashMap<>();
         deviceMetrics.put("width", 375);
         deviceMetrics.put("height", 667);
         deviceMetrics.put("mobile", true);
         deviceMetrics.put("deviceScaleFactor", 2);
-
         ((ChromeDriver) driver).executeCdpCommand(
                 "Emulation.setDeviceMetricsOverride", deviceMetrics);
 
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 }

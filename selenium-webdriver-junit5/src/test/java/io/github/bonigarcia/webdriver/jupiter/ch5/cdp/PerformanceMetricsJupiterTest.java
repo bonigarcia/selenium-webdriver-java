@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.jupiter.ch5.cdp;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
@@ -65,6 +66,7 @@ class PerformanceMetricsJupiterTest {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
 
         List<Metric> metrics = devTools.send(Performance.getMetrics());
+        assertThat(metrics).isNotEmpty();
         metrics.forEach(metric -> log.debug("{}: {}", metric.getName(),
                 metric.getValue()));
     }
