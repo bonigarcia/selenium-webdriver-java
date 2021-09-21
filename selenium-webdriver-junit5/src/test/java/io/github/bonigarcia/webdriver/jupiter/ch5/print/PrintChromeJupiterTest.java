@@ -23,7 +23,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.Duration;
 import java.util.Base64;
 
 import org.junit.jupiter.api.AfterEach;
@@ -50,10 +49,7 @@ class PrintChromeJupiterTest {
     }
 
     @AfterEach
-    void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    void teardown() {
         driver.quit();
     }
 
@@ -64,8 +60,6 @@ class PrintChromeJupiterTest {
         PrintOptions printOptions = new PrintOptions();
         Pdf pdf = pg.print(printOptions);
 
-        // https://github.com/SeleniumHQ/selenium/pull/8991/files
-        // https://bitofhex.com/2019/02/19/base64-encoded-signatures/
         String pdfBase64 = pdf.getContent();
         assertThat(pdfBase64).contains("JVBER");
 

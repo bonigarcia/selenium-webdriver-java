@@ -17,7 +17,6 @@
 package io.github.bonigarcia.webdriver.jupiter.ch5.logs;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.util.logging.Level;
@@ -26,19 +25,17 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.UnsupportedCommandException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.remote.CapabilityType;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class BrowserLogsFirefoxJupiterTest {
+class BrowserLogsJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -49,11 +46,10 @@ class BrowserLogsFirefoxJupiterTest {
         LoggingPreferences logs = new LoggingPreferences();
         logs.enable(LogType.BROWSER, Level.ALL);
 
-        FirefoxOptions options = new FirefoxOptions();
+        ChromeOptions options = new ChromeOptions();
         options.setCapability(CapabilityType.LOGGING_PREFS, logs);
 
-        driver = WebDriverManager.firefoxdriver().capabilities(options)
-                .create();
+        driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
 
     @AfterEach
@@ -63,15 +59,12 @@ class BrowserLogsFirefoxJupiterTest {
 
     @Test
     void testBrowserLogs() {
-        assertThatThrownBy(() -> {
-            driver.get(
-                    "https://bonigarcia.dev/selenium-webdriver-java/console-logs.html");
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/console-logs.html");
 
-            Logs logs = driver.manage().logs();
-            LogEntries browserLogs = logs.get(LogType.BROWSER);
-            Assertions.assertThat(browserLogs.getAll()).isNotEmpty();
-            browserLogs.forEach(l -> log.debug("{}", l));
-        }).isInstanceOf(UnsupportedCommandException.class);
+        LogEntries browserLogs = driver.manage().logs().get(LogType.BROWSER);
+        Assertions.assertThat(browserLogs.getAll()).isNotEmpty();
+        browserLogs.forEach(l -> log.debug("{}", l));
     }
 
 }
