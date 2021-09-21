@@ -32,13 +32,13 @@ import org.openqa.selenium.virtualauthenticator.VirtualAuthenticatorOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class WebAuthnEdgeJupiterTest {
+class WebAuthnJupiterTest {
 
     WebDriver driver;
 
     @BeforeEach
     void setup() {
-        driver = WebDriverManager.edgedriver().create();
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @AfterEach
@@ -53,15 +53,13 @@ class WebAuthnEdgeJupiterTest {
     void testWebAuthn() {
         driver.get("https://webauthn.io/");
         HasVirtualAuthenticator virtualAuthenticator = (HasVirtualAuthenticator) driver;
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        VirtualAuthenticatorOptions authOptions = new VirtualAuthenticatorOptions();
         VirtualAuthenticator authenticator = virtualAuthenticator
-                .addVirtualAuthenticator(authOptions);
+                .addVirtualAuthenticator(new VirtualAuthenticatorOptions());
 
         String randomId = UUID.randomUUID().toString();
         driver.findElement(By.id("input-email")).sendKeys(randomId);
         driver.findElement(By.id("register-button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.textToBePresentInElementLocated(
                 By.className("popover-body"), "Success! Now try logging in"));
 
