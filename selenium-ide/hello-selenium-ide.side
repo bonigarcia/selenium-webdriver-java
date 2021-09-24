@@ -2,7 +2,7 @@
   "id": "eca16196-ef97-4602-aa1e-26f0f62d2fbe",
   "version": "2.0",
   "name": "hello-selenium-ide",
-  "url": "https://bonigarcia.github.io",
+  "url": "https://bonigarcia.dev/",
   "tests": [{
     "id": "97da2b0e-8787-44e3-b3d0-7e4aa8fa9b56",
     "name": "basicTest",
@@ -17,19 +17,28 @@
       "id": "1e7b4ef4-a310-466a-afdc-a50cf2a2bfdc",
       "comment": "",
       "command": "click",
-      "target": "linkText=Selenium WebDriver",
+      "target": "linkText=GitHub",
       "targets": [],
       "value": ""
     }, {
       "id": "c0eeb230-285a-42b3-874a-114469057648",
       "comment": "",
       "command": "assertText",
-      "target": "xpath=//h1",
+      "target": "css=.markdown-body > h1",
       "targets": [
-        ["css=h1:nth-child(1)", "css:finder"],
-        ["xpath=//h1", "xpath:position"]
+        ["css=.markdown-body > h1", "css:finder"],
+        ["xpath=//div[@id='readme']/div[3]/article/h1", "xpath:idRelative"],
+        ["xpath=//article/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Hands-On Selenium WebDriver with Java ')]", "xpath:innerText"]
       ],
-      "value": "Selenium automates browsers. That's it!"
+      "value": "Hands-On Selenium WebDriver with Java"
+    }, {
+      "id": "304ffd1e-0fed-4130-ae7e-3c785b3fc215",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }],
   "suites": [{
@@ -40,6 +49,6 @@
     "timeout": 300,
     "tests": ["97da2b0e-8787-44e3-b3d0-7e4aa8fa9b56"]
   }],
-  "urls": ["https://bonigarcia.github.io/"],
+  "urls": ["https://bonigarcia.github.io/", "https://bonigarcia.dev/"],
   "plugins": []
 }
