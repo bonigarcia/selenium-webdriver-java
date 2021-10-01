@@ -30,10 +30,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.devtools.NetworkInterceptor;
 import org.openqa.selenium.remote.http.Contents;
 import org.openqa.selenium.remote.http.HttpResponse;
 import org.openqa.selenium.remote.http.Route;
-import org.openqa.selenium.support.devtools.NetworkInterceptor;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
