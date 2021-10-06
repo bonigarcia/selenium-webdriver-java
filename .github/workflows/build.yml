@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-11 ]
-        java: [ 8 ]
+        java: [ 11 ]
 
     steps:
     - name: Checkout GitHub repo
