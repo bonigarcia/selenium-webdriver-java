@@ -14,7 +14,7 @@
         <selenium.version>4.0.0-rc-3</selenium.version>
         <junit5.version>5.8.1</junit5.version>
         <assertj.version>3.21.0</assertj.version>
-        <wdm.version>5.0.3</wdm.version>
+        <wdm.version>5.0.4-SNAPSHOT</wdm.version>
 
         <browsermob.version>2.1.5</browsermob.version>
 
@@ -92,4 +92,17 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>oss.sonatype.org-snapshot</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

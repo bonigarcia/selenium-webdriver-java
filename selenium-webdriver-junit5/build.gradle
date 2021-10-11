@@ -43,6 +43,8 @@ test {
 
 repositories {
     mavenCentral()
+
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 ext {
@@ -52,7 +54,7 @@ ext {
     seleniumVersion  = "4.0.0-rc-3"
     junit5Version = "5.8.1"
     assertjVersion  = "3.21.0"
-    wdmVersion = "5.0.3"
+    wdmVersion = "5.0.4-SNAPSHOT"
 
     browsermobVersion = "2.1.5"
 }
@@ -69,3 +71,4 @@ dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
 }
+
