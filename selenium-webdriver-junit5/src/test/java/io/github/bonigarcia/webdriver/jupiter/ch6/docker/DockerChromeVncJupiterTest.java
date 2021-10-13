@@ -14,55 +14,49 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch6.remote;
+package io.github.bonigarcia.webdriver.jupiter.ch6.docker;
 
-import static io.github.bonigarcia.webdriver.jupiter.ch6.remote.UrlOnline.assumeUrlOnline;
+import static io.github.bonigarcia.webdriver.jupiter.ch6.remote.UrlOnline.assertUrlOnline;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
-class RemoteChromeJupiterTest {
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+class DockerChromeVncJupiterTest {
 
     WebDriver driver;
 
+    WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker()
+            .enableVnc();
+
     @BeforeEach
-    void setup() throws IOException {
-        URL seleniumServerUrl = new URL("http://localhost:4444/");
-        assumeUrlOnline(seleniumServerUrl);
-
-        ChromeOptions options = new ChromeOptions();
-        driver = new RemoteWebDriver(seleniumServerUrl, options);
-
-        // Instead of options we can use:
-
-        // DesiredCapabilities capabilities = new DesiredCapabilities();
-        // capabilities.setBrowserName("chrome");
-
-        // ... or:
-
-        // capabilities.setCapability(CapabilityType.BROWSER_NAME,
-        // Browser.CHROME.browserName());
+    void setupTest() {
+        driver = wdm.create();
     }
 
     @AfterEach
-    void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
+    void teardown() throws InterruptedException {
+        // FIXME: pause for manual browser inspection
+        Thread.sleep(Duration.ofSeconds(30).toMillis());
+
+        wdm.quit();
     }
 
     @Test
-    void testRemote() {
+    void testDockerChromeVnc() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
+
+        // Verify URL for remote session
+        URL noVncUrl = wdm.getDockerNoVncUrl();
+        assertUrlOnline(noVncUrl);
     }
 
 }

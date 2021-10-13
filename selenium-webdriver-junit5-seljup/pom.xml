@@ -13,7 +13,7 @@
 
         <selenium.version>4.0.0</selenium.version>
         <junit5.version>5.8.1</junit5.version>
-        <selenium-jupiter.version>4.0.1</selenium-jupiter.version>
+        <selenium-jupiter.version>4.0.2-SNAPSHOT</selenium-jupiter.version>
         <assertj.version>3.21.0</assertj.version>
 
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
@@ -74,5 +74,18 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>oss.sonatype.org-snapshot</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>

@@ -16,21 +16,29 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch6.remote;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class UrlAssumptions {
+public class UrlOnline {
 
-    public static void assumeOnline(URL serverUrl) {
+    public static void assumeUrlOnline(URL serverUrl) {
+        assumeThat(isOnline(serverUrl)).isTrue();
+    }
+
+    public static void assertUrlOnline(URL serverUrl) {
+        assertThat(isOnline(serverUrl)).isTrue();
+    }
+
+    static boolean isOnline(URL serverUrl) {
         try {
             HttpURLConnection connection = (HttpURLConnection) serverUrl
                     .openConnection();
-            assumeThat(connection.getResponseCode()).isEqualTo(200);
+            return connection.getResponseCode() == 200;
         } catch (Exception e) {
-            assumeTrue(false);
+            return false;
         }
     }
 

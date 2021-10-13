@@ -14,43 +14,23 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch6.remote;
+package io.github.bonigarcia.webdriver.seljup.ch6.docker;
 
-import static io.github.bonigarcia.webdriver.jupiter.ch6.remote.UrlOnline.assumeUrlOnline;
+import static io.github.bonigarcia.seljup.BrowserType.EDGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.IOException;
-import java.net.URL;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.seljup.DockerBrowser;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-class RemoteFirefoxJupiterTest {
-
-    WebDriver driver;
-
-    @BeforeEach
-    void setup() throws IOException {
-        URL seleniumServerUrl = new URL("http://localhost:4444/");
-        assumeUrlOnline(seleniumServerUrl);
-
-        driver = WebDriverManager.firefoxdriver()
-                .remoteAddress(seleniumServerUrl).create();
-    }
-
-    @AfterEach
-    void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+@ExtendWith(SeleniumJupiter.class)
+class DockerEdgeSelJupTest {
 
     @Test
-    void testRemote() {
+    void testDockerEdge(@DockerBrowser(type = EDGE) WebDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }

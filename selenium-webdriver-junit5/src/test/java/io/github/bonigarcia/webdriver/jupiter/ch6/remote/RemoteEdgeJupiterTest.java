@@ -16,7 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch6.remote;
 
-import static io.github.bonigarcia.webdriver.jupiter.ch6.remote.UrlAssumptions.assumeOnline;
+import static io.github.bonigarcia.webdriver.jupiter.ch6.remote.UrlOnline.assumeUrlOnline;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;
@@ -36,7 +36,7 @@ class RemoteEdgeJupiterTest {
     @BeforeEach
     void setup() throws IOException {
         URL seleniumServerUrl = new URL("http://localhost:4444/");
-        assumeOnline(seleniumServerUrl);
+        assumeUrlOnline(seleniumServerUrl);
 
         driver = RemoteWebDriver.builder().oneOf(new EdgeOptions())
                 .address(seleniumServerUrl).build();
