@@ -22,9 +22,9 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class UrlAssumptions {
+public class UrlAssumptions {
 
-    static void assumeOnline(URL serverUrl) {
+    public static void assumeOnline(URL serverUrl) {
         try {
             HttpURLConnection connection = (HttpURLConnection) serverUrl
                     .openConnection();

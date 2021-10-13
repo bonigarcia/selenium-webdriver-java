@@ -14,42 +14,45 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch6.remote;
+package io.github.bonigarcia.webdriver.jupiter.ch6.cloud_providers;
 
-import static io.github.bonigarcia.webdriver.jupiter.ch6.remote.UrlAssumptions.assumeOnline;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 
-import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-class RemoteChromeJupiterTest {
+class TestiniumJupiterTest {
 
     WebDriver driver;
 
     @BeforeEach
-    void setup() throws IOException {
-        URL seleniumServerUrl = new URL("http://localhost:4444/");
-        assumeOnline(seleniumServerUrl);
+    void setup() throws MalformedURLException {
+        String key = System.getProperty("testiniumKey");
 
-        ChromeOptions options = new ChromeOptions();
-        driver = new RemoteWebDriver(seleniumServerUrl, options);
+        // An alternative way to read the key is using envs:
+        // String key = System.getenv("TESTINUM_KEY");
 
-        // Instead of options we can use:
+        assumeThat(key).isNotEmpty();
 
-        // DesiredCapabilities capabilities = new DesiredCapabilities();
-        // capabilities.setBrowserName("chrome");
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "Firefox");
+        capabilities.setCapability("browserVersion", "64");
+        capabilities.setCapability("platformName", "Linux");
+        capabilities.setCapability("takesScreenshot", true);
+        capabilities.setCapability("recordsVideo", true);
 
-        // ... or:
+        capabilities.setCapability("key", key);
 
-        // capabilities.setCapability(CapabilityType.BROWSER_NAME,
-        // Browser.CHROME.browserName());
+        URL remoteUrl = new URL("http://hub.testinium.io/wd/hub");
+        driver = new RemoteWebDriver(remoteUrl, capabilities);
     }
 
     @AfterEach
@@ -60,7 +63,7 @@ class RemoteChromeJupiterTest {
     }
 
     @Test
-    void testRemote() {
+    void testTestinium() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }

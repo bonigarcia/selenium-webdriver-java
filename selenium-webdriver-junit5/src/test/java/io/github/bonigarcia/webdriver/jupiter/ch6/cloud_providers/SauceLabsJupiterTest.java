@@ -14,42 +14,50 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch6.remote;
+package io.github.bonigarcia.webdriver.jupiter.ch6.cloud_providers;
 
-import static io.github.bonigarcia.webdriver.jupiter.ch6.remote.UrlAssumptions.assumeOnline;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 
-import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-class RemoteChromeJupiterTest {
+class SauceLabsJupiterTest {
 
     WebDriver driver;
 
     @BeforeEach
-    void setup() throws IOException {
-        URL seleniumServerUrl = new URL("http://localhost:4444/");
-        assumeOnline(seleniumServerUrl);
+    void setup() throws MalformedURLException {
+        String username = System.getProperty("sauceLabsUsername");
+        String accessKey = System.getProperty("sauceLabsAccessKey");
+
+        // An alternative way to read username and key is using envs:
+        // String username = System.getenv("SAUCELABS_USERNAME");
+        // String accessKey = System.getenv("SAUCELABS_ACCESS_KEY");
+
+        assumeThat(username).isNotEmpty();
+        assumeThat(accessKey).isNotEmpty();
+
+        MutableCapabilities capabilities = new MutableCapabilities();
+        capabilities.setCapability("username", username);
+        capabilities.setCapability("access_key", accessKey);
+        capabilities.setCapability("name", "My SauceLabs test");
+        capabilities.setCapability("browserVersion", "latest");
 
         ChromeOptions options = new ChromeOptions();
-        driver = new RemoteWebDriver(seleniumServerUrl, options);
+        options.setCapability("sauce:options", capabilities);
+        URL remoteUrl = new URL(
+                "https://ondemand.us-west-1.saucelabs.com/wd/hub");
 
-        // Instead of options we can use:
-
-        // DesiredCapabilities capabilities = new DesiredCapabilities();
-        // capabilities.setBrowserName("chrome");
-
-        // ... or:
-
-        // capabilities.setCapability(CapabilityType.BROWSER_NAME,
-        // Browser.CHROME.browserName());
+        driver = new RemoteWebDriver(remoteUrl, options);
     }
 
     @AfterEach
@@ -60,7 +68,7 @@ class RemoteChromeJupiterTest {
     }
 
     @Test
-    void testRemote() {
+    void testSauceLabs() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
