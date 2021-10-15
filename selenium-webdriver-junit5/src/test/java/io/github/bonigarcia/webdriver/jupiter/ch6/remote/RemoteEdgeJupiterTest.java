@@ -19,7 +19,7 @@ package io.github.bonigarcia.webdriver.jupiter.ch6.remote;
 import static io.github.bonigarcia.webdriver.jupiter.ch6.remote.UrlOnline.assumeUrlOnline;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.jupiter.api.AfterEach;
@@ -34,7 +34,7 @@ class RemoteEdgeJupiterTest {
     WebDriver driver;
 
     @BeforeEach
-    void setup() throws IOException {
+    void setup() throws MalformedURLException {
         URL seleniumServerUrl = new URL("http://localhost:4444/");
         assumeUrlOnline(seleniumServerUrl);
 
