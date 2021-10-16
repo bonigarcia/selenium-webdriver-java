@@ -26,6 +26,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -54,9 +55,11 @@ class DockerChromeVncJupiterTest {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
 
-        // Verify URL for remote session
-        URL noVncUrl = wdm.getDockerNoVncUrl();
-        assertUrlOnline(noVncUrl);
+        if (driver.getClass().equals(RemoteWebDriver.class)) {
+            // Verify URL for remote session
+            URL noVncUrl = wdm.getDockerNoVncUrl();
+            assertUrlOnline(noVncUrl);
+        }
     }
 
 }
