@@ -27,7 +27,7 @@ import io.github.bonigarcia.seljup.DockerBrowser;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
-class DockerChromeRecordingJupiterTest {
+class DockerChromeRecordingSelJupTest {
 
     @Test
     void testDockerChromeRecording(
