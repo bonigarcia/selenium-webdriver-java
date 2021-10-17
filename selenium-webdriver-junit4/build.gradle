@@ -19,6 +19,10 @@ test {
 
     systemProperties System.properties
 
+    if (project.hasProperty("excludeTests")) {
+        exclude project.property("excludeTests")
+    }
+
     ext.failedTests = []
 
     tasks.withType(Test) {
