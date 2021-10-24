@@ -17,15 +17,11 @@
 package io.github.bonigarcia.webdriver.seljup.ch6.docker;
 
 import static io.github.bonigarcia.seljup.BrowserType.CHROME;
-import static io.github.bonigarcia.webdriver.seljup.ch6.remote.UrlOnline.assertUrlOnline;
 import static org.assertj.core.api.Assertions.assertThat;
-
-import java.net.URL;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.github.bonigarcia.seljup.DockerBrowser;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -40,12 +36,6 @@ class DockerChromeVncSelJupTest {
             @DockerBrowser(type = CHROME, vnc = true) WebDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
-
-        if (driver.getClass().equals(RemoteWebDriver.class)) {
-            // Verify URL for remote session
-            URL noVncUrl = seleniumJupiter.getDockerNoVncUrl();
-            assertUrlOnline(noVncUrl);
-        }
     }
 
 }
