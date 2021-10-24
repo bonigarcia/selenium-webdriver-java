@@ -48,4 +48,4 @@ jobs:
       run: mvn -B test -Dtest=!Docker*
     - name: Run tests on Windows with Gradle
       if: matrix.os == 'windows-latest'
-      run: ./gradlew test -PexcludeTests=Docker*
+      run: ./gradlew test -PexcludeTests=**/*
