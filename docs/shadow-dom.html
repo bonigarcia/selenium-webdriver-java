@@ -40,7 +40,6 @@
       </div>
       <div class="row">
         <div class="col-12 py-2" id="content">
-          <p>Hello DOM</p>
         </div>
       </div>
     </div>
@@ -52,7 +51,7 @@
   </footer>
   <script>
     const content = document.getElementById("content");
-    const shadowRoot = content.attachShadow({mode: "open"});
+    const shadowRoot = content.attachShadow({ mode: "open" });
     const p = document.createElement("p");
     p.textContent = "Hello Shadow DOM";
     shadowRoot.appendChild(p);
