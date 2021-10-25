@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch4.shadow_dom;
+package io.github.bonigarcia.webdriver.jupiter.ch5.shadow_dom;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
