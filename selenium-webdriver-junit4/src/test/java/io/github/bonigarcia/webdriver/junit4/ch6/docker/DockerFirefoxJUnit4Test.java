@@ -32,7 +32,7 @@ public class DockerFirefoxJUnit4Test {
     WebDriverManager wdm = WebDriverManager.firefoxdriver().browserInDocker();
 
     @Before
-    void setupTest() {
+    public void setupTest() {
         driver = wdm.create();
     }
 

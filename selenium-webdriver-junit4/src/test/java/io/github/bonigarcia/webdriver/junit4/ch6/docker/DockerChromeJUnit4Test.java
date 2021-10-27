@@ -32,7 +32,7 @@ public class DockerChromeJUnit4Test {
     WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
 
     @Before
-    void setupTest() {
+    public void setupTest() {
         driver = wdm.create();
     }
 
