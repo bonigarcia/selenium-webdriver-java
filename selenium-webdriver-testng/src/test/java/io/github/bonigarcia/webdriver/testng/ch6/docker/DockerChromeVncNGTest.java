@@ -35,7 +35,7 @@ public class DockerChromeVncNGTest {
             .enableVnc();
 
     @BeforeMethod
-    void setupTest() {
+    public void setupTest() {
         driver = wdm.create();
     }
 

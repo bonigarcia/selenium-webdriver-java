@@ -32,7 +32,7 @@ public class DockerChromeNGTest {
     WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
 
     @BeforeMethod
-    void setupTest() {
+    public void setupTest() {
         driver = wdm.create();
     }
 

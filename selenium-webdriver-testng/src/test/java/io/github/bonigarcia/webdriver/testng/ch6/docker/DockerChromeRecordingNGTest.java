@@ -35,7 +35,7 @@ public class DockerChromeRecordingNGTest {
             .enableRecording();
 
     @BeforeMethod
-    void setupTest() {
+    public void setupTest() {
         driver = wdm.create();
     }
 

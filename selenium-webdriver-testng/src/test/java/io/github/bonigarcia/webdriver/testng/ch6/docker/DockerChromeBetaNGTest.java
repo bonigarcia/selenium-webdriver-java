@@ -33,7 +33,7 @@ public class DockerChromeBetaNGTest {
             .browserVersion("beta");
 
     @BeforeMethod
-    void setupTest() {
+    public void setupTest() {
         driver = wdm.create();
     }
 

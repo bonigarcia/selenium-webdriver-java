@@ -32,7 +32,7 @@ public class DockerEdgeNGTest {
     WebDriverManager wdm = WebDriverManager.edgedriver().browserInDocker();
 
     @BeforeMethod
-    void setupTest() {
+    public void setupTest() {
         driver = wdm.create();
     }
 
