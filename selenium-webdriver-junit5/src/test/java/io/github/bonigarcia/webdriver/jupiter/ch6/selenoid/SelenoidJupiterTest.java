@@ -16,8 +16,9 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch6.selenoid;
 
-import static io.github.bonigarcia.webdriver.jupiter.ch6.remote.UrlOnline.assumeUrlOnline;
+import static io.github.bonigarcia.wdm.WebDriverManager.isOnline;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,7 +37,7 @@ class SelenoidJupiterTest {
     @BeforeEach
     void setup() throws MalformedURLException {
         URL seleniumServerUrl = new URL("http://localhost:4444/wd/hub");
-        assumeUrlOnline(seleniumServerUrl);
+        assumeThat(isOnline(seleniumServerUrl)).isTrue();
 
         ChromeOptions options = new ChromeOptions();
         options.setCapability("enableVNC", true);
