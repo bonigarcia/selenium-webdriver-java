@@ -25,6 +25,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.locators.RelativeLocator.RelativeBy;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -47,11 +48,10 @@ class RelativeLocatorsJupiterTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        By link = By.linkText("Return to index");
-        WebElement readOnlyElement = driver.findElement(
-                RelativeLocator.with(By.tagName("input")).above(link));
-        assertThat(readOnlyElement.getAttribute("name"))
-                .isEqualTo("my-readonly");
+        WebElement link = driver.findElement(By.linkText("Return to index"));
+        RelativeBy relativeBy = RelativeLocator.with(By.tagName("input"));
+        WebElement readOnly = driver.findElement(relativeBy.above(link));
+        assertThat(readOnly.getAttribute("name")).isEqualTo("my-readonly");
     }
 
 }
