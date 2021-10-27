@@ -1,0 +1,23 @@
+{
+    "description": "Hands-On Selenium WebDriver with Java (sample web extension)",
+    "manifest_version": 2,
+    "name": "selenium-webdriver-java-webext",
+    "version": "1.0.0",
+    "homepage_url": "https://github.com/bonigarcia/selenium-webdriver-java",
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "run_at": "document_idle",
+            "js": [
+                "webext.js"
+            ]
+        }
+    ]
+}

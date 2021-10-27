@@ -47,6 +47,8 @@ test {
 
 repositories {
     mavenCentral()
+
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 ext {
@@ -56,7 +58,7 @@ ext {
     seleniumVersion  = "4.0.0"
     testNgVersion = "7.4.0"
     assertjVersion  = "3.21.0"
-    wdmVersion = "5.0.3"
+    wdmVersion = "5.0.4-SNAPSHOT"
 }
 
 dependencies {
@@ -67,4 +69,6 @@ dependencies {
     testImplementation("org.testng:testng:${testNgVersion}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
+
+    testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
 }
