@@ -70,4 +70,6 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:${junit5Version}")
     testImplementation("io.github.bonigarcia:selenium-jupiter:${selJupVersion}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
+
+    testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
 }
