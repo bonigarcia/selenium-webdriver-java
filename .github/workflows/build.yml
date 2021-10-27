@@ -39,13 +39,13 @@ jobs:
         sudo apt update && sudo apt install microsoft-edge-beta
     - name: Run tests on Linux with Maven
       if: matrix.os == 'ubuntu-latest'
-      run: mvn -B test
+      run: mvn -B test "-Dhttp.keepAlive=false" "-Dmaven.wagon.http.pool=false" "-Dmaven.wagon.httpconnectionManager.ttlSeconds=120"
     - name: Run tests on Linux with Gradle
       if: matrix.os == 'ubuntu-latest'
       run: ./gradlew test
     - name: Run tests on Windows with Maven
       if: matrix.os == 'windows-latest'
-      run: mvn -B test -Dtest=!Docker*
+      run: mvn -B test -Dtest=!Docker* "-Dhttp.keepAlive=false" "-Dmaven.wagon.http.pool=false" "-Dmaven.wagon.httpconnectionManager.ttlSeconds=120"
     - name: Run tests on Windows with Gradle
       if: matrix.os == 'windows-latest'
       run: ./gradlew test -PexcludeTests=**/Docker*
