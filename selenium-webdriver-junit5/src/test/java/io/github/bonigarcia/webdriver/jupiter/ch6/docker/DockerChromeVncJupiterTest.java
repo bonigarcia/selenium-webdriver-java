@@ -16,10 +16,8 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch6.docker;
 
-import static io.github.bonigarcia.wdm.WebDriverManager.isOnline;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.net.URL;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
@@ -53,9 +51,6 @@ class DockerChromeVncJupiterTest {
     void testDockerChromeVnc() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
-
-        URL dockerNoVncUrl = wdm.getDockerNoVncUrl();
-        assertThat(isOnline(dockerNoVncUrl)).isTrue();
     }
 
 }
