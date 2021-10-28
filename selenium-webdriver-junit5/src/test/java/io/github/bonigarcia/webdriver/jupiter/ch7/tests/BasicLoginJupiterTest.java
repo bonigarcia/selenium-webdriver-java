@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch7.pom;
+package io.github.bonigarcia.webdriver.jupiter.ch7.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,17 +24,17 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.webdriver.jupiter.ch7.page_objects.Login;
+import io.github.bonigarcia.webdriver.jupiter.ch7.page_objects.BasicLoginPage;
 
-class LoginSuccessJupiterTest {
+class BasicLoginJupiterTest {
 
     WebDriver driver;
-    Login login;
+    BasicLoginPage login;
 
     @BeforeEach
     void setup() {
         driver = WebDriverManager.chromedriver().create();
-        login = new Login(driver);
+        login = new BasicLoginPage(driver);
     }
 
     @AfterEach
@@ -43,7 +43,7 @@ class LoginSuccessJupiterTest {
     }
 
     @Test
-    void testLoginSuccess() {
+    void testBasicLogin() {
         login.with("user", "user");
         assertThat(login.successBoxPresent()).isTrue();
     }

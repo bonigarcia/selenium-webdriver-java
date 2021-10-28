@@ -16,12 +16,10 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch7.page_objects;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Login {
+public class BasicLoginPage {
 
     WebDriver driver;
 
@@ -30,12 +28,11 @@ public class Login {
     By submitButton = By.cssSelector("button");
     By successBox = By.id("success");
 
-    public Login(WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    public BasicLoginPage(WebDriver driver) {
+        this.driver = driver;
+
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
-
-        this.driver = driver;
     }
 
     public void with(String username, String password) {
