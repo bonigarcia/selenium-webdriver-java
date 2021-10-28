@@ -89,7 +89,14 @@ public class ExtendedBasePage {
     }
 
     public boolean isDisplayed(By locator) {
-        return isDisplayed(find(locator));
+        try {
+            wait.until(
+                    ExpectedConditions.invisibilityOfElementLocated(locator));
+        } catch (TimeoutException e) {
+            log.warn("Timeout of {} wait for {}", timeoutSec, locator);
+            return false;
+        }
+        return true;
     }
 
 }
