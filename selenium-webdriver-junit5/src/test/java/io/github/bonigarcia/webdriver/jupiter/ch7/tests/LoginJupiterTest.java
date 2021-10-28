@@ -20,22 +20,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.webdriver.jupiter.ch7.page_objects.BasicLoginPage;
+import io.github.bonigarcia.webdriver.jupiter.ch7.page_objects.LoginPage;
 
-class BasicLoginJupiterTest {
+class LoginJupiterTest {
 
     WebDriver driver;
-    BasicLoginPage login;
+    LoginPage login;
 
     @BeforeEach
     void setup() {
         driver = WebDriverManager.chromedriver().create();
-        login = new BasicLoginPage(driver);
+        login = new LoginPage(driver);
     }
 
     @AfterEach
@@ -44,14 +43,13 @@ class BasicLoginJupiterTest {
     }
 
     @Test
-    void testBasicLoginSuccess() {
+    void testLoginSuccess() {
         login.with("user", "user");
         assertThat(login.successBoxPresent()).isTrue();
     }
 
-    @Disabled("This test fails since the page object is not robust enought")
     @Test
-    void testBasicLoginFailure() {
+    void testLoginFailure() {
         login.with("bad-user", "bad-password");
         assertThat(login.successBoxPresent()).isFalse();
     }
