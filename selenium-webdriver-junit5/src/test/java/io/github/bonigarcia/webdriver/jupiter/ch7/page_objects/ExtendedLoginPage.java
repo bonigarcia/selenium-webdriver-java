@@ -28,16 +28,12 @@ public class ExtendedLoginPage extends ExtendedBasePage {
 
     public ExtendedLoginPage(Class<? extends WebDriver> webDriverClass,
             int timeoutSec) {
-        super(webDriverClass, timeoutSec);
-        openLoginPage();
+        this(webDriverClass);
+        setTimeoutSec(timeoutSec);
     }
 
     public ExtendedLoginPage(Class<? extends WebDriver> webDriverClass) {
         super(webDriverClass);
-        openLoginPage();
-    }
-
-    public void openLoginPage() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
     }
@@ -49,7 +45,7 @@ public class ExtendedLoginPage extends ExtendedBasePage {
     }
 
     public boolean successBoxPresent() {
-        return isDisplayed(successBox);
+        return isDisplayed(driver.findElement(successBox));
     }
 
 }

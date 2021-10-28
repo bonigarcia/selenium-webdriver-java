@@ -21,9 +21,9 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -37,23 +37,21 @@ public class ExtendedBasePage {
     WebDriver driver;
     int timeoutSec = 5; // wait timeout (5 seconds by default)
 
-    public ExtendedBasePage(Class<? extends WebDriver> webDriverClass,
-            int timeoutSec) {
-        this(webDriverClass);
-        this.timeoutSec = timeoutSec;
-    }
-
     public ExtendedBasePage(Class<? extends WebDriver> webDriverClass) {
         this.driver = WebDriverManager.getInstance(webDriverClass).create();
     }
 
-    public boolean isDisplayed(By locator) {
+    public void setTimeoutSec(int timeoutSec) {
+        this.timeoutSec = timeoutSec;
+    }
+
+    public boolean isDisplayed(WebElement element) {
         try {
             WebDriverWait wait = new WebDriverWait(driver,
                     Duration.ofSeconds(timeoutSec));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            wait.until(ExpectedConditions.visibilityOf(element));
         } catch (TimeoutException e) {
-            log.warn("Timeout of {} wait for {}", timeoutSec, locator);
+            log.warn("Timeout of {} wait for {}", timeoutSec, element);
             return false;
         }
         return true;

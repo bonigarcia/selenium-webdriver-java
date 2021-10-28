@@ -35,13 +35,12 @@ public class BasePage {
     WebDriver driver;
     int timeoutSec = 5; // wait timeout (5 seconds by default)
 
-    public BasePage(WebDriver driver, int timeoutSec) {
-        this(driver);
-        this.timeoutSec = timeoutSec;
-    }
-
     public BasePage(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public void setTimeoutSec(int timeoutSec) {
+        this.timeoutSec = timeoutSec;
     }
 
     public boolean isDisplayed(By locator) {
