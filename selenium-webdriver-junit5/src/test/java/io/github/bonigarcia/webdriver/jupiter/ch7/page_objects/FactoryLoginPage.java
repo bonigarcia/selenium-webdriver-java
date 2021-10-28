@@ -18,21 +18,26 @@ package io.github.bonigarcia.webdriver.jupiter.ch7.page_objects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class FactoryLoginPage extends ExtendedBasePage {
 
     @FindBy(id = "username")
+    @CacheLookup
     WebElement usernameInput;
 
     @FindBy(id = "password")
+    @CacheLookup
     WebElement passwordInput;
 
     @FindBy(css = "button")
+    @CacheLookup
     WebElement submitButton;
 
     @FindBy(id = "success")
+    @CacheLookup
     WebElement successBox;
 
     public FactoryLoginPage(Class<? extends WebDriver> webDriverClass,
@@ -44,14 +49,13 @@ public class FactoryLoginPage extends ExtendedBasePage {
     public FactoryLoginPage(Class<? extends WebDriver> webDriverClass) {
         super(webDriverClass);
         PageFactory.initElements(driver, this);
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
+        visit("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
     }
 
     public void with(String username, String password) {
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
-        submitButton.click();
+        type(usernameInput, username);
+        type(passwordInput, password);
+        click(submitButton);
     }
 
     public boolean successBoxPresent() {

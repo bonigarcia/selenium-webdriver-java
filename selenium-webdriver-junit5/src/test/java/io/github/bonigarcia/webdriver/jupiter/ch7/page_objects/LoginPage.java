@@ -27,24 +27,19 @@ public class LoginPage extends BasePage {
     By successBox = By.id("success");
 
     public LoginPage(WebDriver driver, int timeoutSec) {
-        super(driver);
-        openLoginPage();
+        this(driver);
+        setTimeoutSec(timeoutSec);
     }
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        openLoginPage();
-    }
-
-    public void openLoginPage() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
+        visit("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
     }
 
     public void with(String username, String password) {
-        driver.findElement(usernameInput).sendKeys(username);
-        driver.findElement(passwordInput).sendKeys(password);
-        driver.findElement(submitButton).click();
+        type(usernameInput, username);
+        type(passwordInput, password);
+        click(submitButton);
     }
 
     public boolean successBoxPresent() {

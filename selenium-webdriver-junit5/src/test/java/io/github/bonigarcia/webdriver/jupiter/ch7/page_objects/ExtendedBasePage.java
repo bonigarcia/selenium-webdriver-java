@@ -21,6 +21,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,20 +36,50 @@ public class ExtendedBasePage {
     static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
+    WebDriverWait wait;
     int timeoutSec = 5; // wait timeout (5 seconds by default)
 
     public ExtendedBasePage(Class<? extends WebDriver> webDriverClass) {
-        this.driver = WebDriverManager.getInstance(webDriverClass).create();
+        driver = WebDriverManager.getInstance(webDriverClass).create();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSec));
     }
 
     public void setTimeoutSec(int timeoutSec) {
         this.timeoutSec = timeoutSec;
     }
 
+    public void quit() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    public void visit(String url) {
+        driver.get(url);
+    }
+
+    public WebElement find(By element) {
+        return driver.findElement(element);
+    }
+
+    public void click(WebElement element) {
+        element.click();
+    }
+
+    public void click(By element) {
+        click(find(element));
+    }
+
+    public void type(WebElement element, String text) {
+        element.sendKeys(text);
+    }
+
+    public void type(By element, String text) {
+        type(find(element), text);
+    }
+
     public boolean isDisplayed(WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver,
-                    Duration.ofSeconds(timeoutSec));
             wait.until(ExpectedConditions.visibilityOf(element));
         } catch (TimeoutException e) {
             log.warn("Timeout of {} wait for {}", timeoutSec, element);
@@ -57,10 +88,8 @@ public class ExtendedBasePage {
         return true;
     }
 
-    public void quit() {
-        if (driver != null) {
-            driver.quit();
-        }
+    public boolean isDisplayed(By locator) {
+        return isDisplayed(find(locator));
     }
 
 }

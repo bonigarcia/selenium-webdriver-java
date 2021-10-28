@@ -34,18 +34,17 @@ public class ExtendedLoginPage extends ExtendedBasePage {
 
     public ExtendedLoginPage(Class<? extends WebDriver> webDriverClass) {
         super(webDriverClass);
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
+        visit("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
     }
 
     public void with(String username, String password) {
-        driver.findElement(usernameInput).sendKeys(username);
-        driver.findElement(passwordInput).sendKeys(password);
-        driver.findElement(submitButton).click();
+        type(usernameInput, username);
+        type(passwordInput, password);
+        click(submitButton);
     }
 
     public boolean successBoxPresent() {
-        return isDisplayed(driver.findElement(successBox));
+        return isDisplayed(successBox);
     }
 
 }
