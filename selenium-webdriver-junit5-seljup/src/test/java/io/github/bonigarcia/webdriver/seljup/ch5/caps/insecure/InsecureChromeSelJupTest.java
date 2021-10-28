@@ -26,11 +26,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.Color;
 
+import io.github.bonigarcia.seljup.Options;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
 class InsecureChromeSelJupTest {
 
+    @Options
     ChromeOptions options = new ChromeOptions();
 
     @BeforeEach
