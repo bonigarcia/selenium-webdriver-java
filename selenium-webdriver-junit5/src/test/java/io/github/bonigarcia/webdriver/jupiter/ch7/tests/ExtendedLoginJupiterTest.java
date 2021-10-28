@@ -20,38 +20,33 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.webdriver.jupiter.ch7.page_objects.BasicLoginPage;
+import io.github.bonigarcia.webdriver.jupiter.ch7.page_objects.ExtendedLoginPage;
 
-class BasicLoginJupiterTest {
+class ExtendedLoginJupiterTest {
 
-    WebDriver driver;
-    BasicLoginPage login;
+    ExtendedLoginPage login;
 
     @BeforeEach
     void setup() {
-        driver = WebDriverManager.chromedriver().create();
-        login = new BasicLoginPage(driver);
+        login = new ExtendedLoginPage(ChromeDriver.class);
     }
 
     @AfterEach
     void teardown() {
-        driver.quit();
+        login.quit();
     }
 
     @Test
-    void testBasicLoginSuccess() {
+    void testLoginSuccess() {
         login.with("user", "user");
         assertThat(login.successBoxPresent()).isTrue();
     }
 
-    @Disabled("This test fails since the page object logic is not robust")
     @Test
-    void testBasicLoginFailure() {
+    void testLoginFailure() {
         login.with("bad-user", "bad-password");
         assertThat(login.successBoxPresent()).isFalse();
     }
