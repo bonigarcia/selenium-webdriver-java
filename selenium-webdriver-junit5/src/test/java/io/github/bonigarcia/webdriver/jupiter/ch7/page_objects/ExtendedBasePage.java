@@ -25,6 +25,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -79,21 +80,19 @@ public class ExtendedBasePage {
     }
 
     public boolean isDisplayed(WebElement element) {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(element));
-        } catch (TimeoutException e) {
-            log.warn("Timeout of {} wait for {}", timeoutSec, element);
-            return false;
-        }
-        return true;
+        return isDisplayed(ExpectedConditions.visibilityOf(element));
     }
 
     public boolean isDisplayed(By locator) {
+        return isDisplayed(
+                ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
+    public boolean isDisplayed(ExpectedCondition<?> expectedCondition) {
         try {
-            wait.until(
-                    ExpectedConditions.invisibilityOfElementLocated(locator));
+            wait.until(expectedCondition);
         } catch (TimeoutException e) {
-            log.warn("Timeout of {} wait for {}", timeoutSec, locator);
+            log.warn("Timeout of {} wait for element ", timeoutSec);
             return false;
         }
         return true;
