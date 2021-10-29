@@ -85,7 +85,7 @@ public class ExtendedBasePage {
 
     public boolean isDisplayed(By locator) {
         return isDisplayed(
-                ExpectedConditions.invisibilityOfElementLocated(locator));
+                ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public boolean isDisplayed(ExpectedCondition<?> expectedCondition) {
