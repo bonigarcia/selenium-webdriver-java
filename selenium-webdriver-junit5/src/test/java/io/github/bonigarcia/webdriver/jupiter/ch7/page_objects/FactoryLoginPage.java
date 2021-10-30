@@ -16,7 +16,6 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch7.page_objects;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -40,14 +39,13 @@ public class FactoryLoginPage extends ExtendedBasePage {
     @CacheLookup
     WebElement successBox;
 
-    public FactoryLoginPage(Class<? extends WebDriver> webDriverClass,
-            int timeoutSec) {
-        this(webDriverClass);
+    public FactoryLoginPage(String browser, int timeoutSec) {
+        this(browser);
         setTimeoutSec(timeoutSec);
     }
 
-    public FactoryLoginPage(Class<? extends WebDriver> webDriverClass) {
-        super(webDriverClass);
+    public FactoryLoginPage(String browser) {
+        super(browser);
         PageFactory.initElements(driver, this);
         visit("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
     }

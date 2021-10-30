@@ -17,7 +17,6 @@
 package io.github.bonigarcia.webdriver.jupiter.ch7.page_objects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class ExtendedLoginPage extends ExtendedBasePage {
 
@@ -26,14 +25,13 @@ public class ExtendedLoginPage extends ExtendedBasePage {
     By submitButton = By.cssSelector("button");
     By successBox = By.id("success");
 
-    public ExtendedLoginPage(Class<? extends WebDriver> webDriverClass,
-            int timeoutSec) {
-        this(webDriverClass);
+    public ExtendedLoginPage(String browser, int timeoutSec) {
+        this(browser);
         setTimeoutSec(timeoutSec);
     }
 
-    public ExtendedLoginPage(Class<? extends WebDriver> webDriverClass) {
-        super(webDriverClass);
+    public ExtendedLoginPage(String browser) {
+        super(browser);
         visit("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
     }
 

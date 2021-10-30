@@ -20,7 +20,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.webdriver.seljup.ch7.page_objects.ExtendedLoginPage;
 
@@ -29,7 +28,7 @@ class ExtendedLoginSelJupTest {
     ExtendedLoginPage login;
 
     public ExtendedLoginSelJupTest() {
-        login = new ExtendedLoginPage(ChromeDriver.class);
+        login = new ExtendedLoginPage("chrome");
     }
 
     @AfterEach

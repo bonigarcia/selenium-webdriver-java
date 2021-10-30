@@ -21,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.webdriver.jupiter.ch7.page_objects.ExtendedLoginPage;
 
@@ -31,7 +30,7 @@ class ExtendedLoginJupiterTest {
 
     @BeforeEach
     void setup() {
-        login = new ExtendedLoginPage(ChromeDriver.class);
+        login = new ExtendedLoginPage("chrome");
     }
 
     @AfterEach

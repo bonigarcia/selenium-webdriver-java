@@ -40,8 +40,8 @@ public class ExtendedBasePage {
     WebDriverWait wait;
     int timeoutSec = 5; // wait timeout (5 seconds by default)
 
-    public ExtendedBasePage(Class<? extends WebDriver> webDriverClass) {
-        driver = WebDriverManager.getInstance(webDriverClass).create();
+    public ExtendedBasePage(String browser) {
+        driver = WebDriverManager.getInstance(browser).create();
         wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSec));
     }
 

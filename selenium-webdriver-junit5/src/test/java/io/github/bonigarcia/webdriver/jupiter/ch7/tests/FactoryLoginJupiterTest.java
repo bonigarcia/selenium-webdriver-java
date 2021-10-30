@@ -21,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.webdriver.jupiter.ch7.page_objects.FactoryLoginPage;
 
@@ -31,7 +30,7 @@ class FactoryLoginJupiterTest {
 
     @BeforeEach
     void setup() {
-        login = new FactoryLoginPage(ChromeDriver.class, 2);
+        login = new FactoryLoginPage("chrome", 2);
     }
 
     @AfterEach
