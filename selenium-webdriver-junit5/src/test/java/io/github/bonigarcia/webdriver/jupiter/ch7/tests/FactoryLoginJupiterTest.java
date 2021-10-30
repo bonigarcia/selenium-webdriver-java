@@ -30,7 +30,7 @@ class FactoryLoginJupiterTest {
 
     @BeforeEach
     void setup() {
-        login = new FactoryLoginPage("chrome", 2);
+        login = new FactoryLoginPage("chrome");
     }
 
     @AfterEach
