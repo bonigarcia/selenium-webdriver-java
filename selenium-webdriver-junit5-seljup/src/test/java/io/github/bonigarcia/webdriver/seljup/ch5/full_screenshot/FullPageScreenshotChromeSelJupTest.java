@@ -26,12 +26,9 @@ import java.time.Duration;
 import java.util.Base64;
 import java.util.Optional;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v95.dom.model.Rect;
@@ -46,27 +43,9 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 @ExtendWith(SeleniumJupiter.class)
 class FullPageScreenshotChromeSelJupTest {
 
-    WebDriver driver;
-
-    DevTools devTools;
-
-    public FullPageScreenshotChromeSelJupTest(ChromeDriver driver) {
-        this.driver = driver;
-    }
-
-    @BeforeEach
-    void setup() {
-        devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-    }
-
-    @AfterEach
-    void teardown() {
-        devTools.close();
-    }
-
     @Test
-    void testFullPageScreenshotChrome() throws IOException {
+    void testFullPageScreenshotChrome(ChromeDriver driver, DevTools devTools)
+            throws IOException {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/long-page.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
