@@ -37,15 +37,8 @@ jobs:
         sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
         sudo rm microsoft.gpg
         sudo apt update && sudo apt install microsoft-edge-beta
-    - name: Run tests on Linux with Maven
-      if: matrix.os == 'ubuntu-latest'
+    - name: Run tests Maven
       run: mvn -B test "-Dhttp.keepAlive=false" "-Dmaven.wagon.http.pool=false" "-Dmaven.wagon.httpconnectionManager.ttlSeconds=120"
-    - name: Run tests on Linux with Gradle
+    - name: Run tests with Gradle
       if: matrix.os == 'ubuntu-latest'
       run: ./gradlew test
-    - name: Run tests on Windows with Maven
-      if: matrix.os == 'windows-latest'
-      run: mvn -B test -Dtest=!Docker* "-Dhttp.keepAlive=false" "-Dmaven.wagon.http.pool=false" "-Dmaven.wagon.httpconnectionManager.ttlSeconds=120"
-    - name: Run tests on Windows with Gradle
-      if: matrix.os == 'windows-latest'
-      run: ./gradlew test -PexcludeTests=**/Docker*

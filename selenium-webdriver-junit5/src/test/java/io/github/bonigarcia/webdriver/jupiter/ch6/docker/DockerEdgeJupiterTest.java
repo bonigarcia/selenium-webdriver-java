@@ -16,7 +16,9 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch6.docker;
 
+import static io.github.bonigarcia.wdm.WebDriverManager.isDockerAvailable;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,6 +35,7 @@ class DockerEdgeJupiterTest {
 
     @BeforeEach
     void setupTest() {
+        assumeThat(isDockerAvailable()).isTrue();
         driver = wdm.create();
     }
 

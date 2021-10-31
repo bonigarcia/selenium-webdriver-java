@@ -16,7 +16,9 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch6.docker;
 
+import static io.github.bonigarcia.wdm.WebDriverManager.isDockerAvailable;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 
 import java.time.Duration;
 
@@ -36,6 +38,7 @@ public class DockerChromeRecordingNGTest {
 
     @BeforeMethod
     public void setupTest() {
+        assumeThat(isDockerAvailable()).isTrue();
         driver = wdm.create();
     }
 

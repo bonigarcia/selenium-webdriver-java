@@ -24,8 +24,10 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.WebDriver;
 
 import io.github.bonigarcia.seljup.DockerBrowser;
+import io.github.bonigarcia.seljup.EnabledIfDockerAvailable;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@EnabledIfDockerAvailable
 class DockerChromeVncSelJupTest {
 
     @RegisterExtension

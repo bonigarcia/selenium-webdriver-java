@@ -16,7 +16,9 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch6.docker;
 
+import static io.github.bonigarcia.wdm.WebDriverManager.isDockerAvailable;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 
 import org.junit.After;
 import org.junit.Before;
@@ -33,6 +35,7 @@ public class DockerFirefoxJUnit4Test {
 
     @Before
     public void setupTest() {
+        assumeThat(isDockerAvailable()).isTrue();
         driver = wdm.create();
     }
 
