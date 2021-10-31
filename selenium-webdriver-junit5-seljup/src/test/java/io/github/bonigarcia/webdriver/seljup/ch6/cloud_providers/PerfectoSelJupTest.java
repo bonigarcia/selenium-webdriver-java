@@ -68,7 +68,7 @@ class PerfectoSelJupTest {
     }
 
     @Test
-    void testBrowserStack(RemoteWebDriver driver) {
+    void testPerfecto(RemoteWebDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }

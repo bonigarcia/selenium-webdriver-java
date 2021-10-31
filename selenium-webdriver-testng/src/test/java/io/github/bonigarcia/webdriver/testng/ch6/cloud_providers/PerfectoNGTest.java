@@ -68,7 +68,7 @@ public class PerfectoNGTest {
     }
 
     @Test
-    public void testBrowserStack() {
+    public void testPerfecto() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
