@@ -24,10 +24,8 @@ import java.time.Duration;
 import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v95.network.Network;
@@ -43,30 +41,14 @@ class BlockUrlSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriver driver;
-
-    DevTools devTools;
-
-    public BlockUrlSelJupTest(ChromeDriver driver) {
-        this.driver = driver;
-    }
-
-    @BeforeEach
-    void setup() {
-        devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-    }
-
     @AfterEach
     void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        devTools.close();
     }
 
     @Test
-    void testBlockUrl() {
+    void testBlockUrl(ChromeDriver driver, DevTools devTools) {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
                 Optional.empty()));
 

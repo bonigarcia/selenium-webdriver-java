@@ -20,11 +20,9 @@ import java.time.Duration;
 import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
@@ -37,30 +35,14 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 @ExtendWith(SeleniumJupiter.class)
 class GeolocationOverrideSelJupTest {
 
-    WebDriver driver;
-
-    DevTools devTools;
-
-    public GeolocationOverrideSelJupTest(ChromeDriver driver) {
-        this.driver = driver;
-    }
-
-    @BeforeEach
-    void setup() {
-        devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-    }
-
     @AfterEach
     void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        devTools.close();
     }
 
     @Test
-    void testGeolocationOverride() {
+    void testGeolocationOverride(ChromeDriver driver, DevTools devTools) {
         devTools.send(Emulation.setGeolocationOverride(Optional.of(48.8584),
                 Optional.of(2.2945), Optional.of(100)));
 

@@ -25,10 +25,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v95.performance.Performance;
@@ -42,30 +40,14 @@ class PerformanceMetricsSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriver driver;
-
-    DevTools devTools;
-
-    public PerformanceMetricsSelJupTest(ChromeDriver driver) {
-        this.driver = driver;
-    }
-
-    @BeforeEach
-    void setup() {
-        devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-    }
-
     @AfterEach
     void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        devTools.close();
     }
 
     @Test
-    void testPerformanceMetrics() {
+    void testPerformanceMetrics(ChromeDriver driver, DevTools devTools) {
         devTools.send(Performance.enable(Optional.empty()));
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
 

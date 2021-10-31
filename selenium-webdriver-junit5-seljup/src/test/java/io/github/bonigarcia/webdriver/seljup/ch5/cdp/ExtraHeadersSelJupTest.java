@@ -16,55 +16,28 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch5.cdp;
 
-import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
 
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v95.network.Network;
 import org.openqa.selenium.devtools.v95.network.model.Headers;
-import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
 class ExtraHeadersSelJupTest {
 
-    static final Logger log = getLogger(lookup().lookupClass());
-
-    WebDriver driver;
-
-    DevTools devTools;
-
-    public ExtraHeadersSelJupTest(ChromeDriver driver) {
-        this.driver = driver;
-    }
-
-    @BeforeEach
-    void setup() {
-        devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-    }
-
-    @AfterEach
-    void teardown() {
-        devTools.close();
-    }
-
     @Test
-    void testExtraHeaders() {
+    void testExtraHeaders(ChromeDriver driver, DevTools devTools) {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
                 Optional.empty()));
 

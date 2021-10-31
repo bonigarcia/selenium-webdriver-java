@@ -22,10 +22,8 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.slf4j.Logger;
@@ -37,30 +35,14 @@ class ConsoleListenerSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriver driver;
-
-    DevTools devTools;
-
-    public ConsoleListenerSelJupTest(ChromeDriver driver) {
-        this.driver = driver;
-    }
-
-    @BeforeEach
-    void setup() {
-        devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-    }
-
     @AfterEach
     void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(30).toMillis());
-
-        devTools.close();
+        Thread.sleep(Duration.ofSeconds(3).toMillis());
     }
 
     @Test
-    void testConsoleListener() {
+    void testConsoleListener(ChromeDriver driver, DevTools devTools) {
         devTools.getDomains().events().addConsoleListener(consoleEvent -> {
             log.debug("{} {}: {}", consoleEvent.getTimestamp(),
                     consoleEvent.getType(), consoleEvent.getMessages());

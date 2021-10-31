@@ -16,9 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch5.cdp;
 
-import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -26,46 +24,25 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v95.network.Network;
-import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
 class DeviceEmulationSelJupTest {
 
-    static final Logger log = getLogger(lookup().lookupClass());
-
-    WebDriver driver;
-
-    DevTools devTools;
-
-    public DeviceEmulationSelJupTest(ChromeDriver driver) {
-        this.driver = driver;
-    }
-
-    @BeforeEach
-    void setup() {
-        devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-    }
-
     @AfterEach
     void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        devTools.close();
     }
 
     @Test
-    void testDeviceEmulation() {
+    void testDeviceEmulation(ChromeDriver driver, DevTools devTools) {
         // 1. Override user agent (Apple iPhone 6)
         String userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) "
                 + "AppleWebKit/600.1.3 (KHTML, like Gecko) "

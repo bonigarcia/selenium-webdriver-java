@@ -16,55 +16,32 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch5.cdp;
 
-import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v95.security.Security;
 import org.openqa.selenium.support.Color;
-import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
 class LoadInsecureSelJupTest {
 
-    static final Logger log = getLogger(lookup().lookupClass());
-
-    WebDriver driver;
-
-    DevTools devTools;
-
-    public LoadInsecureSelJupTest(ChromeDriver driver) {
-        this.driver = driver;
-    }
-
-    @BeforeEach
-    void setup() {
-        devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-    }
-
     @AfterEach
     void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        devTools.close();
     }
 
     @Test
-    void testLoadInsecure() {
+    void testLoadInsecure(ChromeDriver driver, DevTools devTools) {
         devTools.send(Security.enable());
         devTools.send(Security.setIgnoreCertificateErrors(true));
         driver.get("https://expired.badssl.com/");
