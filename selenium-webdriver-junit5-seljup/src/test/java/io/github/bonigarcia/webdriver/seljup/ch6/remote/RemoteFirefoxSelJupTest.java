@@ -16,37 +16,23 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch6.remote;
 
-import static io.github.bonigarcia.wdm.WebDriverManager.isOnline;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assumptions.assumeThat;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.github.bonigarcia.seljup.DriverCapabilities;
-import io.github.bonigarcia.seljup.DriverUrl;
+import io.github.bonigarcia.seljup.EnabledIfDriverUrlOnline;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@EnabledIfDriverUrlOnline("http://localhost:4444/")
 @ExtendWith(SeleniumJupiter.class)
 class RemoteFirefoxSelJupTest {
 
-    @DriverUrl
-    URL seleniumServerUrl;
-
     @DriverCapabilities
     FirefoxOptions options = new FirefoxOptions();
-
-    @BeforeEach
-    void setup() throws MalformedURLException {
-        URL seleniumServerUrl = new URL("http://localhost:4444/");
-        assumeThat(isOnline(seleniumServerUrl)).isTrue();
-    }
 
     @Test
     void testRemote(RemoteWebDriver driver) {

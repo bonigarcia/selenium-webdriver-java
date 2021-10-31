@@ -20,9 +20,6 @@ import static io.github.bonigarcia.wdm.WebDriverManager.isOnline;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,14 +34,13 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 class RemoteEdgeSelJupTest {
 
     @DriverUrl
-    URL seleniumServerUrl;
+    String seleniumServerUrl = "http://localhost:4444/";
 
     @DriverCapabilities
     EdgeOptions options = new EdgeOptions();
 
     @BeforeEach
-    void setup() throws MalformedURLException {
-        seleniumServerUrl = new URL("http://localhost:4444/");
+    void setup() {
         assumeThat(isOnline(seleniumServerUrl)).isTrue();
     }
 
