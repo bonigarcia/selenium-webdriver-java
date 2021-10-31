@@ -37,7 +37,7 @@ public class InsecureChromeNGTest {
     @BeforeMethod
     public void setup() {
         ChromeOptions options = new ChromeOptions();
-        options.setCapability("acceptInsecureCerts", true);
+        options.setAcceptInsecureCerts(true);
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }

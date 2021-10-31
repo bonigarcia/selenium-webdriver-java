@@ -39,7 +39,7 @@ public class ProxyNGTest {
         proxy.setSslProxy(proxyStr);
 
         ChromeOptions options = new ChromeOptions();
-        options.setCapability("acceptInsecureCerts", true);
+        options.setAcceptInsecureCerts(true);
         options.setProxy(proxy);
         // The previous line is equivalent to:
         // options.setCapability(CapabilityType.PROXY, proxy);

@@ -43,7 +43,7 @@ class ProxySelJupTest {
         proxy.setHttpProxy(proxyStr);
         proxy.setSslProxy(proxyStr);
 
-        options.setCapability("acceptInsecureCerts", true);
+        options.setAcceptInsecureCerts(true);
         options.setProxy(proxy);
         // The previous line is equivalent to:
         // options.setCapability(CapabilityType.PROXY, proxy);

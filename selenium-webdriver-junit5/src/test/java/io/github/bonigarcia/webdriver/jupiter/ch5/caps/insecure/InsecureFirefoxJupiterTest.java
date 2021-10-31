@@ -37,7 +37,7 @@ class InsecureFirefoxJupiterTest {
     @BeforeEach
     void setup() {
         FirefoxOptions options = new FirefoxOptions();
-        options.setCapability("acceptInsecureCerts", true);
+        options.setAcceptInsecureCerts(true);
 
         driver = WebDriverManager.firefoxdriver().capabilities(options)
                 .create();

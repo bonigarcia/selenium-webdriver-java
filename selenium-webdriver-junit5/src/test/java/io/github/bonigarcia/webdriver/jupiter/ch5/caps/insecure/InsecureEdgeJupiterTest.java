@@ -37,7 +37,7 @@ class InsecureEdgeJupiterTest {
     @BeforeEach
     void setup() {
         EdgeOptions options = new EdgeOptions();
-        options.setCapability("acceptInsecureCerts", true);
+        options.setAcceptInsecureCerts(true);
 
         driver = WebDriverManager.edgedriver().capabilities(options).create();
     }

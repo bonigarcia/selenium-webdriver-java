@@ -37,7 +37,7 @@ class InsecureEdgeSelJupTest {
 
     @BeforeEach
     void setup() {
-        options.setCapability("acceptInsecureCerts", true);
+        options.setAcceptInsecureCerts(true);
     }
 
     @Test
