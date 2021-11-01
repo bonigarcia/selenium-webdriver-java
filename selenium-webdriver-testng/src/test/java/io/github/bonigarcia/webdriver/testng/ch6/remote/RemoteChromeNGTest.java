@@ -50,7 +50,7 @@ public class RemoteChromeNGTest {
         // ... or:
 
         // capabilities.setCapability(CapabilityType.BROWSER_NAME,
-        // Browser.CHROME.browserName());
+        // Browser.CHROME);
     }
 
     @AfterMethod

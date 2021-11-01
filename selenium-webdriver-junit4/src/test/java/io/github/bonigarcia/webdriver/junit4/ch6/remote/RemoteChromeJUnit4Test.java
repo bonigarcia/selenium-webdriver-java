@@ -50,7 +50,7 @@ public class RemoteChromeJUnit4Test {
         // ... or:
 
         // capabilities.setCapability(CapabilityType.BROWSER_NAME,
-        // Browser.CHROME.browserName());
+        // Browser.CHROME);
     }
 
     @After
