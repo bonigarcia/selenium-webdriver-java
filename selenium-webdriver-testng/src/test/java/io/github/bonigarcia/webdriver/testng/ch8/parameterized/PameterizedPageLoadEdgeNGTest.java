@@ -14,45 +14,51 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch8.parameterized;
+package io.github.bonigarcia.webdriver.testng.ch8.parameterized;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.PageLoadStrategy.EAGER;
+import static org.openqa.selenium.PageLoadStrategy.NONE;
+import static org.openqa.selenium.PageLoadStrategy.NORMAL;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class PameterizedPageLoadFirefoxJupiterTest {
+public class PameterizedPageLoadEdgeNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
-    @AfterEach
-    void teardown() {
+    @DataProvider(name = "pageLoad")
+    public static Object[][] primeNumbers() {
+        return new Object[][] { { EAGER }, { NONE }, { NORMAL } };
+    }
+
+    @AfterMethod
+    public void teardown() {
         driver.quit();
     }
 
-    @ParameterizedTest
-    @EnumSource(PageLoadStrategy.class)
-    void testPameterizedPageLoad(PageLoadStrategy pageLoadStrategy) {
-        FirefoxOptions options = new FirefoxOptions();
+    @Test(dataProvider = "pageLoad")
+    public void testPameterizedPageLoad(PageLoadStrategy pageLoadStrategy) {
+        EdgeOptions options = new EdgeOptions();
         options.setPageLoadStrategy(pageLoadStrategy);
-        driver = WebDriverManager.firefoxdriver().capabilities(options)
-                .create();
+        driver = WebDriverManager.edgedriver().capabilities(options).create();
 
         long initMillis = System.currentTimeMillis();
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");

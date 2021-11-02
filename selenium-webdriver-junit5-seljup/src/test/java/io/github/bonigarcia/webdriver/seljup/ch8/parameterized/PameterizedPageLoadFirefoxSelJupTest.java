@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch8.parameterized;
+package io.github.bonigarcia.webdriver.seljup.ch8.parameterized;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,7 +35,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class PameterizedPageLoadFirefoxJupiterTest {
+class PameterizedPageLoadFirefoxSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 

@@ -23,13 +23,11 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -43,11 +41,6 @@ class PameterizedPageLoadEdgeJupiterTest {
 
     WebDriver driver;
 
-    @BeforeAll
-    static void setupClass() {
-        WebDriverManager.edgedriver().setup();
-    }
-
     @AfterEach
     void teardown() {
         driver.quit();
@@ -58,7 +51,7 @@ class PameterizedPageLoadEdgeJupiterTest {
     void testPameterizedPageLoad(PageLoadStrategy pageLoadStrategy) {
         EdgeOptions options = new EdgeOptions();
         options.setPageLoadStrategy(pageLoadStrategy);
-        driver = new EdgeDriver(options);
+        driver = WebDriverManager.edgedriver().capabilities(options).create();
 
         long initMillis = System.currentTimeMillis();
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
