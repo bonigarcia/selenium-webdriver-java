@@ -12,6 +12,15 @@ compileTestJava {
 }
 
 test {
+    useJUnit() {
+        if (project.hasProperty("groups")) {
+            includeCategories "$groups"
+        }
+        if (project.hasProperty("excludedGroups")) {
+            excludeCategories "$excludedGroups"
+        }
+    }
+
     testLogging {
         events "passed", "skipped", "failed"
         showStandardStreams = true
@@ -20,7 +29,7 @@ test {
     systemProperties System.properties
 
     if (project.hasProperty("excludeTests")) {
-        exclude project.property("excludeTests")
+        exclude "$excludeTests"
     }
 
     ext.failedTests = []

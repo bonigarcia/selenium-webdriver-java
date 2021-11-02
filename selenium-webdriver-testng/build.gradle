@@ -12,7 +12,14 @@ compileTestJava {
 }
 
 test {
-    useTestNG()
+    useTestNG() {
+        if (project.hasProperty("groups")) {
+            includeGroups "$groups"
+        }
+        if (project.hasProperty("excludedGroups")) {
+            excludeGroups "$excludedGroups"
+        }
+    }
 
     testLogging {
         events "passed", "skipped", "failed"
@@ -22,7 +29,7 @@ test {
     systemProperties System.properties
 
     if (project.hasProperty("excludeTests")) {
-        exclude project.property("excludeTests")
+        exclude "$excludeTests"
     }
 
     ext.failedTests = []
