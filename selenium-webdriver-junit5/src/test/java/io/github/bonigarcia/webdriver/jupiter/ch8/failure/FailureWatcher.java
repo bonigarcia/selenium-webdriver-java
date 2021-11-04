@@ -26,11 +26,13 @@ public class FailureWatcher implements AfterTestExecutionCallback {
 
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
-        Object test = context.getRequiredTestInstance();
-        Field driverField = test.getClass().getDeclaredField("driver");
-        WebDriver driver = (WebDriver) driverField.get(test);
-        FailureManager failureManager = new FailureManager(driver);
-        failureManager.takePngScreenshot(context.getDisplayName());
+        if (context.getExecutionException().isPresent()) {
+            Object test = context.getRequiredTestInstance();
+            Field driverField = test.getClass().getDeclaredField("driver");
+            WebDriver driver = (WebDriver) driverField.get(test);
+            FailureManager failureManager = new FailureManager(driver);
+            failureManager.takePngScreenshot(context.getDisplayName());
+        }
     }
 
 }
