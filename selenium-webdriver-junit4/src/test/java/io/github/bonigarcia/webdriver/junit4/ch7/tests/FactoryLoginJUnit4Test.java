@@ -29,12 +29,12 @@ public class FactoryLoginJUnit4Test {
     FactoryLoginPage login;
 
     @Before
-    void setup() {
+    public void setup() {
         login = new FactoryLoginPage("chrome");
     }
 
     @After
-    void teardown() {
+    public void teardown() {
         login.quit();
     }
 
