@@ -66,6 +66,9 @@ ext {
     junit5Version = "5.8.1"
     selJupVersion = "4.0.2-SNAPSHOT"
     assertjVersion  = "3.21.0"
+
+    rerunnerVersion = "2.1.6"
+    browsermobVersion = "2.1.5"
 }
 
 
@@ -79,4 +82,6 @@ dependencies {
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
 
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
+    testImplementation("io.github.artsok:rerunner-jupiter:${rerunnerVersion}")
+    testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
 }

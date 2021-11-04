@@ -67,6 +67,7 @@ ext {
     assertjVersion  = "3.21.0"
     wdmVersion = "5.0.4-SNAPSHOT"
 
+    rerunnerVersion = "2.1.6"
     browsermobVersion = "2.1.5"
 }
 
@@ -80,5 +81,6 @@ dependencies {
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
 
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
+    testImplementation("io.github.artsok:rerunner-jupiter:${rerunnerVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
 }

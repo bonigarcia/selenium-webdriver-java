@@ -16,6 +16,7 @@
         <assertj.version>3.21.0</assertj.version>
         <wdm.version>5.0.4-SNAPSHOT</wdm.version>
 
+        <rerunner.version>2.1.6</rerunner.version>
         <browsermob.version>2.1.5</browsermob.version>
 
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
@@ -71,6 +72,14 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-grid</artifactId>
             <version>${selenium.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- The following dependency is required for retrying failed (chapter 8) -->
+        <dependency>
+            <groupId>io.github.artsok</groupId>
+            <artifactId>rerunner-jupiter</artifactId>
+            <version>${rerunner.version}</version>
             <scope>test</scope>
         </dependency>
 
