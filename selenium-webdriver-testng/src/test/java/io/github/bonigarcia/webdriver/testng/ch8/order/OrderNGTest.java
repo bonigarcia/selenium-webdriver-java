@@ -26,7 +26,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class OrderJUnit4Test {
+public class OrderNGTest {
 
     static WebDriver driver;
 
