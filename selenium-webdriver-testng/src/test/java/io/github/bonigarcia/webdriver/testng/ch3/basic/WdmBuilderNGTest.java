@@ -19,10 +19,12 @@ package io.github.bonigarcia.webdriver.testng.ch3.basic;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore
 public class WdmBuilderNGTest {
 
     WebDriver driver;
@@ -37,7 +39,7 @@ public class WdmBuilderNGTest {
         driver.quit();
     }
 
-    @Test(enabled = false)
+    @Test
     public void test() {
         // TODO: use variable "driver" to call the Selenium WebDriver API
     }

@@ -27,10 +27,12 @@ import org.openqa.selenium.remote.Augmenter;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore
 public class NetworkConnectionNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
@@ -51,7 +53,7 @@ public class NetworkConnectionNGTest {
         driver.quit();
     }
 
-    @Test(enabled = false)
+    @Test
     public void testNetworkConnection() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java");
 

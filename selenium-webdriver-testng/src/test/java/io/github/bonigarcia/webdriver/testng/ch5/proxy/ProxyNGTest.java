@@ -23,10 +23,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore
 public class ProxyNGTest {
 
     WebDriver driver;
@@ -52,7 +54,7 @@ public class ProxyNGTest {
         driver.quit();
     }
 
-    @Test(enabled = false)
+    @Test
     public void testProxy() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
