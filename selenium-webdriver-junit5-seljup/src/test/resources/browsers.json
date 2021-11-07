@@ -7,12 +7,16 @@
       ],
       [
          {
-            "type": "edge"
+            "type": "edge",
+             "arguments" : [
+                "--headless"
+             ]
          }
       ],
       [
          {
-            "type": "firefox"
+            "type": "firefox-in-docker",
+            "version": "93"
          }
       ]
    ]
