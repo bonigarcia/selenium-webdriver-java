@@ -33,7 +33,7 @@ public class CrossBrowserClassNGTest {
     WebDriver driver;
 
     @DataProvider(name = "browser")
-    public static Object[][] primeNumbers() {
+    public static Object[][] data() {
         return new Object[][] { { ChromeDriver.class }, { EdgeDriver.class },
                 { FirefoxDriver.class } };
     }

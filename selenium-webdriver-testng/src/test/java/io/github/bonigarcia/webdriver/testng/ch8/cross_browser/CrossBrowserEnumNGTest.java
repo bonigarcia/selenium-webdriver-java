@@ -34,7 +34,7 @@ public class CrossBrowserEnumNGTest {
     WebDriver driver;
 
     @DataProvider(name = "browser")
-    public static Object[][] primeNumbers() {
+    public static Object[][] data() {
         return new Object[][] { { CHROME }, { EDGE }, { FIREFOX } };
     }
 
