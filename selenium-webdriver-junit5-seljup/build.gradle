@@ -29,7 +29,9 @@ test {
     systemProperties System.properties
 
     if (project.hasProperty("excludeTests")) {
-        exclude "$excludeTests"
+        "$excludeTests".split(",").each { excludeTests ->
+            exclude excludeTests
+        }
     }
 
     ext.failedTests = []
