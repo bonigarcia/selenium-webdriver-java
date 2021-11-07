@@ -38,8 +38,6 @@ for (var i = 0; i < keys.length; i++) {
                     console.log("Getting random result");
                     input.innerHTML = random;
                 }
-
-                spinner.style.display = "none";
                 count++;
             }
 
