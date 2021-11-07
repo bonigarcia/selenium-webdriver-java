@@ -30,7 +30,7 @@ import org.openqa.selenium.WebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class PameterizedJupiterTest {
+class ParameterizedJupiterTest {
 
     WebDriver driver;
 
@@ -51,7 +51,7 @@ class PameterizedJupiterTest {
 
     @ParameterizedTest
     @MethodSource("loginData")
-    void testPameterized(String username, String password,
+    void testParameterized(String username, String password,
             String expectedText) {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");

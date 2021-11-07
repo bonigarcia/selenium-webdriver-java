@@ -14,42 +14,33 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch8.parameterized;
+package io.github.bonigarcia.webdriver.seljup.ch8.parameterized;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-public class PameterizedNGTest {
+@ExtendWith(SeleniumJupiter.class)
+class ParameterizedSelJupTest {
 
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
+    static Stream<Arguments> loginData() {
+        return Stream.of(Arguments.of("user", "user", "Login successful"),
+                Arguments.of("bad-user", "bad-passwd", "Invalid credentials"));
     }
 
-    @AfterMethod
-    public void teardown() {
-        driver.quit();
-    }
-
-    @DataProvider(name = "loginData")
-    public static Object[][] data() {
-        return new Object[][] { { "user", "user", "Login successful" },
-                { "bad-user", "bad-passwd", "Invalid credentials" } };
-    }
-
-    @Test(dataProvider = "loginData")
-    public void testPameterized(String username, String password,
-            String expectedText) {
+    @ParameterizedTest
+    @MethodSource("loginData")
+    void testParameterized(String username, String password,
+            String expectedText, ChromeDriver driver) {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
 

@@ -14,58 +14,42 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch8.parameterized;
+package io.github.bonigarcia.webdriver.testng.ch8.parameterized;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@RunWith(Parameterized.class)
-public class PameterizedJUnit4Test {
+public class ParameterizedNGTest {
 
     WebDriver driver;
 
-    @Parameter(0)
-    public String username;
-
-    @Parameter(1)
-    public String password;
-
-    @Parameter(2)
-    public String expectedText;
-
-    @Before
+    @BeforeMethod
     public void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 
-    @After
+    @AfterMethod
     public void teardown() {
         driver.quit();
     }
 
-    @Parameters(name = "{index}: username={0} password={1} expectedText={2}")
-    public static Collection<Object[]> data() {
-        return Arrays
-                .asList(new Object[][] { { "user", "user", "Login successful" },
-                        { "bad-user", "bad-passwd", "Invalid credentials" } });
+    @DataProvider(name = "loginData")
+    public static Object[][] data() {
+        return new Object[][] { { "user", "user", "Login successful" },
+                { "bad-user", "bad-passwd", "Invalid credentials" } };
     }
 
-    @Test
-    public void testPameterized() {
+    @Test(dataProvider = "loginData")
+    public void testParameterized(String username, String password,
+            String expectedText) {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
 
