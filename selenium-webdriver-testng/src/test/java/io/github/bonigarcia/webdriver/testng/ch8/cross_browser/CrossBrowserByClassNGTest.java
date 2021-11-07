@@ -43,7 +43,7 @@ public class CrossBrowserByClassNGTest {
         driver.quit();
     }
 
-    @Test(dataProvider = "browser")
+    @Test(dataProvider = "browsers")
     public void testCrossBrowserByClass(
             Class<? extends WebDriver> webdriverClass) {
         driver = WebDriverManager.getInstance(webdriverClass).create();
