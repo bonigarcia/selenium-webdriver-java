@@ -14,37 +14,31 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch8.cross_browser;
+package io.github.bonigarcia.webdriver.jupiter.ch8.cross_browser;
 
-import static io.github.bonigarcia.wdm.config.DriverManagerType.CHROME;
-import static io.github.bonigarcia.wdm.config.DriverManagerType.EDGE;
-import static io.github.bonigarcia.wdm.config.DriverManagerType.FIREFOX;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
 
-public class CrossBrowserEnumNGTest {
+class CrossBrowserByEnumJupiterTest {
 
     WebDriver driver;
 
-    @DataProvider(name = "browser")
-    public static Object[][] data() {
-        return new Object[][] { { CHROME }, { EDGE }, { FIREFOX } };
-    }
-
-    @AfterMethod
-    public void teardown() {
+    @AfterEach
+    void teardown() {
         driver.quit();
     }
 
-    @Test(dataProvider = "browser")
-    public void testCrossBrowser(DriverManagerType driverManagerType) {
+    @ParameterizedTest
+    @EnumSource(value = DriverManagerType.class, names = { "CHROME", "EDGE",
+            "FIREFOX" })
+    void testCrossBrowserByEnum(DriverManagerType driverManagerType) {
         driver = WebDriverManager.getInstance(driverManagerType).create();
 
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");

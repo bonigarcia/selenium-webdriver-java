@@ -28,11 +28,11 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class CrossBrowserClassNGTest {
+public class CrossBrowserByClassNGTest {
 
     WebDriver driver;
 
-    @DataProvider(name = "browser")
+    @DataProvider(name = "browsers")
     public static Object[][] data() {
         return new Object[][] { { ChromeDriver.class }, { EdgeDriver.class },
                 { FirefoxDriver.class } };
@@ -44,7 +44,8 @@ public class CrossBrowserClassNGTest {
     }
 
     @Test(dataProvider = "browser")
-    public void testCrossBrowser(Class<? extends WebDriver> webdriverClass) {
+    public void testCrossBrowserByClass(
+            Class<? extends WebDriver> webdriverClass) {
         driver = WebDriverManager.getInstance(webdriverClass).create();
 
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");

@@ -14,21 +14,31 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch8.cross_browser;
+package io.github.bonigarcia.webdriver.jupiter.ch8.cross_browser;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.TestTemplate;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
 
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-@ExtendWith(SeleniumJupiter.class)
-class CrossBrowserJsonSelJupTest {
+class CrossBrowserJupiterTest {
 
-    @TestTemplate
-    void testCrossBrowser(WebDriver driver) {
+    WebDriver driver;
+
+    @AfterEach
+    void teardown() {
+        driver.quit();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "chrome", "edge", "firefox" })
+    void testCrossBrowser(String browserName) {
+        driver = WebDriverManager.getInstance(browserName).create();
+
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }

@@ -16,6 +16,9 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch8.cross_browser;
 
+import static io.github.bonigarcia.wdm.config.DriverManagerType.CHROME;
+import static io.github.bonigarcia.wdm.config.DriverManagerType.EDGE;
+import static io.github.bonigarcia.wdm.config.DriverManagerType.FIREFOX;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
@@ -31,24 +34,25 @@ import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.config.DriverManagerType;
 
 @RunWith(Parameterized.class)
-public class CrossBrowserNameJUnit4Test {
+public class CrossBrowserByEnumJUnit4Test {
 
     WebDriver driver;
 
     @Parameter(0)
-    public String browserName;
+    public DriverManagerType driverManagerType;
 
     @Parameters(name = "{index}: browser={0}")
     public static Collection<Object[]> data() {
-        return Arrays.asList(
-                new Object[][] { { "chrome" }, { "edge" }, { "firefox" } });
+        return Arrays
+                .asList(new Object[][] { { CHROME }, { EDGE }, { FIREFOX } });
     }
 
     @Before
     public void setup() {
-        driver = WebDriverManager.getInstance(browserName).create();
+        driver = WebDriverManager.getInstance(driverManagerType).create();
     }
 
     @After

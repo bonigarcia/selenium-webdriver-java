@@ -14,54 +14,39 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch8.cross_browser;
+package io.github.bonigarcia.webdriver.testng.ch8.cross_browser;
 
 import static io.github.bonigarcia.wdm.config.DriverManagerType.CHROME;
 import static io.github.bonigarcia.wdm.config.DriverManagerType.EDGE;
 import static io.github.bonigarcia.wdm.config.DriverManagerType.FIREFOX;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
 
-@RunWith(Parameterized.class)
-public class CrossBrowserEnumJUnit4Test {
+public class CrossBrowserByEnumNGTest {
 
     WebDriver driver;
 
-    @Parameter(0)
-    public DriverManagerType driverManagerType;
-
-    @Parameters(name = "{index}: browser={0}")
-    public static Collection<Object[]> data() {
-        return Arrays
-                .asList(new Object[][] { { CHROME }, { EDGE }, { FIREFOX } });
+    @DataProvider(name = "browsers")
+    public static Object[][] data() {
+        return new Object[][] { { CHROME }, { EDGE }, { FIREFOX } };
     }
 
-    @Before
-    public void setup() {
-        driver = WebDriverManager.getInstance(driverManagerType).create();
-    }
-
-    @After
+    @AfterMethod
     public void teardown() {
         driver.quit();
     }
 
-    @Test
-    public void testCrossBrowser() {
+    @Test(dataProvider = "browsers")
+    public void testCrossBrowserByEnum(DriverManagerType driverManagerType) {
+        driver = WebDriverManager.getInstance(driverManagerType).create();
+
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
