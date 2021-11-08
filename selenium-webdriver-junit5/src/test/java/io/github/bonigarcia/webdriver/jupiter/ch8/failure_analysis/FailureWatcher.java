@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch8.failure;
+package io.github.bonigarcia.webdriver.jupiter.ch8.failure_analysis;
 
 import java.lang.reflect.Field;
 

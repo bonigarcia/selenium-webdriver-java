@@ -14,40 +14,31 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch8.failure;
+package io.github.bonigarcia.webdriver.seljup.ch8.failure_analysis;
 
 import static org.assertj.core.api.Assertions.fail;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestRule;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@Ignore("Disabled to avoid breaking the build in CI")
-public class FailureJUnit4Test {
+@Disabled("Disabled to avoid breaking the build in CI")
+class FailureSelJupTest {
 
-    static WebDriver driver;
+    @RegisterExtension
+    static SeleniumJupiter seleniumJupiter = new SeleniumJupiter();
 
-    @Rule
-    public TestRule testWatcher = new FailureWatcher(driver);
-
-    @BeforeClass
-    public static void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterClass
-    public static void teardown() {
-        driver.quit();
+    @BeforeAll
+    static void setup() {
+        seleniumJupiter.getConfig().enableScreenshotWhenFailure();
     }
 
     @Test
-    public void testFailure() {
+    void testFailure(ChromeDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         fail("Forced error");
     }

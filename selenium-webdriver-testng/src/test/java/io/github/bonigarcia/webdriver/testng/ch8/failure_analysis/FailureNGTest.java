@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch8.failure;
+package io.github.bonigarcia.webdriver.testng.ch8.failure_analysis;
 
 import static org.assertj.core.api.Assertions.fail;
 

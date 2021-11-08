@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch8.failure;
+package io.github.bonigarcia.webdriver.junit4.ch8.failure_analysis;
 
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
