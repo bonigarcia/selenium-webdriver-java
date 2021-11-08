@@ -16,21 +16,21 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch8.failure_analysis;
 
-import java.lang.reflect.Field;
-
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.WebDriver;
 
 public class FailureWatcher implements AfterTestExecutionCallback {
 
+    FailureManager failureManager;
+
+    public FailureWatcher(WebDriver driver) {
+        failureManager = new FailureManager(driver);
+    }
+
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
         if (context.getExecutionException().isPresent()) {
-            Object test = context.getRequiredTestInstance();
-            Field driverField = test.getClass().getDeclaredField("driver");
-            WebDriver driver = (WebDriver) driverField.get(test);
-            FailureManager failureManager = new FailureManager(driver);
             failureManager.takePngScreenshot(context.getDisplayName());
         }
     }
