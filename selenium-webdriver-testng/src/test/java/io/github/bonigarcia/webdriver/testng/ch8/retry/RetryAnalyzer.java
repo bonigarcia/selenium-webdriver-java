@@ -25,6 +25,7 @@ public class RetryAnalyzer implements IRetryAnalyzer {
 
     int retryCount = 0;
 
+    @Override
     public boolean retry(ITestResult result) {
         if (retryCount < MAX_RETRIES) {
             retryCount++;
@@ -32,4 +33,5 @@ public class RetryAnalyzer implements IRetryAnalyzer {
         }
         return false;
     }
+
 }
