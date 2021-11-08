@@ -47,21 +47,21 @@ class OrderSelJupTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/navigation1.html");
         assertBodyContains("Lorem ipsum");
-        driver.findElement(By.linkText("2")).click();
     }
 
     @Test
     @Order(2)
     void testB() {
+        driver.findElement(By.linkText("2")).click();
         assertBodyContains("Ut enim");
-        driver.findElement(By.linkText("3")).click();
+
     }
 
     @Test
     @Order(3)
     void testC() {
-        assertBodyContains("Excepteur sint");
         driver.findElement(By.linkText("3")).click();
+        assertBodyContains("Excepteur sint");
     }
 
     void assertBodyContains(String text) {

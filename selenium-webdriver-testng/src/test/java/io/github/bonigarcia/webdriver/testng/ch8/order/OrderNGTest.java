@@ -45,19 +45,18 @@ public class OrderNGTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/navigation1.html");
         assertBodyContains("Lorem ipsum");
-        driver.findElement(By.linkText("2")).click();
     }
 
     @Test(priority = 2)
     public void testB() {
+        driver.findElement(By.linkText("2")).click();
         assertBodyContains("Ut enim");
-        driver.findElement(By.linkText("3")).click();
     }
 
     @Test(priority = 3)
     public void testC() {
-        assertBodyContains("Excepteur sint");
         driver.findElement(By.linkText("3")).click();
+        assertBodyContains("Excepteur sint");
     }
 
     void assertBodyContains(String text) {
