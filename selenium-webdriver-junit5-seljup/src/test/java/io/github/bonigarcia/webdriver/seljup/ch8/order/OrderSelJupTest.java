@@ -54,7 +54,6 @@ class OrderSelJupTest {
     void testB() {
         driver.findElement(By.linkText("2")).click();
         assertBodyContains("Ut enim");
-
     }
 
     @Test
