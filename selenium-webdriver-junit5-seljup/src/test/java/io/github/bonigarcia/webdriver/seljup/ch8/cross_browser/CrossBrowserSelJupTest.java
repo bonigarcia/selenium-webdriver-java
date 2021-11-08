@@ -22,8 +22,10 @@ import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 
+import io.github.bonigarcia.seljup.EnabledIfDockerAvailable;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@EnabledIfDockerAvailable
 @ExtendWith(SeleniumJupiter.class)
 class CrossBrowserSelJupTest {
 
