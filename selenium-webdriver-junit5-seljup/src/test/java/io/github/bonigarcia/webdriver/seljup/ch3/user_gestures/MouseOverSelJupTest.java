@@ -40,7 +40,7 @@ class MouseOverSelJupTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/mouse-over.html");
         Actions actions = new Actions(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         List<String> imageList = Arrays.asList("Compass", "Calendar", "Award",
                 "Landscape");
