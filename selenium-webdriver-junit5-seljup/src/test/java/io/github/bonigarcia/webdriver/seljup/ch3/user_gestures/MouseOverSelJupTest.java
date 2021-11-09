@@ -16,10 +16,12 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch3.user_gestures;
 
-import java.time.Duration;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -27,11 +29,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.locators.RelativeLocator;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@Disabled("Not thread-safe")
 @ExtendWith(SeleniumJupiter.class)
 class MouseOverSelJupTest {
 
@@ -40,21 +41,18 @@ class MouseOverSelJupTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/mouse-over.html");
         Actions actions = new Actions(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        List<String> imageList = Arrays.asList("Compass", "Calendar", "Award",
-                "Landscape");
+        List<String> imageList = Arrays.asList("compass", "calendar", "award",
+                "landscape");
         for (String imageName : imageList) {
-            String xpath = String.format("//img[@src='img/%s.png']",
-                    imageName.toLowerCase());
+            String xpath = String.format("//img[@src='img/%s.png']", imageName);
             WebElement image = driver.findElement(By.xpath(xpath));
             actions.moveToElement(image).build().perform();
 
             WebElement caption = driver.findElement(
                     RelativeLocator.with(By.tagName("div")).near(image));
 
-            wait.until(ExpectedConditions.textToBePresentInElement(caption,
-                    imageName));
+            assertThat(caption.getText()).containsIgnoringCase(imageName);
         }
     }
 
