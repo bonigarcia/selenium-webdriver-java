@@ -54,7 +54,7 @@
     $("#content").load(loreIpsumPage);
 
     $(window).scroll(function () {
-      if ($(window).scrollTop() >= $(document).height() - $(window).height() - 20) {
+      if ($(window).scrollTop() >= $(document).height() - $(window).height() - 40) {
         $.ajax({
           url: loreIpsumPage,
           success: function (content) {
