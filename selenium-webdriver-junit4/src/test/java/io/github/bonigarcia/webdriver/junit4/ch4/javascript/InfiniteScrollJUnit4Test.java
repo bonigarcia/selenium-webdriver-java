@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.junit4.ch4.javascript;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -51,15 +52,17 @@ public class InfiniteScrollJUnit4Test {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-        By paragraphs = By.tagName("p");
-        int initParagraphsNumber = driver.findElements(paragraphs).size();
+        By pLocator = By.tagName("p");
+        List<WebElement> paragraphs = wait.until(
+                ExpectedConditions.numberOfElementsToBeMoreThan(pLocator, 0));
+        int initParagraphsNumber = paragraphs.size();
 
         WebElement lastParagraph = driver.findElement(
                 By.xpath(String.format("//p[%d]", initParagraphsNumber)));
         String script = "arguments[0].scrollIntoView();";
         js.executeScript(script, lastParagraph);
 
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(paragraphs,
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(pLocator,
                 initParagraphsNumber));
     }
 
