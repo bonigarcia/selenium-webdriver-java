@@ -33,7 +33,7 @@ import io.github.bonigarcia.seljup.DriverUrl;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled
+@Disabled("Not thread-safe")
 @ExtendWith(SeleniumJupiter.class)
 class StandaloneUrlAsPropertySelJupTest {
 

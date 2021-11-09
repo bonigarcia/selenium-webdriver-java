@@ -19,6 +19,7 @@ package io.github.bonigarcia.webdriver.seljup.ch5.webauthn;
 import java.time.Duration;
 import java.util.UUID;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -31,6 +32,7 @@ import org.openqa.selenium.virtualauthenticator.VirtualAuthenticatorOptions;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@Disabled("Not thread-safe")
 @ExtendWith(SeleniumJupiter.class)
 class WebAuthnSelJupTest {
 

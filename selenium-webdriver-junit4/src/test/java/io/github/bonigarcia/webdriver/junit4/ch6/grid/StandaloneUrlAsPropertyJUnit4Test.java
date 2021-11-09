@@ -32,7 +32,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore
+@Ignore("Not thread-safe")
 public class StandaloneUrlAsPropertyJUnit4Test {
 
     WebDriver driver;
