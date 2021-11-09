@@ -34,6 +34,10 @@ test {
         }
     }
 
+    if (project.hasProperty("parallel")) {
+        maxParallelForks = Runtime.runtime.availableProcessors()
+    }
+
     ext.failedTests = []
 
     tasks.withType(Test) {

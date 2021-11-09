@@ -28,6 +28,10 @@ test {
 
     systemProperties System.properties
 
+    if (project.hasProperty("parallel")) {
+        maxParallelForks = Runtime.runtime.availableProcessors()
+    }
+
     if (project.hasProperty("excludeTests")) {
         "$excludeTests".split(",").each { excludeTests ->
             exclude excludeTests
