@@ -16,8 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch3.user_gestures;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +25,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -51,18 +52,21 @@ public class MouseOverNGTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/mouse-over.html");
         Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        List<String> imageList = Arrays.asList("compass", "calendar", "award",
-                "landscape");
+        List<String> imageList = Arrays.asList("Compass", "Calendar", "Award",
+                "Landscape");
         for (String imageName : imageList) {
-            String xpath = String.format("//img[@src='img/%s.png']", imageName);
+            String xpath = String.format("//img[@src='img/%s.png']",
+                    imageName.toLowerCase());
             WebElement image = driver.findElement(By.xpath(xpath));
             actions.moveToElement(image).build().perform();
 
             WebElement caption = driver.findElement(
                     RelativeLocator.with(By.tagName("div")).near(image));
 
-            assertThat(caption.getText()).containsIgnoringCase(imageName);
+            wait.until(ExpectedConditions.textToBePresentInElement(caption,
+                    imageName));
         }
     }
 

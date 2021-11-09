@@ -52,7 +52,7 @@ class InfiniteScrollJupiterTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/infinite-scroll.html");
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         By paragraphs = By.tagName("p");
         int initParagraphsNumber = driver.findElements(paragraphs).size();
