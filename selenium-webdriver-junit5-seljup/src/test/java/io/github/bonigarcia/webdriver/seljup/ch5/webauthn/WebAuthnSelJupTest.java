@@ -44,7 +44,7 @@ class WebAuthnSelJupTest {
         String randomId = UUID.randomUUID().toString();
         driver.findElement(By.id("input-email")).sendKeys(randomId);
         driver.findElement(By.id("register-button")).click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         wait.until(ExpectedConditions.textToBePresentInElementLocated(
                 By.className("popover-body"), "Success! Now try logging in"));
 
