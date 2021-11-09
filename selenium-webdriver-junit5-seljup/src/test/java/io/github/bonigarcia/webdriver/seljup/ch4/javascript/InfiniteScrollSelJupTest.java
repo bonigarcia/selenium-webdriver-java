@@ -19,6 +19,7 @@ package io.github.bonigarcia.webdriver.seljup.ch4.javascript;
 import java.time.Duration;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -30,6 +31,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@Disabled("Not thread-safe")
 @ExtendWith(SeleniumJupiter.class)
 class InfiniteScrollSelJupTest {
 
