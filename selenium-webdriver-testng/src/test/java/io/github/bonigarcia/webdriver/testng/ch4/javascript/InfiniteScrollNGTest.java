@@ -52,7 +52,7 @@ public class InfiniteScrollNGTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/infinite-scroll.html");
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         By paragraphs = By.tagName("p");
         int initParagraphsNumber = driver.findElements(paragraphs).size();
