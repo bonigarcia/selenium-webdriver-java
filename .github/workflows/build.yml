@@ -38,7 +38,7 @@ jobs:
         sudo rm microsoft.gpg
         sudo apt update && sudo apt install microsoft-edge-beta
     - name: Run tests Maven
-      run: mvn -B test -T 1C "-Dhttp.keepAlive=false" -Dtest=!*Firefox*
+      run: mvn -B test -T 1C -Dtest=!*Firefox*
     - name: Run tests with Gradle
       if: matrix.os == 'ubuntu-latest'
       run: ./gradlew test --parallel -PexcludeTests=**/*Firefox*
