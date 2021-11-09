@@ -18,7 +18,6 @@ package io.github.bonigarcia.webdriver.seljup.ch4.javascript;
 
 import java.time.Duration;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -33,25 +32,20 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 @ExtendWith(SeleniumJupiter.class)
 class InfiniteScrollSelJupTest {
 
-    @AfterEach
-    void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-    }
-
     @Test
     void testInfiniteScroll(ChromeDriver driver) {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/infinite-scroll.html");
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         By paragraphs = By.tagName("p");
         int initParagraphsNumber = driver.findElements(paragraphs).size();
 
-        WebElement footer = driver.findElement(By.tagName("footer"));
+        WebElement lastParagraph = driver.findElement(
+                By.xpath(String.format("//p[%d]", initParagraphsNumber)));
         String script = "arguments[0].scrollIntoView();";
-        js.executeScript(script, footer);
+        js.executeScript(script, lastParagraph);
 
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(paragraphs,
                 initParagraphsNumber));

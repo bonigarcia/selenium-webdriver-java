@@ -40,10 +40,7 @@ public class InfiniteScrollNGTest {
     }
 
     @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    public void teardown() {
         driver.quit();
     }
 
@@ -52,14 +49,15 @@ public class InfiniteScrollNGTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/infinite-scroll.html");
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         By paragraphs = By.tagName("p");
         int initParagraphsNumber = driver.findElements(paragraphs).size();
 
-        WebElement footer = driver.findElement(By.tagName("footer"));
+        WebElement lastParagraph = driver.findElement(
+                By.xpath(String.format("//p[%d]", initParagraphsNumber)));
         String script = "arguments[0].scrollIntoView();";
-        js.executeScript(script, footer);
+        js.executeScript(script, lastParagraph);
 
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(paragraphs,
                 initParagraphsNumber));
