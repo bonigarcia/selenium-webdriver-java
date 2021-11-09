@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ThreadGuard;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -37,7 +36,7 @@ class Parallel1JupiterTest {
 
     @BeforeEach
     void setup() {
-        driver = ThreadGuard.protect(WebDriverManager.chromedriver().create());
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @AfterEach

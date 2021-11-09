@@ -21,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ThreadGuard;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -34,7 +33,7 @@ public class Parallel2NGTest {
 
     @BeforeMethod
     public void setup() {
-        driver = ThreadGuard.protect(WebDriverManager.chromedriver().create());
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @AfterMethod

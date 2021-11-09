@@ -24,7 +24,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ThreadGuard;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -34,7 +33,7 @@ public class Parallel1JUnit4Test {
 
     @Before
     public void setup() {
-        driver = ThreadGuard.protect(WebDriverManager.chromedriver().create());
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @After
