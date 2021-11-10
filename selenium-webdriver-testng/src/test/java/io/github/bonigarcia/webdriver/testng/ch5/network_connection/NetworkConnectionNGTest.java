@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore
+@Ignore("Not implemented yet")
 public class NetworkConnectionNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());

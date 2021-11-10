@@ -30,7 +30,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@Disabled
+@Disabled("IME API is still not available")
 @ExtendWith(SeleniumJupiter.class)
 class ImeSelJupTest {
 

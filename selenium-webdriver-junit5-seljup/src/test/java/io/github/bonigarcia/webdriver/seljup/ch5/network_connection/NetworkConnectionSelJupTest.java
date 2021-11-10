@@ -33,7 +33,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@Disabled
+@Disabled("Not implemented yet")
 @ExtendWith(SeleniumJupiter.class)
 class NetworkConnectionSelJupTest {
 

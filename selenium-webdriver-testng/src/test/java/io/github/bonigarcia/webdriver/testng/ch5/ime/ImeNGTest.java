@@ -31,7 +31,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore
+@Ignore("IME API is still not available")
 public class ImeNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());

@@ -32,7 +32,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore
+@Ignore("Not implemented yet")
 public class NetworkConnectionJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());

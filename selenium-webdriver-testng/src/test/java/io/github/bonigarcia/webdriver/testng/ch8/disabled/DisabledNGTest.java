@@ -40,7 +40,7 @@ public class DisabledNGTest {
         driver.quit();
     }
 
-    @Ignore
+    @Ignore("Optional reason for being disabled")
     @Test
     public void testDisabled1() {
         checkPracticeSite();

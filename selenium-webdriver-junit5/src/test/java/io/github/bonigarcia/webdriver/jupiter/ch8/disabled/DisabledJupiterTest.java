@@ -44,7 +44,7 @@ class DisabledJupiterTest {
         driver.quit();
     }
 
-    @Disabled
+    @Disabled("Optional reason for being disabled")
     @Test
     public void testDisabled1() {
         checkPracticeSite();

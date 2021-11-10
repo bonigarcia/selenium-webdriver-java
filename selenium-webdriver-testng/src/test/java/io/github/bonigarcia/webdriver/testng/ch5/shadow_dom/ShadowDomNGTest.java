@@ -29,7 +29,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore
+@Ignore("Not available yet")
 public class ShadowDomNGTest {
 
     WebDriver driver;

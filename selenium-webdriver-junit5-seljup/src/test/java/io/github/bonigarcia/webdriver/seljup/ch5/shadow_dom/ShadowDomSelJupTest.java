@@ -29,7 +29,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@Disabled
+@Disabled("Not available yet")
 @ExtendWith(SeleniumJupiter.class)
 class ShadowDomSelJupTest {
 

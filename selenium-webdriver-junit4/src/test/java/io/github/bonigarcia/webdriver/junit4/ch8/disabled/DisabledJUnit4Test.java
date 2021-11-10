@@ -40,7 +40,7 @@ public class DisabledJUnit4Test {
         driver.quit();
     }
 
-    @Ignore
+    @Ignore("Optional reason for being disabled")
     @Test
     public void testDisabled() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");

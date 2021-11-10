@@ -29,7 +29,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.seljup.Options;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@Disabled
+@Disabled("Proxy not available")
 @ExtendWith(SeleniumJupiter.class)
 class ProxySelJupTest {
 

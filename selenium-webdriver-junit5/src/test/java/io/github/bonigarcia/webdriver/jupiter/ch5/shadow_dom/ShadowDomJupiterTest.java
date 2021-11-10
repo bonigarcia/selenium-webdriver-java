@@ -29,7 +29,7 @@ import org.openqa.selenium.WebElement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled
+@Disabled("Not available yet")
 class ShadowDomJupiterTest {
 
     WebDriver driver;

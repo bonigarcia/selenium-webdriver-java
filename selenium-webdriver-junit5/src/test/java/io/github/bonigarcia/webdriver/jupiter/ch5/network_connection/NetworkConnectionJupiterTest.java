@@ -32,7 +32,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled
+@Disabled("Not implemented yet")
 class NetworkConnectionJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());

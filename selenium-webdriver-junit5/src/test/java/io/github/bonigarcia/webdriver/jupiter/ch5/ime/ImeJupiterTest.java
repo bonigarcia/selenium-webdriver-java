@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled
+@Disabled("IME API is still not available")
 class ImeJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());

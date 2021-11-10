@@ -28,7 +28,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore
+@Ignore("Proxy not available")
 public class ProxyNGTest {
 
     WebDriver driver;

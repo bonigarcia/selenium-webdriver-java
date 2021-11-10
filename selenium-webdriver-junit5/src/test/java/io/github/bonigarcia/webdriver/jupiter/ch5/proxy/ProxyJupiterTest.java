@@ -28,7 +28,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled
+@Disabled("Proxy not available")
 class ProxyJupiterTest {
 
     WebDriver driver;
