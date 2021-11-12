@@ -32,6 +32,10 @@ test {
         maxParallelForks = Runtime.runtime.availableProcessors()
     }
 
+    if (project.hasProperty("suite")) {
+        suites "$suite"
+    }
+
     if (project.hasProperty("excludeTests")) {
         "$excludeTests".split(",").each { excludeTests ->
             exclude excludeTests
