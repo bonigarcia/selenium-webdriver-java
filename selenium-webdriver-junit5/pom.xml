@@ -17,6 +17,7 @@
         <wdm.version>5.0.4-SNAPSHOT</wdm.version>
 
         <rerunner.version>2.1.6</rerunner.version>
+        <junit-platform.version>1.8.1</junit-platform.version>
         <browsermob.version>2.1.5</browsermob.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
@@ -80,6 +81,14 @@
             <groupId>io.github.artsok</groupId>
             <artifactId>rerunner-jupiter</artifactId>
             <version>${rerunner.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- The following dependency is required for test listeners (chapter 8) -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit-platform.version}</version>
             <scope>test</scope>
         </dependency>
 

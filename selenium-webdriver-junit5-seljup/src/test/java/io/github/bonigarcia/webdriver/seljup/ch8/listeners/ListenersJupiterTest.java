@@ -24,7 +24,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@ExtendWith({ SeleniumJupiter.class, MyTestListener.class })
+@ExtendWith(SeleniumJupiter.class)
 class ListenersJupiterTest {
 
     @Test
