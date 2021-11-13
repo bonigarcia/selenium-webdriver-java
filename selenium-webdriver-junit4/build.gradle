@@ -72,6 +72,8 @@ ext {
     junit4Version = "4.13.2"
     assertjVersion  = "3.21.0"
     wdmVersion = "5.0.4-SNAPSHOT"
+
+    browsermobVersion = "2.1.5"
 }
 
 dependencies {
@@ -84,4 +86,5 @@ dependencies {
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
 
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
+    testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
 }
