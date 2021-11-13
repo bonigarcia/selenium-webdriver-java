@@ -18,8 +18,6 @@ package io.github.bonigarcia.webdriver.jupiter.ch8.parallel;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.time.Duration;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,10 +38,7 @@ class Parallel1JupiterTest {
     }
 
     @AfterEach
-    void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    void teardown() {
         driver.quit();
     }
 
