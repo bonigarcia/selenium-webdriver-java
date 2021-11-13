@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch9.proxy;
+package io.github.bonigarcia.webdriver.jupiter.ch9.network;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,7 +37,7 @@ import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.HarEntry;
 import net.lightbody.bmp.proxy.CaptureType;
 
-class BrowserMobProxyJupiterTest {
+class CaptureNetworkTrafficJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
