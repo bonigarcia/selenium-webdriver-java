@@ -54,7 +54,7 @@ public class LoadJUnit4Test {
     }
 
     @After
-    void teardown() {
+    public void teardown() {
         wdm.quit();
     }
 
