@@ -35,6 +35,7 @@ import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
 import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.HarEntry;
+import net.lightbody.bmp.proxy.CaptureType;
 
 class BrowserMobProxyJupiterTest {
 
@@ -42,15 +43,17 @@ class BrowserMobProxyJupiterTest {
 
     WebDriver driver;
 
-    BrowserMobProxy browserMobProxy;
+    BrowserMobProxy proxy;
 
     @BeforeEach
     void setup() {
-        browserMobProxy = new BrowserMobProxyServer();
-        browserMobProxy.start();
-        browserMobProxy.newHar();
+        proxy = new BrowserMobProxyServer();
+        proxy.start();
+        proxy.newHar();
+        proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT,
+                CaptureType.RESPONSE_CONTENT);
 
-        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(browserMobProxy);
+        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
         FirefoxOptions options = new FirefoxOptions();
         options.setProxy(seleniumProxy);
         options.setAcceptInsecureCerts(true);
@@ -61,7 +64,7 @@ class BrowserMobProxyJupiterTest {
 
     @AfterEach
     void teardown() {
-        browserMobProxy.stop();
+        proxy.stop();
         driver.quit();
     }
 
@@ -69,8 +72,7 @@ class BrowserMobProxyJupiterTest {
     void testBrowserMobProxy() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
 
-        List<HarEntry> logEntries = browserMobProxy.getHar().getLog()
-                .getEntries();
+        List<HarEntry> logEntries = proxy.getHar().getLog().getEntries();
         logEntries.forEach(logEntry -> {
             log.debug("Request: {} - Response: {}",
                     logEntry.getRequest().getUrl(),
