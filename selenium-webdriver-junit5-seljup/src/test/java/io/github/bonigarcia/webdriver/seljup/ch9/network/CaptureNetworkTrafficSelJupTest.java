@@ -25,25 +25,29 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Proxy;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.seljup.Options;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
 import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.HarEntry;
 import net.lightbody.bmp.proxy.CaptureType;
 
+@ExtendWith(SeleniumJupiter.class)
 class CaptureNetworkTrafficSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriver driver;
-
     BrowserMobProxy proxy;
+
+    @Options
+    FirefoxOptions options = new FirefoxOptions();
 
     @BeforeEach
     void setup() {
@@ -54,22 +58,17 @@ class CaptureNetworkTrafficSelJupTest {
                 CaptureType.RESPONSE_CONTENT);
 
         Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
-        FirefoxOptions options = new FirefoxOptions();
         options.setProxy(seleniumProxy);
         options.setAcceptInsecureCerts(true);
-
-        driver = WebDriverManager.firefoxdriver().capabilities(options)
-                .create();
     }
 
     @AfterEach
     void teardown() {
         proxy.stop();
-        driver.quit();
     }
 
     @Test
-    void testCaptureNetworkTraffic() {
+    void testCaptureNetworkTraffic(FirefoxDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
 
         List<HarEntry> logEntries = proxy.getHar().getLog().getEntries();
