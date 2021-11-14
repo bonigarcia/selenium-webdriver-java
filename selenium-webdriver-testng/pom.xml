@@ -16,6 +16,7 @@
         <assertj.version>3.21.0</assertj.version>
         <wdm.version>5.0.4-SNAPSHOT</wdm.version>
         <axel.version>4.3.1</axel.version>
+        <javafaker.version>1.0.2</javafaker.version>
 
         <browsermob.version>2.1.5</browsermob.version>
         <zapclient.version>1.10.0</zapclient.version>
@@ -90,6 +91,12 @@
             <groupId>com.deque.html.axe-core</groupId>
             <artifactId>selenium</artifactId>
             <version>${axel.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

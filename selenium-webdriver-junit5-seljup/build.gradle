@@ -78,6 +78,7 @@ ext {
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.10.0"
     axelVersion = "4.3.1"
+    javafakerVersion = "1.0.2"
 }
 
 
@@ -96,4 +97,5 @@ dependencies {
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
     testImplementation("com.deque.html.axe-core:selenium:${axelVersion}")
+    testImplementation("com.github.javafaker:javafaker:${javafakerVersion}")
 }
