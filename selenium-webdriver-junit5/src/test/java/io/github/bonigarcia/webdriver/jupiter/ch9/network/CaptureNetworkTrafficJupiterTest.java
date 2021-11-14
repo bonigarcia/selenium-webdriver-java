@@ -71,13 +71,13 @@ class CaptureNetworkTrafficJupiterTest {
     @Test
     void testBrowserMobProxy() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
 
         List<HarEntry> logEntries = proxy.getHar().getLog().getEntries();
         logEntries.forEach(logEntry -> {
             log.debug("Request: {} - Response: {}",
                     logEntry.getRequest().getUrl(),
                     logEntry.getResponse().getStatus());
-            assertThat(logEntry.getResponse().getStatus()).isEqualTo(200);
         });
     }
 
