@@ -76,6 +76,7 @@ ext {
     rerunnerVersion = "2.1.6"
     junitPlatformVersion = "1.8.1"
     browsermobVersion = "2.1.5"
+    zapclientVersion = "1.10.0"
     axelVersion = "4.3.1"
 }
 
