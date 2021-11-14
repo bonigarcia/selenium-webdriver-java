@@ -87,4 +87,5 @@ dependencies {
 
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
+    testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
 }

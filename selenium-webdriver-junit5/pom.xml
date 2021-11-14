@@ -19,6 +19,7 @@
         <rerunner.version>2.1.6</rerunner.version>
         <junit-platform.version>1.8.1</junit-platform.version>
         <browsermob.version>2.1.5</browsermob.version>
+        <zapclient.version>1.10.0</zapclient.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
@@ -68,35 +69,34 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- The following dependency is required for remote tests (chapter 6) -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-grid</artifactId>
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- The following dependency is required for retrying failed (chapter 8) -->
         <dependency>
             <groupId>io.github.artsok</groupId>
             <artifactId>rerunner-jupiter</artifactId>
             <version>${rerunner.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- The following dependency is required for test listeners (chapter 8) -->
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
             <version>${junit-platform.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- The following dependency is required for proxy tests (chapter 9) -->
         <dependency>
             <groupId>net.lightbody.bmp</groupId>
             <artifactId>browsermob-core</artifactId>
             <version>${browsermob.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.zaproxy</groupId>
+            <artifactId>zap-clientapi</artifactId>
+            <version>${zapclient.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

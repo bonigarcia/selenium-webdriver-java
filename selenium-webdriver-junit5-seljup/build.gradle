@@ -92,4 +92,5 @@ dependencies {
     testImplementation("io.github.artsok:rerunner-jupiter:${rerunnerVersion}")
     testImplementation("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
+    testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
 }
