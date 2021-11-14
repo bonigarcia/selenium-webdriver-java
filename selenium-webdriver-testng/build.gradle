@@ -78,6 +78,7 @@ ext {
     wdmVersion = "5.0.4-SNAPSHOT"
 
     browsermobVersion = "2.1.5"
+    axelVersion = "4.3.1"
 }
 
 dependencies {
@@ -92,4 +93,5 @@ dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
+    testImplementation("com.deque.html.axe-core:selenium:${axelVersion}")
 }
