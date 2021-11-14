@@ -64,8 +64,6 @@ public class ABTestingJUnit4Test {
         } else {
             fail("Unknown variation");
         }
-
-        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 
     void assertBodyContains(WebDriver driver, String text) {
