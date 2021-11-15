@@ -19,7 +19,7 @@ package io.github.bonigarcia.webdriver.testng.ch9.cucumber;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
-@CucumberOptions(features = "src/test/resources", glue = {
+@CucumberOptions(features = "classpath:io/github/bonigarcia", glue = {
         "io.github.bonigarcia" })
 public class CucumberTest extends AbstractTestNGCucumberTests {
 

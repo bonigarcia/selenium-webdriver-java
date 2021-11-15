@@ -22,7 +22,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources", glue = {
+@CucumberOptions(features = "classpath:io/github/bonigarcia", glue = {
         "io.github.bonigarcia" })
 public class CucumberTest {
 
