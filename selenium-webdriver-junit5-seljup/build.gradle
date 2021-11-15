@@ -1,6 +1,7 @@
 plugins {
     id "java"
     id "io.qameta.allure" version "2.9.6"
+    id "org.springframework.boot" version "2.5.6"
 }
 
 jar {
@@ -90,6 +91,7 @@ ext {
     javafakerVersion = "1.0.2"
     extentreportsVersion = "5.0.9"
     cucumberVersion = "7.0.0"
+    springBootVersion = "2.5.6"
 }
 
 
@@ -105,7 +107,9 @@ dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
     testImplementation("io.github.artsok:rerunner-jupiter:${rerunnerVersion}")
     testImplementation("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
-    testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
+    testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}") {
+        exclude group: "com.fasterxml.jackson.core", module: "*"
+    }
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
     testImplementation("com.deque.html.axe-core:selenium:${axelVersion}")
     testImplementation("com.github.javafaker:javafaker:${javafakerVersion}")
@@ -113,4 +117,8 @@ dependencies {
     testImplementation("org.junit.platform:junit-platform-suite:${junitPlatformVersion}")
     testImplementation("io.cucumber:cucumber-java:${cucumberVersion}")
     testImplementation("io.cucumber:cucumber-junit-platform-engine:${cucumberVersion}")
+
+    implementation("org.springframework.boot:spring-boot-starter:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 }

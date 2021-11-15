@@ -1,6 +1,7 @@
 plugins {
     id "java"
     id "io.qameta.allure" version "2.9.6"
+    id "org.springframework.boot" version "2.5.6"
 }
 
 jar {
@@ -106,11 +107,17 @@ dependencies {
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
 
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
-    testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}")
+    testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}") {
+        exclude group: "com.fasterxml.jackson.core", module: "*"
+    }
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
     testImplementation("com.deque.html.axe-core:selenium:${axelVersion}")
     testImplementation("com.github.javafaker:javafaker:${javafakerVersion}")
     testImplementation("com.aventstack:extentreports:${extentreportsVersion}")
     testImplementation("io.cucumber:cucumber-java:${cucumberVersion}")
     testImplementation("io.cucumber:cucumber-testng:${cucumberVersion}")
+
+    implementation("org.springframework.boot:spring-boot-starter:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 }
