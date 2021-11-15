@@ -47,7 +47,7 @@ public class DownloadHttpClientJUnit4Test {
 
     @Before
     public void setup() {
-        driver = WebDriverManager.firefoxdriver().create();
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @After

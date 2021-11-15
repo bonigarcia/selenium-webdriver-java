@@ -30,8 +30,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.Options;
@@ -52,7 +52,7 @@ class HarCreatorSelJupTest {
     BrowserMobProxy proxy;
 
     @Options
-    FirefoxOptions options = new FirefoxOptions();
+    ChromeOptions options = new ChromeOptions();
 
     @BeforeEach
     void setup() {
@@ -77,7 +77,7 @@ class HarCreatorSelJupTest {
     }
 
     @Test
-    void testHarCreator(FirefoxDriver driver) {
+    void testHarCreator(ChromeDriver driver) {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
 

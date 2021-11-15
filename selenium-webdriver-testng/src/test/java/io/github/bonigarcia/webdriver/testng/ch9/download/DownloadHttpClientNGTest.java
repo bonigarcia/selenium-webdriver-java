@@ -47,7 +47,7 @@ public class DownloadHttpClientNGTest {
 
     @BeforeMethod
     public void setup() {
-        driver = WebDriverManager.firefoxdriver().create();
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @AfterMethod

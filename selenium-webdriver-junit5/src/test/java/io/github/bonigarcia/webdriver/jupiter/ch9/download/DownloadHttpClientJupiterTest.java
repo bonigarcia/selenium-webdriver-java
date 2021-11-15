@@ -47,7 +47,7 @@ class DownloadHttpClientJupiterTest {
 
     @BeforeEach
     void setup() {
-        driver = WebDriverManager.firefoxdriver().create();
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @AfterEach

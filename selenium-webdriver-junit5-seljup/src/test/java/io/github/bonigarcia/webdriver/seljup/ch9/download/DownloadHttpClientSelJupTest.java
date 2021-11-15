@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -44,7 +44,7 @@ class DownloadHttpClientSelJupTest {
     static final Logger log = getLogger(lookup().lookupClass());
 
     @Test
-    void testDownloadHttpClient(FirefoxDriver driver) throws IOException {
+    void testDownloadHttpClient(ChromeDriver driver) throws IOException {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/download-files.html");
 

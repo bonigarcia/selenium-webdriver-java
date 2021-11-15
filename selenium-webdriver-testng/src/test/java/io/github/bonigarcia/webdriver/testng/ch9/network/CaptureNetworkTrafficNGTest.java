@@ -24,7 +24,7 @@ import java.util.List;
 
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -54,12 +54,11 @@ public class CaptureNetworkTrafficNGTest {
                 CaptureType.RESPONSE_CONTENT);
 
         Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
-        FirefoxOptions options = new FirefoxOptions();
+        ChromeOptions options = new ChromeOptions();
         options.setProxy(seleniumProxy);
         options.setAcceptInsecureCerts(true);
 
-        driver = WebDriverManager.firefoxdriver().capabilities(options)
-                .create();
+        driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
 
     @AfterMethod
