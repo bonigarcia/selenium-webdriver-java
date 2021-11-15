@@ -94,5 +94,5 @@ dependencies {
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
     testImplementation("com.deque.html.axe-core:selenium:${axelVersion}")
     testImplementation("com.github.javafaker:javafaker:${javafakerVersion}")
-    testImplementation("com.aventstack:extentreports:${extentreportsVersion}")S
+    testImplementation("com.aventstack:extentreports:${extentreportsVersion}")
 }
