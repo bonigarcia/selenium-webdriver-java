@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch9.bdd;
+package io.github.bonigarcia.webdriver.jupiter.ch9.cucumber;
 
 import java.util.NoSuchElementException;
 

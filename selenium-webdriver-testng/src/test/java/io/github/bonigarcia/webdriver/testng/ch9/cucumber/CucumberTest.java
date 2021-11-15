@@ -14,19 +14,13 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch9.bdd;
+package io.github.bonigarcia.webdriver.testng.ch9.cucumber;
 
-import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
-import org.junit.platform.suite.api.ConfigurationParameter;
-import org.junit.platform.suite.api.IncludeEngines;
-import org.junit.platform.suite.api.SelectClasspathResource;
-import org.junit.platform.suite.api.Suite;
-
-@Suite
-@IncludeEngines("cucumber")
-@SelectClasspathResource("io/github/bonigarcia")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "io.github.bonigarcia")
-public class CucumberTest {
+@CucumberOptions(features = "src/test/resources", glue = {
+        "io.github.bonigarcia" })
+public class CucumberTest extends AbstractTestNGCucumberTests {
 
 }
