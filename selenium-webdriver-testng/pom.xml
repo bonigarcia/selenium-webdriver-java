@@ -15,12 +15,14 @@
         <testng.version>7.4.0</testng.version>
         <assertj.version>3.21.0</assertj.version>
         <wdm.version>5.0.4-SNAPSHOT</wdm.version>
-        <axel.version>4.3.1</axel.version>
-        <javafaker.version>1.0.2</javafaker.version>
-        <extentreports.version>5.0.9</extentreports.version>
 
         <browsermob.version>2.1.5</browsermob.version>
         <zapclient.version>1.10.0</zapclient.version>
+        <axel.version>4.3.1</axel.version>
+        <javafaker.version>1.0.2</javafaker.version>
+        <extentreports.version>5.0.9</extentreports.version>
+        <allure.version>2.16.1</allure.version>
+        <allure-maven.version>2.10.0</allure-maven.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
@@ -106,6 +108,12 @@
             <version>${extentreports.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -114,6 +122,25 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.testng.AllureTestNg</value>
+                        </property>
+                    </properties>
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>${project.build.directory}/allure-results</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven.version}</version>
             </plugin>
         </plugins>
     </build>

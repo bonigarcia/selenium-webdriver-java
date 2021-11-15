@@ -9,3 +9,4 @@ target
 build
 bin
 test-output
+.allure

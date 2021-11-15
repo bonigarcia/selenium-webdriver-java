@@ -1,4 +1,7 @@
-apply plugin: "java"
+plugins {
+    id "java"
+    id "io.qameta.allure" version "2.9.6"
+}
 
 jar {
     archiveBaseName = "selenium-webdriver-testng"
@@ -62,9 +65,15 @@ test {
     }
 }
 
+allure {
+    version = "2.16.1"
+}
+
 repositories {
     mavenCentral()
-
+    maven {
+       url "https://plugins.gradle.org/m2/"
+    }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
