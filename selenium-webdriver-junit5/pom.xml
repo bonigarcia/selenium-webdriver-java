@@ -22,6 +22,7 @@
         <zapclient.version>1.10.0</zapclient.version>
         <axel.version>4.3.1</axel.version>
         <javafaker.version>1.0.2</javafaker.version>
+        <extentreports.version>5.0.9</extentreports.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
@@ -111,6 +112,12 @@
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>${javafaker.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extentreports.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
