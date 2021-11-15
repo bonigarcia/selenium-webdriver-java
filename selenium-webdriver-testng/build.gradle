@@ -24,6 +24,8 @@ test {
         }
     }
 
+    scanForTestClasses = false
+
     testLogging {
         events "passed", "skipped", "failed"
         showStandardStreams = true
@@ -91,6 +93,7 @@ ext {
     axelVersion = "4.3.1"
     javafakerVersion = "1.0.2"
     extentreportsVersion = "5.0.9"
+    cucumberVersion = "7.0.0"
 }
 
 dependencies {
@@ -108,4 +111,6 @@ dependencies {
     testImplementation("com.deque.html.axe-core:selenium:${axelVersion}")
     testImplementation("com.github.javafaker:javafaker:${javafakerVersion}")
     testImplementation("com.aventstack:extentreports:${extentreportsVersion}")
+    testImplementation("io.cucumber:cucumber-java:${cucumberVersion}")
+    testImplementation("io.cucumber:cucumber-testng:${cucumberVersion}")
 }
