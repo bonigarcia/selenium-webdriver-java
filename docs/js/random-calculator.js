@@ -1,7 +1,30 @@
 var keys = document.querySelectorAll('#calculator span');
 var operators = ['+', '-', 'x', '÷'];
 var decimalAdded = false;
-var count = 1;
+
+function setCookie(cname, cvalue, exminutes) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exminutes * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    console.log("Cookies", decodedCookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
 for (var i = 0; i < keys.length; i++) {
     keys[i].onclick = function (e) {
@@ -22,6 +45,10 @@ for (var i = 0; i < keys.length; i++) {
                 equation = equation.replace(/.$/, '');
 
             if (equation) {
+                var countCookie = getCookie("count");
+                var count = countCookie ? Number(countCookie) : 1;
+                console.log("count", count);
+
                 var correct = document.getElementById("correct").value;
                 var random = Math.floor(Math.random() * 100) + 1;
                 var correctResult = count >= correct;
@@ -39,6 +66,7 @@ for (var i = 0; i < keys.length; i++) {
                     input.innerHTML = random;
                 }
                 count++;
+                setCookie("count", count, 1);
             }
 
             decimalAdded = false;
