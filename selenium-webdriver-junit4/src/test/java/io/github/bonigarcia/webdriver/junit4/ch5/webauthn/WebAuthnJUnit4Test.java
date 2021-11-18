@@ -21,7 +21,6 @@ import java.util.UUID;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -33,7 +32,6 @@ import org.openqa.selenium.virtualauthenticator.VirtualAuthenticatorOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore("Not thread-safe")
 public class WebAuthnJUnit4Test {
 
     WebDriver driver;

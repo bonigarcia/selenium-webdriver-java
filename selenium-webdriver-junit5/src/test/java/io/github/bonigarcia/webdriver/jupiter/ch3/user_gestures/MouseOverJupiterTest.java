@@ -23,7 +23,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -33,7 +32,6 @@ import org.openqa.selenium.support.locators.RelativeLocator;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled("Not thread-safe")
 class MouseOverJupiterTest {
 
     WebDriver driver;

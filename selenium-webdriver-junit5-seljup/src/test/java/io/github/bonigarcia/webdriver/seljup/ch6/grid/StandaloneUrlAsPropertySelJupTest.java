@@ -22,7 +22,6 @@ import java.net.URL;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.grid.Main;
@@ -33,7 +32,6 @@ import io.github.bonigarcia.seljup.DriverUrl;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled("Not thread-safe")
 @ExtendWith(SeleniumJupiter.class)
 class StandaloneUrlAsPropertySelJupTest {
 
