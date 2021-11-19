@@ -24,7 +24,7 @@
         <allure.version>2.16.1</allure.version>
         <allure-maven.version>2.10.0</allure-maven.version>
         <cucumber.version>7.0.0</cucumber.version>
-        <spring-boot.version>2.5.6</spring-boot.version>
+        <spring-boot.version>2.5.7</spring-boot.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
