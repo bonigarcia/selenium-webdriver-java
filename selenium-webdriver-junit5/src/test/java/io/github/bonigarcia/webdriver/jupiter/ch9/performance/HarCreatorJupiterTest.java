@@ -16,9 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch9.performance;
 
-import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +28,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.lightbody.bmp.BrowserMobProxy;
@@ -40,8 +37,6 @@ import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.proxy.CaptureType;
 
 class HarCreatorJupiterTest {
-
-    static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 

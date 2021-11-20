@@ -16,9 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch9.performance;
 
-import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +30,6 @@ import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.Options;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -44,8 +41,6 @@ import net.lightbody.bmp.proxy.CaptureType;
 
 @ExtendWith(SeleniumJupiter.class)
 class HarCreatorSelJupTest {
-
-    static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
