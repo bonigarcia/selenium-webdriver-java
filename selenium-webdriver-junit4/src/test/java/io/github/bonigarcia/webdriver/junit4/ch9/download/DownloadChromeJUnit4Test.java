@@ -16,11 +16,13 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch9.download;
 
-import java.nio.file.Paths;
+import java.io.File;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.awaitility.Awaitility;
+import org.awaitility.core.ConditionFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,12 +36,14 @@ public class DownloadChromeJUnit4Test {
 
     WebDriver driver;
 
+    File targetFolder;
+
     @Before
     public void setup() {
+        targetFolder = new File(System.getProperty("user.home"), "Downloads");
+
         Map<String, Object> prefs = new HashMap<>();
-        String targetFolder = Paths
-                .get(System.getProperty("user.home"), "Downloads").toString();
-        prefs.put("download.default_directory", targetFolder);
+        prefs.put("download.default_directory", targetFolder.toString());
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
 
@@ -47,10 +51,7 @@ public class DownloadChromeJUnit4Test {
     }
 
     @After
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    public void teardown() {
         driver.quit();
     }
 
@@ -61,6 +62,14 @@ public class DownloadChromeJUnit4Test {
 
         driver.findElement(By.xpath("(//a)[2]")).click();
         driver.findElement(By.xpath("(//a)[3]")).click();
+
+        ConditionFactory await = Awaitility.await()
+                .atMost(Duration.ofSeconds(5));
+        File wdmLogo = new File(targetFolder, "webdrivermanager.png");
+        await.until(() -> wdmLogo.exists());
+
+        File wdmDoc = new File(targetFolder, "webdrivermanager.pdf");
+        await.until(() -> wdmDoc.exists());
     }
 
 }

@@ -16,12 +16,13 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch9.download;
 
-import java.nio.file.Paths;
+import java.io.File;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.AfterEach;
+import org.awaitility.Awaitility;
+import org.awaitility.core.ConditionFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,22 +36,19 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 @ExtendWith(SeleniumJupiter.class)
 class DownloadChromeSelJupTest {
 
+    File targetFolder;
+
     @Options
     ChromeOptions options = new ChromeOptions();
 
     @BeforeEach
     void setup() {
-        Map<String, Object> prefs = new HashMap<>();
-        String targetFolder = Paths
-                .get(System.getProperty("user.home"), "Downloads").toString();
-        prefs.put("download.default_directory", targetFolder);
-        options.setExperimentalOption("prefs", prefs);
-    }
+        targetFolder = new File(System.getProperty("user.home"), "Downloads");
 
-    @AfterEach
-    void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("download.default_directory", targetFolder.toString());
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("prefs", prefs);
     }
 
     @Test
@@ -60,6 +58,14 @@ class DownloadChromeSelJupTest {
 
         driver.findElement(By.xpath("(//a)[2]")).click();
         driver.findElement(By.xpath("(//a)[3]")).click();
+
+        ConditionFactory await = Awaitility.await()
+                .atMost(Duration.ofSeconds(5));
+        File wdmLogo = new File(targetFolder, "webdrivermanager.png");
+        await.until(() -> wdmLogo.exists());
+
+        File wdmDoc = new File(targetFolder, "webdrivermanager.pdf");
+        await.until(() -> wdmDoc.exists());
     }
 
 }

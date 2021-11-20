@@ -86,6 +86,7 @@ ext {
 
     rerunnerVersion = "2.1.6"
     junitPlatformVersion = "1.8.1"
+    awaitilityVersion = "4.1.1"
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.10.0"
     axelVersion = "4.3.1"
@@ -106,6 +107,7 @@ dependencies {
 
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
     testImplementation("io.github.artsok:rerunner-jupiter:${rerunnerVersion}")
+    testImplementation("org.awaitility:awaitility:${awaitilityVersion}")
     testImplementation("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}") {
         exclude group: "com.fasterxml.jackson.core", module: "*"

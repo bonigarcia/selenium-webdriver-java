@@ -83,6 +83,7 @@ ext {
     assertjVersion  = "3.21.0"
     wdmVersion = "5.0.4-SNAPSHOT"
 
+    awaitilityVersion = "4.1.1"
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.10.0"
     axelVersion = "4.3.1"
@@ -102,6 +103,7 @@ dependencies {
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
 
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
+    testImplementation("org.awaitility:awaitility:${awaitilityVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}") {
         exclude group: "com.fasterxml.jackson.core", module: "*"
     }

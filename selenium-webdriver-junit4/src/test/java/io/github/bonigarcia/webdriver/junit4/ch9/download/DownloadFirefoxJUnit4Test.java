@@ -19,6 +19,8 @@ package io.github.bonigarcia.webdriver.junit4.ch9.download;
 import java.io.File;
 import java.time.Duration;
 
+import org.awaitility.Awaitility;
+import org.awaitility.core.ConditionFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,11 +34,14 @@ public class DownloadFirefoxJUnit4Test {
 
     WebDriver driver;
 
+    File targetFolder;
+
     @Before
     public void setup() {
         FirefoxOptions options = new FirefoxOptions();
+        targetFolder = new File(".");
         options.addPreference("browser.download.dir",
-                new File(".").getAbsolutePath());
+                targetFolder.getAbsolutePath());
         options.addPreference("browser.download.folderList", 2);
         options.addPreference("browser.helperApps.neverAsk.saveToDisk",
                 "image/png, application/pdf");
@@ -47,10 +52,7 @@ public class DownloadFirefoxJUnit4Test {
     }
 
     @After
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    public void teardown() {
         driver.quit();
     }
 
@@ -61,6 +63,14 @@ public class DownloadFirefoxJUnit4Test {
 
         driver.findElement(By.xpath("(//a)[2]")).click();
         driver.findElement(By.xpath("(//a)[3]")).click();
+
+        ConditionFactory await = Awaitility.await()
+                .atMost(Duration.ofSeconds(5));
+        File wdmLogo = new File(targetFolder, "webdrivermanager.png");
+        await.until(() -> wdmLogo.exists());
+
+        File wdmDoc = new File(targetFolder, "webdrivermanager.pdf");
+        await.until(() -> wdmDoc.exists());
     }
 
 }

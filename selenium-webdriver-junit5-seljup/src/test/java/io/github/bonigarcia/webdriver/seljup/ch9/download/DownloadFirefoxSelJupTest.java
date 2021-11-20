@@ -19,7 +19,8 @@ package io.github.bonigarcia.webdriver.seljup.ch9.download;
 import java.io.File;
 import java.time.Duration;
 
-import org.junit.jupiter.api.AfterEach;
+import org.awaitility.Awaitility;
+import org.awaitility.core.ConditionFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,23 +34,20 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 @ExtendWith(SeleniumJupiter.class)
 class DownloadFirefoxSelJupTest {
 
+    File targetFolder;
+
     @Options
     FirefoxOptions options = new FirefoxOptions();
 
     @BeforeEach
     void setup() {
-        String targetFolder = new File(".").getAbsolutePath();
-        options.addPreference("browser.download.dir", targetFolder);
+        targetFolder = new File(".");
+        options.addPreference("browser.download.dir",
+                targetFolder.getAbsolutePath());
         options.addPreference("browser.download.folderList", 2);
         options.addPreference("browser.helperApps.neverAsk.saveToDisk",
                 "image/png, application/pdf");
         options.addPreference("pdfjs.disabled", true);
-    }
-
-    @AfterEach
-    void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
     }
 
     @Test
@@ -59,6 +57,14 @@ class DownloadFirefoxSelJupTest {
 
         driver.findElement(By.xpath("(//a)[2]")).click();
         driver.findElement(By.xpath("(//a)[3]")).click();
+
+        ConditionFactory await = Awaitility.await()
+                .atMost(Duration.ofSeconds(5));
+        File wdmLogo = new File(targetFolder, "webdrivermanager.png");
+        await.until(() -> wdmLogo.exists());
+
+        File wdmDoc = new File(targetFolder, "webdrivermanager.pdf");
+        await.until(() -> wdmDoc.exists());
     }
 
 }
