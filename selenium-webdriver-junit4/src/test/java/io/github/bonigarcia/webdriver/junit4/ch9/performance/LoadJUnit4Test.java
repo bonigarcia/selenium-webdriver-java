@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch9.load;
+package io.github.bonigarcia.webdriver.junit4.ch9.performance;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.isDockerAvailable;
 import static java.lang.invoke.MethodHandles.lookup;

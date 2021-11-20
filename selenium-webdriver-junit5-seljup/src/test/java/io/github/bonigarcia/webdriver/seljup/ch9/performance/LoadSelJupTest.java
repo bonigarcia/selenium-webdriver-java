@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch9.load;
+package io.github.bonigarcia.webdriver.seljup.ch9.performance;
 
 import static io.github.bonigarcia.seljup.BrowserType.CHROME;
 import static java.lang.invoke.MethodHandles.lookup;

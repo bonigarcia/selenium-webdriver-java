@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch9.load;
+package io.github.bonigarcia.webdriver.testng.ch9.performance;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,14 +23,14 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.lightbody.bmp.BrowserMobProxy;
@@ -39,7 +39,7 @@ import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.proxy.CaptureType;
 
-public class HarCreatorJUnit4Test {
+public class HarCreatorNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -47,7 +47,7 @@ public class HarCreatorJUnit4Test {
 
     BrowserMobProxy proxy;
 
-    @Before
+    @BeforeMethod
     public void setup() {
         proxy = new BrowserMobProxyServer();
         proxy.start();
@@ -63,7 +63,7 @@ public class HarCreatorJUnit4Test {
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
 
-    @After
+    @AfterMethod
     public void teardown() throws IOException {
         Har har = proxy.getHar();
         File harFile = new File("login.har");

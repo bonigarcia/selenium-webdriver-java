@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch9.load;
+package io.github.bonigarcia.webdriver.jupiter.ch9.performance;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.isDockerAvailable;
 import static java.lang.invoke.MethodHandles.lookup;
@@ -28,16 +28,16 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class LoadNGTest {
+class LoadJupiterTest {
 
     static final int NUM_BROWSERS = 5;
 
@@ -47,19 +47,19 @@ public class LoadNGTest {
 
     WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
 
-    @BeforeMethod
-    public void setupTest() {
+    @BeforeEach
+    void setupTest() {
         assumeThat(isDockerAvailable()).isTrue();
         driverList = wdm.create(NUM_BROWSERS);
     }
 
-    @AfterMethod
+    @AfterEach
     void teardown() {
         wdm.quit();
     }
 
     @Test
-    public void testLoad() throws InterruptedException {
+    void testLoad() throws InterruptedException {
         ExecutorService executorService = newFixedThreadPool(NUM_BROWSERS);
         CountDownLatch latch = new CountDownLatch(NUM_BROWSERS);
 

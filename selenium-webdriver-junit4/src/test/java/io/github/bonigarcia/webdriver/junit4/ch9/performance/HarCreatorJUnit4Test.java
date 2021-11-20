@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch9.load;
+package io.github.bonigarcia.webdriver.junit4.ch9.performance;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,27 +23,23 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.seljup.Options;
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
 import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.proxy.CaptureType;
 
-@ExtendWith(SeleniumJupiter.class)
-class HarCreatorSelJupTest {
+public class HarCreatorJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -51,11 +47,8 @@ class HarCreatorSelJupTest {
 
     BrowserMobProxy proxy;
 
-    @Options
-    ChromeOptions options = new ChromeOptions();
-
-    @BeforeEach
-    void setup() {
+    @Before
+    public void setup() {
         proxy = new BrowserMobProxyServer();
         proxy.start();
         proxy.newHar();
@@ -63,21 +56,25 @@ class HarCreatorSelJupTest {
                 CaptureType.RESPONSE_CONTENT);
 
         Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
+        ChromeOptions options = new ChromeOptions();
         options.setProxy(seleniumProxy);
         options.setAcceptInsecureCerts(true);
+
+        driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
 
-    @AfterEach
-    void teardown() throws IOException {
+    @After
+    public void teardown() throws IOException {
         Har har = proxy.getHar();
         File harFile = new File("login.har");
         har.writeTo(harFile);
 
         proxy.stop();
+        driver.quit();
     }
 
     @Test
-    void testHarCreator(ChromeDriver driver) {
+    public void testHarCreator() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
 
