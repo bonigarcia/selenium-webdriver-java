@@ -59,7 +59,7 @@ public class DownloadFirefoxJUnit4Test {
     @Test
     public void testDownloadFirefox() {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/download-files.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/download.html");
 
         driver.findElement(By.xpath("(//a)[2]")).click();
         driver.findElement(By.xpath("(//a)[3]")).click();

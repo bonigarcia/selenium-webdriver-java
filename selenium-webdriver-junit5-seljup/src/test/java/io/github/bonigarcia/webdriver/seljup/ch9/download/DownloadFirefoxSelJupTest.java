@@ -53,7 +53,7 @@ class DownloadFirefoxSelJupTest {
     @Test
     void testDownloadFirefox(FirefoxDriver driver) {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/download-files.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/download.html");
 
         driver.findElement(By.xpath("(//a)[2]")).click();
         driver.findElement(By.xpath("(//a)[3]")).click();

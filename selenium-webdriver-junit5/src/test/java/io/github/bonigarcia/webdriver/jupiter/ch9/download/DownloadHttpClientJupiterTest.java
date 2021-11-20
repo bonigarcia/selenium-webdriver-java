@@ -58,7 +58,7 @@ class DownloadHttpClientJupiterTest {
     @Test
     void testDownloadHttpClient() throws IOException {
         driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/download-files.html");
+                "https://bonigarcia.dev/selenium-webdriver-java/download.html");
 
         WebElement pngLink = driver.findElement(By.xpath("(//a)[2]"));
         File pngFile = new File(".", "webdrivermanager.png");
