@@ -16,9 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch9.download;
 
-import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,13 +33,10 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 class DownloadHttpClientJupiterTest {
-
-    static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
@@ -75,15 +70,6 @@ class DownloadHttpClientJupiterTest {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             HttpUriRequestBase request = new HttpGet(link);
             CloseableHttpResponse response = client.execute(request);
-            String contentType = response.getFirstHeader("Content-Type")
-                    .getValue();
-            int contentLength = Integer.parseInt(
-                    response.getFirstHeader("Content-Length").getValue());
-            log.debug(
-                    "Downloading {} to {} (Content-Type: {} - Content-Length: {})",
-                    link, destination, contentType, contentLength);
-            assertThat(contentLength).isPositive();
-
             FileUtils.copyInputStreamToFile(response.getEntity().getContent(),
                     destination);
         }

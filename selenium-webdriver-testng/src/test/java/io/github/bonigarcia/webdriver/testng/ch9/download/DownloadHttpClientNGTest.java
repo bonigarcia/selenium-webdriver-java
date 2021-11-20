@@ -16,9 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch9.download;
 
-import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +30,6 @@ import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -40,8 +37,6 @@ import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DownloadHttpClientNGTest {
-
-    static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
@@ -75,15 +70,6 @@ public class DownloadHttpClientNGTest {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             HttpUriRequestBase request = new HttpGet(link);
             CloseableHttpResponse response = client.execute(request);
-            String contentType = response.getFirstHeader("Content-Type")
-                    .getValue();
-            int contentLength = Integer.parseInt(
-                    response.getFirstHeader("Content-Length").getValue());
-            log.debug(
-                    "Downloading {} to {} (Content-Type: {} - Content-Length: {})",
-                    link, destination, contentType, contentLength);
-            assertThat(contentLength).isPositive();
-
             FileUtils.copyInputStreamToFile(response.getEntity().getContent(),
                     destination);
         }
