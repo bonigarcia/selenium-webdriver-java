@@ -36,7 +36,7 @@ public class LoginSteps {
         driver.get(url);
     }
 
-    @And("I login with the username {string} and password {string}")
+    @And("I log in with the username {string} and password {string}")
     public void iLogin(String username, String password) {
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys(password);
@@ -48,7 +48,7 @@ public class LoginSteps {
         driver.findElement(By.cssSelector("button")).click();
     }
 
-    @Then("I should be see the message {string}")
+    @Then("I should see the message {string}")
     public void iShouldSee(String result) {
         try {
             driver.findElement(
