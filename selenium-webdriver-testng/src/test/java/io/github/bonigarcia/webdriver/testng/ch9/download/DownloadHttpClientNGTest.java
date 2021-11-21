@@ -69,9 +69,10 @@ public class DownloadHttpClientNGTest {
     void download(String link, File destination) throws IOException {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             HttpUriRequestBase request = new HttpGet(link);
-            CloseableHttpResponse response = client.execute(request);
-            FileUtils.copyInputStreamToFile(response.getEntity().getContent(),
-                    destination);
+            try (CloseableHttpResponse response = client.execute(request)) {
+                FileUtils.copyInputStreamToFile(
+                        response.getEntity().getContent(), destination);
+            }
         }
     }
 
