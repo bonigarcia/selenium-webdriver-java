@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch9.network;
+package io.github.bonigarcia.webdriver.seljup.ch9.network_traffic;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,25 +25,29 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Proxy;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.seljup.Options;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
 import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.HarEntry;
 import net.lightbody.bmp.proxy.CaptureType;
 
-class CaptureNetworkTrafficJupiterTest {
+@ExtendWith(SeleniumJupiter.class)
+class CaptureNetworkTrafficFirefoxSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriver driver;
-
     BrowserMobProxy proxy;
+
+    @Options
+    FirefoxOptions options = new FirefoxOptions();
 
     @BeforeEach
     void setup() {
@@ -54,21 +58,17 @@ class CaptureNetworkTrafficJupiterTest {
                 CaptureType.RESPONSE_CONTENT);
 
         Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
-        ChromeOptions options = new ChromeOptions();
         options.setProxy(seleniumProxy);
         options.setAcceptInsecureCerts(true);
-
-        driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
 
     @AfterEach
     void teardown() {
         proxy.stop();
-        driver.quit();
     }
 
     @Test
-    void testBrowserMobProxy() {
+    void testCaptureNetworkTrafficFirefox(FirefoxDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
 

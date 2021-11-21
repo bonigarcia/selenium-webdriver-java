@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch9.network;
+package io.github.bonigarcia.webdriver.junit4.ch9.network_traffic;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,13 +22,13 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import java.util.List;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.lightbody.bmp.BrowserMobProxy;
@@ -37,7 +37,7 @@ import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.HarEntry;
 import net.lightbody.bmp.proxy.CaptureType;
 
-public class CaptureNetworkTrafficNGTest {
+public class CaptureNetworkTrafficFirefoxJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -45,7 +45,7 @@ public class CaptureNetworkTrafficNGTest {
 
     BrowserMobProxy proxy;
 
-    @BeforeMethod
+    @Before
     public void setup() {
         proxy = new BrowserMobProxyServer();
         proxy.start();
@@ -54,21 +54,22 @@ public class CaptureNetworkTrafficNGTest {
                 CaptureType.RESPONSE_CONTENT);
 
         Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
-        ChromeOptions options = new ChromeOptions();
+        FirefoxOptions options = new FirefoxOptions();
         options.setProxy(seleniumProxy);
         options.setAcceptInsecureCerts(true);
 
-        driver = WebDriverManager.chromedriver().capabilities(options).create();
+        driver = WebDriverManager.firefoxdriver().capabilities(options)
+                .create();
     }
 
-    @AfterMethod
+    @After
     public void teardown() {
         proxy.stop();
         driver.quit();
     }
 
     @Test
-    public void testCaptureNetworkTraffic() {
+    public void testCaptureNetworkTrafficFirefox() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
 
