@@ -14,43 +14,35 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch9.data;
+package io.github.bonigarcia.webdriver.seljup.ch9.fake_data;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.github.javafaker.Faker;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-public class DataJUnit4Test {
+@ExtendWith(SeleniumJupiter.class)
+class FakeDataSelJupTest {
 
-    WebDriver driver;
-
-    @Before
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @After
-    public void teardown() throws InterruptedException {
+    @AfterEach
+    void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
     }
 
     @Test
-    public void testData() {
+    void testFakeData(ChromeDriver driver) {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/data-types.html");
 

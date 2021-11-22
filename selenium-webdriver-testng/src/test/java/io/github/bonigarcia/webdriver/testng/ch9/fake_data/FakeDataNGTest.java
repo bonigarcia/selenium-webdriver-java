@@ -14,35 +14,35 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch9.data;
+package io.github.bonigarcia.webdriver.testng.ch9.fake_data;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import com.github.javafaker.Faker;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class DataJupiterTest {
+public class FakeDataNGTest {
 
     WebDriver driver;
 
-    @BeforeEach
-    void setup() {
+    @BeforeMethod
+    public void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 
-    @AfterEach
-    void teardown() throws InterruptedException {
+    @AfterMethod
+    public void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
 
@@ -50,7 +50,7 @@ class DataJupiterTest {
     }
 
     @Test
-    void testData() {
+    public void testFakeData() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/data-types.html");
 

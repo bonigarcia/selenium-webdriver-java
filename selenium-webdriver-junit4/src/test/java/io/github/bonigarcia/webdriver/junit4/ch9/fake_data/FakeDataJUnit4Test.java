@@ -14,34 +14,34 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch9.data;
+package io.github.bonigarcia.webdriver.junit4.ch9.fake_data;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
 import java.util.List;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import com.github.javafaker.Faker;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class DataNGTest {
+public class FakeDataJUnit4Test {
 
     WebDriver driver;
 
-    @BeforeMethod
+    @Before
     public void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 
-    @AfterMethod
+    @After
     public void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
@@ -50,7 +50,7 @@ public class DataNGTest {
     }
 
     @Test
-    public void testData() {
+    public void testFakeData() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/data-types.html");
 
