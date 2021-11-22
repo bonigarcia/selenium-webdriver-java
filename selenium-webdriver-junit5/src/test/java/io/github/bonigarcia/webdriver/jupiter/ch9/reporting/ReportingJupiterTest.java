@@ -23,10 +23,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.WebDriver;
 
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -46,7 +46,9 @@ class ReportingJupiterTest {
     }
 
     @BeforeEach
-    void setup() {
+    void setup(TestInfo testInfo) {
+        reports.createTest(testInfo.getDisplayName());
+
         driver = WebDriverManager.chromedriver().create();
     }
 
@@ -62,16 +64,12 @@ class ReportingJupiterTest {
 
     @Test
     void testReporting1() {
-        ExtentTest test = reports.createTest("testReporting1");
         checkIndex(driver);
-        test.pass("Passed");
     }
 
     @Test
     void testReporting2() {
-        ExtentTest test = reports.createTest("testReporting2");
         checkIndex(driver);
-        test.pass("Passed");
     }
 
     void checkIndex(WebDriver driver) {

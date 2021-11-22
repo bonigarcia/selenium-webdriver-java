@@ -14,53 +14,63 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch9.reporting;
+package io.github.bonigarcia.webdriver.testng.ch9.reporting;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import java.lang.reflect.Method;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-@ExtendWith(SeleniumJupiter.class)
-class ReportingJupiterTest {
+public class ReportingNGTest {
+
+    WebDriver driver;
 
     static ExtentReports reports;
 
-    @BeforeAll
-    static void setupClass() {
+    @BeforeClass
+    public static void setupClass() {
         reports = new ExtentReports();
         ExtentSparkReporter htmlReporter = new ExtentSparkReporter(
                 "extentReport.html");
         reports.attachReporter(htmlReporter);
     }
 
-    @AfterAll
-    static void teardownClass() {
+    @BeforeMethod
+    public void setup(Method method) {
+        reports.createTest(method.getName());
+
+        driver = WebDriverManager.chromedriver().create();
+    }
+
+    @AfterMethod
+    public void teardown() {
+        driver.quit();
+    }
+
+    @AfterClass
+    public static void teardownClass() {
         reports.flush();
     }
 
     @Test
-    void testReporting1(ChromeDriver driver) {
-        ExtentTest test = reports.createTest("testReporting1");
+    public void testReporting1() {
         checkIndex(driver);
-        test.pass("Passed");
     }
 
     @Test
-    void testReporting2(ChromeDriver driver) {
-        ExtentTest test = reports.createTest("testReporting2");
+    public void testReporting2() {
         checkIndex(driver);
-        test.pass("Passed");
     }
 
     void checkIndex(WebDriver driver) {

@@ -22,16 +22,20 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ReportingJUnit4Test {
+
+    @Rule
+    public TestName name = new TestName();
 
     WebDriver driver;
 
@@ -47,6 +51,8 @@ public class ReportingJUnit4Test {
 
     @Before
     public void setup() {
+        reports.createTest(name.getMethodName());
+
         driver = WebDriverManager.chromedriver().create();
     }
 
@@ -62,16 +68,12 @@ public class ReportingJUnit4Test {
 
     @Test
     public void testReporting1() {
-        ExtentTest test = reports.createTest("testReporting1");
         checkIndex(driver);
-        test.pass("Passed");
     }
 
     @Test
     public void testReporting2() {
-        ExtentTest test = reports.createTest("testReporting2");
         checkIndex(driver);
-        test.pass("Passed");
     }
 
     void checkIndex(WebDriver driver) {
