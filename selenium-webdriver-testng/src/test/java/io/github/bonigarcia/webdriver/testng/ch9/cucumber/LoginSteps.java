@@ -16,7 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch9.cucumber;
 
-import java.util.NoSuchElementException;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -51,11 +51,8 @@ public class LoginSteps {
     @Then("I should see the message {string}")
     public void iShouldSee(String result) {
         try {
-            driver.findElement(
-                    By.xpath("//*[contains(text(), '" + result + "')]"));
-        } catch (NoSuchElementException e) {
-            throw new AssertionError(
-                    "\"" + result + "\" not available in results");
+            String bodyText = driver.findElement(By.tagName("body")).getText();
+            assertThat(bodyText).contains(result);
         } finally {
             driver.quit();
         }
