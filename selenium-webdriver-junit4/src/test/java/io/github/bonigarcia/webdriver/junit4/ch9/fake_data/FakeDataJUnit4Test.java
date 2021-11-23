@@ -75,7 +75,7 @@ public class FakeDataJUnit4Test {
                 .sendKeys(faker.job().position());
         driver.findElement(By.name("company")).sendKeys(faker.company().name());
 
-        driver.findElement(By.cssSelector("button[type=submit]")).click();
+        driver.findElement(By.tagName("form")).submit();
 
         List<WebElement> successElement = driver
                 .findElements(By.className("alert-success"));
