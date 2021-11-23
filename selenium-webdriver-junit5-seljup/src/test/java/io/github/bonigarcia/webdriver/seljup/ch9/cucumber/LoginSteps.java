@@ -22,6 +22,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -30,9 +31,13 @@ public class LoginSteps {
 
     private WebDriver driver;
 
+    @Given("I use {string}")
+    public void iUse(String browser) {
+        driver = WebDriverManager.getInstance(browser).create();
+    }
+
     @When("I navigate to {string}")
     public void iNavigateTo(String url) {
-        driver = WebDriverManager.chromedriver().create();
         driver.get(url);
     }
 
