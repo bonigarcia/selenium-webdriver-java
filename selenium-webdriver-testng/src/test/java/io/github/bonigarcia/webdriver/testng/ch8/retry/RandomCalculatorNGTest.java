@@ -20,23 +20,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class RandomCalculatorNGTest {
 
-    WebDriver driver;
+    static WebDriver driver;
 
-    @BeforeMethod
-    public void setup() {
+    @BeforeClass
+    public static void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 
-    @AfterMethod
-    public void teardown() {
+    @AfterClass
+    public static void teardown() {
         driver.quit();
     }
 

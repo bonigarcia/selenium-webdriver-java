@@ -18,8 +18,8 @@ package io.github.bonigarcia.webdriver.junit4.ch8.retry;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -29,18 +29,18 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class RandomCalculatorJUnit4Test {
 
-    WebDriver driver;
+    static WebDriver driver;
 
     @Rule
     public RetryRule retryRule = new RetryRule(5);
 
-    @Before
-    public void setup() {
+    @BeforeClass
+    public static void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 
-    @After
-    public void teardown() {
+    @AfterClass
+    public static void teardown() {
         driver.quit();
     }
 
@@ -56,6 +56,7 @@ public class RandomCalculatorJUnit4Test {
 
         // ... should be 4
         String result = driver.findElement(By.className("screen")).getText();
+
         assertThat(result).isEqualTo("4");
     }
 

@@ -18,8 +18,8 @@ package io.github.bonigarcia.webdriver.jupiter.ch8.retry;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -28,15 +28,15 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 class RandomCalculatorJupiterTest {
 
-    WebDriver driver;
+    static WebDriver driver;
 
-    @BeforeEach
-    void setup() {
+    @BeforeAll
+    static void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 
-    @AfterEach
-    void teardown() {
+    @AfterAll
+    static void teardown() {
         driver.quit();
     }
 

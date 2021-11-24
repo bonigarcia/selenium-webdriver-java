@@ -24,7 +24,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.artsok.RepeatedIfExceptionsTest;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.seljup.SingleSession;
 
+@SingleSession
 @ExtendWith(SeleniumJupiter.class)
 class RandomCalculatorSelJupTest {
 
