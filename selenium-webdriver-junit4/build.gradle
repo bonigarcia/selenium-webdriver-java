@@ -123,5 +123,7 @@ dependencies {
     }
     testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
     testImplementation("org.hamcrest:hamcrest:${hamcrestVersion}")
-    testImplementation("io.appium:java-client:${appiumVersion}")
+    testImplementation("io.appium:java-client:${appiumVersion}") {
+        exclude group: "org.seleniumhq.selenium", module: "*"
+    }
 }

@@ -128,5 +128,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
     testImplementation("org.hamcrest:hamcrest:${hamcrestVersion}")
-    testImplementation("io.appium:java-client:${appiumVersion}")
+    testImplementation("io.appium:java-client:${appiumVersion}") {
+        exclude group: "org.seleniumhq.selenium", module: "*"
+    }
 }
