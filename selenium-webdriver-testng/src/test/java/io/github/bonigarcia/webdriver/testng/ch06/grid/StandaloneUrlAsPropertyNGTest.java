@@ -36,7 +36,7 @@ public class StandaloneUrlAsPropertyNGTest {
     WebDriver driver;
 
     @BeforeClass
-    public static void setupAll() {
+    public void setupAll() {
         int port = PortProber.findFreePort();
         WebDriverManager.chromedriver().setup();
         Main.main(
@@ -58,7 +58,7 @@ public class StandaloneUrlAsPropertyNGTest {
     }
 
     @AfterClass
-    public static void teardownClass() {
+    public void teardownClass() {
         System.clearProperty("webdriver.remote.server");
     }
 

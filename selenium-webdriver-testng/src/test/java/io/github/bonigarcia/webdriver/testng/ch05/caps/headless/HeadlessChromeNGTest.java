@@ -33,7 +33,7 @@ public class HeadlessChromeNGTest {
     WebDriver driver;
 
     @BeforeClass
-    public static void setupClass() {
+    public void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 

@@ -32,7 +32,7 @@ public class WebDriverBuilderAlternativeNGTest {
     WebDriver driver;
 
     @BeforeClass
-    public static void setupClass() {
+    public void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 

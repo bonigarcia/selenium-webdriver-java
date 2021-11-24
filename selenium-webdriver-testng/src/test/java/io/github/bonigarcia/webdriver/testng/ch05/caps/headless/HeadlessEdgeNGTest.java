@@ -33,7 +33,7 @@ public class HeadlessEdgeNGTest {
     WebDriver driver;
 
     @BeforeClass
-    public static void setupClass() {
+    public void setupClass() {
         WebDriverManager.edgedriver().setup();
     }
 

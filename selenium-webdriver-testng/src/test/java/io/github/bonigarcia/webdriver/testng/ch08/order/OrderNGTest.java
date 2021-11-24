@@ -28,15 +28,15 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class OrderNGTest {
 
-    static WebDriver driver;
+    WebDriver driver;
 
     @BeforeClass
-    public static void setup() {
+    public void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 
     @AfterClass
-    public static void teardown() {
+    public void teardown() {
         driver.quit();
     }
 

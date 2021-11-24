@@ -36,10 +36,10 @@ public class ReportingNGTest {
 
     WebDriver driver;
 
-    static ExtentReports reports;
+    ExtentReports reports;
 
     @BeforeClass
-    public static void setupClass() {
+    public void setupClass() {
         reports = new ExtentReports();
         ExtentSparkReporter htmlReporter = new ExtentSparkReporter(
                 "extentReport.html");
@@ -59,7 +59,7 @@ public class ReportingNGTest {
     }
 
     @AfterClass
-    public static void teardownClass() {
+    public void teardownClass() {
         reports.flush();
     }
 

@@ -36,7 +36,7 @@ public class EditCookiesNGTest {
     WebDriver driver;
 
     @BeforeClass
-    static public void setupClass() {
+    public void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 

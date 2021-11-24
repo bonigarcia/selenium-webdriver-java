@@ -37,10 +37,10 @@ public class StandaloneRemoteNGTest {
 
     WebDriver driver;
 
-    static URL seleniumServerUrl;
+    URL seleniumServerUrl;
 
     @BeforeClass
-    public static void setupAll() throws MalformedURLException {
+    public void setupAll() throws MalformedURLException {
         int port = PortProber.findFreePort();
         WebDriverManager.chromedriver().setup();
         Main.main(
