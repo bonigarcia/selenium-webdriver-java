@@ -94,6 +94,8 @@ ext {
     extentreportsVersion = "5.0.9"
     cucumberVersion = "7.0.0"
     springBootVersion = "2.6.0"
+    restAssuredVersion = "4.4.0"
+    hamcrestVersion = "2.2"
 }
 
 dependencies {
@@ -123,4 +125,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter:${springBootVersion}")
     implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
+    testImplementation("org.hamcrest:hamcrest:${hamcrestVersion}")
 }
