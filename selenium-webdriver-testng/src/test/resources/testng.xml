@@ -3,9 +3,9 @@
     <test name="parallel-tests">
         <classes>
             <class
-                name="io.github.bonigarcia.webdriver.testng.ch8.parallel.Parallel1NGTest" />
+                name="io.github.bonigarcia.webdriver.testng.ch08.parallel.Parallel1NGTest" />
             <class
-                name="io.github.bonigarcia.webdriver.testng.ch8.parallel.Parallel2NGTest" />
+                name="io.github.bonigarcia.webdriver.testng.ch08.parallel.Parallel2NGTest" />
         </classes>
     </test>
 </suite>
