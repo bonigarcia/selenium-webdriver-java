@@ -99,6 +99,7 @@ ext {
     springBootVersion = "2.6.0"
     restAssuredVersion = "4.4.0"
     hamcrestVersion = "2.2"
+    appiumVersion = "8.0.0-beta"
 }
 
 dependencies {
@@ -128,4 +129,5 @@ dependencies {
     }
     testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
     testImplementation("org.hamcrest:hamcrest:${hamcrestVersion}")
+    testImplementation("io.appium:java-client:${appiumVersion}")
 }
