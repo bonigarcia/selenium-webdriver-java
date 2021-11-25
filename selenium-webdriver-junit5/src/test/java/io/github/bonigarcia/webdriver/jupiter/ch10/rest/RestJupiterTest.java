@@ -16,18 +16,20 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch10.rest;
 
-import static org.hamcrest.Matchers.notNullValue;
+import static io.restassured.RestAssured.get;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-
-import io.restassured.RestAssured;
 
 class RestJupiterTest {
 
     @Test
     void testRest() {
-        RestAssured.get("https://httpbin.org/get").then().assertThat()
-                .statusCode(200).body("origin", notNullValue());
+        HttpBinGet get = get("https://httpbin.org/get").then().assertThat()
+                .statusCode(200).extract().as(HttpBinGet.class);
+
+        assertThat(get.getHeaders()).containsKey("Accept-Encoding");
+        assertThat(get.getOrigin()).isNotBlank();
     }
 
 }

@@ -14,20 +14,22 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch10.rest;
+package io.github.bonigarcia.webdriver.junit4.ch10.rest;
 
-import static org.hamcrest.Matchers.notNullValue;
+import static io.restassured.RestAssured.get;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
-import io.restassured.RestAssured;
-
-public class RestJupiterTest {
+public class RestJUnit4Test {
 
     @Test
     public void testRest() {
-        RestAssured.get("https://httpbin.org/get").then().assertThat()
-                .statusCode(200).body("origin", notNullValue());
+        HttpBinGet get = get("https://httpbin.org/get").then().assertThat()
+                .statusCode(200).extract().as(HttpBinGet.class);
+
+        assertThat(get.getHeaders()).containsKey("Accept-Encoding");
+        assertThat(get.getOrigin()).isNotBlank();
     }
 
 }

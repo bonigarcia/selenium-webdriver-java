@@ -92,7 +92,6 @@ ext {
     cucumberVersion = "7.0.0"
     springBootVersion = "2.6.0"
     restAssuredVersion = "4.4.0"
-    hamcrestVersion = "2.2"
     appiumVersion = "8.0.0-beta"
 }
 
@@ -124,7 +123,6 @@ dependencies {
         exclude group: "org.junit.jupiter", module: "*"
     }
     testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
-    testImplementation("org.hamcrest:hamcrest:${hamcrestVersion}")
     testImplementation("io.appium:java-client:${appiumVersion}") {
         exclude group: "org.seleniumhq.selenium", module: "*"
     }

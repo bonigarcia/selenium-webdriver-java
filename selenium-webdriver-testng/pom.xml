@@ -27,7 +27,6 @@
         <cucumber.version>7.0.0</cucumber.version>
         <spring-boot.version>2.6.0</spring-boot.version>
         <rest-assured.version>4.4.0</rest-assured.version>
-        <hamcrest.version>2.2</hamcrest.version>
         <appium.version>8.0.0-beta</appium.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
@@ -176,12 +175,6 @@
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest</artifactId>
-            <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
