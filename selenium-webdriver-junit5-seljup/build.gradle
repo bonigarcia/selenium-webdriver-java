@@ -118,7 +118,9 @@ dependencies {
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
     testImplementation("com.deque.html.axe-core:selenium:${axelVersion}")
     testImplementation("com.github.javafaker:javafaker:${javafakerVersion}")
-    testImplementation("com.aventstack:extentreports:${extentreportsVersion}")
+    testImplementation("com.aventstack:extentreports:${extentreportsVersion}") {
+        exclude group: "org.projectlombok", module: "lombok"
+    }
     testImplementation("org.junit.platform:junit-platform-suite:${junitPlatformVersion}")
     testImplementation("io.cucumber:cucumber-java:${cucumberVersion}")
     testImplementation("io.cucumber:cucumber-junit-platform-engine:${cucumberVersion}")

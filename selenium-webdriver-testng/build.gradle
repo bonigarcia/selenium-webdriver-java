@@ -119,13 +119,15 @@ dependencies {
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
     testImplementation("com.deque.html.axe-core:selenium:${axelVersion}")
     testImplementation("com.github.javafaker:javafaker:${javafakerVersion}")
-    testImplementation("com.aventstack:extentreports:${extentreportsVersion}")
+    testImplementation("com.aventstack:extentreports:${extentreportsVersion}") {
+        exclude group: "org.junit.jupiter", module: "*"
+    }
     testImplementation("io.cucumber:cucumber-java:${cucumberVersion}")
     testImplementation("io.cucumber:cucumber-testng:${cucumberVersion}")
     implementation("org.springframework.boot:spring-boot-starter:${springBootVersion}")
     implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") {
-        exclude group: "org.junit.jupiter", module: "*"
+        exclude group: "org.projectlombok", module: "lombok"
     }
     testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
     testImplementation("org.hamcrest:hamcrest:${hamcrestVersion}")
