@@ -14,45 +14,53 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch02.otherbrowsers;
+package io.github.bonigarcia.webdriver.testng.ch02.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
+import static org.openqa.selenium.net.PortProber.findFreePort;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Path;
 import java.util.Optional;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldSafariNGTest {
+public class HelloWorldChromiumNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
+    static Optional<Path> browserPath;
+
     @BeforeClass
     public void setupClass() {
-        Optional<Path> browserPath = WebDriverManager.safaridriver()
-                .getBrowserPath();
+        browserPath = WebDriverManager.chromiumdriver().getBrowserPath();
         assumeThat(browserPath).isPresent();
+
+        WebDriverManager.chromiumdriver().setup();
     }
 
     @BeforeMethod
     public void setup() {
-        driver = new SafariDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-debugging-port=" + findFreePort());
+        options.setBinary(browserPath.get().toFile());
+        driver = new ChromeDriver(options);
     }
 
-    @AfterTest
+    @AfterMethod
     public void teardown() {
         driver.quit();
     }

@@ -14,14 +14,14 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch02.mainbrowsers;
+package io.github.bonigarcia.webdriver.testng.ch02.helloworld;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldEdgeNGTest {
+public class HelloWorldFirefoxNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -38,12 +38,12 @@ public class HelloWorldEdgeNGTest {
 
     @BeforeClass
     public void setupClass() {
-        WebDriverManager.edgedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
     }
 
     @BeforeMethod
     public void setup() {
-        driver = new EdgeDriver();
+        driver = new FirefoxDriver();
     }
 
     @AfterMethod

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch02.mainbrowsers;
+package io.github.bonigarcia.webdriver.testng.ch02.helloworld;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -14,20 +14,14 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch02.otherbrowsers;
+package io.github.bonigarcia.webdriver.testng.ch02.helloworld;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assumptions.assumeThat;
-import static org.openqa.selenium.net.PortProber.findFreePort;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.nio.file.Path;
-import java.util.Optional;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -36,28 +30,20 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldChromiumNGTest {
+public class HelloWorldEdgeNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
-    static Optional<Path> browserPath;
-
     @BeforeClass
     public void setupClass() {
-        browserPath = WebDriverManager.chromiumdriver().getBrowserPath();
-        assumeThat(browserPath).isPresent();
-
-        WebDriverManager.chromiumdriver().setup();
+        WebDriverManager.edgedriver().setup();
     }
 
     @BeforeMethod
     public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-debugging-port=" + findFreePort());
-        options.setBinary(browserPath.get().toFile());
-        driver = new ChromeDriver(options);
+        driver = new EdgeDriver();
     }
 
     @AfterMethod

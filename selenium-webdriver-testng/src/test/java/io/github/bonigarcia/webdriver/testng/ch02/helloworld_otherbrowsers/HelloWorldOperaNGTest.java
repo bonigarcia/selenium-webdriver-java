@@ -14,14 +14,18 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch02.mainbrowsers;
+package io.github.bonigarcia.webdriver.testng.ch02.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
+import java.nio.file.Path;
+import java.util.Optional;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.opera.OperaDriver;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -30,7 +34,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldFirefoxNGTest {
+public class HelloWorldOperaNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -38,12 +42,16 @@ public class HelloWorldFirefoxNGTest {
 
     @BeforeClass
     public void setupClass() {
-        WebDriverManager.firefoxdriver().setup();
+        Optional<Path> browserPath = WebDriverManager.operadriver()
+                .getBrowserPath();
+        assumeThat(browserPath).isPresent();
+
+        WebDriverManager.operadriver().setup();
     }
 
     @BeforeMethod
     public void setup() {
-        driver = new FirefoxDriver();
+        driver = new OperaDriver();
     }
 
     @AfterMethod

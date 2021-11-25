@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch02.otherbrowsers;
+package io.github.bonigarcia.webdriver.testng.ch02.helloworld_otherbrowsers;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,16 +25,16 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldOperaNGTest {
+public class HelloWorldSafariNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -42,19 +42,17 @@ public class HelloWorldOperaNGTest {
 
     @BeforeClass
     public void setupClass() {
-        Optional<Path> browserPath = WebDriverManager.operadriver()
+        Optional<Path> browserPath = WebDriverManager.safaridriver()
                 .getBrowserPath();
         assumeThat(browserPath).isPresent();
-
-        WebDriverManager.operadriver().setup();
     }
 
     @BeforeMethod
     public void setup() {
-        driver = new OperaDriver();
+        driver = new SafariDriver();
     }
 
-    @AfterMethod
+    @AfterTest
     public void teardown() {
         driver.quit();
     }
