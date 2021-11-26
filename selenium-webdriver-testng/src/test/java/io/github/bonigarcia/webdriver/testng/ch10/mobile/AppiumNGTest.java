@@ -22,7 +22,6 @@ import static org.assertj.core.api.Assumptions.assumeThat;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -39,23 +38,22 @@ public class AppiumNGTest {
 
     @BeforeMethod
     public void setup() throws MalformedURLException {
-        URL appiumServerUrl = new URL("http://localhost:4723/wd/hub/");
-        assumeThat(isOnline(new URL(appiumServerUrl, "status"))).isTrue();
+        URL appiumServerUrl = new URL("http://localhost:4723");
+        assumeThat(isOnline(new URL(appiumServerUrl, "/status"))).isTrue();
 
         ChromeOptions options = new ChromeOptions();
         options.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         options.setCapability(MobileCapabilityType.DEVICE_NAME,
                 "Nexus 5 API 30");
+        options.setCapability(MobileCapabilityType.AUTOMATION_NAME,
+                "UiAutomator2");
 
         driver = new AppiumDriver(appiumServerUrl, options);
     }
 
     @AfterMethod
-    public void teardown() throws InterruptedException {
+    public void teardown() {
         if (driver != null) {
-            // FIXME: pause for manual browser inspection
-            Thread.sleep(Duration.ofSeconds(3).toMillis());
-
             driver.quit();
         }
     }
