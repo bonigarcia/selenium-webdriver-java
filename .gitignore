@@ -10,3 +10,4 @@ build
 bin
 test-output
 .allure
+node_modules
