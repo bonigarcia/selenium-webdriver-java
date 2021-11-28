@@ -21,11 +21,8 @@ import java.util.Map;
 public class HttpBinGet {
 
     public Map<String, String> args;
-
     public Map<String, String> headers;
-
     public String origin;
-
     public String url;
 
     public Map<String, String> getArgs() {
@@ -58,12 +55,6 @@ public class HttpBinGet {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    @Override
-    public String toString() {
-        return "HttpBinGet [args=" + args + ", headers=" + headers + ", origin="
-                + origin + ", url=" + url + "]";
     }
 
 }
