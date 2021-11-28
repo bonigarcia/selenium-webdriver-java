@@ -16,17 +16,18 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch10.rest;
 
-import static io.restassured.RestAssured.get;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
+
+import io.restassured.RestAssured;
 
 public class RestJUnit4Test {
 
     @Test
     public void testRest() {
-        HttpBinGet get = get("https://httpbin.org/get").then().assertThat()
-                .statusCode(200).extract().as(HttpBinGet.class);
+        HttpBinGet get = RestAssured.get("https://httpbin.org/get").then()
+                .assertThat().statusCode(200).extract().as(HttpBinGet.class);
 
         assertThat(get.getHeaders()).containsKey("Accept-Encoding");
         assertThat(get.getOrigin()).isNotBlank();

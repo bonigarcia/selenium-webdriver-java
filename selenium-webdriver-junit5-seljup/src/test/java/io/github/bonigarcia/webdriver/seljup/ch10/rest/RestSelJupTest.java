@@ -16,17 +16,18 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch10.rest;
 
-import static io.restassured.RestAssured.get;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
+
+import io.restassured.RestAssured;
 
 class RestSelJupTest {
 
     @Test
     void testRest() {
-        HttpBinGet get = get("https://httpbin.org/get").then().assertThat()
-                .statusCode(200).extract().as(HttpBinGet.class);
+        HttpBinGet get = RestAssured.get("https://httpbin.org/get").then()
+                .assertThat().statusCode(200).extract().as(HttpBinGet.class);
 
         assertThat(get.getHeaders()).containsKey("Accept-Encoding");
         assertThat(get.getOrigin()).isNotBlank();
