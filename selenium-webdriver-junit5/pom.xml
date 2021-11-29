@@ -17,7 +17,7 @@
         <wdm.version>5.0.4-SNAPSHOT</wdm.version>
 
         <rerunner.version>2.1.6</rerunner.version>
-        <junit-platform.version>1.8.1</junit-platform.version>
+        <junit-platform.version>1.8.2</junit-platform.version>
         <awaitility.version>4.1.1</awaitility.version>
         <browsermob.version>2.1.5</browsermob.version>
         <zapclient.version>1.10.0</zapclient.version>
