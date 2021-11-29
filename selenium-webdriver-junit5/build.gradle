@@ -85,7 +85,7 @@ ext {
     wdmVersion = "5.0.4-SNAPSHOT"
 
     rerunnerVersion = "2.1.6"
-    junitPlatformVersion = "1.8.1"
+    junitPlatformVersion = "1.8.2"
     awaitilityVersion = "4.1.1"
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.10.0"
