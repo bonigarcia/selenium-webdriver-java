@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "io.qameta.allure" version "2.9.6"
-    id "org.springframework.boot" version "2.6.0"
+    id "org.springframework.boot" version "2.6.1"
 }
 
 jar {
@@ -96,7 +96,7 @@ ext {
     javafakerVersion = "1.0.2"
     extentreportsVersion = "5.0.9"
     cucumberVersion = "7.1.0"
-    springBootVersion = "2.6.0"
+    springBootVersion = "2.6.1"
     restAssuredVersion = "4.4.0"
     appiumVersion = "8.0.0-beta"
 }
