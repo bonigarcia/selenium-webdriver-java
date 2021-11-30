@@ -28,8 +28,8 @@
         <allure-maven.version>2.10.0</allure-maven.version>
         <cucumber.version>7.1.0</cucumber.version>
         <spring-boot.version>2.6.1</spring-boot.version>
-        <rest-assured.version>4.4.0</rest-assured.version>
         <appium.version>8.0.0-beta</appium.version>
+        <rest-assured.version>4.4.0</rest-assured.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
@@ -186,12 +186,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${rest-assured.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>${appium.version}</version>
@@ -202,6 +196,12 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
