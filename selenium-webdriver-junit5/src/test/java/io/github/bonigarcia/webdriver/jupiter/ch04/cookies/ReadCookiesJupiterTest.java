@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -59,10 +60,11 @@ class ReadCookiesJupiterTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/cookies.html");
 
-        Set<Cookie> cookies = driver.manage().getCookies();
+        Options options = driver.manage();
+        Set<Cookie> cookies = options.getCookies();
         assertThat(cookies).hasSize(2);
 
-        Cookie username = driver.manage().getCookieNamed("username");
+        Cookie username = options.getCookieNamed("username");
         assertThat(username.getValue()).isEqualTo("John Doe");
         assertThat(username.getPath()).isEqualTo("/");
 

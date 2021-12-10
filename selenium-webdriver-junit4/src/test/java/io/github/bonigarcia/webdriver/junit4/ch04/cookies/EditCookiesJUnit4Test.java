@@ -27,6 +27,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -58,11 +59,12 @@ public class EditCookiesJUnit4Test {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/cookies.html");
 
-        Cookie username = driver.manage().getCookieNamed("username");
+        Options options = driver.manage();
+        Cookie username = options.getCookieNamed("username");
         Cookie editedCookie = new Cookie(username.getName(), "new-value");
-        driver.manage().addCookie(editedCookie);
+        options.addCookie(editedCookie);
 
-        Cookie readCookie = driver.manage().getCookieNamed(username.getName());
+        Cookie readCookie = options.getCookieNamed(username.getName());
         assertThat(editedCookie).isEqualTo(readCookie);
 
         driver.findElement(By.id("refresh-cookies")).click();

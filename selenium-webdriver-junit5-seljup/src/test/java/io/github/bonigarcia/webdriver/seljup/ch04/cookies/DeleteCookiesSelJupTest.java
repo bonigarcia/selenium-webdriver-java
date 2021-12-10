@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -44,11 +45,12 @@ class DeleteCookiesSelJupTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/cookies.html");
 
-        Set<Cookie> cookies = driver.manage().getCookies();
-        Cookie username = driver.manage().getCookieNamed("username");
-        driver.manage().deleteCookie(username);
+        Options options = driver.manage();
+        Set<Cookie> cookies = options.getCookies();
+        Cookie username = options.getCookieNamed("username");
+        options.deleteCookie(username);
 
-        assertThat(driver.manage().getCookies()).hasSize(cookies.size() - 1);
+        assertThat(options.getCookies()).hasSize(cookies.size() - 1);
 
         driver.findElement(By.id("refresh-cookies")).click();
     }
