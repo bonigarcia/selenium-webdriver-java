@@ -20,9 +20,8 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.After;
 import org.junit.Before;
@@ -57,9 +56,9 @@ public class DatePickerJUnit4Test {
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
         // Get the current date from the system clock
-        Calendar today = Calendar.getInstance();
-        int currentYear = today.get(Calendar.YEAR);
-        int currentDay = today.get(Calendar.DAY_OF_MONTH);
+        LocalDate today = LocalDate.now();
+        int currentYear = today.getYear();
+        int currentDay = today.getDayOfMonth();
 
         // Click on the date picker to open the calendar
         WebElement datePicker = driver.findElement(By.name("my-date"));
@@ -91,10 +90,10 @@ public class DatePickerJUnit4Test {
 
         // Assert that the expected date is equal to the one selected in the
         // date picker
-        today.add(Calendar.YEAR, -1);
-        Date previousYear = today.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String expectedDate = dateFormat.format(previousYear);
+        LocalDate previousYear = today.minusYears(1);
+        DateTimeFormatter dateFormat = DateTimeFormatter
+                .ofPattern("MM/dd/yyyy");
+        String expectedDate = previousYear.format(dateFormat);
         log.debug("Expected date: {}", expectedDate);
 
         assertThat(oneYearBack).isEqualTo(expectedDate);
