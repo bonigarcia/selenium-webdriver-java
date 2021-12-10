@@ -20,7 +20,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
@@ -29,14 +28,13 @@ import org.openqa.selenium.WebElement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore("Not available yet")
 public class ShadowDomJUnit4Test {
 
     WebDriver driver;
 
     @Before
     public void setup() {
-        driver = WebDriverManager.edgedriver().create();
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @After

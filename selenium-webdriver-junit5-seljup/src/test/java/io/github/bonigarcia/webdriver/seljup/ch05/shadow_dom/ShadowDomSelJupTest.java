@@ -18,7 +18,6 @@ package io.github.bonigarcia.webdriver.seljup.ch05.shadow_dom;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -29,7 +28,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@Disabled("Not available yet")
 @ExtendWith(SeleniumJupiter.class)
 class ShadowDomSelJupTest {
 
