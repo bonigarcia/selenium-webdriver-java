@@ -30,8 +30,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.LocalFileDetector;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -57,7 +55,6 @@ class UploadFileJupiterTest {
         String initUrl = "https://bonigarcia.dev/selenium-webdriver-java/web-form.html";
         driver.get(initUrl);
 
-        ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
         WebElement inputFile = driver.findElement(By.name("my-file"));
 
         Path tempFile = Files.createTempFile("tempfiles", ".tmp");
