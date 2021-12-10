@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch05.logs;
+package io.github.bonigarcia.webdriver.seljup.ch05.caps.logs;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -22,10 +22,10 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.util.logging.Level;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
@@ -33,32 +33,27 @@ import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.seljup.Options;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-class BrowserLogsJupiterTest {
+@ExtendWith(SeleniumJupiter.class)
+class BrowserLogsSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriver driver;
+    @Options
+    ChromeOptions options = new ChromeOptions();
 
     @BeforeEach
     void setup() {
         LoggingPreferences logs = new LoggingPreferences();
         logs.enable(LogType.BROWSER, Level.ALL);
 
-        ChromeOptions options = new ChromeOptions();
         options.setCapability(CapabilityType.LOGGING_PREFS, logs);
-
-        driver = WebDriverManager.chromedriver().capabilities(options).create();
-    }
-
-    @AfterEach
-    void teardown() {
-        driver.quit();
     }
 
     @Test
-    void testBrowserLogs() {
+    void testBrowserLogs(ChromeDriver driver) {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/console-logs.html");
 

@@ -14,26 +14,26 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch05.proxy;
+package io.github.bonigarcia.webdriver.junit4.ch05.caps.proxy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Ignore;
-import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 @Ignore("Proxy not available")
-public class ProxyNGTest {
+public class ProxyJUnit4Test {
 
     WebDriver driver;
 
-    @BeforeMethod
+    @Before
     public void setup() {
         Proxy proxy = new Proxy();
         String proxyStr = "proxy:port";
@@ -49,7 +49,7 @@ public class ProxyNGTest {
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
 
-    @AfterMethod
+    @After
     public void teardown() {
         driver.quit();
     }

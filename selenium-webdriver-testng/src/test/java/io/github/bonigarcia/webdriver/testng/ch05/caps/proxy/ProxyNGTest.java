@@ -14,40 +14,37 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch05.logs;
+package io.github.bonigarcia.webdriver.testng.ch05.caps.proxy;
 
-import static java.lang.invoke.MethodHandles.lookup;
-import static org.slf4j.LoggerFactory.getLogger;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.logging.Level;
-
-import org.assertj.core.api.Assertions;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.CapabilityType;
-import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class BrowserLogsNGTest {
-
-    static final Logger log = getLogger(lookup().lookupClass());
+@Ignore("Proxy not available")
+public class ProxyNGTest {
 
     WebDriver driver;
 
     @BeforeMethod
     public void setup() {
-        LoggingPreferences logs = new LoggingPreferences();
-        logs.enable(LogType.BROWSER, Level.ALL);
+        Proxy proxy = new Proxy();
+        String proxyStr = "proxy:port";
+        proxy.setHttpProxy(proxyStr);
+        proxy.setSslProxy(proxyStr);
 
         ChromeOptions options = new ChromeOptions();
-        options.setCapability(CapabilityType.LOGGING_PREFS, logs);
+        options.setAcceptInsecureCerts(true);
+        options.setProxy(proxy);
+        // The previous line is equivalent to:
+        // options.setCapability(CapabilityType.PROXY, proxy);
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
@@ -58,13 +55,9 @@ public class BrowserLogsNGTest {
     }
 
     @Test
-    public void testBrowserLogs() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/console-logs.html");
-
-        LogEntries browserLogs = driver.manage().logs().get(LogType.BROWSER);
-        Assertions.assertThat(browserLogs.getAll()).isNotEmpty();
-        browserLogs.forEach(l -> log.debug("{}", l));
+    public void testProxy() {
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 
 }

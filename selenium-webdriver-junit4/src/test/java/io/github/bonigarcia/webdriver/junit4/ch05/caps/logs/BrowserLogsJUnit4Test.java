@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch05.logs;
+package io.github.bonigarcia.webdriver.junit4.ch05.caps.logs;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -22,10 +22,10 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.util.logging.Level;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
@@ -33,27 +33,32 @@ import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.seljup.Options;
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-@ExtendWith(SeleniumJupiter.class)
-class BrowserLogsSelJupTest {
+public class BrowserLogsJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    @Options
-    ChromeOptions options = new ChromeOptions();
+    WebDriver driver;
 
-    @BeforeEach
-    void setup() {
+    @Before
+    public void setup() {
         LoggingPreferences logs = new LoggingPreferences();
         logs.enable(LogType.BROWSER, Level.ALL);
 
+        ChromeOptions options = new ChromeOptions();
         options.setCapability(CapabilityType.LOGGING_PREFS, logs);
+
+        driver = WebDriverManager.chromedriver().capabilities(options).create();
+    }
+
+    @After
+    public void teardown() {
+        driver.quit();
     }
 
     @Test
-    void testBrowserLogs(ChromeDriver driver) {
+    public void testBrowserLogs() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/console-logs.html");
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch05.logs;
+package io.github.bonigarcia.webdriver.testng.ch05.caps.logs;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -22,9 +22,6 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.util.logging.Level;
 
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
@@ -32,16 +29,19 @@ import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.slf4j.Logger;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class BrowserLogsJUnit4Test {
+public class BrowserLogsNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
-    @Before
+    @BeforeMethod
     public void setup() {
         LoggingPreferences logs = new LoggingPreferences();
         logs.enable(LogType.BROWSER, Level.ALL);
@@ -49,10 +49,10 @@ public class BrowserLogsJUnit4Test {
         ChromeOptions options = new ChromeOptions();
         options.setCapability(CapabilityType.LOGGING_PREFS, logs);
 
-        driver = WebDriverManager.chromedriver().capabilities(options).create();
+        driver = WebDriverManager.firefoxdriver().capabilities(options).create();
     }
 
-    @After
+    @AfterMethod
     public void teardown() {
         driver.quit();
     }
