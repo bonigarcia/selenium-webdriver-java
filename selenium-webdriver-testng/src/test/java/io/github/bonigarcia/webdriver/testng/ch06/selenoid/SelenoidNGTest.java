@@ -22,6 +22,8 @@ import static org.assertj.core.api.Assumptions.assumeThat;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -40,7 +42,9 @@ public class SelenoidNGTest {
         assumeThat(isOnline(seleniumServerUrl)).isTrue();
 
         ChromeOptions options = new ChromeOptions();
-        options.setCapability("enableVNC", true);
+        Map<String, Object> selenoidOptions = new HashMap<>();
+        selenoidOptions.put("enableVNC", true);
+        options.setCapability("selenoid:options", selenoidOptions);
         driver = new RemoteWebDriver(seleniumServerUrl, options);
     }
 

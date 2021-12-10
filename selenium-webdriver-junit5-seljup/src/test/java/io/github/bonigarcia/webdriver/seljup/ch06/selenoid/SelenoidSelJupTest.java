@@ -22,6 +22,8 @@ import static org.assertj.core.api.Assumptions.assumeThat;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,7 +49,9 @@ class SelenoidSelJupTest {
         seleniumServerUrl = new URL("http://localhost:4444/wd/hub");
         assumeThat(isOnline(seleniumServerUrl)).isTrue();
 
-        options.setCapability("enableVNC", true);
+        Map<String, Object> selenoidOptions = new HashMap<>();
+        selenoidOptions.put("enableVNC", true);
+        options.setCapability("selenoid:options", selenoidOptions);
     }
 
     @Test
