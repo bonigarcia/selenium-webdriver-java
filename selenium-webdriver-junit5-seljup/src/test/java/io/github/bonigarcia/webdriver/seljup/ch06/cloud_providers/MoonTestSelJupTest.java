@@ -25,7 +25,6 @@ import java.net.URL;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -34,7 +33,7 @@ import io.github.bonigarcia.seljup.DriverUrl;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
-class TestingBootJupiterTest {
+class MoonTestSelJupTest {
 
     @DriverUrl
     URL remoteUrl;
@@ -44,27 +43,29 @@ class TestingBootJupiterTest {
 
     @BeforeEach
     void setup() throws MalformedURLException {
-        String key = System.getProperty("testingBootUsername");
-        String secret = System.getProperty("testingBootAccessKey");
+        String username = System.getProperty("moonUsername");
+        String password = System.getProperty("moonPassword");
+        String company = System.getProperty("moonCompany");
 
-        // An alternative way to read key and secret is using envs:
-        // String key = System.getenv("TESTINGBOOT_KEY");
-        // String secret = System.getenv("TESTINGBOOT_SECRET");
+        // An alternative way to read username and password is using envs:
+        // String username = System.getenv("MOON_USERNAME");
+        // String password = System.getenv("MOON_PASSWORD");
+        // String company = System.getenv("MOON_COMPANY");
 
-        assumeThat(key).isNotEmpty();
-        assumeThat(secret).isNotEmpty();
+        assumeThat(username).isNotEmpty();
+        assumeThat(password).isNotEmpty();
+        assumeThat(company).isNotEmpty();
 
         capabilities.setCapability("browserName", "Chrome");
-        capabilities.setCapability("version", "latest");
-        capabilities.setCapability("platform", Platform.WINDOWS);
-        capabilities.setCapability("name", "Testing Selenium");
+        capabilities.setCapability("browserVersion", "70.0");
 
-        remoteUrl = new URL(String
-                .format("http://%s:%s@hub.testingbot.com/wd/hub", key, secret));
+        remoteUrl = new URL(
+                String.format("https://%s:%s@%s.cloud.aerokube.com/wd/hub",
+                        username, password, company));
     }
 
     @Test
-    void testTestingBoot(RemoteWebDriver driver) {
+    void testMoon(RemoteWebDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
