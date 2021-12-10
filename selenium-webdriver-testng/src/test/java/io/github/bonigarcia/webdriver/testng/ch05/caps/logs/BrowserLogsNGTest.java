@@ -49,7 +49,7 @@ public class BrowserLogsNGTest {
         ChromeOptions options = new ChromeOptions();
         options.setCapability(CapabilityType.LOGGING_PREFS, logs);
 
-        driver = WebDriverManager.firefoxdriver().capabilities(options).create();
+        driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
 
     @AfterMethod
