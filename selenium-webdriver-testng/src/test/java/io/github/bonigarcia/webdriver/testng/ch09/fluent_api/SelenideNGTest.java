@@ -32,7 +32,7 @@ public class SelenideNGTest {
 
         $(By.id("username")).val("user");
         $(By.id("password")).val("user");
-        $(By.cssSelector("button")).pressEnter();
+        $("button").pressEnter();
         $(By.id("success")).shouldBe(visible)
                 .shouldHave(text("Login successful"));
     }
