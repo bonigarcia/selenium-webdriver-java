@@ -6,7 +6,11 @@
 
 # Hands-On Selenium WebDriver with Java [![][Logo]][GitHub Repository]
 
-This repository contains a comprehensive collection of examples about [Selenium WebDriver] 4 using [Java] as language binding. It has been implemented as a multi-module project (using [Maven] and [Gradle] as build tools) composed of tests based on different frameworks: [JUnit 4], [JUnit 5] (alone or extended with [Selenium-Jupiter]), and [TestNG].
+This repository contains a comprehensive collection of examples about [Selenium] 4 using [Java] as language binding. These examples are explained in the O'Reilly book [Hands-On Selenium WebDriver with Java].
+
+[![][Cover]][Hands-On Selenium WebDriver with Java]
+
+This repo has been implemented as a multi-module project (using [Maven] and [Gradle] as build tools) composed of tests based on different frameworks: [JUnit 4], [JUnit 5] (alone or extended with [Selenium-Jupiter]), and [TestNG].
 
 ## About
 
@@ -21,6 +25,8 @@ selenium-webdriver-java (Copyright &copy; 2021) is an open-source project create
 [JUnit 4]: https://junit.org/junit4/
 [JUnit 5]: https://junit.org/junit5/docs/current/user-guide/
 [Maven]: https://maven.apache.org/
-[Selenium WebDriver]: https://www.selenium.dev/documentation/webdriver/
+[Selenium]: https://www.selenium.dev/
 [Selenium-Jupiter]: https://bonigarcia.dev/selenium-jupiter/
 [TestNG]: https://testng.org/doc/
+[Hands-On Selenium WebDriver with Java]: https://www.oreilly.com/library/view/hands-on-selenium-webdriver/9781098109998/
+[Cover]: https://bonigarcia.dev/img/hands-on-selenium-webdriver-java-early-release.png
