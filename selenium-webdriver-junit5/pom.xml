@@ -16,6 +16,7 @@
         <assertj.version>3.21.0</assertj.version>
         <wdm.version>5.0.4-SNAPSHOT</wdm.version>
 
+        <htmlunit.version>3.56.0</htmlunit.version>
         <rerunner.version>2.1.6</rerunner.version>
         <junit-platform.version>1.8.2</junit-platform.version>
         <awaitility.version>4.1.1</awaitility.version>
@@ -55,6 +56,12 @@
             <version>${logback.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>htmlunit-driver</artifactId>
+            <version>${htmlunit.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
