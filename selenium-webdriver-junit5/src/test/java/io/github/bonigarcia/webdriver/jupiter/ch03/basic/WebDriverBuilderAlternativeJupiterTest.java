@@ -19,6 +19,7 @@ package io.github.bonigarcia.webdriver.jupiter.ch03.basic;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -27,6 +28,7 @@ import org.openqa.selenium.safari.SafariOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Disabled("Skeleton test")
 class WebDriverBuilderAlternativeJupiterTest {
 
     WebDriver driver;
