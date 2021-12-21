@@ -26,8 +26,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -45,10 +43,7 @@ public class HelloWorldFirefoxJUnit4Test {
 
     @Before
     public void setup() {
-        FirefoxOptions options = new FirefoxOptions();
-        options.setLogLevel(FirefoxDriverLogLevel.TRACE);
-        options.addPreference("toolkit.asyncshutdown.log", true);
-        driver = new FirefoxDriver(options);
+        driver = new FirefoxDriver();
     }
 
     @After
