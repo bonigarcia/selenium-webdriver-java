@@ -9,6 +9,8 @@ on:
 env:
   DISPLAY: :99
   WDM_GITHUBTOKEN: ${{ secrets.WDM_GITHUBTOKEN }}
+  MOZ_PROFILER_STARTUP: 1
+  MOZ_PROFILER_SHUTDOWN: geckodriver-profile.json
 
 jobs:
   tests:
@@ -41,3 +43,10 @@ jobs:
       run: mvn -B test
     - name: Run tests with Gradle
       run: ./gradlew test
+    - name: Archive production artifacts
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: json-files
+        path: |
+          *.json
