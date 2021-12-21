@@ -12,6 +12,10 @@ This repository contains a comprehensive collection of examples about [Selenium]
 
 This repo has been implemented as a multi-module project (using [Maven] and [Gradle] as build tools) composed of tests based on different frameworks: [JUnit 4], [JUnit 5] (alone or extended with [Selenium-Jupiter]), and [TestNG].
 
+## Practice site
+
+This repository also contains a [Practice site] with several sample web pages used as the system under test (SUT) in the Selenium WebDriver test examples. This site is hosted using [GitHub Pages].
+
 ## About
 
 selenium-webdriver-java (Copyright &copy; 2021) is an open-source project created and maintained by [Boni Garcia], licensed under the terms of [Apache 2.0 License].
@@ -30,3 +34,5 @@ selenium-webdriver-java (Copyright &copy; 2021) is an open-source project create
 [TestNG]: https://testng.org/doc/
 [Hands-On Selenium WebDriver with Java]: https://www.oreilly.com/library/view/hands-on-selenium-webdriver/9781098109998/
 [Cover]: https://bonigarcia.dev/img/hands-on-selenium-webdriver-java-early-release.png
+[Practice site]: https://bonigarcia.dev/selenium-webdriver-java/
+[GitHub Pages]: https://pages.github.com/
