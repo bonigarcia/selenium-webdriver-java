@@ -14,7 +14,7 @@ This repo has been implemented as a multi-module project (using [Maven] and [Gra
 
 ## Practice site
 
-This repository also contains a [Practice site] with several sample web pages used as the system under test (SUT) in the Selenium WebDriver test examples. This site is hosted using [GitHub Pages].
+This repository also contains a [Practice site], i.e., a representative set of sample web pages used as the system under test (SUT) in the Selenium WebDriver test examples. This site is hosted using [GitHub Pages].
 
 ## About
 
