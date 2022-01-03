@@ -86,7 +86,7 @@ ext {
 
     seleniumVersion  = "4.1.1"
     testNgVersion = "7.4.0"
-    assertjVersion  = "3.21.0"
+    assertjVersion  = "3.22.0"
     wdmVersion = "5.0.4-SNAPSHOT"
 
     htmlunitVersion = "3.56.0"
