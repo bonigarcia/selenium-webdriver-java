@@ -18,7 +18,7 @@ This repository also contains a [Practice site], i.e., a representative set of s
 
 ## About
 
-selenium-webdriver-java (Copyright &copy; 2021) is an open-source project created and maintained by [Boni Garcia], licensed under the terms of [Apache 2.0 License].
+selenium-webdriver-java (Copyright &copy; 2021-2022) is an open-source project created and maintained by [Boni Garcia], licensed under the terms of [Apache 2.0 License].
 
 [Logo]: https://bonigarcia.dev/selenium-webdriver-java/img/hands-on-icon.png
 [GitHub Repository]: https://github.com/bonigarcia/selenium-webdriver-java/
