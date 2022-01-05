@@ -16,50 +16,37 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch10.mobile;
 
-import static io.github.bonigarcia.wdm.WebDriverManager.isOnline;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assumptions.assumeThat;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.github.bonigarcia.seljup.DriverCapabilities;
+import io.github.bonigarcia.seljup.EnabledIfDriverUrlOnline;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@EnabledIfDriverUrlOnline("http://localhost:4723")
+@ExtendWith(SeleniumJupiter.class)
 class AppiumSelJupTest {
 
-    WebDriver driver;
+    @DriverCapabilities
+    ChromeOptions options = new ChromeOptions();
 
     @BeforeEach
-    void setup() throws MalformedURLException {
-        URL appiumServerUrl = new URL("http://localhost:4723");
-        assumeThat(isOnline(new URL(appiumServerUrl, "/status"))).isTrue();
-
-        ChromeOptions options = new ChromeOptions();
+    void setup() {
         options.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         options.setCapability(MobileCapabilityType.DEVICE_NAME,
                 "Nexus 5 API 30");
         options.setCapability(MobileCapabilityType.AUTOMATION_NAME,
                 "UiAutomator2");
-
-        driver = new AppiumDriver(appiumServerUrl, options);
-    }
-
-    @AfterEach
-    void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
 
     @Test
-    void testAppium() {
+    void test(AppiumDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
