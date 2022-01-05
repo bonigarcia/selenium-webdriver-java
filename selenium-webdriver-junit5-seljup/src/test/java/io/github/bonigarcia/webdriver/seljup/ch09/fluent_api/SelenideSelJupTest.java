@@ -18,22 +18,27 @@ package io.github.bonigarcia.webdriver.seljup.ch09.fluent_api;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 
+import com.codeborne.selenide.SelenideDriver;
+
+import io.github.bonigarcia.seljup.SeleniumJupiter;
+
+@ExtendWith(SeleniumJupiter.class)
 class SelenideSelJupTest {
 
     @Test
-    void testSelenide() {
-        open("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
+    void testSelenide(SelenideDriver driver) {
+        driver.open(
+                "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
 
-        $(By.id("username")).val("user");
-        $(By.id("password")).val("user");
-        $("button").pressEnter();
-        $(By.id("success")).shouldBe(visible)
+        driver.$(By.id("username")).val("user");
+        driver.$(By.id("password")).val("user");
+        driver.$("button").pressEnter();
+        driver.$(By.id("success")).shouldBe(visible)
                 .shouldHave(text("Login successful"));
     }
 
