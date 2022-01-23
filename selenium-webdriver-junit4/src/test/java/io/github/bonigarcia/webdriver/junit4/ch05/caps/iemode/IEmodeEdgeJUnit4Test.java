@@ -28,6 +28,7 @@ import java.util.Optional;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -36,6 +37,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore("The required setup to enable IE mode on Edge cannot be done in GitHub Actions")
 public class IEmodeEdgeJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());

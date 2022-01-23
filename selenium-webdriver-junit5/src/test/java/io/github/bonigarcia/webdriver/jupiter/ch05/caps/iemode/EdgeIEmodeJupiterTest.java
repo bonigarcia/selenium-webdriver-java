@@ -28,6 +28,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -36,6 +37,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Disabled("The required setup to enable IE mode on Edge cannot be done in GitHub Actions")
 class EdgeIEmodeJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
