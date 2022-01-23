@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch02.helloworld_otherbrowsers;
+package io.github.bonigarcia.webdriver.jupiter.ch05.caps.iemode;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
@@ -25,32 +25,32 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.slf4j.Logger;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldEdgeIEmodeNGTest {
+class EdgeIEmodeJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
-    @BeforeClass
-    public static void setupClass() {
+    @BeforeAll
+    static void setupClass() {
         assumeThat(IS_OS_WINDOWS).isTrue(); // IE mode is only supported on Win
 
         WebDriverManager.iedriver().setup();
     }
 
-    @BeforeMethod
-    public void setup() {
+    @BeforeEach
+    void setup() {
         Optional<Path> browserPath = WebDriverManager.edgedriver()
                 .getBrowserPath();
         assumeThat(browserPath).isPresent();
@@ -62,23 +62,17 @@ public class HelloWorldEdgeIEmodeNGTest {
         driver = new InternetExplorerDriver(options);
     }
 
-    @AfterMethod
-    public void teardown() {
+    @AfterEach
+    void teardown() {
         if (driver != null) {
             driver.quit();
         }
     }
 
     @Test
-    public void test() {
-        // Exercise
-        String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
-        driver.get(sutUrl);
-        String title = driver.getTitle();
-        log.debug("The title of {} is {}", sutUrl, title);
-
-        // Verify
-        assertThat(title).isEqualTo("Hands-On Selenium WebDriver with Java");
+    void testIEmodeEdge() {
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch02.helloworld_otherbrowsers;
+package io.github.bonigarcia.webdriver.seljup.ch05.caps.iemode;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,7 +39,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 @EnabledOnOs(WINDOWS)
 @ExtendWith(SeleniumJupiter.class)
-class HelloWorldEdgeIEmodeSelJupTest {
+class IEmodeEdgeSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -57,15 +57,9 @@ class HelloWorldEdgeIEmodeSelJupTest {
     }
 
     @Test
-    void test(InternetExplorerDriver driver) {
-        // Exercise
-        String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
-        driver.get(sutUrl);
-        String title = driver.getTitle();
-        log.debug("The title of {} is {}", sutUrl, title);
-
-        // Verify
-        assertThat(title).isEqualTo("Hands-On Selenium WebDriver with Java");
+    void testIEmodeEdge(InternetExplorerDriver driver) {
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 
 }

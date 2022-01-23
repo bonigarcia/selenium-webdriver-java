@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch02.helloworld_otherbrowsers;
+package io.github.bonigarcia.webdriver.junit4.ch05.caps.iemode;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
@@ -36,7 +36,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldEdgeIEmodeJUnit4Test {
+public class IEmodeEdgeJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
@@ -70,15 +70,9 @@ public class HelloWorldEdgeIEmodeJUnit4Test {
     }
 
     @Test
-    public void test() {
-        // Exercise
-        String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
-        driver.get(sutUrl);
-        String title = driver.getTitle();
-        log.debug("The title of {} is {}", sutUrl, title);
-
-        // Verify
-        assertThat(title).isEqualTo("Hands-On Selenium WebDriver with Java");
+    public void testIEmodeEdge() {
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 
 }
