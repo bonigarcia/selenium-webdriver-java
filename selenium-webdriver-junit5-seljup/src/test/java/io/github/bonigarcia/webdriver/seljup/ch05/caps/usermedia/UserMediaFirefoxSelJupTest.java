@@ -17,7 +17,6 @@
 package io.github.bonigarcia.webdriver.seljup.ch05.caps.usermedia;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.openqa.selenium.support.ui.ExpectedConditions.textMatches;
 
 import java.time.Duration;
 import java.util.regex.Pattern;
@@ -27,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.Preferences;
@@ -52,7 +52,7 @@ class UserMediaFirefoxSelJupTest {
         driver.findElement(By.id("start")).click();
         By videoDevice = By.id("video-device");
         Pattern nonEmptyString = Pattern.compile(".+");
-        wait.until(textMatches(videoDevice, nonEmptyString));
+        wait.until(ExpectedConditions.textMatches(videoDevice, nonEmptyString));
         assertThat(driver.findElement(videoDevice).getText()).isNotEmpty();
     }
 

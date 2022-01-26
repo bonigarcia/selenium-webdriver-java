@@ -16,8 +16,6 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch04.javascript;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeMoreThan;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -25,6 +23,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -54,8 +53,8 @@ public class InfiniteScrollNGTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         By pLocator = By.tagName("p");
-        List<WebElement> paragraphs = wait
-                .until(numberOfElementsToBeMoreThan(pLocator, 0));
+        List<WebElement> paragraphs = wait.until(
+                ExpectedConditions.numberOfElementsToBeMoreThan(pLocator, 0));
         int initParagraphsNumber = paragraphs.size();
 
         WebElement lastParagraph = driver.findElement(
@@ -63,8 +62,8 @@ public class InfiniteScrollNGTest {
         String script = "arguments[0].scrollIntoView();";
         js.executeScript(script, lastParagraph);
 
-        wait.until(
-                numberOfElementsToBeMoreThan(pLocator, initParagraphsNumber));
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(pLocator,
+                initParagraphsNumber));
     }
 
 }

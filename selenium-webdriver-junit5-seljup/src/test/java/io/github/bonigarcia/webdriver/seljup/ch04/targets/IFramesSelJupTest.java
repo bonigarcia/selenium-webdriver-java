@@ -17,8 +17,6 @@
 package io.github.bonigarcia.webdriver.seljup.ch04.targets;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.openqa.selenium.support.ui.ExpectedConditions.frameToBeAvailableAndSwitchToIt;
-import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeMoreThan;
 
 import java.time.Duration;
 import java.util.List;
@@ -28,6 +26,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -41,10 +40,11 @@ class IFramesSelJupTest {
                 "https://bonigarcia.dev/selenium-webdriver-java/iframes.html");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(frameToBeAvailableAndSwitchToIt("my-iframe"));
+        wait.until(ExpectedConditions
+                .frameToBeAvailableAndSwitchToIt("my-iframe"));
 
         By pName = By.tagName("p");
-        wait.until(numberOfElementsToBeMoreThan(pName, 0));
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(pName, 0));
         List<WebElement> paragraphs = driver.findElements(pName);
         assertThat(paragraphs).hasSize(20);
     }

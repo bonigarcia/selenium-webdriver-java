@@ -17,7 +17,6 @@
 package io.github.bonigarcia.webdriver.jupiter.ch05.full_screenshot;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfNestedElementsLocatedBy;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,6 +31,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -55,8 +55,8 @@ class FullPageScreenshotFirefoxJupiterTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/long-page.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(presenceOfNestedElementsLocatedBy(By.className("container"),
-                By.tagName("p")));
+        wait.until(ExpectedConditions.presenceOfNestedElementsLocatedBy(
+                By.className("container"), By.tagName("p")));
 
         byte[] imageBytes = ((FirefoxDriver) driver)
                 .getFullPageScreenshotAs(OutputType.BYTES);

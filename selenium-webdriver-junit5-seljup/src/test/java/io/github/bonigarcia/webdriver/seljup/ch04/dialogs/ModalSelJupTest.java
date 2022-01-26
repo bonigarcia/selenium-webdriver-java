@@ -17,7 +17,6 @@
 package io.github.bonigarcia.webdriver.seljup.ch04.dialogs;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 import java.time.Duration;
 
@@ -27,6 +26,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -50,7 +50,7 @@ class ModalSelJupTest {
         WebElement close = driver
                 .findElement(By.xpath("//button[text() = 'Close']"));
         assertThat(close.getTagName()).isEqualTo("button");
-        wait.until(elementToBeClickable(close));
+        wait.until(ExpectedConditions.elementToBeClickable(close));
         close.click();
     }
 

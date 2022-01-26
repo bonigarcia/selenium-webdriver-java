@@ -16,8 +16,6 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch04.javascript;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeMoreThan;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -64,8 +62,8 @@ public class InfiniteScrollJUnit4Test {
         String script = "arguments[0].scrollIntoView();";
         js.executeScript(script, lastParagraph);
 
-        wait.until(
-                numberOfElementsToBeMoreThan(pLocator, initParagraphsNumber));
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(pLocator,
+                initParagraphsNumber));
     }
 
 }

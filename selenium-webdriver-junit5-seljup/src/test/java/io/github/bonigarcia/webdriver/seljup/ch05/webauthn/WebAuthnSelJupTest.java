@@ -16,8 +16,6 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch05.webauthn;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
-
 import java.time.Duration;
 import java.util.UUID;
 
@@ -25,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.virtualauthenticator.HasVirtualAuthenticator;
 import org.openqa.selenium.virtualauthenticator.VirtualAuthenticator;
@@ -46,12 +45,12 @@ class WebAuthnSelJupTest {
         driver.findElement(By.id("input-email")).sendKeys(randomId);
         driver.findElement(By.id("register-button")).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(textToBePresentInElementLocated(By.className("popover-body"),
-                "Success! Now try logging in"));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.className("popover-body"), "Success! Now try logging in"));
 
         driver.findElement(By.id("login-button")).click();
-        wait.until(textToBePresentInElementLocated(By.className("main-content"),
-                "You're logged in!"));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.className("main-content"), "You're logged in!"));
 
         virtualAuthenticator.removeVirtualAuthenticator(authenticator);
     }

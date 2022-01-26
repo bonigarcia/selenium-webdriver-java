@@ -17,7 +17,6 @@
 package io.github.bonigarcia.webdriver.junit4.ch05.full_screenshot;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfNestedElementsLocatedBy;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -38,6 +37,7 @@ import org.openqa.selenium.devtools.v96.dom.model.Rect;
 import org.openqa.selenium.devtools.v96.page.Page;
 import org.openqa.selenium.devtools.v96.page.Page.GetLayoutMetricsResponse;
 import org.openqa.selenium.devtools.v96.page.model.Viewport;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -66,8 +66,8 @@ public class FullPageScreenshotChromeJUnit4Test {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/long-page.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(presenceOfNestedElementsLocatedBy(By.className("container"),
-                By.tagName("p")));
+        wait.until(ExpectedConditions.presenceOfNestedElementsLocatedBy(
+                By.className("container"), By.tagName("p")));
 
         GetLayoutMetricsResponse metrics = devTools
                 .send(Page.getLayoutMetrics());

@@ -16,8 +16,6 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch04.javascript;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeMoreThan;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -27,6 +25,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -42,8 +41,8 @@ class InfiniteScrollSelJupTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         By pLocator = By.tagName("p");
-        List<WebElement> paragraphs = wait
-                .until(numberOfElementsToBeMoreThan(pLocator, 0));
+        List<WebElement> paragraphs = wait.until(
+                ExpectedConditions.numberOfElementsToBeMoreThan(pLocator, 0));
         int initParagraphsNumber = paragraphs.size();
 
         WebElement lastParagraph = driver.findElement(
@@ -51,8 +50,8 @@ class InfiniteScrollSelJupTest {
         String script = "arguments[0].scrollIntoView();";
         js.executeScript(script, lastParagraph);
 
-        wait.until(
-                numberOfElementsToBeMoreThan(pLocator, initParagraphsNumber));
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(pLocator,
+                initParagraphsNumber));
     }
 
 }

@@ -17,13 +17,13 @@
 package io.github.bonigarcia.webdriver.testng.ch03.wait;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -51,8 +51,8 @@ public class ExplicitWaitNGTest {
                 "https://bonigarcia.dev/selenium-webdriver-java/loading-images.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement landscape = wait
-                .until(presenceOfElementLocated(By.id("landscape")));
+        WebElement landscape = wait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("landscape")));
         assertThat(landscape.getAttribute("src"))
                 .containsIgnoringCase("landscape");
     }

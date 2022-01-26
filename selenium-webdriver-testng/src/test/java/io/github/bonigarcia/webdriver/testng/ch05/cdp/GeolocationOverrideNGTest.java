@@ -16,8 +16,6 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch05.cdp;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-
 import java.time.Duration;
 import java.util.Optional;
 
@@ -27,6 +25,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v96.emulation.Emulation;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -67,6 +66,6 @@ public class GeolocationOverrideNGTest {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement coordinates = driver.findElement(By.id("coordinates"));
-        wait.until(visibilityOf(coordinates));
+        wait.until(ExpectedConditions.visibilityOf(coordinates));
     }
 }

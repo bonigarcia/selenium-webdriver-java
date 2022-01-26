@@ -17,7 +17,6 @@
 package io.github.bonigarcia.webdriver.jupiter.ch07.page_objects;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
@@ -26,6 +25,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 
@@ -64,7 +64,7 @@ public class BasePage {
 
     public boolean isDisplayed(By locator) {
         try {
-            wait.until(visibilityOfElementLocated(locator));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (TimeoutException e) {
             log.warn("Timeout of {} wait for {}", timeoutSec, locator);
             return false;
