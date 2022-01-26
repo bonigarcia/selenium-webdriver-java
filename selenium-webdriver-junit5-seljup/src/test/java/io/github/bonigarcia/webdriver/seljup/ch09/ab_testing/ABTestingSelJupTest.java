@@ -18,6 +18,7 @@ package io.github.bonigarcia.webdriver.seljup.ch09.ab_testing;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 import java.time.Duration;
 
@@ -28,7 +29,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -47,8 +47,8 @@ class ABTestingSelJupTest {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/ab-testing.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement header = wait.until(
-                ExpectedConditions.presenceOfElementLocated(By.tagName("h6")));
+        WebElement header = wait
+                .until(presenceOfElementLocated(By.tagName("h6")));
 
         if (header.getText().contains("variation A")) {
             assertBodyContains(driver, "Lorem ipsum");

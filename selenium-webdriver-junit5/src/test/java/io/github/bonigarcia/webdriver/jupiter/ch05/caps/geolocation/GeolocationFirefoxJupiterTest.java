@@ -16,6 +16,8 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch05.caps.geolocation;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
@@ -25,7 +27,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -61,7 +62,7 @@ class GeolocationFirefoxJupiterTest {
 
         driver.findElement(By.id("get-coordinates")).click();
         WebElement coordinates = driver.findElement(By.id("coordinates"));
-        wait.until(ExpectedConditions.visibilityOf(coordinates));
+        wait.until(visibilityOf(coordinates));
     }
 
 }

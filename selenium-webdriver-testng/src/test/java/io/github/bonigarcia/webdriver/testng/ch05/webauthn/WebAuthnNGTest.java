@@ -16,12 +16,13 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch05.webauthn;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
+
 import java.time.Duration;
 import java.util.UUID;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.virtualauthenticator.HasVirtualAuthenticator;
 import org.openqa.selenium.virtualauthenticator.VirtualAuthenticator;
@@ -60,12 +61,12 @@ public class WebAuthnNGTest {
         driver.findElement(By.id("input-email")).sendKeys(randomId);
         driver.findElement(By.id("register-button")).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(
-                By.className("popover-body"), "Success! Now try logging in"));
+        wait.until(textToBePresentInElementLocated(By.className("popover-body"),
+                "Success! Now try logging in"));
 
         driver.findElement(By.id("login-button")).click();
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(
-                By.className("main-content"), "You're logged in!"));
+        wait.until(textToBePresentInElementLocated(By.className("main-content"),
+                "You're logged in!"));
 
         virtualAuthenticator.removeVirtualAuthenticator(authenticator);
     }

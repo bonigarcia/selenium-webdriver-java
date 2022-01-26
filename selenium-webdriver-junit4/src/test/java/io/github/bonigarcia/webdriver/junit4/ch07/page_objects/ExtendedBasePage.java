@@ -17,6 +17,8 @@
 package io.github.bonigarcia.webdriver.junit4.ch07.page_objects;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
@@ -26,7 +28,6 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 
@@ -80,12 +81,11 @@ public class ExtendedBasePage {
     }
 
     public boolean isDisplayed(WebElement element) {
-        return isDisplayed(ExpectedConditions.visibilityOf(element));
+        return isDisplayed(visibilityOf(element));
     }
 
     public boolean isDisplayed(By locator) {
-        return isDisplayed(
-                ExpectedConditions.visibilityOfElementLocated(locator));
+        return isDisplayed(visibilityOfElementLocated(locator));
     }
 
     public boolean isDisplayed(ExpectedCondition<?> expectedCondition) {

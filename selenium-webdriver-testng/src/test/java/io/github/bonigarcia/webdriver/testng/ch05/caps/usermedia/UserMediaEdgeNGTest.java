@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.testng.ch05.caps.usermedia;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textMatches;
 
 import java.time.Duration;
 import java.util.regex.Pattern;
@@ -24,7 +25,6 @@ import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -62,7 +62,7 @@ public class UserMediaEdgeNGTest {
         driver.findElement(By.id("start")).click();
         By videoDevice = By.id("video-device");
         Pattern nonEmptyString = Pattern.compile(".+");
-        wait.until(ExpectedConditions.textMatches(videoDevice, nonEmptyString));
+        wait.until(textMatches(videoDevice, nonEmptyString));
         assertThat(driver.findElement(videoDevice).getText()).isNotEmpty();
     }
 

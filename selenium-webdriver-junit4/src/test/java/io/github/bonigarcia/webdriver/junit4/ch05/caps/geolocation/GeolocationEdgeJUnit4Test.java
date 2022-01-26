@@ -16,6 +16,8 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch05.caps.geolocation;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +29,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -62,7 +63,7 @@ public class GeolocationEdgeJUnit4Test {
 
         driver.findElement(By.id("get-coordinates")).click();
         WebElement coordinates = driver.findElement(By.id("coordinates"));
-        wait.until(ExpectedConditions.visibilityOf(coordinates));
+        wait.until(visibilityOf(coordinates));
     }
 
 }

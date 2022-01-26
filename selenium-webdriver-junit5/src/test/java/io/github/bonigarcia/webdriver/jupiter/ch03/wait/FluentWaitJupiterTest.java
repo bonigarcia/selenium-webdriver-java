@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.jupiter.ch03.wait;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 import java.time.Duration;
 
@@ -27,7 +28,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
@@ -56,8 +56,8 @@ class FluentWaitJupiterTest {
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(NoSuchElementException.class);
 
-        WebElement landscape = wait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("landscape")));
+        WebElement landscape = wait
+                .until(presenceOfElementLocated(By.id("landscape")));
         assertThat(landscape.getAttribute("src"))
                 .containsIgnoringCase("landscape");
     }

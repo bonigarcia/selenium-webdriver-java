@@ -17,13 +17,13 @@
 package io.github.bonigarcia.webdriver.testng.ch04.dialogs;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 import java.time.Duration;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -55,7 +55,7 @@ public class AlertNGTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-alert")).click();
-        wait.until(ExpectedConditions.alertIsPresent());
+        wait.until(alertIsPresent());
         Alert alert = driver.switchTo().alert();
         assertThat(alert.getText()).isEqualTo("Hello world!");
         alert.accept();
@@ -68,7 +68,7 @@ public class AlertNGTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-alert")).click();
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = wait.until(alertIsPresent());
         assertThat(alert.getText()).isEqualTo("Hello world!");
         alert.accept();
     }

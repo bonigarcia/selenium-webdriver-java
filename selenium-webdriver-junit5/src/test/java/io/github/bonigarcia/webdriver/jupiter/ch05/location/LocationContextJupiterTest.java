@@ -16,6 +16,8 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch05.location;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
@@ -26,7 +28,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.html5.LocationContext;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -59,6 +60,6 @@ class LocationContextJupiterTest {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement coordinates = driver.findElement(By.id("coordinates"));
-        wait.until(ExpectedConditions.visibilityOf(coordinates));
+        wait.until(visibilityOf(coordinates));
     }
 }

@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.seljup.ch04.dialogs;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 import java.time.Duration;
 
@@ -26,7 +27,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -47,7 +47,7 @@ class PromptSelJupTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-prompt")).click();
-        wait.until(ExpectedConditions.alertIsPresent());
+        wait.until(alertIsPresent());
         Alert prompt = driver.switchTo().alert();
         prompt.sendKeys("John Doe");
         assertThat(prompt.getText()).isEqualTo("Please enter your name");
@@ -61,7 +61,7 @@ class PromptSelJupTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-prompt")).click();
-        Alert prompt = wait.until(ExpectedConditions.alertIsPresent());
+        Alert prompt = wait.until(alertIsPresent());
         prompt.sendKeys("John Doe");
         assertThat(prompt.getText()).isEqualTo("Please enter your name");
         prompt.accept();

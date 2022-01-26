@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.junit4.ch04.dialogs;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 import java.time.Duration;
 
@@ -26,7 +27,6 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -55,7 +55,7 @@ public class AlertJUnit4Test {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-alert")).click();
-        wait.until(ExpectedConditions.alertIsPresent());
+        wait.until(alertIsPresent());
         Alert alert = driver.switchTo().alert();
         assertThat(alert.getText()).isEqualTo("Hello world!");
         alert.accept();
@@ -68,7 +68,7 @@ public class AlertJUnit4Test {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-alert")).click();
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = wait.until(alertIsPresent());
         assertThat(alert.getText()).isEqualTo("Hello world!");
         alert.accept();
     }

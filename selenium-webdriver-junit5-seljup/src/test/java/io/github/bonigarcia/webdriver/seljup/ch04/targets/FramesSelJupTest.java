@@ -17,6 +17,8 @@
 package io.github.bonigarcia.webdriver.seljup.ch04.targets;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeMoreThan;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 import java.time.Duration;
 import java.util.List;
@@ -26,7 +28,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -41,12 +42,11 @@ class FramesSelJupTest {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         String frameName = "frame-body";
-        wait.until(ExpectedConditions
-                .presenceOfElementLocated(By.name(frameName)));
+        wait.until(presenceOfElementLocated(By.name(frameName)));
         driver.switchTo().frame(frameName);
 
         By pName = By.tagName("p");
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(pName, 0));
+        wait.until(numberOfElementsToBeMoreThan(pName, 0));
         List<WebElement> paragraphs = driver.findElements(pName);
         assertThat(paragraphs).hasSize(20);
     }
