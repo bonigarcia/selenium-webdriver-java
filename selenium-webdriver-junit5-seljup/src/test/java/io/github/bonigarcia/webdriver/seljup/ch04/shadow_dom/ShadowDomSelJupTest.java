@@ -14,36 +14,27 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch05.shadow_dom;
+package io.github.bonigarcia.webdriver.seljup.ch04.shadow_dom;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-class ShadowDomJupiterTest {
+@ExtendWith(SeleniumJupiter.class)
+class ShadowDomSelJupTest {
 
     WebDriver driver;
 
-    @BeforeEach
-    void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterEach
-    void teardown() {
-        driver.quit();
-    }
-
     @Test
-    void testShadowDom() {
+    void testShadowDom(ChromeDriver driver) {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/shadow-dom.html");
 
