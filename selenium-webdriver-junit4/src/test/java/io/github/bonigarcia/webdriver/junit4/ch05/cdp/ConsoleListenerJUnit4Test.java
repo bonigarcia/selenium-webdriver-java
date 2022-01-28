@@ -19,14 +19,19 @@ package io.github.bonigarcia.webdriver.junit4.ch05.cdp;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.time.Duration;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.JavascriptException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.events.ConsoleEvent;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -47,29 +52,32 @@ public class ConsoleListenerJUnit4Test {
     }
 
     @After
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    public void teardown() {
         devTools.close();
         driver.quit();
     }
 
     @Test
-    public void testConsoleListener() {
-        devTools.getDomains().events().addConsoleListener(consoleEvent -> {
-            log.debug("{} {}: {}", consoleEvent.getTimestamp(),
-                    consoleEvent.getType(), consoleEvent.getMessages());
-        });
-
+    public void testConsoleListener()
+            throws InterruptedException, ExecutionException, TimeoutException {
+        CompletableFuture<ConsoleEvent> futureEvents = new CompletableFuture<>();
         devTools.getDomains().events()
-                .addJavascriptExceptionListener(jsException -> {
-                    log.debug("JavascriptException: {} {}",
-                            jsException.getMessage(),
-                            jsException.getSystemInformation());
-                });
+                .addConsoleListener(futureEvents::complete);
+
+        CompletableFuture<JavascriptException> futureJsExceptions = new CompletableFuture<>();
+        devTools.getDomains().events()
+                .addJavascriptExceptionListener(futureJsExceptions::complete);
 
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/console-logs.html");
+
+        ConsoleEvent consoleEvent = futureEvents.get(5, TimeUnit.SECONDS);
+        log.debug("ConsoleEvent: {} {} {}", consoleEvent.getTimestamp(),
+                consoleEvent.getType(), consoleEvent.getMessages());
+
+        JavascriptException jsException = futureJsExceptions.get(5,
+                TimeUnit.SECONDS);
+        log.debug("JavascriptException: {} {}", jsException.getMessage(),
+                jsException.getSystemInformation());
     }
 }
