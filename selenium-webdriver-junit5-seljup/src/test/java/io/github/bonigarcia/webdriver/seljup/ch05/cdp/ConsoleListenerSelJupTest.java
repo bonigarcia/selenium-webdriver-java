@@ -20,9 +20,7 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,7 +39,7 @@ class ConsoleListenerSelJupTest {
 
     @Test
     void testConsoleListener(ChromeDriver driver, DevTools devTools)
-            throws InterruptedException, ExecutionException, TimeoutException {
+            throws Exception {
         CompletableFuture<ConsoleEvent> futureEvents = new CompletableFuture<>();
         devTools.getDomains().events()
                 .addConsoleListener(futureEvents::complete);

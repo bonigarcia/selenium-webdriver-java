@@ -20,9 +20,7 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,8 +56,7 @@ class ConsoleListenerJupiterTest {
     }
 
     @Test
-    void testConsoleListener()
-            throws InterruptedException, ExecutionException, TimeoutException {
+    void testConsoleListener() throws Exception {
         CompletableFuture<ConsoleEvent> futureEvents = new CompletableFuture<>();
         devTools.getDomains().events()
                 .addConsoleListener(futureEvents::complete);
