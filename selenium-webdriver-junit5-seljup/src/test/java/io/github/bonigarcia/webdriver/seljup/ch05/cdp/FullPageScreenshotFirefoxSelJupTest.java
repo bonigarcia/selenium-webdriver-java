@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch05.cdp.full_screenshot;
+package io.github.bonigarcia.webdriver.seljup.ch05.cdp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,34 +24,22 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-class FullPageScreenshotFirefoxJupiterTest {
-
-    WebDriver driver;
-
-    @BeforeEach
-    void setup() {
-        driver = WebDriverManager.firefoxdriver().create();
-    }
-
-    @AfterEach
-    void teardown() {
-        driver.quit();
-    }
+@ExtendWith(SeleniumJupiter.class)
+class FullPageScreenshotFirefoxSelJupTest {
 
     @Test
-    void testFullPageScreenshotFirefox() throws IOException {
+    void testFullPageScreenshotFirefox(FirefoxDriver driver)
+            throws IOException {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/long-page.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

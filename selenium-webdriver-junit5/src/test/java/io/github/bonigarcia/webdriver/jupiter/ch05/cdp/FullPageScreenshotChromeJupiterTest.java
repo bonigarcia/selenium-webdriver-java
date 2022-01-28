@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch05.cdp.full_screenshot;
+package io.github.bonigarcia.webdriver.jupiter.ch05.cdp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,26 +26,43 @@ import java.time.Duration;
 import java.util.Base64;
 import java.util.Optional;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v96.dom.model.Rect;
 import org.openqa.selenium.devtools.v96.page.Page;
 import org.openqa.selenium.devtools.v96.page.Page.GetLayoutMetricsResponse;
 import org.openqa.selenium.devtools.v96.page.model.Viewport;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-@ExtendWith(SeleniumJupiter.class)
-class FullPageScreenshotEdgeSelJupTest {
+class FullPageScreenshotChromeJupiterTest {
+
+    WebDriver driver;
+
+    DevTools devTools;
+
+    @BeforeEach
+    void setup() {
+        driver = WebDriverManager.chromedriver().create();
+        devTools = ((ChromeDriver) driver).getDevTools();
+        devTools.createSession();
+    }
+
+    @AfterEach
+    void teardown() {
+        devTools.close();
+        driver.quit();
+    }
 
     @Test
-    void testFullPageScreenshotEdge(EdgeDriver driver, DevTools devTools)
-            throws IOException {
+    void testFullPageScreenshotChrome() throws IOException {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/long-page.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -60,7 +77,7 @@ class FullPageScreenshotEdgeSelJupTest {
                         Optional.of(new Viewport(0, 0, contentSize.getWidth(),
                                 contentSize.getHeight(), 1)),
                         Optional.empty(), Optional.of(true)));
-        Path destination = Paths.get("fullpage-screenshot-edge.png");
+        Path destination = Paths.get("fullpage-screenshot-chrome.png");
         Files.write(destination, Base64.getDecoder().decode(screenshotBase64));
 
         assertThat(destination).exists();

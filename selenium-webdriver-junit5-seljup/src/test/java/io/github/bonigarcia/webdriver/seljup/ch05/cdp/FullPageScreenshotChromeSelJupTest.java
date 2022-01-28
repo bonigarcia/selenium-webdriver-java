@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch05.cdp.full_screenshot;
+package io.github.bonigarcia.webdriver.seljup.ch05.cdp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

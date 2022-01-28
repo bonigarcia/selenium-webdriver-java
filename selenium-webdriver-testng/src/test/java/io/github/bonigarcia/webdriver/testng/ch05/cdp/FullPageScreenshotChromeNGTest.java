@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch05.cdp.full_screenshot;
+package io.github.bonigarcia.webdriver.testng.ch05.cdp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,9 +26,6 @@ import java.time.Duration;
 import java.util.Base64;
 import java.util.Optional;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -39,30 +36,33 @@ import org.openqa.selenium.devtools.v96.page.Page.GetLayoutMetricsResponse;
 import org.openqa.selenium.devtools.v96.page.model.Viewport;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class FullPageScreenshotChromeJupiterTest {
+public class FullPageScreenshotChromeNGTest {
 
     WebDriver driver;
 
     DevTools devTools;
 
-    @BeforeEach
-    void setup() {
+    @BeforeMethod
+    public void setup() {
         driver = WebDriverManager.chromedriver().create();
         devTools = ((ChromeDriver) driver).getDevTools();
         devTools.createSession();
     }
 
-    @AfterEach
-    void teardown() {
+    @AfterMethod
+    public void teardown() {
         devTools.close();
         driver.quit();
     }
 
     @Test
-    void testFullPageScreenshotChrome() throws IOException {
+    public void testFullPageScreenshotChrome() throws IOException {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/long-page.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
