@@ -7,6 +7,6 @@ describe('Hello World with Cypress', () => {
       cy.contains('Submit').click()
       cy.contains('Login successful')
 	  
-      cy.screenshot("hello-world-cypres")
+      cy.screenshot("hello-world-cypress")
   })
 })
