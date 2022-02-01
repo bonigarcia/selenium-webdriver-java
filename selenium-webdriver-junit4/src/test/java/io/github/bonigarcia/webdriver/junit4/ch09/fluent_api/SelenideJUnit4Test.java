@@ -21,9 +21,11 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+@Ignore("Selenide 6.2.1 is not compatible with Selenium 4.1.2")
 public class SelenideJUnit4Test {
 
     @Test
