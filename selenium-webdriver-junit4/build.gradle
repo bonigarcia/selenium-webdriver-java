@@ -106,14 +106,18 @@ dependencies {
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
 
-    testImplementation("org.seleniumhq.selenium:htmlunit-driver:${htmlunitVersion}")
+    testImplementation("org.seleniumhq.selenium:htmlunit-driver:${htmlunitVersion}") {
+        exclude group: "org.seleniumhq.selenium", module: "*"
+    }
     testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
     testImplementation("org.awaitility:awaitility:${awaitilityVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}") {
         exclude group: "com.fasterxml.jackson.core", module: "*"
     }
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
-    testImplementation("com.deque.html.axe-core:selenium:${axelVersion}")
+    testImplementation("com.deque.html.axe-core:selenium:${axelVersion}") {
+        exclude group: "org.seleniumhq.selenium", module: "*"
+    }
     testImplementation("com.codeborne:selenide:${selenideVersion}") {
         exclude group: "org.seleniumhq.selenium", module: "selenium-java"
         exclude group: "io.github.bonigarcia", module: "webdrivermanager"
