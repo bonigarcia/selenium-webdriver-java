@@ -23,7 +23,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.time.Duration;
 import java.util.Set;
 
-import org.apache.commons.lang.SystemUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
