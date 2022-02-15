@@ -20,7 +20,7 @@
         <awaitility.version>4.1.1</awaitility.version>
         <browsermob.version>2.1.5</browsermob.version>
         <zapclient.version>1.10.0</zapclient.version>
-        <axel.version>4.3.1</axel.version>
+        <axel.version>4.4.0</axel.version>
         <selenide.version>6.3.1</selenide.version>
         <javafaker.version>1.0.2</javafaker.version>
         <extentreports.version>5.0.9</extentreports.version>
