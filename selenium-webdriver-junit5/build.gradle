@@ -83,7 +83,7 @@ ext {
     assertjVersion  = "3.22.0"
     wdmVersion = "5.1.0"
 
-    htmlunitVersion = "3.59.0"
+    htmlunitVersion = "3.60.0"
     rerunnerVersion = "2.1.6"
     junitPlatformVersion = "1.8.2"
     awaitilityVersion = "4.2.0"
