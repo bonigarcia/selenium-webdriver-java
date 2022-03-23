@@ -61,9 +61,9 @@ public class ConsoleListenerJUnit4Test {
         devTools.getDomains().events()
                 .addConsoleListener(futureEvents::complete);
 
-        CompletableFuture<JavascriptException> futureJsExceptions = new CompletableFuture<>();
+        CompletableFuture<JavascriptException> futureJsExc = new CompletableFuture<>();
         devTools.getDomains().events()
-                .addJavascriptExceptionListener(futureJsExceptions::complete);
+                .addJavascriptExceptionListener(futureJsExc::complete);
 
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/console-logs.html");
@@ -72,8 +72,7 @@ public class ConsoleListenerJUnit4Test {
         log.debug("ConsoleEvent: {} {} {}", consoleEvent.getTimestamp(),
                 consoleEvent.getType(), consoleEvent.getMessages());
 
-        JavascriptException jsException = futureJsExceptions.get(5,
-                TimeUnit.SECONDS);
+        JavascriptException jsException = futureJsExc.get(5, TimeUnit.SECONDS);
         log.debug("JavascriptException: {} {}", jsException.getMessage(),
                 jsException.getSystemInformation());
     }
