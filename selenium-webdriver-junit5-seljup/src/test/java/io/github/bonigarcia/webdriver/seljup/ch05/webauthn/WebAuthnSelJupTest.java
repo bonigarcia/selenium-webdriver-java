@@ -37,8 +37,8 @@ class WebAuthnSelJupTest {
     @Test
     void testWebAuthn(ChromeDriver driver) {
         driver.get("https://webauthn.io/");
-        HasVirtualAuthenticator virtualAuthenticator = (HasVirtualAuthenticator) driver;
-        VirtualAuthenticator authenticator = virtualAuthenticator
+        HasVirtualAuthenticator virtualAuth = (HasVirtualAuthenticator) driver;
+        VirtualAuthenticator authenticator = virtualAuth
                 .addVirtualAuthenticator(new VirtualAuthenticatorOptions());
 
         String randomId = UUID.randomUUID().toString();
@@ -52,7 +52,7 @@ class WebAuthnSelJupTest {
         wait.until(ExpectedConditions.textToBePresentInElementLocated(
                 By.className("main-content"), "You're logged in!"));
 
-        virtualAuthenticator.removeVirtualAuthenticator(authenticator);
+        virtualAuth.removeVirtualAuthenticator(authenticator);
     }
 
 }
