@@ -32,7 +32,7 @@ selenium-webdriver-java (Copyright &copy; 2021-2022) is an open-source project c
 [Selenium]: https://www.selenium.dev/
 [Selenium-Jupiter]: https://bonigarcia.dev/selenium-jupiter/
 [TestNG]: https://testng.org/doc/
-[Hands-On Selenium WebDriver with Java]: https://www.oreilly.com/library/view/hands-on-selenium-webdriver/9781098109998/
-[Cover]: https://bonigarcia.dev/img/hands-on-selenium-webdriver-java-early-release.png
+[Hands-On Selenium WebDriver with Java]: https://oreil.ly/1E7CX
+[Cover]: https://bonigarcia.dev/img/hands-on-selenium-webdriver-java.png
 [Practice site]: https://bonigarcia.dev/selenium-webdriver-java/
 [GitHub Pages]: https://pages.github.com/
