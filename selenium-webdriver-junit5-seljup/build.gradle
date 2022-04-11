@@ -90,6 +90,8 @@ ext {
     zapclientVersion = "1.10.0"
     axelVersion = "4.4.1"
     selenideVersion = "6.4.0"
+    browserupProxyVersion = "2.1.2"
+
     javafakerVersion = "1.0.2"
     extentreportsVersion = "5.0.9"
     cucumberVersion = "7.2.3"
@@ -117,6 +119,7 @@ dependencies {
     testImplementation("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}") {
         exclude group: "com.fasterxml.jackson.core", module: "*"
+        exclude group: "io.netty", module: "*"
     }
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
     testImplementation("com.deque.html.axe-core:selenium:${axelVersion}") {
@@ -126,6 +129,9 @@ dependencies {
         exclude group: "org.seleniumhq.selenium", module: "selenium-java"
         exclude group: "io.github.bonigarcia", module: "webdrivermanager"
         exclude group: "org.apache.httpcomponents.client5", module: "httpclient5"
+    }
+    testImplementation("com.browserup:browserup-proxy-core:${browserupProxyVersion}") {
+        exclude group: "org.seleniumhq.selenium", module: "*"
     }
     testImplementation("com.github.javafaker:javafaker:${javafakerVersion}")
     testImplementation("com.aventstack:extentreports:${extentreportsVersion}") {

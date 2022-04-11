@@ -128,6 +128,10 @@
                     <groupId>com.fasterxml.jackson.core</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -173,6 +177,12 @@
             <artifactId>browserup-proxy-core</artifactId>
             <version>${browserup-proxy.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.github.javafaker</groupId>
