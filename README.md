@@ -14,7 +14,13 @@ This repo has been implemented as a multi-module project (using [Maven] and [Gra
 
 ## Practice site
 
-This repository also contains a [Practice site], i.e., a representative set of sample web pages used as the system under test (SUT) in the Selenium WebDriver test examples. This site is hosted using [GitHub Pages].
+This repo also contains a [Practice site], i.e., a representative set of sample web pages used as the system under test (SUT) in the Selenium WebDriver test examples. This site is hosted using [GitHub Pages].
+
+## Tags
+
+This repo uses Git tags to track the evolution of the codebase in time. These tags are the following:
+
+* `1.0.0`: The examples of the first version of the book (released in April 2022) are based on this tag.
 
 ## About
 
