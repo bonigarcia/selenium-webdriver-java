@@ -19,7 +19,6 @@ package io.github.bonigarcia.webdriver.seljup.ch09.fluent_api;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -29,7 +28,6 @@ import com.codeborne.selenide.SelenideDriver;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
-@Disabled("Selenide 6.2.1 is not compatible with Selenium 4.1.2")
 class SelenideSelJupTest {
 
     @Test

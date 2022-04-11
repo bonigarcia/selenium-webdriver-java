@@ -22,10 +22,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 import org.openqa.selenium.By;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
-@Ignore("Selenide 6.2.1 is not compatible with Selenium 4.1.2")
 public class SelenideNGTest {
 
     @Test
