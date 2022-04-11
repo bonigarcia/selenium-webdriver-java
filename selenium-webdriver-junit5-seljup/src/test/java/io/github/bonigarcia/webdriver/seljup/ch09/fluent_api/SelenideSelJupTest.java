@@ -19,6 +19,7 @@ package io.github.bonigarcia.webdriver.seljup.ch09.fluent_api;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -27,6 +28,7 @@ import com.codeborne.selenide.SelenideDriver;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@Disabled("See #922 in Selenide issues")
 @ExtendWith(SeleniumJupiter.class)
 class SelenideSelJupTest {
 
