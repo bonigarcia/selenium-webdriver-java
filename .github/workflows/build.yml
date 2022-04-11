@@ -38,6 +38,6 @@ jobs:
         sudo rm microsoft.gpg
         sudo apt update && sudo apt install microsoft-edge-stable
     - name: Run tests Maven
-      run: mvn -B test "-Dtest=!*Firefox*,!CrossBrowser*,!*Alternative*"
+      run: mvn -B test
     - name: Run tests with Gradle
-      run: ./gradlew test "-PexcludeTests=**/*Firefox*,**/CrossBrowser*,**/*Alternative*"
+      run: ./gradlew test
