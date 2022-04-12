@@ -25,7 +25,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.opera.OperaDriver;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -44,14 +43,12 @@ public class HelloWorldOperaNGTest {
     public void setupClass() {
         Optional<Path> browserPath = WebDriverManager.operadriver()
                 .getBrowserPath();
-        assumeThat(browserPath).isPresent();
-
-        WebDriverManager.operadriver().setup();
+        assumeThat(browserPath.isPresent()).isTrue();
     }
 
     @BeforeMethod
     public void setup() {
-        driver = new OperaDriver();
+        driver = WebDriverManager.operadriver().create();
     }
 
     @AfterMethod

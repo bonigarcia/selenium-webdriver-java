@@ -29,7 +29,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.opera.OperaDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -44,14 +43,12 @@ class HelloWorldOperaJupiterTest {
     static void setupClass() {
         Optional<Path> browserPath = WebDriverManager.operadriver()
                 .getBrowserPath();
-        assumeThat(browserPath).isPresent();
-
-        WebDriverManager.operadriver().setup();
+        assumeThat(browserPath.isPresent()).isTrue();
     }
 
     @BeforeEach
     void setup() {
-        driver = new OperaDriver();
+        driver = WebDriverManager.operadriver().create();
     }
 
     @AfterEach

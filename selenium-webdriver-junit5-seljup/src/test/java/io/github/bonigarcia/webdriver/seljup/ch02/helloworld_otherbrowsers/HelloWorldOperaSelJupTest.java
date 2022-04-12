@@ -31,6 +31,7 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @EnabledIfBrowserAvailable(OPERA)
 @ExtendWith(SeleniumJupiter.class)
+@SuppressWarnings("deprecation")
 class HelloWorldOperaSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
