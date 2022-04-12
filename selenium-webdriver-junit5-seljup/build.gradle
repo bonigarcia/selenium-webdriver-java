@@ -124,6 +124,7 @@ dependencies {
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
     testImplementation("com.deque.html.axe-core:selenium:${axelVersion}") {
         exclude group: "org.seleniumhq.selenium", module: "*"
+        exclude group: "com.fasterxml.jackson.core", module: "*"
     }
     testImplementation("com.codeborne:selenide:${selenideVersion}") {
         exclude group: "org.seleniumhq.selenium", module: "selenium-java"
@@ -142,7 +143,9 @@ dependencies {
     testImplementation("io.cucumber:cucumber-java:${cucumberVersion}")
     testImplementation("io.cucumber:cucumber-junit-platform-engine:${cucumberVersion}")
     implementation("org.springframework.boot:spring-boot-starter:${springBootVersion}")
-    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
+        exclude group: "com.fasterxml.jackson.core", module: "*"
+    }
     testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     testImplementation("io.appium:java-client:${appiumVersion}") {
         exclude group: "org.seleniumhq.selenium", module: "*"
