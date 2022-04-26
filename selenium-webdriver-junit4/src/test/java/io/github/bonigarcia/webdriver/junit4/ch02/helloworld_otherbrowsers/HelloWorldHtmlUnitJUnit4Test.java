@@ -22,13 +22,11 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.slf4j.Logger;
 
-@Ignore("htmlunit-driver 3.60.0 is incompatible with Selenium WebDriver 4.1.3")
 public class HelloWorldHtmlUnitJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());

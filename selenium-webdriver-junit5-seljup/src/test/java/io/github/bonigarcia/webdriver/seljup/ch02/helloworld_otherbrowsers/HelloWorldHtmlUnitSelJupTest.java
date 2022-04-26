@@ -20,7 +20,6 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -28,7 +27,6 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@Disabled("htmlunit-driver 3.60.0 is incompatible with Selenium WebDriver 4.1.3")
 @ExtendWith(SeleniumJupiter.class)
 class HelloWorldHtmlUnitSelJupTest {
 

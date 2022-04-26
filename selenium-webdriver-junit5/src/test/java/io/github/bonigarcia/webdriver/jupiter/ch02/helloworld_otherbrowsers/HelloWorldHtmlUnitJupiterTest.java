@@ -22,13 +22,11 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.slf4j.Logger;
 
-@Disabled("htmlunit-driver 3.60.0 is incompatible with Selenium WebDriver 4.1.3")
 class HelloWorldHtmlUnitJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
