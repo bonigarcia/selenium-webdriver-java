@@ -89,7 +89,7 @@ ext {
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.10.0"
     axelVersion = "4.4.1"
-    selenideVersion = "6.4.0"
+    selenideVersion = "6.5.0"
     browserupProxyVersion = "2.1.2"
 
     javafakerVersion = "1.0.2"
