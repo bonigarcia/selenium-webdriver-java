@@ -24,7 +24,7 @@
         <javafaker.version>1.0.2</javafaker.version>
         <selenide.version>6.4.0</selenide.version>
         <extentreports.version>5.0.9</extentreports.version>
-        <allure.version>2.17.3</allure.version>
+        <allure.version>2.18.0</allure.version>
         <allure-maven.version>2.11.2</allure-maven.version>
         <cucumber.version>7.3.4</cucumber.version>
         <spring-boot.version>2.6.7</spring-boot.version>
