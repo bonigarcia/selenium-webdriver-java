@@ -6,7 +6,7 @@ plugins {
 
 jar {
     archiveBaseName = "selenium-webdriver-junit4"
-    archiveVersion = "1.0.0"
+    archiveVersion = "1.1.0"
 }
 
 compileTestJava {
