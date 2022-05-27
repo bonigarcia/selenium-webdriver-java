@@ -26,7 +26,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v99.security.Security;
+import org.openqa.selenium.devtools.v102.security.Security;
 import org.openqa.selenium.support.Color;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
