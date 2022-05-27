@@ -44,6 +44,7 @@ class BrowserLogsSelJupTest {
     @Options
     ChromeOptions options = new ChromeOptions();
 
+    @SuppressWarnings("deprecation")
     @BeforeEach
     void setup() {
         LoggingPreferences logs = new LoggingPreferences();

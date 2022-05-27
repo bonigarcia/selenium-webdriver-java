@@ -41,6 +41,7 @@ public class BrowserLogsNGTest {
 
     WebDriver driver;
 
+    @SuppressWarnings("deprecation")
     @BeforeMethod
     public void setup() {
         LoggingPreferences logs = new LoggingPreferences();

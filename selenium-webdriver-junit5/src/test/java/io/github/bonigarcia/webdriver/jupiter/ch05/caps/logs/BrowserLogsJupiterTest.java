@@ -41,6 +41,7 @@ class BrowserLogsJupiterTest {
 
     WebDriver driver;
 
+    @SuppressWarnings("deprecation")
     @BeforeEach
     void setup() {
         LoggingPreferences logs = new LoggingPreferences();

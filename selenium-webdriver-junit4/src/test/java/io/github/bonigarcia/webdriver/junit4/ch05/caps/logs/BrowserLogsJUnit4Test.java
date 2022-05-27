@@ -41,6 +41,7 @@ public class BrowserLogsJUnit4Test {
 
     WebDriver driver;
 
+    @SuppressWarnings("deprecation")
     @Before
     public void setup() {
         LoggingPreferences logs = new LoggingPreferences();
