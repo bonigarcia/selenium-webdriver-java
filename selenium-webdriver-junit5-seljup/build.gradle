@@ -142,9 +142,7 @@ dependencies {
     testImplementation("org.junit.platform:junit-platform-suite:${junitPlatformVersion}")
     testImplementation("io.cucumber:cucumber-java:${cucumberVersion}")
     testImplementation("io.cucumber:cucumber-junit-platform-engine:${cucumberVersion}")
-    implementation("org.springframework.boot:spring-boot-starter:${springBootVersion}") {
-        exclude group: "org.yaml", module: "snakeyaml"
-    }
+    implementation("org.springframework.boot:spring-boot-starter:${springBootVersion}")
     implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
         exclude group: "com.fasterxml.jackson.core", module: "*"
     }
