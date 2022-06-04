@@ -30,7 +30,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.CapabilityType;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.Options;
@@ -44,13 +43,12 @@ class BrowserLogsSelJupTest {
     @Options
     ChromeOptions options = new ChromeOptions();
 
-    @SuppressWarnings("deprecation")
     @BeforeEach
     void setup() {
         LoggingPreferences logs = new LoggingPreferences();
         logs.enable(LogType.BROWSER, Level.ALL);
 
-        options.setCapability(CapabilityType.LOGGING_PREFS, logs);
+        options.setCapability(ChromeOptions.LOGGING_PREFS, logs);
     }
 
     @Test

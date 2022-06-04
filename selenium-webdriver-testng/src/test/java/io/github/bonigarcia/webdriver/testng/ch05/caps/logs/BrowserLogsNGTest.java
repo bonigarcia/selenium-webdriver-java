@@ -27,7 +27,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.CapabilityType;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,14 +40,13 @@ public class BrowserLogsNGTest {
 
     WebDriver driver;
 
-    @SuppressWarnings("deprecation")
     @BeforeMethod
     public void setup() {
         LoggingPreferences logs = new LoggingPreferences();
         logs.enable(LogType.BROWSER, Level.ALL);
 
         ChromeOptions options = new ChromeOptions();
-        options.setCapability(CapabilityType.LOGGING_PREFS, logs);
+        options.setCapability(ChromeOptions.LOGGING_PREFS, logs);
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
