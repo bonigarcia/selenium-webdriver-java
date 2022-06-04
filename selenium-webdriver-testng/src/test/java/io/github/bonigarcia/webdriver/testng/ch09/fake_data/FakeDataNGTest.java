@@ -28,9 +28,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.github.javafaker.Faker;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
+import net.datafaker.Faker;
 
 public class FakeDataNGTest {
 

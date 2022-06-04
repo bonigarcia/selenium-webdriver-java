@@ -91,7 +91,7 @@ ext {
     zapclientVersion = "1.10.0"
     axelVersion = "4.4.1"
     selenideVersion = "6.5.1"
-    javafakerVersion = "1.0.2"
+    datafakerVersion = "1.4.0"
     extentreportsVersion = "5.0.9"
     cucumberVersion = "7.3.4"
     springBootVersion = "2.7.0"
@@ -127,7 +127,7 @@ dependencies {
         exclude group: "io.github.bonigarcia", module: "webdrivermanager"
         exclude group: "org.apache.httpcomponents.client5", module: "httpclient5"
     }
-    testImplementation("com.github.javafaker:javafaker:${javafakerVersion}")
+    testImplementation("net.datafaker:datafaker:${datafakerVersion}")
     testImplementation("com.aventstack:extentreports:${extentreportsVersion}") {
         exclude group: "org.projectlombok", module: "lombok"
     }

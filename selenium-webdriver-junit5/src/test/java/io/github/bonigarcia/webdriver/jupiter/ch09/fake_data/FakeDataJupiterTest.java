@@ -28,9 +28,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.github.javafaker.Faker;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
+import net.datafaker.Faker;
 
 class FakeDataJupiterTest {
 

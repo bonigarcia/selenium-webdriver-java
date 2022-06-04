@@ -92,7 +92,7 @@ ext {
     selenideVersion = "6.5.1"
     browserupProxyVersion = "2.1.2"
 
-    javafakerVersion = "1.0.2"
+    datafakerVersion = "1.4.0"
     extentreportsVersion = "5.0.9"
     cucumberVersion = "7.3.4"
     springBootVersion = "2.7.0"
@@ -135,7 +135,7 @@ dependencies {
         exclude group: "com.fasterxml.jackson.core", module: "*"
         exclude group: "io.netty", module: "*"
     }
-    testImplementation("com.github.javafaker:javafaker:${javafakerVersion}")
+    testImplementation("net.datafaker:datafaker:${datafakerVersion}")
     testImplementation("com.aventstack:extentreports:${extentreportsVersion}") {
         exclude group: "org.projectlombok", module: "lombok"
     }
