@@ -23,21 +23,21 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.EnabledIfBrowserAvailable;
+import io.github.bonigarcia.seljup.Opera;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @EnabledIfBrowserAvailable(OPERA)
 @ExtendWith(SeleniumJupiter.class)
-@SuppressWarnings("deprecation")
 class HelloWorldOperaSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
     @Test
-    void test(OperaDriver driver) {
+    void test(@Opera ChromeDriver driver) {
         // Exercise
         String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
         driver.get(sutUrl);
