@@ -19,7 +19,9 @@ jobs:
         java: [ 11 ]
 
     steps:
-    - name: Set up Java
+    - name: Checkout GitHub repo
+      uses: actions/checkout@v2
+    - name: Set up
       uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
@@ -38,7 +40,9 @@ jobs:
         java: [ 11 ]
 
     steps:
-    - name: Set up Java
+    - name: Checkout GitHub repo
+      uses: actions/checkout@v2
+    - name: Set up
       uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
@@ -56,7 +60,9 @@ jobs:
         java: [ 11 ]
 
     steps:
-    - name: Set up Java
+    - name: Checkout GitHub repo
+      uses: actions/checkout@v2
+    - name: Set up
       uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
@@ -75,7 +81,9 @@ jobs:
         java: [ 11 ]
 
     steps:
-    - name: Set up Java
+    - name: Checkout GitHub repo
+      uses: actions/checkout@v2
+    - name: Set up
       uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
@@ -93,7 +101,9 @@ jobs:
         java: [ 11 ]
 
     steps:
-    - name: Set up Java
+    - name: Checkout GitHub repo
+      uses: actions/checkout@v2
+    - name: Set up
       uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
@@ -112,7 +122,9 @@ jobs:
         java: [ 11 ]
 
     steps:
-    - name: Set up Java
+    - name: Checkout GitHub repo
+      uses: actions/checkout@v2
+    - name: Set up
       uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
@@ -130,7 +142,9 @@ jobs:
         java: [ 11 ]
 
     steps:
-    - name: Set up Java
+    - name: Checkout GitHub repo
+      uses: actions/checkout@v2
+    - name: Set up
       uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
@@ -149,7 +163,9 @@ jobs:
         java: [ 11 ]
 
     steps:
-    - name: Set up Java
+    - name: Checkout GitHub repo
+      uses: actions/checkout@v2
+    - name: Set up
       uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
