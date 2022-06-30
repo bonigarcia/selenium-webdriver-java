@@ -11,7 +11,7 @@ env:
   WDM_GITHUBTOKEN: ${{ secrets.WDM_GITHUBTOKEN }}
 
 jobs:
-  tests:
+  junit4-maven:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -19,25 +19,143 @@ jobs:
         java: [ 11 ]
 
     steps:
-    - name: Checkout GitHub repo
-      uses: actions/checkout@v2
     - name: Set up Java
-      uses: actions/setup-java@v2
+      uses: .github/actions/setup
       with:
-        distribution: 'temurin'
-        java-version: ${{ matrix.java }}
-    - name: Start Xvfb on Linux
-      if: matrix.os == 'ubuntu-latest'
-      run: Xvfb :99 &
-    - name: Install Edge on Linux
-      if: matrix.os == 'ubuntu-latest'
+        os: ${{ matrix.os }}
+        java: ${{ matrix.java }}
+    - name: Run JUnit 4 tests with Maven
       run: |
-        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
-        sudo rm microsoft.gpg
-        sudo apt update && sudo apt install microsoft-edge-stable
-    - name: Run tests Maven
-      run: mvn -B test
-    - name: Run tests with Gradle
-      run: ./gradlew test
+        cd selenium-webdriver-junit4
+        mvn -B test
+
+  junit4-gradle:
+    needs: junit4-maven
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java: [ 11 ]
+
+    steps:
+    - name: Set up Java
+      uses: .github/actions/setup
+      with:
+        os: ${{ matrix.os }}
+        java: ${{ matrix.java }}
+    - name: Run JUnit 4 tests with Gradle
+      run: |
+        cd selenium-webdriver-junit4
+        ./gradlew test
+
+  junit5-maven:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java: [ 11 ]
+
+    steps:
+    - name: Set up Java
+      uses: .github/actions/setup
+      with:
+        os: ${{ matrix.os }}
+        java: ${{ matrix.java }}
+    - name: Run JUnit 5 tests with Maven
+      run: |
+        cd selenium-webdriver-junit5
+        mvn -B test
+
+  junit5-gradle:
+    needs: junit5-maven
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java: [ 11 ]
+
+    steps:
+    - name: Set up Java
+      uses: .github/actions/setup
+      with:
+        os: ${{ matrix.os }}
+        java: ${{ matrix.java }}
+    - name: Run JUnit 5 tests with Gradle
+      run: |
+        cd selenium-webdriver-junit5
+        ./gradlew test
+
+  junit5-seljup-maven:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java: [ 11 ]
+
+    steps:
+    - name: Set up Java
+      uses: .github/actions/setup
+      with:
+        os: ${{ matrix.os }}
+        java: ${{ matrix.java }}
+    - name: Run Selenium-Jupiter tests with Maven
+      run: |
+        cd selenium-webdriver-junit5-seljup
+        mvn -B test
+
+  junit5-seljup-gradle:
+    needs: junit5-seljup-maven
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java: [ 11 ]
+
+    steps:
+    - name: Set up Java
+      uses: .github/actions/setup
+      with:
+        os: ${{ matrix.os }}
+        java: ${{ matrix.java }}
+    - name: Run Selenium-Jupiter tests with Gradle
+      run: |
+        cd selenium-webdriver-junit5-seljup
+        ./gradlew test
+
+  testng-maven:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java: [ 11 ]
+
+    steps:
+    - name: Set up Java
+      uses: .github/actions/setup
+      with:
+        os: ${{ matrix.os }}
+        java: ${{ matrix.java }}
+    - name: Run TestNG tests with Maven
+      run: |
+        cd selenium-webdriver-testng
+        mvn -B test
+
+  testng-gradle:
+    needs: testng-maven
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java: [ 11 ]
+
+    steps:
+    - name: Set up Java
+      uses: .github/actions/setup
+      with:
+        os: ${{ matrix.os }}
+        java: ${{ matrix.java }}
+    - name: Run TestNG tests with Gradle
+      run: |
+        cd selenium-webdriver-testng
+        ./gradlew test
+
