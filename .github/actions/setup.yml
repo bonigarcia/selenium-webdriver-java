@@ -1,6 +1,5 @@
 name: 'Setup'
 description: 'Setup workflow'
-
 inputs:
   os:
     description: 'Operating system'
@@ -8,7 +7,7 @@ inputs:
   java:
     description: 'JDK version'
     required: true
-
+outputs:
 runs:
   using: 'composite'
   steps:
