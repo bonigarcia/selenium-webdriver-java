@@ -9,7 +9,7 @@ inputs:
     required: true
 runs:
   using: "composite"
-    steps:
+  steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
     - name: Set up Java
