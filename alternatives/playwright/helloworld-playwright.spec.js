@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+const { test, expect } = require('@playwright/test');
 
 test('basic test', async ({ page }) => {
    await page.goto('https://bonigarcia.dev/selenium-webdriver-java/login-form.html');
