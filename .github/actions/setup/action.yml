@@ -1,6 +1,5 @@
 name: 'Setup'
 description: 'Setup workflow'
-
 inputs:
   os:
     description: 'Operating system'
@@ -8,9 +7,8 @@ inputs:
   java:
     description: 'JDK version'
     required: true
-
 runs:
-  using: 'composite'
+  using: "composite"
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
