@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Set up Java
-      uses: .github/actions/setup
+      uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
         java: ${{ matrix.java }}
@@ -39,7 +39,7 @@ jobs:
 
     steps:
     - name: Set up Java
-      uses: .github/actions/setup
+      uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
         java: ${{ matrix.java }}
@@ -57,7 +57,7 @@ jobs:
 
     steps:
     - name: Set up Java
-      uses: .github/actions/setup
+      uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
         java: ${{ matrix.java }}
@@ -76,7 +76,7 @@ jobs:
 
     steps:
     - name: Set up Java
-      uses: .github/actions/setup
+      uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
         java: ${{ matrix.java }}
@@ -94,7 +94,7 @@ jobs:
 
     steps:
     - name: Set up Java
-      uses: .github/actions/setup
+      uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
         java: ${{ matrix.java }}
@@ -113,7 +113,7 @@ jobs:
 
     steps:
     - name: Set up Java
-      uses: .github/actions/setup
+      uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
         java: ${{ matrix.java }}
@@ -131,7 +131,7 @@ jobs:
 
     steps:
     - name: Set up Java
-      uses: .github/actions/setup
+      uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
         java: ${{ matrix.java }}
@@ -150,7 +150,7 @@ jobs:
 
     steps:
     - name: Set up Java
-      uses: .github/actions/setup
+      uses: ./.github/actions/setup
       with:
         os: ${{ matrix.os }}
         java: ${{ matrix.java }}
