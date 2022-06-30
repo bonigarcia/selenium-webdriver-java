@@ -21,11 +21,22 @@ jobs:
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
-    - name: Set up
-      uses: ./.github/actions/setup
+    - name: Set up Java
+      uses: actions/setup-java@v2
       with:
-        os: ${{ matrix.os }}
-        java: ${{ matrix.java }}
+        distribution: 'temurin'
+        java-version: ${{ matrix.java }}
+    - name: Start Xvfb on Linux
+      if: inputs.os == 'ubuntu-latest'
+      run: Xvfb :99 &
+    - name: Install Edge on Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
+        sudo rm microsoft.gpg
+        sudo apt update && sudo apt install microsoft-edge-stable
     - name: Run JUnit 4 tests with Maven
       run: |
         cd selenium-webdriver-junit4
@@ -42,11 +53,22 @@ jobs:
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
-    - name: Set up
-      uses: ./.github/actions/setup
+    - name: Set up Java
+      uses: actions/setup-java@v2
       with:
-        os: ${{ matrix.os }}
-        java: ${{ matrix.java }}
+        distribution: 'temurin'
+        java-version: ${{ matrix.java }}
+    - name: Start Xvfb on Linux
+      if: inputs.os == 'ubuntu-latest'
+      run: Xvfb :99 &
+    - name: Install Edge on Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
+        sudo rm microsoft.gpg
+        sudo apt update && sudo apt install microsoft-edge-stable
     - name: Run JUnit 4 tests with Gradle
       run: |
         cd selenium-webdriver-junit4
@@ -62,11 +84,22 @@ jobs:
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
-    - name: Set up
-      uses: ./.github/actions/setup
+    - name: Set up Java
+      uses: actions/setup-java@v2
       with:
-        os: ${{ matrix.os }}
-        java: ${{ matrix.java }}
+        distribution: 'temurin'
+        java-version: ${{ matrix.java }}
+    - name: Start Xvfb on Linux
+      if: inputs.os == 'ubuntu-latest'
+      run: Xvfb :99 &
+    - name: Install Edge on Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
+        sudo rm microsoft.gpg
+        sudo apt update && sudo apt install microsoft-edge-stable
     - name: Run JUnit 5 tests with Maven
       run: |
         cd selenium-webdriver-junit5
@@ -83,11 +116,22 @@ jobs:
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
-    - name: Set up
-      uses: ./.github/actions/setup
+    - name: Set up Java
+      uses: actions/setup-java@v2
       with:
-        os: ${{ matrix.os }}
-        java: ${{ matrix.java }}
+        distribution: 'temurin'
+        java-version: ${{ matrix.java }}
+    - name: Start Xvfb on Linux
+      if: inputs.os == 'ubuntu-latest'
+      run: Xvfb :99 &
+    - name: Install Edge on Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
+        sudo rm microsoft.gpg
+        sudo apt update && sudo apt install microsoft-edge-stable
     - name: Run JUnit 5 tests with Gradle
       run: |
         cd selenium-webdriver-junit5
@@ -103,11 +147,22 @@ jobs:
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
-    - name: Set up
-      uses: ./.github/actions/setup
+    - name: Set up Java
+      uses: actions/setup-java@v2
       with:
-        os: ${{ matrix.os }}
-        java: ${{ matrix.java }}
+        distribution: 'temurin'
+        java-version: ${{ matrix.java }}
+    - name: Start Xvfb on Linux
+      if: inputs.os == 'ubuntu-latest'
+      run: Xvfb :99 &
+    - name: Install Edge on Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
+        sudo rm microsoft.gpg
+        sudo apt update && sudo apt install microsoft-edge-stable
     - name: Run Selenium-Jupiter tests with Maven
       run: |
         cd selenium-webdriver-junit5-seljup
@@ -124,11 +179,22 @@ jobs:
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
-    - name: Set up
-      uses: ./.github/actions/setup
+    - name: Set up Java
+      uses: actions/setup-java@v2
       with:
-        os: ${{ matrix.os }}
-        java: ${{ matrix.java }}
+        distribution: 'temurin'
+        java-version: ${{ matrix.java }}
+    - name: Start Xvfb on Linux
+      if: inputs.os == 'ubuntu-latest'
+      run: Xvfb :99 &
+    - name: Install Edge on Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
+        sudo rm microsoft.gpg
+        sudo apt update && sudo apt install microsoft-edge-stable
     - name: Run Selenium-Jupiter tests with Gradle
       run: |
         cd selenium-webdriver-junit5-seljup
@@ -144,11 +210,22 @@ jobs:
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
-    - name: Set up
-      uses: ./.github/actions/setup
+    - name: Set up Java
+      uses: actions/setup-java@v2
       with:
-        os: ${{ matrix.os }}
-        java: ${{ matrix.java }}
+        distribution: 'temurin'
+        java-version: ${{ matrix.java }}
+    - name: Start Xvfb on Linux
+      if: inputs.os == 'ubuntu-latest'
+      run: Xvfb :99 &
+    - name: Install Edge on Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
+        sudo rm microsoft.gpg
+        sudo apt update && sudo apt install microsoft-edge-stable
     - name: Run TestNG tests with Maven
       run: |
         cd selenium-webdriver-testng
@@ -165,11 +242,22 @@ jobs:
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
-    - name: Set up
-      uses: ./.github/actions/setup
+    - name: Set up Java
+      uses: actions/setup-java@v2
       with:
-        os: ${{ matrix.os }}
-        java: ${{ matrix.java }}
+        distribution: 'temurin'
+        java-version: ${{ matrix.java }}
+    - name: Start Xvfb on Linux
+      if: inputs.os == 'ubuntu-latest'
+      run: Xvfb :99 &
+    - name: Install Edge on Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
+        sudo rm microsoft.gpg
+        sudo apt update && sudo apt install microsoft-edge-stable
     - name: Run TestNG tests with Gradle
       run: |
         cd selenium-webdriver-testng
