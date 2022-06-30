@@ -27,7 +27,7 @@ jobs:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
     - name: Start Xvfb on Linux
-      if: inputs.os == 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: Xvfb :99 &
     - name: Install Edge on Linux
       if: matrix.os == 'ubuntu-latest'
@@ -59,7 +59,7 @@ jobs:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
     - name: Start Xvfb on Linux
-      if: inputs.os == 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: Xvfb :99 &
     - name: Install Edge on Linux
       if: matrix.os == 'ubuntu-latest'
@@ -90,7 +90,7 @@ jobs:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
     - name: Start Xvfb on Linux
-      if: inputs.os == 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: Xvfb :99 &
     - name: Install Edge on Linux
       if: matrix.os == 'ubuntu-latest'
@@ -122,7 +122,7 @@ jobs:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
     - name: Start Xvfb on Linux
-      if: inputs.os == 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: Xvfb :99 &
     - name: Install Edge on Linux
       if: matrix.os == 'ubuntu-latest'
@@ -153,7 +153,7 @@ jobs:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
     - name: Start Xvfb on Linux
-      if: inputs.os == 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: Xvfb :99 &
     - name: Install Edge on Linux
       if: matrix.os == 'ubuntu-latest'
@@ -185,7 +185,7 @@ jobs:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
     - name: Start Xvfb on Linux
-      if: inputs.os == 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: Xvfb :99 &
     - name: Install Edge on Linux
       if: matrix.os == 'ubuntu-latest'
@@ -216,7 +216,7 @@ jobs:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
     - name: Start Xvfb on Linux
-      if: inputs.os == 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: Xvfb :99 &
     - name: Install Edge on Linux
       if: matrix.os == 'ubuntu-latest'
@@ -248,7 +248,7 @@ jobs:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
     - name: Start Xvfb on Linux
-      if: inputs.os == 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: Xvfb :99 &
     - name: Install Edge on Linux
       if: matrix.os == 'ubuntu-latest'
