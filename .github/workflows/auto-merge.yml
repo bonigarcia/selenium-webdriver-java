@@ -14,11 +14,11 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1.1.1
         with:
-          github-token: "${{ secrets.WDM_GITHUBTOKEN }}"
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Enable auto-merge for Dependabot PRs
         if: ${{contains(steps.metadata.outputs.dependency-names, 'my-dependency') && steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
         run: |
           gh pr merge --auto --squash --merge "$PR_URL" --body="Co-authored-by: Boni Garcia <boni.garcia@uc3m.es>"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
-          WDM_GITHUBTOKEN: ${{secrets.WDM_GITHUBTOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
