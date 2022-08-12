@@ -35,7 +35,7 @@ public class EventListenerNGTest {
     public void setup() {
         MyEventListener listener = new MyEventListener();
         WebDriver originalDriver = WebDriverManager.chromedriver().create();
-        driver = new EventFiringDecorator(listener).decorate(originalDriver);
+        driver = new EventFiringDecorator<>(listener).decorate(originalDriver);
     }
 
     @AfterMethod

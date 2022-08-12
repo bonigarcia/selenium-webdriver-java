@@ -35,7 +35,7 @@ class EventListenerSelJupTest {
 
     public EventListenerSelJupTest(ChromeDriver originalDriver) {
         MyEventListener listener = new MyEventListener();
-        driver = new EventFiringDecorator(listener).decorate(originalDriver);
+        driver = new EventFiringDecorator<>(listener).decorate(originalDriver);
     }
 
     @AfterEach
