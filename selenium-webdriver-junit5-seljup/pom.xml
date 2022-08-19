@@ -30,7 +30,7 @@
         <allure.version>2.19.0</allure.version>
         <allure-maven.version>2.11.2</allure-maven.version>
         <cucumber.version>7.6.0</cucumber.version>
-        <spring-boot.version>2.7.2</spring-boot.version>
+        <spring-boot.version>2.7.3</spring-boot.version>
         <appium.version>8.1.1</appium.version>
         <rest-assured.version>5.1.1</rest-assured.version>
 
