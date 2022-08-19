@@ -17,7 +17,7 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Enable auto-merge for Dependabot PRs
         run: |
-          gh pr merge "$PR_URL" --auto --squash --body="\r\nCo-authored-by: Boni Garcia <boni.garcia@uc3m.es>"
+          gh pr merge "$PR_URL" --auto --squash --body="Co-authored-by: Boni Garcia <boni.garcia@uc3m.es>"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
