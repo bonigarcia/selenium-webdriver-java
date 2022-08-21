@@ -6,18 +6,17 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  DISPLAY: :99
-
 jobs:
   tests:
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         project: [ junit4, junit5, junit5-seljup, testng ]
         build-tool: [ mvn, gradle ]
         os: [ ubuntu-latest ]
         java: [ 11 ]
+    runs-on: ${{ matrix.os }}
+    env:
+      DISPLAY: :99
 
     steps:
     - name: Checkout GitHub repo
