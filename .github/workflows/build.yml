@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  DISPLAY: :99
+
 jobs:
   tests:
     runs-on: ${{ matrix.os }}
@@ -27,8 +30,6 @@ jobs:
     - name: Start Xvfb on Linux
       if: matrix.os == 'ubuntu-latest'
       run: Xvfb $DISPLAY &
-      env:
-        DISPLAY: :99
     - name: Run ${{ matrix.project }} tests with ${{ matrix.build-tool }}
       uses: nick-invision/retry@v2.7.1
       with:
