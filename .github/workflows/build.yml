@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  DISPLAY: :99
-  WDM_GITHUBTOKEN: ${{ secrets.WDM_GITHUBTOKEN }}
-
 jobs:
   tests:
     runs-on: ${{ matrix.os }}
@@ -30,7 +26,9 @@ jobs:
         java-version: ${{ matrix.java }}
     - name: Start Xvfb on Linux
       if: matrix.os == 'ubuntu-latest'
-      run: Xvfb :99 &
+      run: Xvfb $DISPLAY &
+      env:
+        DISPLAY: :99
     - name: Run ${{ matrix.project }} tests with ${{ matrix.build-tool }}
       uses: nick-invision/retry@v2.7.1
       with:
