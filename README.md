@@ -22,6 +22,7 @@ This repo uses Git tags to track the evolution of the codebase in time. These ta
 
 * `1.0.0`: The examples of the first version of the book (released in April 2022) are based on this tag.
 * `1.1.0`: Bump to Java 11, due to the incompatibility of TestNG 7.6.0 (released on May 18, 2022) with Java 8.
+* `1.2.0`: Remove GitHub token from the workflow setup, not required anymore since WebDriverManager 5.3.0 (released on August 21, 2022).
 
 ## About
 
