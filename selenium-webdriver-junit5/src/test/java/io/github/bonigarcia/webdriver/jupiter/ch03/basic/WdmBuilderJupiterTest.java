@@ -16,6 +16,8 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch03.basic;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,7 +41,8 @@ class WdmBuilderJupiterTest {
 
     @Test
     void test() {
-        // TODO: use variable "driver" to call the Selenium WebDriver API
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 
 }

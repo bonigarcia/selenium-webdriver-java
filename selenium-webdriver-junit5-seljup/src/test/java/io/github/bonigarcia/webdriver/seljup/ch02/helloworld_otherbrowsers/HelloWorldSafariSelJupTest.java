@@ -17,14 +17,11 @@
 package io.github.bonigarcia.webdriver.seljup.ch02.helloworld_otherbrowsers;
 
 import static io.github.bonigarcia.seljup.Browser.SAFARI;
-import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.safari.SafariDriver;
-import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.EnabledIfBrowserAvailable;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
@@ -33,18 +30,10 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 @ExtendWith(SeleniumJupiter.class)
 class HelloWorldSafariSelJupTest {
 
-    static final Logger log = getLogger(lookup().lookupClass());
-
     @Test
     void test(SafariDriver driver) {
-        // Exercise
-        String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
-        driver.get(sutUrl);
-        String title = driver.getTitle();
-        log.debug("The title of {} is {}", sutUrl, title);
-
-        // Verify
-        assertThat(title).isEqualTo("Hands-On Selenium WebDriver with Java");
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 
 }
