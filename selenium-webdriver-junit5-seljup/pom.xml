@@ -16,7 +16,7 @@
         <selenium-jupiter.version>4.3.1</selenium-jupiter.version>
         <assertj.version>3.23.1</assertj.version>
 
-        <htmlunit.version>3.63.0</htmlunit.version>
+        <htmlunit.version>3.64.0</htmlunit.version>
         <rerunner.version>2.1.6</rerunner.version>
         <junit-platform.version>1.9.0</junit-platform.version>
         <awaitility.version>4.2.0</awaitility.version>
