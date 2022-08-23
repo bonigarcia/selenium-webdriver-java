@@ -19,6 +19,7 @@ package io.github.bonigarcia.webdriver.jupiter.ch09.spring;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -50,6 +51,7 @@ class SpringBootJupiterTest {
         driver.quit();
     }
 
+    @Disabled("Not compatible with logback beta")
     @Test
     void testSpringBoot() {
         driver.get("http://localhost:" + serverPort);
