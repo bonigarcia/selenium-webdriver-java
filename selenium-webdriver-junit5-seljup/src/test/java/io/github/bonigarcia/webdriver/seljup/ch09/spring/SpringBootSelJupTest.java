@@ -30,7 +30,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 import io.github.bonigarcia.webdriver.SpringBootDemoApp;
 
-@Disabled("Not compatible with logback beta")
 @ExtendWith({ SeleniumJupiter.class, SpringExtension.class })
 @SpringBootTest(classes = SpringBootDemoApp.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SpringBootSelJupTest {
@@ -38,6 +37,7 @@ class SpringBootSelJupTest {
     @LocalServerPort
     protected int serverPort;
 
+    @Disabled("Not compatible with logback beta")
     @Test
     void testSpringBoot(ChromeDriver driver) {
         driver.get("http://localhost:" + serverPort);
