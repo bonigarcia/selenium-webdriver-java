@@ -32,6 +32,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.webdriver.SpringBootDemoApp;
 
+@Ignore("Not compatible with logback beta")
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootDemoApp.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SpringBootJUnit4Test {
@@ -51,7 +52,6 @@ public class SpringBootJUnit4Test {
         driver.quit();
     }
 
-    @Ignore("Not compatible with logback beta")
     @Test
     public void testSpringBoot() {
         driver.get("http://localhost:" + serverPort);

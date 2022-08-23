@@ -32,6 +32,7 @@ import io.cucumber.java.After;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.webdriver.SpringBootDemoApp;
 
+@Disabled("Not compatible with logback beta")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = SpringBootDemoApp.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SpringBootJupiterTest {
@@ -51,7 +52,6 @@ class SpringBootJupiterTest {
         driver.quit();
     }
 
-    @Disabled("Not compatible with logback beta")
     @Test
     void testSpringBoot() {
         driver.get("http://localhost:" + serverPort);
