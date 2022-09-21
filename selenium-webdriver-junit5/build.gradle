@@ -85,7 +85,7 @@ ext {
 
     htmlunitVersion = "3.64.0"
     rerunnerVersion = "2.1.6"
-    junitPlatformVersion = "1.9.0"
+    junitPlatformVersion = "1.9.1"
     awaitilityVersion = "4.2.0"
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.10.0"
