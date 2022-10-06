@@ -22,7 +22,7 @@
         <awaitility.version>4.2.0</awaitility.version>
         <browsermob.version>2.1.5</browsermob.version>
         <zapclient.version>1.10.0</zapclient.version>
-        <axel.version>4.4.1</axel.version>
+        <axel.version>4.4.2</axel.version>
         <selenide.version>6.8.1</selenide.version>
         <browserup-proxy.version>2.1.2</browserup-proxy.version>
         <datafaker.version>1.6.0</datafaker.version>
