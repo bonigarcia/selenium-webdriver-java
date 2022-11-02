@@ -85,7 +85,7 @@ ext {
     htmlunitVersion = "4.5.2"
     awaitilityVersion = "4.2.0"
     browsermobVersion = "2.1.5"
-    zapclientVersion = "1.10.0"
+    zapclientVersion = "1.11.0"
     axelVersion = "4.4.2"
     selenideVersion = "6.9.0"
     datafakerVersion = "1.6.0"
