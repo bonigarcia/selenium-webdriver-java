@@ -26,8 +26,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v103.network.Network;
-import org.openqa.selenium.devtools.v103.network.model.Headers;
+import org.openqa.selenium.devtools.v106.network.Network;
+import org.openqa.selenium.devtools.v106.network.model.Headers;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
