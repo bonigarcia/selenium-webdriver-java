@@ -82,7 +82,7 @@ ext {
     selJupVersion = "4.3.2"
     assertjVersion  = "3.23.1"
 
-    htmlunitVersion = "4.7.0"
+    htmlunitVersion = "4.7.2"
     rerunnerVersion = "2.1.6"
     junitPlatformVersion = "1.9.1"
     awaitilityVersion = "4.2.0"
