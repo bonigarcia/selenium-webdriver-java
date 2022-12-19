@@ -13,7 +13,7 @@ jobs:
         project: [ junit4, junit5, junit5-seljup, testng ]
         build-tool: [ mvn, gradle ]
         os: [ ubuntu-latest ]
-        java: [ 11 ]
+        java: [ 17 ]
     runs-on: ${{ matrix.os }}
     env:
       DISPLAY: :99

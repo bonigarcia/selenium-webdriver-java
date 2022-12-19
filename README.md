@@ -1,5 +1,5 @@
 [![Build Status](https://github.com/bonigarcia/selenium-webdriver-java/workflows/build/badge.svg)](https://github.com/bonigarcia/selenium-webdriver-java/actions)
-[![badge-jdk](https://img.shields.io/badge/jdk-11-green.svg)](https://www.oracle.com/java/technologies/downloads/)
+[![badge-jdk](https://img.shields.io/badge/jdk-17-green.svg)](https://www.oracle.com/java/technologies/downloads/)
 [![License badge](https://img.shields.io/badge/license-Apache2-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Support badge](https://img.shields.io/badge/stackoverflow-selenium_webdriver-green.svg?logo=stackoverflow)](https://stackoverflow.com/questions/tagged/selenium-webdriver)
 [![Twitter Follow](https://img.shields.io/twitter/follow/boni_gg.svg?style=social)](https://twitter.com/boni_gg)
@@ -23,6 +23,7 @@ This repo uses Git tags to track the evolution of the codebase in time. These ta
 * `1.0.0`: The examples of the first version of the book (released in April 2022) are based on this tag.
 * `1.1.0`: Bump to Java 11, due to the incompatibility of TestNG 7.6.0 (released on May 18, 2022) with Java 8.
 * `1.2.0`: Remove GitHub token from the workflow setup, not required anymore since WebDriverManager 5.3.0 (released on August 21, 2022).
+* `1.3.0`: Bump to Java 17, due to the incompatibility of Spring Boot 3.0.0 (released on Nov 24, 2022) with Java 11.
 
 ## About
 
