@@ -46,7 +46,7 @@ class WebAuthnSelJupTest {
         driver.findElement(By.id("register-button")).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.textToBePresentInElementLocated(
-                By.className("popover-body"), "Success! Now try logging in"));
+                By.className("alert"), "Success! Now try to authenticate..."));
 
         driver.findElement(By.id("login-button")).click();
         wait.until(ExpectedConditions.textToBePresentInElementLocated(
