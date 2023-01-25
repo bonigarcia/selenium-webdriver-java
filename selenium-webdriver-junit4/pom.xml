@@ -16,7 +16,7 @@
         <assertj.version>3.24.2</assertj.version>
         <wdm.version>5.3.2</wdm.version>
 
-        <htmlunit.version>4.7.2</htmlunit.version>
+        <htmlunit.version>4.8.0</htmlunit.version>
         <awaitility.version>4.2.0</awaitility.version>
         <browsermob.version>2.1.5</browsermob.version>
         <zapclient.version>1.11.0</zapclient.version>
