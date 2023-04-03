@@ -23,37 +23,11 @@ import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriver.Options;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import io.github.bonigarcia.webdriver.HelperClass.Constants;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-public class ReadCookiesNGTest {
-
-    WebDriver driver;
-
-    @BeforeClass
-    public void setupClass() {
-        WebDriverManager.chromedriver().setup();
-    }
-
-    @BeforeMethod
-    public void setup() {
-        driver = new ChromeDriver();
-    }
-
-    @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
-    }
+public class ReadCookiesNGTest extends TestSetup {
 
     @Test
     public void testReadCookies() {
@@ -64,7 +38,7 @@ public class ReadCookiesNGTest {
         Set<Cookie> cookies = options.getCookies();
         assertThat(cookies).hasSize(2);
 
-        Cookie username = options.getCookieNamed("username");
+        Cookie username = options.getCookieNamed(Constants.COOKIE_USERNAME);
         assertThat(username.getValue()).isEqualTo("John Doe");
         assertThat(username.getPath()).isEqualTo("/");
 

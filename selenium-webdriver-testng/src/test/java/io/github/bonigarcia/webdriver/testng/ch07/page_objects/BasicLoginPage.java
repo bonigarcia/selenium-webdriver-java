@@ -30,12 +30,10 @@ public class BasicLoginPage {
 
     public BasicLoginPage(WebDriver driver) {
         this.driver = driver;
-
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
     }
 
-    public void with(String username, String password) {
+    public void loginWith(String username, String password) {
         driver.findElement(usernameInput).sendKeys(username);
         driver.findElement(passwordInput).sendKeys(password);
         driver.findElement(submitButton).click();

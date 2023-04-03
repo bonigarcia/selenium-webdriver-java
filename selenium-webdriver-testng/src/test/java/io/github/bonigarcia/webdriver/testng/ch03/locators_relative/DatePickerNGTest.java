@@ -36,67 +36,66 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DatePickerNGTest {
 
-    static final Logger log = getLogger(lookup().lookupClass());
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() {
-        driver.quit();
-    }
-
-    @Test
-    public void testDatePicker() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
-
-        // Get the current date from the system clock
+        static final Logger log = getLogger(lookup().lookupClass());
         LocalDate today = LocalDate.now();
         int currentYear = today.getYear();
         int currentDay = today.getDayOfMonth();
+        WebDriver driver;
 
-        // Click on the date picker to open the calendar
-        WebElement datePicker = driver.findElement(By.name("my-date"));
-        datePicker.click();
+        @BeforeMethod
+        public void setup() {
+                driver = WebDriverManager.chromedriver().create();
+        }
 
-        // Click on the current month by searching by text
-        WebElement monthElement = driver.findElement(By.xpath(
-                String.format("//th[contains(text(),'%d')]", currentYear)));
-        monthElement.click();
+        @AfterMethod
+        public void teardown() {
+                driver.quit();
+        }
 
-        // Click on the left arrow using relative locators
-        WebElement arrowLeft = driver.findElement(
-                RelativeLocator.with(By.tagName("th")).toRightOf(monthElement));
-        arrowLeft.click();
+        @Test
+        public void testDatePicker() {
+                driver.get(
+                                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        // Click on the current month of that year
-        WebElement monthPastYear = driver.findElement(RelativeLocator
-                .with(By.cssSelector("span[class$=focused]")).below(arrowLeft));
-        monthPastYear.click();
+                // Get the current date from the system clock
 
-        // Click on the present day in that month
-        WebElement dayElement = driver.findElement(By.xpath(String.format(
-                "//td[@class='day' and contains(text(),'%d')]", currentDay)));
-        dayElement.click();
+                // Click on the date picker to open the calendar
+                WebElement datePickerElement = driver.findElement(By.name("my-date"));
+                datePicker.click();
 
-        // Get the final date on the input text
-        String oneYearBack = datePicker.getAttribute("value");
-        log.debug("Final date in date picker: {}", oneYearBack);
+                // Click on the current month by searching by text
+                WebElement monthElement = driver.findElement(By.xpath(
+                                String.format("//th[contains(text(),'%d')]", currentYear)));
+                monthElement.click();
 
-        // Assert that the expected date is equal to the one selected in the
-        // date picker
-        LocalDate previousYear = today.minusYears(1);
-        DateTimeFormatter dateFormat = DateTimeFormatter
-                .ofPattern("MM/dd/yyyy");
-        String expectedDate = previousYear.format(dateFormat);
-        log.debug("Expected date: {}", expectedDate);
+                // Click on the left arrow using relative locators
+                WebElement arrowLeft = driver.findElement(
+                                RelativeLocator.with(By.tagName("th")).toRightOf(monthElement));
+                arrowLeft.click();
 
-        assertThat(oneYearBack).isEqualTo(expectedDate);
-    }
+                // Click on the current month of that year
+                WebElement monthPastYear = driver.findElement(RelativeLocator
+                                .with(By.cssSelector("span[class$=focused]")).below(arrowLeft));
+                monthPastYear.click();
+
+                // Click on the present day in that month
+                WebElement dayElement = driver.findElement(By.xpath(String.format(
+                                "//td[@class='day' and contains(text(),'%d')]", currentDay)));
+                dayElement.click();
+
+                // Get the final date on the input text
+                String oneYearBack = datePicker.getAttribute("value");
+                log.debug("Final date in date picker: {}", oneYearBack);
+
+                // Assert that the expected date is equal to the one selected in the
+                // date picker
+                LocalDate previousYear = today.minusYears(1);
+                DateTimeFormatter dateFormat = DateTimeFormatter
+                                .ofPattern("MM/dd/yyyy");
+                String expectedDate = previousYear.format(dateFormat);
+                log.debug("Expected date: {}", expectedDate);
+
+                assertThat(oneYearBack).isEqualTo(expectedDate);
+        }
 
 }

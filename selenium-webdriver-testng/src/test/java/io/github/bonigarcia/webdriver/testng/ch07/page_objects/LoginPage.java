@@ -29,6 +29,7 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver, int timeoutSec) {
         this(driver);
         setTimeoutSec(timeoutSec);
+        visit("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
     }
 
     public LoginPage(WebDriver driver) {

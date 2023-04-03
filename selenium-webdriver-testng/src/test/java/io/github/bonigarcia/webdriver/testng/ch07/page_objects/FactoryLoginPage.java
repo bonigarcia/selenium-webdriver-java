@@ -40,14 +40,18 @@ public class FactoryLoginPage extends ExtendedBasePage {
     WebElement successBox;
 
     public FactoryLoginPage(String browser, int timeoutSec) {
-        this(browser);
+        super(browser);
         setTimeoutSec(timeoutSec);
+        visit("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
     }
 
     public FactoryLoginPage(String browser) {
-        super(browser);
-        PageFactory.initElements(driver, this);
-        visit("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
+        this(browser, 10);
+    }
+
+    @Override
+    public void visit(String url) {
+        driver.get(url);
     }
 
     public void with(String username, String password) {
@@ -56,6 +60,7 @@ public class FactoryLoginPage extends ExtendedBasePage {
         click(submitButton);
     }
 
+    @Override
     public boolean successBoxPresent() {
         return isDisplayed(successBox);
     }

@@ -19,49 +19,35 @@ package io.github.bonigarcia.webdriver.testng.ch04.javascript;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
-
+import org.testng.annotations.*;
 import java.time.Duration;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-public class AsyncScriptNGTest {
+public class AsyncScriptNGTest extends TestSetup {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() {
-        driver.quit();
-    }
-
     @Test
     public void testAsyncScript() {
-        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        String url = "https://bonigarcia.dev/selenium-webdriver-java/";
+        driver.get(url);
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         Duration pause = Duration.ofSeconds(2);
         String script = "const callback = arguments[arguments.length - 1];"
                 + "window.setTimeout(callback, " + pause.toMillis() + ");";
 
-        long initMillis = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         js.executeAsyncScript(script);
-        Duration elapsed = Duration
-                .ofMillis(System.currentTimeMillis() - initMillis);
-        log.debug("The script took {} ms to be executed", elapsed.toMillis());
+        Duration elapsed = Duration.ofMillis(System.currentTimeMillis() - start);
+
         assertThat(elapsed).isGreaterThanOrEqualTo(pause);
+        log.debug("Script execution time: {} ms", elapsed.toMillis());
     }
 
 }

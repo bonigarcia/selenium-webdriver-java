@@ -32,18 +32,20 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class ExtendedBasePage {
+public abstract class ExtendedBasePage {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriver driver;
-    WebDriverWait wait;
-    int timeoutSec = 5; // wait timeout (5 seconds by default)
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected int timeoutSec = 5; // wait timeout (5 seconds by default)
 
-    public ExtendedBasePage(String browser) {
+    public BasePage(String browser) {
         driver = WebDriverManager.getInstance(browser).create();
         wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSec));
     }
+
+    public abstract boolean successBoxPresent();
 
     public void setTimeoutSec(int timeoutSec) {
         this.timeoutSec = timeoutSec;

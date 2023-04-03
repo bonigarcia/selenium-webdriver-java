@@ -21,45 +21,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-public class ModalNGTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
-    }
-
+public class ModalNGTest extends TestSetup {
     @Test
-    public void testModal() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
+    public void testCloseModalButton() {
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        driver.findElement(By.id("my-modal")).click();
-        WebElement close = driver
-                .findElement(By.xpath("//button[text() = 'Close']"));
-        assertThat(close.getTagName()).isEqualTo("button");
-        wait.until(ExpectedConditions.elementToBeClickable(close));
-        close.click();
+        WebElement modalButton = driver.findElement(By.id("my-modal"));
+        modalButton.click();
+
+        WebElement closeModalButton = driver.findElement(By.xpath("//button[text() = 'Close']"));
+        assertThat(closeModalButton.getTagName()).isEqualTo("button");
+        wait.until(ExpectedConditions.elementToBeClickable(closeModalButton));
+        closeModalButton.click();
     }
 
 }

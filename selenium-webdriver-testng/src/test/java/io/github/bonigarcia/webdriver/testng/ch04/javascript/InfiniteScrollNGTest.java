@@ -23,27 +23,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-public class InfiniteScrollNGTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() {
-        driver.quit();
-    }
+public class InfiniteScrollNGTest extends TestSetup {
 
     @Test
     public void testInfiniteScroll() {

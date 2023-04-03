@@ -27,29 +27,16 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.webdriver.testng.ch07.page_objects.LoginPage;
 
 public class LoginNGTest {
-
-    WebDriver driver;
-    LoginPage login;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-        login = new LoginPage(driver);
-    }
-
-    @AfterMethod
-    public void teardown() {
-        driver.quit();
-    }
-
     @Test
     public void testLoginSuccess() {
+        LoginPage login = new LoginPage(driver);
         login.with("user", "user");
         assertThat(login.successBoxPresent()).isTrue();
     }
 
     @Test
     public void testLoginFailure() {
+        LoginPage login = new LoginPage(driver);
         login.with("bad-user", "bad-password");
         assertThat(login.successBoxPresent()).isFalse();
     }

@@ -22,34 +22,16 @@ import java.time.Duration;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import io.github.bonigarcia.webdriver.HelperClass.Constants;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-public class AlertNGTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
-    }
+public class AlertNGTest extends TestSetup {
 
     @Test
-    public void testAlert() {
+    public void shouldAcceptHelloWorldAlert() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -57,19 +39,19 @@ public class AlertNGTest {
         driver.findElement(By.id("my-alert")).click();
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
-        assertThat(alert.getText()).isEqualTo("Hello world!");
+        assertThat(alert.getText()).isEqualTo(Constants.HELLO_WORLD);
         alert.accept();
     }
 
     @Test
-    public void testAlert2() {
+    public void shouldAcceptConfirmationAlert() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-alert")).click();
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        assertThat(alert.getText()).isEqualTo("Hello world!");
+        assertThat(alert.getText()).isEqualTo(Constants.HELLO_WORLD);
         alert.accept();
     }
 

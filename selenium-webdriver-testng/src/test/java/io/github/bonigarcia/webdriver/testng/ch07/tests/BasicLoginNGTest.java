@@ -19,40 +19,25 @@ package io.github.bonigarcia.webdriver.testng.ch07.tests;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Ignore;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.webdriver.testng.ch07.page_objects.BasicLoginPage;
 
-public class BasicLoginNGTest {
-
-    WebDriver driver;
-    BasicLoginPage login;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-        login = new BasicLoginPage(driver);
-    }
-
-    @AfterMethod
-    public void teardown() {
-        driver.quit();
-    }
+public class BasicLoginNGTest extends TestSetup {
 
     @Test
     public void testBasicLoginSuccess() {
-        login.with("user", "user");
+        BasicLoginPage login = new BasicLoginPage(driver);
+        login.loginWith("user", "user");
         assertThat(login.successBoxPresent()).isTrue();
     }
 
     @Ignore("This test fails since the page object logic is not robust")
     @Test()
     public void testBasicLoginFailure() {
-        login.with("bad-user", "bad-password");
+        BasicLoginPage login = new BasicLoginPage(driver);
+        login.loginWith("bad-user", "bad-password");
         assertThat(login.successBoxPresent()).isFalse();
     }
 

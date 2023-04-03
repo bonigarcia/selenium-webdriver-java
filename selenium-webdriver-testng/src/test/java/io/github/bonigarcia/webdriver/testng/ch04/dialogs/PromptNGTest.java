@@ -22,57 +22,40 @@ import java.time.Duration;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import io.github.bonigarcia.webdriver.HelperClass.Constants;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-public class PromptNGTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
-    }
+public class PromptDialogNGTest {
 
     @Test
-    public void testPrompt() {
+    public void testPromptDialog() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        driver.findElement(By.id("my-prompt")).click();
-        wait.until(ExpectedConditions.alertIsPresent());
+        clickPromptButton();
         Alert prompt = driver.switchTo().alert();
-        prompt.sendKeys("John Doe");
+        prompt.sendKeys(Constants.NAME);
         assertThat(prompt.getText()).isEqualTo("Please enter your name");
         prompt.accept();
     }
 
     @Test
-    public void testPrompt2() {
+    public void testPromptDialog2() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        driver.findElement(By.id("my-prompt")).click();
-        Alert prompt = wait.until(ExpectedConditions.alertIsPresent());
-        prompt.sendKeys("John Doe");
+        clickPromptButton();
+        prompt.sendKeys(Constants.NAME);
         assertThat(prompt.getText()).isEqualTo("Please enter your name");
         prompt.accept();
+    }
+
+    private void clickPromptButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement promptButton = driver.findElement(By.id("my-prompt"));
+        promptButton.click();
+        wait.until(ExpectedConditions.alertIsPresent());
     }
 
 }

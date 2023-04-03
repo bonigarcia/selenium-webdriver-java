@@ -20,48 +20,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-public class VanillaBasicLoginNGTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() {
-        driver.quit();
-    }
+public class VanillaBasicLoginNGTest extends TestSetup {
 
     @Test
     public void testVanillaBasicLoginSuccess() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
-
-        driver.findElement(By.id("username")).sendKeys("user");
-        driver.findElement(By.id("password")).sendKeys("user");
-        driver.findElement(By.cssSelector("button")).click();
-
+        login("user", "user");
         assertThat(driver.findElement(By.id("success")).isDisplayed()).isTrue();
     }
 
     @Test
     public void testVanillaBasicLoginFailure() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
-
-        driver.findElement(By.id("username")).sendKeys("bad-user");
-        driver.findElement(By.id("password")).sendKeys("bad-password");
-        driver.findElement(By.cssSelector("button")).click();
-
+        login("bad-user", "bad-password");
         assertThat(driver.findElement(By.id("invalid")).isDisplayed()).isTrue();
+    }
+
+    private void login(String username, String password) {
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
+        driver.findElement(By.id("username")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.cssSelector("button")).click();
     }
 
 }

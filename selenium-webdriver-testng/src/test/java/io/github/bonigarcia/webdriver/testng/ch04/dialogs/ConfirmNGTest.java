@@ -19,58 +19,40 @@ package io.github.bonigarcia.webdriver.testng.ch04.dialogs;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
-
+import org.testng.annotations.*;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ConfirmNGTest {
 
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
-    }
-
     @Test
-    public void testConfirm() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
+    public void testConfirmDialogBox() {
+        String url = "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html";
+        driver.get(url);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        driver.findElement(By.id("my-confirm")).click();
+        clickConfirmLocator();
         wait.until(ExpectedConditions.alertIsPresent());
-        Alert confirm = driver.switchTo().alert();
-        assertThat(confirm.getText()).isEqualTo("Is this correct?");
-        confirm.dismiss();
+        Alert confirmAlert = driver.switchTo().alert();
+        assertThat(confirmAlert.getText()).isEqualTo("Is this correct?");
+        confirmAlert.dismiss();
     }
 
     @Test
-    public void testConfirm2() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
+    public void testConfirmDialogBoxWithWait() {
+        String url = "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html";
+        driver.get(url);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        driver.findElement(By.id("my-confirm")).click();
-        Alert confirm = wait.until(ExpectedConditions.alertIsPresent());
-        assertThat(confirm.getText()).isEqualTo("Is this correct?");
-        confirm.dismiss();
+        clickConfirmLocator();
+        Alert confirmAlert = wait.until(ExpectedConditions.alertIsPresent());
+        assertThat(confirmAlert.getText()).isEqualTo("Is this correct?");
+        confirmAlert.dismiss();
     }
 
+    private void clickConfirmLocator() {
+        By confirmLocator = By.id("my-confirm");
+        driver.findElement(confirmLocator).click();
+    }
 }

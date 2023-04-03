@@ -25,28 +25,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.ScriptKey;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-public class PinnedScriptsNGTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
-    }
+public class PinnedScriptsNGTest extends TestSetup {
 
     @Test
     public void testPinnedScripts() {

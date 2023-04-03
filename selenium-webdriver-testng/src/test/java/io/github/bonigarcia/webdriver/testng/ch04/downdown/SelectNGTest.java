@@ -19,44 +19,22 @@ package io.github.bonigarcia.webdriver.testng.ch04.downdown;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
-
+import org.testng.annotations.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.HelperClass.Constants;
 
 public class SelectNGTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
-    }
-
     @Test
-    public void test() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+    public void testSelectOptionByVisibleText() {
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
         Select select = new Select(driver.findElement(By.name("my-select")));
-        String optionLabel = "Three";
-        select.selectByVisibleText(optionLabel);
+        select.selectByVisibleText(Constants.THREE);
 
-        assertThat(select.getFirstSelectedOption().getText())
-                .isEqualTo(optionLabel);
+        assertThat(select.getFirstSelectedOption().getText()).isEqualTo(Constants.THREE);
     }
 
 }

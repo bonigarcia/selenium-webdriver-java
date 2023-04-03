@@ -28,50 +28,50 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 import org.slf4j.Logger;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-public class ColorPickerNGTest {
+public class ColorPickerNGTest extends TestSetup {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
-    }
-
     @Test
     public void testColorPicker() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        WebElement colorPicker = driver.findElement(By.name("my-colors"));
-        String initColor = colorPicker.getAttribute("value");
-        log.debug("The initial color is {}", initColor);
+        String initialColor = getInitialColor();
 
         Color red = new Color(255, 0, 0, 1);
-        String script = String.format(
-                "arguments[0].setAttribute('value', '%s');", red.asHex());
-        js.executeScript(script, colorPicker);
+        setColor(red);
 
+        String finalColor = getFinalColor();
+        assertThat(finalColor).isNotEqualTo(initialColor);
+        assertThat(Color.fromString(finalColor)).isEqualTo(red);
+    }
+
+    private WebElement getColorPicker() {
+        return driver.findElement(By.name("my-colors"));
+    }
+
+    private String getInitialColor() {
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+        WebElement colorPicker = getColorPicker();
+        String initialColor = colorPicker.getAttribute("value");
+        log.debug("The initial color is {}", initialColor);
+        return initialColor;
+    }
+
+    private void setColor(Color color) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement colorPicker = getColorPicker();
+        String script = String.format(
+                "arguments[0].setAttribute('value', '%s');", color.asHex());
+        js.executeScript(script, colorPicker);
+    }
+
+    private String getFinalColor() {
+        WebElement colorPicker = getColorPicker();
         String finalColor = colorPicker.getAttribute("value");
         log.debug("The final color is {}", finalColor);
-        assertThat(finalColor).isNotEqualTo(initColor);
-        assertThat(Color.fromString(finalColor)).isEqualTo(red);
+        return finalColor;
     }
 
 }

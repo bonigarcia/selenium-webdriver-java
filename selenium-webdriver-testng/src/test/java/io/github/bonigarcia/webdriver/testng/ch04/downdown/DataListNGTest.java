@@ -23,41 +23,23 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+public class DataListNGTest extends TestSetup {
 
-public class DataListNGTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
-    }
+    @FindBy(xpath = "//datalist/option[2]")
+    WebElement option;
 
     @Test
-    public void testDatalist() {
+    public void testDataList() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        WebElement datalist = driver.findElement(By.name("my-datalist"));
-        datalist.click();
-
-        WebElement option = driver
-                .findElement(By.xpath("//datalist/option[2]"));
+        WebElement dataList = driver.findElement(By.name("my-datalist"));
+        dataList.click();
         String optionValue = option.getAttribute("value");
-        datalist.sendKeys(optionValue);
+        dataList.sendKeys(optionValue);
 
         assertThat(optionValue).isEqualTo("New York");
     }

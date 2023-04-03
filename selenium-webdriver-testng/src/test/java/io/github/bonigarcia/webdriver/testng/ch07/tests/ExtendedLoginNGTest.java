@@ -22,31 +22,22 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 import io.github.bonigarcia.webdriver.testng.ch07.page_objects.ExtendedLoginPage;
 
-public class ExtendedLoginNGTest {
-
-    ExtendedLoginPage login;
-
-    @BeforeMethod
-    public void setup() {
-        login = new ExtendedLoginPage("chrome");
-    }
-
-    @AfterMethod
-    public void teardown() {
-        login.quit();
-    }
+public class ExtendedLoginNGTest extends TestSetup {
 
     @Test
-    public void testLoginSuccess() {
-        login.with("user", "user");
+    public void loginWithValidCredentials() {
+        ExtendedLoginPage login = new ExtendedLoginPage("chrome");
+        login.loginWith("user", "user");
         assertThat(login.successBoxPresent()).isTrue();
     }
 
     @Test
-    public void testLoginFailure() {
-        login.with("bad-user", "bad-password");
+    public void loginWithInvalidCredentials() {
+        ExtendedLoginPage login = new ExtendedLoginPage("chrome");
+        login.loginWith("bad-user", "bad-password");
         assertThat(login.successBoxPresent()).isFalse();
     }
 

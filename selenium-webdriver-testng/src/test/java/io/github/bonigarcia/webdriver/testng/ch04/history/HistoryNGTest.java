@@ -19,47 +19,42 @@ package io.github.bonigarcia.webdriver.testng.ch04.history;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
+import org.testng.annotations.*;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-public class HistoryNGTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-
-    @AfterMethod
-    public void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
-        driver.quit();
-    }
+public class HistoryNGTest extends TestSetup {
 
     @Test
-    public void testHistory() {
+    public void testNavigationHistory() {
         String baseUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
-        String firstPage = baseUrl + "navigation1.html";
-        String secondPage = baseUrl + "navigation2.html";
-        String thirdPage = baseUrl + "navigation3.html";
+        String firstPageUrl = baseUrl + "navigation1.html";
+        String secondPageUrl = baseUrl + "navigation2.html";
+        String thirdPageUrl = baseUrl + "navigation3.html";
 
-        driver.get(firstPage);
+        navigateTo(firstPageUrl);
+        navigateTo(secondPageUrl);
+        navigateTo(thirdPageUrl);
+        navigateBack();
+        navigateForward();
+        refreshPage();
 
-        driver.navigate().to(secondPage);
-        driver.navigate().to(thirdPage);
+        assertThat(driver.getCurrentUrl()).isEqualTo(thirdPageUrl);
+    }
+
+    private void navigateTo(String url) {
+        driver.navigate().to(url);
+    }
+
+    private void navigateBack() {
         driver.navigate().back();
-        driver.navigate().forward();
-        driver.navigate().refresh();
+    }
 
-        assertThat(driver.getCurrentUrl()).isEqualTo(thirdPage);
+    private void navigateForward() {
+        driver.navigate().forward();
+    }
+
+    private void refreshPage() {
+        driver.navigate().refresh();
     }
 
 }
