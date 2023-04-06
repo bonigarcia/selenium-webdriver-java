@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
 import java.util.Set;
-
+import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.annotations.*;

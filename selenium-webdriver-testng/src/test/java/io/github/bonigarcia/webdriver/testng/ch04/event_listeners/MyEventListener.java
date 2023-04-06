@@ -39,12 +39,6 @@ public class MyEventListener implements WebDriverListener {
     static final Logger log = getLogger(lookup().lookupClass());
 
     @Override
-    public void afterGetAndTakeScreenshot(WebDriver driver, String url) {
-        WebDriverListener.super.afterGet(driver, url);
-        takeScreenshot(driver);
-    }
-
-    @Override
     public void beforeQuit(WebDriver driver) {
         takeScreenshot(driver);
     }

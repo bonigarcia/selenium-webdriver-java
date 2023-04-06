@@ -61,7 +61,7 @@ public class DatePickerNGTest {
 
                 // Click on the date picker to open the calendar
                 WebElement datePickerElement = driver.findElement(By.name("my-date"));
-                datePicker.click();
+                datePickerElement.click();
 
                 // Click on the current month by searching by text
                 WebElement monthElement = driver.findElement(By.xpath(
@@ -84,7 +84,7 @@ public class DatePickerNGTest {
                 dayElement.click();
 
                 // Get the final date on the input text
-                String oneYearBack = datePicker.getAttribute("value");
+                String oneYearBack = datePickerElement.getAttribute("value");
                 log.debug("Final date in date picker: {}", oneYearBack);
 
                 // Assert that the expected date is equal to the one selected in the

@@ -25,8 +25,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import io.github.bonigarcia.webdriver.HelperClass.Constants;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 
-public class SelectNGTest {
+public class SelectNGTest extends TestSetup {
     @Test
     public void testSelectOptionByVisibleText() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/web-form.html");

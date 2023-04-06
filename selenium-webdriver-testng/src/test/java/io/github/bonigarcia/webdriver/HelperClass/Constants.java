@@ -1,3 +1,5 @@
+package io.github.bonigarcia.webdriver.HelperClass;
+
 public class Constants {
     public static final String COOKIE_NAME = "new-cookie-key";
     public static final String COOKIE_VALUE = "new-cookie-value";
