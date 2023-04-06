@@ -1,8 +1,9 @@
-package io.github.bonigarcia.webdriver.testng.ch04.dialogs;
+package io.github.bonigarcia.webdriver.HelperClass;
 
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -21,7 +22,7 @@ public class TestSetup {
 
     @BeforeMethod
     public void initializeWebDriver() {
-        driver = WebDriverManager.chromedriver().create();
+        driver = new ChromeDriver();
     }
 
     @AfterMethod
@@ -36,6 +37,10 @@ public class TestSetup {
 
     @AfterClass
     public void teardownClass() {
-        WebDriverManager.chromedriver().clearCache();
+        WebDriverManager.chromedriver().clearDriverCache();
+    }
+
+    public ChromeDriver getDriver() {
+        return (ChromeDriver) driver;
     }
 }

@@ -30,10 +30,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v106.dom.model.Rect;
-import org.openqa.selenium.devtools.v106.page.Page;
-import org.openqa.selenium.devtools.v106.page.Page.GetLayoutMetricsResponse;
-import org.openqa.selenium.devtools.v106.page.model.Viewport;
+import org.openqa.selenium.devtools.v111.dom.model.Rect;
+import org.openqa.selenium.devtools.v111.page.Page;
+import org.openqa.selenium.devtools.v111.page.Page.GetLayoutMetricsResponse;
+import org.openqa.selenium.devtools.v111.page.model.Viewport;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -44,42 +44,42 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class FullPageScreenshotChromeNGTest {
 
-    WebDriver driver;
+        WebDriver driver;
 
-    DevTools devTools;
+        DevTools devTools;
 
-    @BeforeMethod
-    public void setup() {
-        driver = WebDriverManager.chromedriver().create();
-        devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-    }
+        @BeforeMethod
+        public void setup() {
+                driver = WebDriverManager.chromedriver().create();
+                devTools = ((ChromeDriver) driver).getDevTools();
+                devTools.createSession();
+        }
 
-    @AfterMethod
-    public void teardown() {
-        devTools.close();
-        driver.quit();
-    }
+        @AfterMethod
+        public void teardown() {
+                devTools.close();
+                driver.quit();
+        }
 
-    @Test
-    public void testFullPageScreenshotChrome() throws IOException {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/long-page.html");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.presenceOfNestedElementsLocatedBy(
-                By.className("container"), By.tagName("p")));
+        @Test
+        public void testFullPageScreenshotChrome() throws IOException {
+                driver.get(
+                                "https://bonigarcia.dev/selenium-webdriver-java/long-page.html");
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                wait.until(ExpectedConditions.presenceOfNestedElementsLocatedBy(
+                                By.className("container"), By.tagName("p")));
 
-        GetLayoutMetricsResponse metrics = devTools
-                .send(Page.getLayoutMetrics());
-        Rect contentSize = metrics.getContentSize();
-        String screenshotBase64 = devTools
-                .send(Page.captureScreenshot(Optional.empty(), Optional.empty(),
-                        Optional.of(new Viewport(0, 0, contentSize.getWidth(),
-                                contentSize.getHeight(), 1)),
-                        Optional.empty(), Optional.of(true)));
-        Path destination = Paths.get("fullpage-screenshot-chrome.png");
-        Files.write(destination, Base64.getDecoder().decode(screenshotBase64));
+                GetLayoutMetricsResponse metrics = devTools
+                                .send(Page.getLayoutMetrics());
+                Rect contentSize = metrics.getContentSize();
+                String screenshotBase64 = devTools
+                                .send(Page.captureScreenshot(Optional.empty(), Optional.empty(),
+                                                Optional.of(new Viewport(0, 0, contentSize.getWidth(),
+                                                                contentSize.getHeight(), 1)),
+                                                Optional.empty(), Optional.of(true), java.util.Optional.empty()));
+                Path destination = Paths.get("fullpage-screenshot-chrome.png");
+                Files.write(destination, Base64.getDecoder().decode(screenshotBase64));
 
-        assertThat(destination).exists();
-    }
+                assertThat(destination).exists();
+        }
 }

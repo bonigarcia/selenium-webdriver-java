@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.HelperClass.TestSetup;
 import io.github.bonigarcia.webdriver.testng.ch07.page_objects.BasicLoginPage;
 
 public class BasicLoginNGTest extends TestSetup {
