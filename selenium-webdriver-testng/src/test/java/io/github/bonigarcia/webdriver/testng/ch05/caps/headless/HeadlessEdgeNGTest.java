@@ -40,9 +40,8 @@ public class HeadlessEdgeNGTest {
     @BeforeMethod
     public void setup() {
         EdgeOptions options = new EdgeOptions();
-        options.setHeadless(true);
-        // The previous line is equivalent to:
-        // options.addArguments("--headless");
+        options.addArguments("--headless=new");
+        // See: https://www.selenium.dev/blog/2023/headless-is-going-away/
 
         driver = RemoteWebDriver.builder().oneOf(options).build();
     }

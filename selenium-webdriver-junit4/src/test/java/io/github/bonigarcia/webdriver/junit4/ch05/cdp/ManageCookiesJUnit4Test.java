@@ -35,6 +35,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v111.network.Network;
 import org.openqa.selenium.devtools.v111.network.model.Cookie;
+import org.openqa.selenium.devtools.v111.storage.Storage;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -71,7 +72,8 @@ public class ManageCookiesJUnit4Test {
                 "https://bonigarcia.dev/selenium-webdriver-java/cookies.html");
 
         // Read cookies
-        List<Cookie> cookies = devTools.send(Network.getAllCookies());
+        List<Cookie> cookies = devTools
+                .send(Storage.getCookies(Optional.empty()));
         cookies.forEach(cookie -> log.debug("{}={}", cookie.getName(),
                 cookie.getValue()));
         List<String> cookieName = cookies.stream()
@@ -87,7 +89,7 @@ public class ManageCookiesJUnit4Test {
         // Clear cookies
         devTools.send(Network.clearBrowserCookies());
         List<Cookie> cookiesAfterClearing = devTools
-                .send(Network.getAllCookies());
+                .send(Storage.getCookies(Optional.empty()));
         assertThat(cookiesAfterClearing).isEmpty();
 
         driver.findElement(By.id("refresh-cookies")).click();

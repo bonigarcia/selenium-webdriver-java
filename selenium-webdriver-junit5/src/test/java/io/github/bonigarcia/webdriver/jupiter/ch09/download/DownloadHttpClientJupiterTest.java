@@ -25,8 +25,10 @@ import org.apache.commons.io.FileUtils;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpUriRequestBase;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
+import org.apache.hc.core5.http.ClassicHttpResponse;
+import org.apache.hc.core5.http.HttpException;
+import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,10 +71,16 @@ class DownloadHttpClientJupiterTest {
     void download(String link, File destination) throws IOException {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             HttpUriRequestBase request = new HttpGet(link);
-            try (CloseableHttpResponse response = client.execute(request)) {
-                FileUtils.copyInputStreamToFile(
-                        response.getEntity().getContent(), destination);
-            }
+
+            client.execute(request, new HttpClientResponseHandler<String>() {
+                @Override
+                public String handleResponse(ClassicHttpResponse response)
+                        throws HttpException, IOException {
+                    FileUtils.copyInputStreamToFile(
+                            response.getEntity().getContent(), destination);
+                    return null;
+                }
+            });
         }
     }
 

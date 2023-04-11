@@ -28,8 +28,9 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 @ExtendWith(SeleniumJupiter.class)
 class HeadlessEdgeSelJupTest {
 
+    // See: https://www.selenium.dev/blog/2023/headless-is-going-away/
     @Test
-    void testHeadless(@Arguments("--headless") EdgeDriver driver) {
+    void testHeadless(@Arguments("--headless=new") EdgeDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }

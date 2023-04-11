@@ -41,7 +41,7 @@ class GatherLogsHeadlessChromeSelJupTest {
 
     @Test
     void testGatherLogsHeadlessChrome(
-            @Watch @Arguments("--headless") ChromeDriver driver) {
+            @Watch @Arguments("--headless=new") ChromeDriver driver) {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/console-logs.html");
 

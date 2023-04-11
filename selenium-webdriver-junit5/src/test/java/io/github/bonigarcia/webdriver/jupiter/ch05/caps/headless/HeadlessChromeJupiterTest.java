@@ -40,9 +40,8 @@ class HeadlessChromeJupiterTest {
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
-        options.setHeadless(true);
-        // The previous line is equivalent to:
-        // options.addArguments("--headless");
+        options.addArguments("--headless=new");
+        // See: https://www.selenium.dev/blog/2023/headless-is-going-away/
 
         driver = new ChromeDriver(options);
     }

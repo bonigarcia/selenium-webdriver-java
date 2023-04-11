@@ -33,9 +33,7 @@ public class HeadlessFirefoxNGTest {
     @BeforeMethod
     public void setup() {
         FirefoxOptions options = new FirefoxOptions();
-        options.setHeadless(true);
-        // The previous line is equivalent to:
-        // options.addArguments("--headless");
+        options.addArguments("--headless");
 
         driver = WebDriverManager.firefoxdriver().capabilities(options)
                 .create();
