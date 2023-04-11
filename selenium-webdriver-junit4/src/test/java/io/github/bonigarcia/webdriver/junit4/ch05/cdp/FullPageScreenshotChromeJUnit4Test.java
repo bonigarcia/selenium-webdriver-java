@@ -33,10 +33,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v106.dom.model.Rect;
-import org.openqa.selenium.devtools.v106.page.Page;
-import org.openqa.selenium.devtools.v106.page.Page.GetLayoutMetricsResponse;
-import org.openqa.selenium.devtools.v106.page.model.Viewport;
+import org.openqa.selenium.devtools.v111.dom.model.Rect;
+import org.openqa.selenium.devtools.v111.page.Page;
+import org.openqa.selenium.devtools.v111.page.Page.GetLayoutMetricsResponse;
+import org.openqa.selenium.devtools.v111.page.model.Viewport;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -76,7 +76,8 @@ public class FullPageScreenshotChromeJUnit4Test {
                 .send(Page.captureScreenshot(Optional.empty(), Optional.empty(),
                         Optional.of(new Viewport(0, 0, contentSize.getWidth(),
                                 contentSize.getHeight(), 1)),
-                        Optional.empty(), Optional.of(true)));
+                        Optional.empty(), Optional.of(true),
+                        Optional.of(false)));
         Path destination = Paths.get("fullpage-screenshot-chrome.png");
         Files.write(destination, Base64.getDecoder().decode(screenshotBase64));
 

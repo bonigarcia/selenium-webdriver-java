@@ -30,8 +30,8 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v106.performance.Performance;
-import org.openqa.selenium.devtools.v106.performance.model.Metric;
+import org.openqa.selenium.devtools.v111.performance.Performance;
+import org.openqa.selenium.devtools.v111.performance.model.Metric;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
