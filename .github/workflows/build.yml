@@ -21,9 +21,9 @@ jobs:
 
     steps:
     - name: Checkout GitHub repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Set up Java ${{ matrix.java }}
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
@@ -31,7 +31,7 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: Xvfb $DISPLAY &
     - name: Run ${{ matrix.project }} tests with ${{ matrix.build-tool }}
-      uses: nick-invision/retry@v2.7.1
+      uses: nick-invision/retry@v2.8.3
       with:
         timeout_minutes: 30
         max_attempts: 3
