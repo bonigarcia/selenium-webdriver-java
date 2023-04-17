@@ -88,7 +88,7 @@ ext {
     assertjVersion  = "3.24.2"
     wdmVersion = "5.3.2"
 
-    htmlunitVersion = "4.8.1.1"
+    htmlunitVersion = "4.8.3"
     awaitilityVersion = "4.2.0"
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.11.0"
