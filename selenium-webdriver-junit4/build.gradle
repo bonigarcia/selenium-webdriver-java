@@ -86,7 +86,7 @@ ext {
     awaitilityVersion = "4.2.0"
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.11.0"
-    axelVersion = "4.6.0"
+    axelVersion = "4.7.0"
     selenideVersion = "6.13.1"
     datafakerVersion = "1.9.0"
     extentreportsVersion = "5.0.9"
