@@ -27,7 +27,7 @@
         <browserup-proxy.version>2.1.2</browserup-proxy.version>
         <datafaker.version>1.9.0</datafaker.version>
         <extentreports.version>5.0.9</extentreports.version>
-        <allure.version>2.21.0</allure.version>
+        <allure.version>2.22.0</allure.version>
         <allure-maven.version>2.12.0</allure-maven.version>
         <cucumber.version>7.11.2</cucumber.version>
         <spring-boot.version>3.0.6</spring-boot.version>
