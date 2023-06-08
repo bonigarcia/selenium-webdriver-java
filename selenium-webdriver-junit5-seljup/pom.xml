@@ -31,7 +31,7 @@
         <allure-maven.version>2.12.0</allure-maven.version>
         <cucumber.version>7.12.1</cucumber.version>
         <spring-boot.version>3.1.0</spring-boot.version>
-        <appium.version>8.5.0</appium.version>
+        <appium.version>8.5.1</appium.version>
         <rest-assured.version>5.3.0</rest-assured.version>
 
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
