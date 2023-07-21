@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "io.qameta.allure" version "2.11.2"
-    id "org.springframework.boot" version "3.1.1"
+    id "org.springframework.boot" version "3.1.2"
 }
 
 jar {
