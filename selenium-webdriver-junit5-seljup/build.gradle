@@ -93,7 +93,7 @@ ext {
     browserupProxyVersion = "2.1.2"
 
     datafakerVersion = "2.0.1"
-    extentreportsVersion = "5.0.9"
+    extentreportsVersion = "5.1.0"
     cucumberVersion = "7.13.0"
     springBootVersion = "3.1.2"
     appiumVersion = "8.5.1"
