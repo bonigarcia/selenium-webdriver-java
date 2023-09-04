@@ -16,7 +16,7 @@
         <assertj.version>3.24.2</assertj.version>
         <wdm.version>5.5.2</wdm.version>
 
-        <htmlunit.version>4.11.0</htmlunit.version>
+        <htmlunit.version>4.12.0</htmlunit.version>
         <rerunner.version>2.1.6</rerunner.version>
         <junit-platform.version>1.10.0</junit-platform.version>
         <awaitility.version>4.2.0</awaitility.version>
