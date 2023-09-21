@@ -26,7 +26,7 @@
         <selenide.version>6.18.0</selenide.version>
         <browserup-proxy.version>2.1.2</browserup-proxy.version>
         <datafaker.version>2.0.1</datafaker.version>
-        <extentreports.version>5.1.0</extentreports.version>
+        <extentreports.version>5.1.1</extentreports.version>
         <allure.version>2.24.0</allure.version>
         <allure-maven.version>2.12.0</allure-maven.version>
         <cucumber.version>7.13.0</cucumber.version>
