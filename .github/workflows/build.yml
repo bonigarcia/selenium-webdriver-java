@@ -31,7 +31,7 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: Xvfb $DISPLAY &
     - name: Run ${{ matrix.project }} tests with ${{ matrix.build-tool }}
-      uses: nick-invision/retry@v2.8.3
+      uses: nick-invision/retry@v2.9.0
       with:
         timeout_minutes: 30
         max_attempts: 3
