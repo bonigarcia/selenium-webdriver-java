@@ -151,4 +151,7 @@ dependencies {
         exclude group: "org.seleniumhq.selenium", module: "*"
     }
     testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
+
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v114
+    testImplementation 'org.seleniumhq.selenium:selenium-devtools-v114:4.12.1'
 }
