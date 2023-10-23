@@ -16,21 +16,21 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch10.mobile;
 
-import static io.github.bonigarcia.wdm.WebDriverManager.isOnline;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assumptions.assumeThat;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.chromium.options.ChromiumOptions;
+import io.appium.java_client.remote.AutomationName;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import static io.github.bonigarcia.wdm.WebDriverManager.isOnline;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 
 public class AppiumNGTest {
 
@@ -41,12 +41,11 @@ public class AppiumNGTest {
         URL appiumServerUrl = new URL("http://localhost:4723");
         assumeThat(isOnline(new URL(appiumServerUrl, "/status"))).isTrue();
 
-        ChromeOptions options = new ChromeOptions();
-        options.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        options.setCapability(MobileCapabilityType.DEVICE_NAME,
+        ChromiumOptions options = new ChromiumOptions();
+        options.setPlatformName(Platform.ANDROID.name())
+                .setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
+        options.setCapability("deviceName",
                 "Nexus 5 API 30");
-        options.setCapability(MobileCapabilityType.AUTOMATION_NAME,
-                "UiAutomator2");
 
         driver = new AppiumDriver(appiumServerUrl, options);
     }
