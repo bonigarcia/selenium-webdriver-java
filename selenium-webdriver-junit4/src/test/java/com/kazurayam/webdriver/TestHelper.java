@@ -1,6 +1,5 @@
 package com.kazurayam.webdriver;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,10 +11,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.CodeSource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 public class TestHelper {
 
     private static Logger log = LoggerFactory.getLogger(TestHelper.class);
@@ -23,10 +22,10 @@ public class TestHelper {
     public static final Path testOutputDir =
             getProjectDirViaClasspath().resolve("test-output");
 
-    //private TestHelper() {}
+    private TestHelper() {}
 
     /**
-     * returns the Path of file that a test class write into.
+     * returns the Path of a file that a test class write its output into.
      * the Path will be under the "test-output" directory.
      * The "test-output" will be silently created under
      * the "selenium-webdriver-java/selenium-webdriver-junit4" directory if not yet exists.
@@ -49,19 +48,6 @@ public class TestHelper {
         return testOutputDir.resolve(fileName);
     }
 
-    @Test
-    public void test_resolveOutput() {
-        Path p = TestHelper.resolveOutput("bar.json");
-        assertThat(p.getParent()).exists();
-        assertThat(p.getParent().getFileName().toString())
-                .isEqualTo("test-output");
-        assertThat(p.toAbsolutePath()
-                .getParent()   // expect the test-output directory
-                .getParent()   // expect the selenium-webdriver-junit4 directory
-                .getParent()   // expect the selenium-webdriver-java directory
-                .getFileName().toString())
-                .isEqualTo("selenium-webdriver-java");
-    }
 
     //-----------------------------------------------------------------
     /**
@@ -88,42 +74,39 @@ public class TestHelper {
     public static Path getProjectDirViaClasspath() {
         Path codeSourcePath = getCodeSourceAsPath();
         // e.g. "/Users/myname/oreilly/selenium-webdriver-java/selenium-webdriver-junit4/build/classes/java/test/com/kazurayam/webdriver/TestHelper.class"
-
-        Iterator<Path> iter = codeSourcePath.iterator();
-        List<Path> nameElements = new ArrayList<>();
-        while (iter.hasNext()) {
-            Path p = iter.next();
-            nameElements.add(p);
+        List<String> nameElements = toNameElements(codeSourcePath);
+        StringSequence ss = new StringSequence(nameElements);
+        int indexOfBuildDir =
+                ss.indexOfSubsequence(Arrays.asList("build", "classes", "java", "test"));
+        int indexOfTargetDir =
+                ss.indexOfSubsequence(Arrays.asList("target", "test-classes"));
+        int boundary = -1;
+        if (indexOfBuildDir > 0) {
+            // project is built by Gradle
+            boundary = indexOfBuildDir;
+        } else if (indexOfTargetDir > 0) {
+            // project is built by Maven
+            boundary = indexOfTargetDir;
+        } else {
+            throw new IllegalStateException("unable to find the project directory via classpath");
         }
-        int tail = -1;
-        for (int i = nameElements.size() - 1; i >= 0; i--) {
-            Path p = nameElements.get(i);
-            if (p.getFileName().toString().equals("build") ||  // Gradle
-                    p.getFileName().toString().equals("target")    // Maven
-            ) {
-                tail = i;
-            }
-        }
-        // The nameElements will be, for example
-        // ["Users","myname","oreilly","selenium-webdriver-java","selenium-webdriver-junit4","build","classes","java","test","com","kazurayam","webdriver","TestHelper.class"]
-        //                                                                                    ^-- tail                                                      ^-- nameElements.size()-1
-
         // build the project dir to return as the result
         Path w = Paths.get("/");
-        for (int i = 0; i < tail; i++) {
+        for (int i = 0; i < boundary; i++) {
             w = w.resolve(nameElements.get(i));
         }
-        return w;   // e.g, /Users/myname/oreilly/selenium-webdriver-java/selenium-webdriver-junit
+        return w;   // e.g, /Users/myname/oreilly/selenium-webdriver-java/selenium-webdriver-junit4
     }
 
-    @Test
-    public void test_getProjectDirViaClasspath() {
-        Path p = getProjectDirViaClasspath();
-        assertThat(p).isNotNull().exists();
-        assertThat(p.getFileName().toString())
-                .isEqualTo("selenium-webdriver-junit4");
+    private static List<String> toNameElements(Path codeSourcePath) {
+        List<String> nameElements = new ArrayList<>();
+        Iterator<Path> iter = codeSourcePath.iterator();
+        while (iter.hasNext()) {
+            Path p = iter.next();
+            nameElements.add(p.getFileName().toString());
+        }
+        return nameElements;
     }
-
 
     //-----------------------------------------------------------------
     /**
@@ -137,6 +120,7 @@ public class TestHelper {
     public static Path getCodeSourceAsPath() {
         return getCodeSourceAsPath(TestHelper.class);
     }
+
     public static Path getCodeSourceAsPath(Class clazz) {
         CodeSource codeSource = clazz.getProtectionDomain().getCodeSource();
         URL url = codeSource.getLocation();
@@ -147,12 +131,5 @@ public class TestHelper {
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Test
-    public void test_getCodeSourceAsPath() {
-        Path p = TestHelper.getCodeSourceAsPath();
-        log.info("[testGetCodeSourceAsPath] p = " + p);
-        assertThat(p).isNotNull().exists();
     }
 }
