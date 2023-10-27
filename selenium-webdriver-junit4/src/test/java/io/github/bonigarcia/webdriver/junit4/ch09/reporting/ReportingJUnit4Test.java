@@ -18,6 +18,7 @@ package io.github.bonigarcia.webdriver.junit4.ch09.reporting;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.kazurayam.webdriver.TestHelper;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,7 +46,7 @@ public class ReportingJUnit4Test {
     public static void setupClass() {
         reports = new ExtentReports();
         ExtentSparkReporter htmlReporter = new ExtentSparkReporter(
-                "extentReport.html");
+                TestHelper.resolveOutput("extentReport.html").toFile());
         reports.attachReporter(htmlReporter);
     }
 
