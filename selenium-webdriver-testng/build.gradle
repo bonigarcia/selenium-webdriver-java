@@ -32,6 +32,7 @@ test {
         showStandardStreams = true
     }
 
+    System.setProperty("webdriver.http.factory", "jdk-http-client")
     systemProperties System.properties
 
     if (project.hasProperty("parallel")) {
@@ -109,6 +110,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:${logbackVersion}")
 
     testImplementation("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
+    testImplementation("org.seleniumhq.selenium:selenium-http-jdk-client:${seleniumVersion}")
     testImplementation("org.testng:testng:${testNgVersion}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
