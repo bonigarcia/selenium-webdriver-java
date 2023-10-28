@@ -30,6 +30,7 @@ test {
         showStandardStreams = true
     }
 
+    System.setProperty("webdriver.http.factory", "jdk-http-client")
     systemProperties System.properties
 
     if (project.hasProperty("excludeTests")) {
@@ -103,6 +104,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:${logbackVersion}")
 
     testImplementation("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
+    testImplementation("org.seleniumhq.selenium:selenium-http-jdk-client:${seleniumVersion}")
     testImplementation("junit:junit:${junit4Version}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
     testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
