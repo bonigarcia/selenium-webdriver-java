@@ -21,11 +21,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.Optional;
 
+import com.kazurayam.webdriver.TestHelper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -78,7 +78,7 @@ public class FullPageScreenshotChromeJUnit4Test {
                                 contentSize.getHeight(), 1)),
                         Optional.empty(), Optional.of(true),
                         Optional.of(false)));
-        Path destination = Paths.get("fullpage-screenshot-chrome.png");
+        Path destination = TestHelper.resolveOutput("fullpage-screenshot-chrome.png");
         Files.write(destination, Base64.getDecoder().decode(screenshotBase64));
 
         assertThat(destination).exists();
