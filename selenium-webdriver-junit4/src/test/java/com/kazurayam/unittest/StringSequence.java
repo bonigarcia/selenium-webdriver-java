@@ -1,6 +1,4 @@
-package com.kazurayam.webdriver;
-
-import org.junit.Test;
+package com.kazurayam.unittest;
 
 import java.util.ArrayList;
 import java.util.List;
