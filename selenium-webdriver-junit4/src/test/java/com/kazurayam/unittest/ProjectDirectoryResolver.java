@@ -1,12 +1,10 @@
-package com.kazurayam.webdriver;
+package com.kazurayam.unittest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.CodeSource;
@@ -15,41 +13,32 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class TestHelper {
+public class ProjectDirectoryResolver {
 
-    private static Logger log = LoggerFactory.getLogger(TestHelper.class);
+    private static final Logger log = LoggerFactory.getLogger(ProjectDirectoryResolver.class);
 
-    public static final Path testOutputDir =
-            getProjectDirViaClasspath().resolve("test-output");
-
-    private TestHelper() {}
+    private ProjectDirectoryResolver() {}
 
     /**
-     * returns the Path of a file that a test class write its output into.
-     * the Path will be under the "test-output" directory.
-     * The "test-output" will be silently created under
-     * the "selenium-webdriver-java/selenium-webdriver-junit4" directory if not yet exists.
+     * returns the Path in which the class binary of
+     * `com.kazurayam.unittest.ProjectDirectoryResolver` is found on disk.
      *
-     * @param fileName e.g. "extentReport.html" -> "selenium-webdriver-java/selenium-webdriver-junit4/test-output/extentReport.html"
-     *                 will be returned
+     * e.g, "/Users/somebody/selenium-webdriver-java/selenium-webdriver-junit4/build/classes/java/test/" when built by Gradle
+     * e.g, "/Users/somebody/selenium-webdriver-java/selenium-webdriver-junit4/target/test-classes/" when built by Maven
      *
-     *                 e.g. "foo/bar.txt" ->  "selenium-webdriver-java/selenium-webdriver-junit4/test-output/foo/bar.txt"
-     *                 will be returned, the "foo" directory will be silently created
      */
-    public static Path resolveOutput(String fileName) {
-        Path parentDir = testOutputDir.resolve(fileName).getParent();
-        if (!Files.exists(parentDir)) {
-            try {
-                Files.createDirectories(parentDir);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+    public static Path getCodeSourceAsPath(Class clazz) {
+        CodeSource codeSource = clazz.getProtectionDomain().getCodeSource();
+        URL url = codeSource.getLocation();
+        try {
+            Path path = Paths.get(url.toURI());
+            log.debug("The code source : " + path);
+            return path;
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
-        return testOutputDir.resolve(fileName);
     }
 
-
-    //-----------------------------------------------------------------
     /**
      * returns the project directory in which the class binary of
      * `com.kazurayam.webdriver.TestHelper` is found on disk.
@@ -71,8 +60,8 @@ public class TestHelper {
      * of the TestHelper class.
      * Then we can get the Path value of the project directory properly.
      */
-    public static Path getProjectDirViaClasspath() {
-        Path codeSourcePath = getCodeSourceAsPath();
+    public static Path getProjectDirViaClasspath(Class clazz) {
+        Path codeSourcePath = ProjectDirectoryResolver.getCodeSourceAsPath(clazz);
         // e.g. "/Users/myname/oreilly/selenium-webdriver-java/selenium-webdriver-junit4/build/classes/java/test/com/kazurayam/webdriver/TestHelper.class"
         List<String> nameElements = toNameElements(codeSourcePath);
         StringSequence ss = new StringSequence(nameElements);
@@ -108,28 +97,4 @@ public class TestHelper {
         return nameElements;
     }
 
-    //-----------------------------------------------------------------
-    /**
-     * returns the Path in which the class binary of
-     * `com.kazurayam.webdriver.TestHelper` is found on disk.
-     *
-     * e.g, "/Users/somebody/selenium-webdriver-java/selenium-webdriver-junit4/build/classes/java/test/" when built by Gradle
-     * e.g, "/Users/somebody/selenium-webdriver-java/selenium-webdriver-junit4/target/test-classes/" when built by Maven
-     *
-     */
-    public static Path getCodeSourceAsPath() {
-        return getCodeSourceAsPath(TestHelper.class);
-    }
-
-    public static Path getCodeSourceAsPath(Class clazz) {
-        CodeSource codeSource = clazz.getProtectionDomain().getCodeSource();
-        URL url = codeSource.getLocation();
-        try {
-            Path path = Paths.get(url.toURI());
-            log.info("The code source : " + path);
-            return path;
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

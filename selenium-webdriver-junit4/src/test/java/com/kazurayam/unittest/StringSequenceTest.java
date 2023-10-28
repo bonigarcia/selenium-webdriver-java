@@ -1,9 +1,10 @@
-package com.kazurayam.webdriver;
+package com.kazurayam.unittest;
 
 import org.junit.Test;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringSequenceTest {
