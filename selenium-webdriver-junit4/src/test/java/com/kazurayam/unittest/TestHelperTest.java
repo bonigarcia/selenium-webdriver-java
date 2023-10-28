@@ -1,5 +1,6 @@
-package com.kazurayam.webdriver;
+package com.kazurayam.unittest;
 
+import io.github.bonigarcia.webdriver.junit4.ch02.helloworld.HelloWorldChromeJUnit4Test;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,11 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestHelperTest {
 
-    private static Logger log = LoggerFactory.getLogger(TestHelperTest.class);
+    private static final Logger log = LoggerFactory.getLogger(TestHelperTest.class);
 
     @Test
     public void test_resolveOutput() {
-        Path p = TestHelper.resolveOutput("bar.json");
+        Path p = new TestHelper(HelloWorldChromeJUnit4Test.class)
+                .resolveOutput("bar.json");
         assertThat(p.getParent()).exists();
         assertThat(p.getParent().getFileName().toString())
                 .isEqualTo("test-output");
@@ -24,20 +26,4 @@ public class TestHelperTest {
                 .getFileName().toString())
                 .isEqualTo("selenium-webdriver-junit4");
     }
-
-    @Test
-    public void test_getProjectDirViaClasspath() {
-        Path p = TestHelper.getProjectDirViaClasspath();
-        assertThat(p).isNotNull().exists();
-        assertThat(p.getFileName().toString())
-                .isEqualTo("selenium-webdriver-junit4");
-    }
-
-    @Test
-    public void test_getCodeSourceAsPath() {
-        Path p = TestHelper.getCodeSourceAsPath();
-        log.info("[testGetCodeSourceAsPath] p = " + p);
-        assertThat(p).isNotNull().exists();
-    }
-
 }
