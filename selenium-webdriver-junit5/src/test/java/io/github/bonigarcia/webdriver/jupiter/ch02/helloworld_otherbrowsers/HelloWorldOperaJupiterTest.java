@@ -27,6 +27,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -56,6 +57,7 @@ class HelloWorldOperaJupiterTest {
         driver.quit();
     }
 
+    @Disabled("Opera is not supported in the latest versions of Selenium")
     @Test
     void test() {
         // Exercise
