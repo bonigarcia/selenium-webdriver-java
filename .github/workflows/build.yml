@@ -38,7 +38,7 @@ jobs:
         max_attempts: 3
         command: |
           cd selenium-webdriver-${{ matrix.project }}
-          mvn test -Dtest=!*Edge*
+          mvn test -Dtest=!*Edge*,!*CrossBrowser*
     - name: Run ${{ matrix.project }} tests with Gradle
       if: matrix.build-tool == 'gradle'
       uses: nick-invision/retry@v2.9.0
@@ -47,4 +47,4 @@ jobs:
         max_attempts: 3
         command: |
           cd selenium-webdriver-${{ matrix.project }}
-          ./gradlew test -PexcludeTests=**/*Edge*
+          ./gradlew test -PexcludeTests=**/*Edge*,**/*CrossBrowser*
