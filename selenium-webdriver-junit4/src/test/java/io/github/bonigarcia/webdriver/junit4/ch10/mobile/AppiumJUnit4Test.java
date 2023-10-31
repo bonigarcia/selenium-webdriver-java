@@ -28,9 +28,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.android.options.EspressoOptions;
 
 public class AppiumJUnit4Test {
 
@@ -42,10 +43,10 @@ public class AppiumJUnit4Test {
         assumeThat(isOnline(new URL(appiumServerUrl, "/status"))).isTrue();
 
         ChromeOptions options = new ChromeOptions();
-        options.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        options.setCapability(MobileCapabilityType.DEVICE_NAME,
+        options.setCapability(CapabilityType.PLATFORM_NAME, "Android");
+        options.setCapability(EspressoOptions.DEVICE_NAME_OPTION,
                 "Nexus 5 API 30");
-        options.setCapability(MobileCapabilityType.AUTOMATION_NAME,
+        options.setCapability(EspressoOptions.AUTOMATION_NAME_OPTION,
                 "UiAutomator2");
 
         driver = new AppiumDriver(appiumServerUrl, options);
