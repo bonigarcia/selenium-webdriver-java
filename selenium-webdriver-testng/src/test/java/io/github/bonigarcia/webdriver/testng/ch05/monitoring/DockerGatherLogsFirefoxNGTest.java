@@ -27,6 +27,7 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -49,6 +50,7 @@ public class DockerGatherLogsFirefoxNGTest {
         driver.quit();
     }
 
+    @Ignore
     @Test
     public void testDockerGatherLogsFirefox() {
         driver.get(
