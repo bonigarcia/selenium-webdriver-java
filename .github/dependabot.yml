@@ -6,8 +6,6 @@ updates:
     interval: daily
     time: '06:00'
   open-pull-requests-limit: 99
-  ignore:
-    - dependency-name: "org.seleniumhq.selenium:selenium-java"
 
 - package-ecosystem: gradle
   directory: "/"
