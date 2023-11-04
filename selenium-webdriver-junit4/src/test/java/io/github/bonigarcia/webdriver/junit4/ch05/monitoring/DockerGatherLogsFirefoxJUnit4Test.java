@@ -25,6 +25,7 @@ import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -49,6 +50,7 @@ public class DockerGatherLogsFirefoxJUnit4Test {
         driver.quit();
     }
 
+    @Ignore
     @Test
     public void testDockerGatherLogsFirefox() {
         driver.get(

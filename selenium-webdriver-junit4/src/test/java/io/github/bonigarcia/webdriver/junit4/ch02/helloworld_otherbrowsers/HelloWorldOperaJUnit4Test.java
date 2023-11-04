@@ -27,6 +27,7 @@ import java.util.Optional;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -56,6 +57,7 @@ public class HelloWorldOperaJUnit4Test {
         driver.quit();
     }
 
+    @Ignore("Opera is not supported in the latest versions of Selenium")
     @Test
     public void test() {
         // Exercise

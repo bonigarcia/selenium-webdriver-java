@@ -16,33 +16,34 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch10.mobile;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.chromium.options.ChromiumOptions;
-import io.appium.java_client.remote.AutomationName;
-import io.github.bonigarcia.seljup.DriverCapabilities;
-import io.github.bonigarcia.seljup.EnabledIfDriverUrlOnline;
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.Platform;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.options.EspressoOptions;
+import io.github.bonigarcia.seljup.DriverCapabilities;
+import io.github.bonigarcia.seljup.EnabledIfDriverUrlOnline;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @EnabledIfDriverUrlOnline("http://localhost:4723")
 @ExtendWith(SeleniumJupiter.class)
 class AppiumSelJupTest {
 
     @DriverCapabilities
-    ChromiumOptions options = new ChromiumOptions();
-
+    ChromeOptions options = new ChromeOptions();
 
     @BeforeEach
     void setup() {
-        options.setPlatformName(Platform.ANDROID.name())
-                .setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setCapability("deviceName",
+        options.setCapability(CapabilityType.PLATFORM_NAME, "Android");
+        options.setCapability(EspressoOptions.DEVICE_NAME_OPTION,
                 "Nexus 5 API 30");
+        options.setCapability(EspressoOptions.AUTOMATION_NAME_OPTION,
+                "UiAutomator2");
     }
 
     @Test

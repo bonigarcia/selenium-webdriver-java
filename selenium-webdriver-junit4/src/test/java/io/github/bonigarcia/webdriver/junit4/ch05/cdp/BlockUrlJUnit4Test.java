@@ -29,8 +29,8 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v114.network.Network;
-import org.openqa.selenium.devtools.v114.network.model.BlockedReason;
+import org.openqa.selenium.devtools.v118.network.Network;
+import org.openqa.selenium.devtools.v118.network.model.BlockedReason;
 import org.slf4j.Logger;
 
 import com.google.common.collect.ImmutableList;

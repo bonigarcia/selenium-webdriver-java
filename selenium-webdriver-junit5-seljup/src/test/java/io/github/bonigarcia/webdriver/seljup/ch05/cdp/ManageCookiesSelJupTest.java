@@ -32,9 +32,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v114.network.Network;
-import org.openqa.selenium.devtools.v114.network.model.Cookie;
-import org.openqa.selenium.devtools.v114.storage.Storage;
+import org.openqa.selenium.devtools.v118.network.Network;
+import org.openqa.selenium.devtools.v118.network.model.Cookie;
+import org.openqa.selenium.devtools.v118.storage.Storage;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;

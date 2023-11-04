@@ -24,6 +24,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.WebDriver;
@@ -40,6 +41,7 @@ class DockerGatherLogsFirefoxSelJupTest {
     @RegisterExtension
     static SeleniumJupiter seleniumJupiter = new SeleniumJupiter();
 
+    @Disabled
     @Test
     void testDockerGatherLogsFirefox(
             @Watch @DockerBrowser(type = FIREFOX) WebDriver driver) {

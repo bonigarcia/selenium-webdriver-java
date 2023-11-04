@@ -29,6 +29,7 @@ import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -56,6 +57,7 @@ public class HelloWorldOperaNGTest {
         driver.quit();
     }
 
+    @Ignore("Opera is not supported in the latest versions of Selenium")
     @Test
     public void test() {
         // Exercise

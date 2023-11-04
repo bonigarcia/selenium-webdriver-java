@@ -29,7 +29,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v114.security.Security;
+import org.openqa.selenium.devtools.v118.security.Security;
 import org.openqa.selenium.support.Color;
 import org.slf4j.Logger;
 

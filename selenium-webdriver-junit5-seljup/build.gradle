@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "io.qameta.allure" version "2.11.2"
-    id "org.springframework.boot" version "3.1.4"
+    id "org.springframework.boot" version "3.1.5"
 }
 
 jar {
@@ -30,7 +30,6 @@ test {
         showStandardStreams = true
     }
 
-    System.setProperty("webdriver.http.factory", "jdk-http-client")
     systemProperties System.properties
 
     if (project.hasProperty("excludeTests")) {
@@ -78,11 +77,9 @@ ext {
     slf4jVersion  = "2.0.9"
     logbackVersion  = "1.4.11"
 
-    //seleniumVersion  = "4.14.1"
-    seleniumVersion  = "4.13.0"
-
+    seleniumVersion  = "4.15.0"
     junit5Version = "5.10.0"
-    selJupVersion = "4.3.7"
+    selJupVersion = "5.0.0"
     assertjVersion  = "3.24.2"
 
     htmlunitVersion = "4.13.0"
@@ -92,13 +89,13 @@ ext {
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.12.0"
     axelVersion = "4.8.0"
-    selenideVersion = "6.19.1"
+    selenideVersion = "7.0.2"
     browserupProxyVersion = "2.1.2"
 
     datafakerVersion = "2.0.2"
     extentreportsVersion = "5.1.1"
     cucumberVersion = "7.14.0"
-    springBootVersion = "3.1.4"
+    springBootVersion = "3.1.5"
     appiumVersion = "9.0.0"
     restAssuredVersion = "5.3.1"
 }
@@ -109,7 +106,6 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:${logbackVersion}")
 
     testImplementation("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
-    testImplementation("org.seleniumhq.selenium:selenium-http-jdk-client:${seleniumVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter:${junit5Version}")
     testImplementation("io.github.bonigarcia:selenium-jupiter:${selJupVersion}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")

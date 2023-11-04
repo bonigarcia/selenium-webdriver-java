@@ -33,10 +33,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v114.dom.model.Rect;
-import org.openqa.selenium.devtools.v114.page.Page;
-import org.openqa.selenium.devtools.v114.page.Page.GetLayoutMetricsResponse;
-import org.openqa.selenium.devtools.v114.page.model.Viewport;
+import org.openqa.selenium.devtools.v118.dom.model.Rect;
+import org.openqa.selenium.devtools.v118.page.Page;
+import org.openqa.selenium.devtools.v118.page.Page.GetLayoutMetricsResponse;
+import org.openqa.selenium.devtools.v118.page.model.Viewport;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 

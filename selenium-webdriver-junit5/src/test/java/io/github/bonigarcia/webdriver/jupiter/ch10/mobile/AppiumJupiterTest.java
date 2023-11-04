@@ -16,21 +16,22 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch10.mobile;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.chromium.options.ChromiumOptions;
-import io.appium.java_client.remote.AutomationName;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
+import static io.github.bonigarcia.wdm.WebDriverManager.isOnline;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static io.github.bonigarcia.wdm.WebDriverManager.isOnline;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assumptions.assumeThat;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.options.EspressoOptions;
 
 class AppiumJupiterTest {
 
@@ -41,11 +42,12 @@ class AppiumJupiterTest {
         URL appiumServerUrl = new URL("http://localhost:4723");
         assumeThat(isOnline(new URL(appiumServerUrl, "/status"))).isTrue();
 
-        ChromiumOptions options = new ChromiumOptions();
-        options.setPlatformName(Platform.ANDROID.name())
-                .setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setCapability("deviceName",
+        ChromeOptions options = new ChromeOptions();
+        options.setCapability(CapabilityType.PLATFORM_NAME, "Android");
+        options.setCapability(EspressoOptions.DEVICE_NAME_OPTION,
                 "Nexus 5 API 30");
+        options.setCapability(EspressoOptions.AUTOMATION_NAME_OPTION,
+                "UiAutomator2");
 
         driver = new AppiumDriver(appiumServerUrl, options);
     }

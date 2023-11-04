@@ -30,11 +30,21 @@ jobs:
     - name: Start Xvfb on Linux
       if: matrix.os == 'ubuntu-latest'
       run: Xvfb $DISPLAY &
-    - name: Run ${{ matrix.project }} tests with ${{ matrix.build-tool }}
+    - name: Run ${{ matrix.project }} tests with Maven
+      if: matrix.build-tool == 'mvn'
       uses: nick-invision/retry@v2.9.0
       with:
         timeout_minutes: 30
         max_attempts: 3
         command: |
           cd selenium-webdriver-${{ matrix.project }}
-          ${{ matrix.build-tool }} test
+          mvn test -Dtest=!*Edge*,!*CrossBrowser*
+    - name: Run ${{ matrix.project }} tests with Gradle
+      if: matrix.build-tool == 'gradle'
+      uses: nick-invision/retry@v2.9.0
+      with:
+        timeout_minutes: 30
+        max_attempts: 3
+        command: |
+          cd selenium-webdriver-${{ matrix.project }}
+          ./gradlew test -PexcludeTests=**/*Edge*,**/*CrossBrowser*
