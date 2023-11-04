@@ -56,6 +56,9 @@ public class HarCreatorJUnit4Test {
         options.setAcceptInsecureCerts(true);
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
+
+        System.out.println("org.bouncycastle.operator.defaultSignatureNameFindler was loaded from " +
+                org.bouncycastle.operator.DefaultSignatureNameFinder.class.getProtectionDomain().getCodeSource());
     }
 
     @After
