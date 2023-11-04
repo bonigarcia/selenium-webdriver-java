@@ -20,9 +20,13 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
+import java.nio.file.Path;
 import java.util.List;
 
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.webdriver.jupiter.TestOutputOrganizerFactory;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -39,7 +43,14 @@ class AccessibilityJupiterTest {
 
     final Logger log = getLogger(lookup().lookupClass());
 
+    static TestOutputOrganizer too;
+
     WebDriver driver;
+
+    @BeforeAll
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(AccessibilityJupiterTest.class);
+    }
 
     @BeforeEach
     void setup() {
@@ -61,7 +72,8 @@ class AccessibilityJupiterTest {
         violations.forEach(rule -> {
             log.debug("{}", rule.toString());
         });
-        AxeReporter.writeResultsToJsonFile("testAccessibility", result);
+        Path outputFile = too.resolveOutput("testAccessibility");
+        AxeReporter.writeResultsToJsonFile(outputFile.toString(), result);
     }
 
 }

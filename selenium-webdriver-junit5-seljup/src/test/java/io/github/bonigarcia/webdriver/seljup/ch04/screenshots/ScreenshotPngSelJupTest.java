@@ -27,6 +27,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.webdriver.seljup.TestOutputOrganizerFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.OutputType;
@@ -41,6 +44,13 @@ class ScreenshotPngSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
+    static TestOutputOrganizer too;
+
+    @BeforeAll
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(ScreenshotPngSelJupTest.class);
+    }
+
     @Test
     void testScreenshotPng(ChromeDriver driver) throws IOException {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
@@ -49,7 +59,7 @@ class ScreenshotPngSelJupTest {
         File screenshot = ts.getScreenshotAs(OutputType.FILE);
         log.debug("Screenshot created on {}", screenshot);
 
-        Path destination = Paths.get("screenshot.png");
+        Path destination = too.resolveOutput("screenshot.png");
         Files.move(screenshot.toPath(), destination, REPLACE_EXISTING);
         log.debug("Screenshot moved to {}", destination);
 

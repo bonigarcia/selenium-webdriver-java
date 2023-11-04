@@ -19,8 +19,11 @@ package io.github.bonigarcia.webdriver.seljup.ch09.download;
 import java.io.File;
 import java.time.Duration;
 
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.webdriver.seljup.TestOutputOrganizerFactory;
 import org.awaitility.Awaitility;
 import org.awaitility.core.ConditionFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,14 +37,22 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 @ExtendWith(SeleniumJupiter.class)
 class DownloadFirefoxSelJupTest {
 
+    static TestOutputOrganizer too;
+
     File targetFolder;
 
     @Options
     FirefoxOptions options = new FirefoxOptions();
 
+    @BeforeAll
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(DownloadFirefoxSelJupTest.class);
+    }
+
     @BeforeEach
     void setup() {
-        targetFolder = new File(".");
+        targetFolder = too.getOutputSubDirectory().toFile();
+
         options.addPreference("browser.download.dir",
                 targetFolder.getAbsolutePath());
         options.addPreference("browser.download.folderList", 2);

@@ -19,10 +19,13 @@ package io.github.bonigarcia.webdriver.junit4.ch09.download;
 import java.io.File;
 import java.time.Duration;
 
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.webdriver.junit4.TestOutputOrganizerFactory;
 import org.awaitility.Awaitility;
 import org.awaitility.core.ConditionFactory;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,14 +35,21 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DownloadFirefoxJUnit4Test {
 
+    static TestOutputOrganizer too;
+
     WebDriver driver;
 
     File targetFolder;
 
+    @BeforeClass
+    public static void setupClass() {
+        too = TestOutputOrganizerFactory.create(DownloadFirefoxJUnit4Test.class);
+    }
+
     @Before
     public void setup() {
         FirefoxOptions options = new FirefoxOptions();
-        targetFolder = new File(".");
+        targetFolder = too.resolveOutput("dummy").getParent().toFile();
         options.addPreference("browser.download.dir",
                 targetFolder.getAbsolutePath());
         options.addPreference("browser.download.folderList", 2);

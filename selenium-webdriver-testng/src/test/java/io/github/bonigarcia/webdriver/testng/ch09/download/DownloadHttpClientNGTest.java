@@ -21,6 +21,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
 import java.io.IOException;
 
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.webdriver.testng.TestOutputOrganizerFactory;
 import org.apache.commons.io.FileUtils;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpUriRequestBase;
@@ -33,17 +35,29 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.nio.file.Path;
 
 public class DownloadHttpClientNGTest {
 
+    static TestOutputOrganizer too;
+
     WebDriver driver;
+
+    Path targetFolder;
+
+    @BeforeClass
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(DownloadHttpClientNGTest.class);
+    }
 
     @BeforeMethod
     public void setup() {
+        targetFolder = too.getOutputSubDirectory();
         driver = WebDriverManager.chromedriver().create();
     }
 
@@ -58,12 +72,12 @@ public class DownloadHttpClientNGTest {
                 "https://bonigarcia.dev/selenium-webdriver-java/download.html");
 
         WebElement pngLink = driver.findElement(By.xpath("(//a)[2]"));
-        File pngFile = new File(".", "webdrivermanager.png");
+        File pngFile = targetFolder.resolve("webdrivermanager.png").toFile();
         download(pngLink.getAttribute("href"), pngFile);
         assertThat(pngFile).exists();
 
         WebElement pdfLink = driver.findElement(By.xpath("(//a)[3]"));
-        File pdfFile = new File(".", "webdrivermanager.pdf");
+        File pdfFile = targetFolder.resolve( "webdrivermanager.pdf").toFile();
         download(pdfLink.getAttribute("href"), pdfFile);
         assertThat(pdfFile).exists();
     }

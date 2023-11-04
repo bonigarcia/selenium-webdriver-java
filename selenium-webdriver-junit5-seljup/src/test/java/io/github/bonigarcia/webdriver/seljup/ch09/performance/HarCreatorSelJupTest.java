@@ -21,7 +21,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
 import java.io.IOException;
 
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.webdriver.seljup.TestOutputOrganizerFactory;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -42,12 +45,19 @@ import net.lightbody.bmp.proxy.CaptureType;
 @ExtendWith(SeleniumJupiter.class)
 class HarCreatorSelJupTest {
 
+    static TestOutputOrganizer too;
+
     WebDriver driver;
 
     BrowserMobProxy proxy;
 
     @Options
     ChromeOptions options = new ChromeOptions();
+
+    @BeforeAll
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(HarCreatorSelJupTest.class);
+    }
 
     @BeforeEach
     void setup() {
@@ -65,7 +75,7 @@ class HarCreatorSelJupTest {
     @AfterEach
     void teardown() throws IOException {
         Har har = proxy.getHar();
-        File harFile = new File("login.har");
+        File harFile = too.resolveOutput("login.har").toFile();
         har.writeTo(harFile);
 
         proxy.stop();

@@ -16,15 +16,10 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch04.screenshots;
 
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.webdriver.seljup.TestOutputOrganizerFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -32,10 +27,23 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SeleniumJupiter.class)
 class WebElementScreenshotSelJupTest {
+
+    static TestOutputOrganizer too;
+
+    @BeforeAll
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(WebElementScreenshotSelJupTest.class);
+    }
 
     @Test
     void testWebElementScreenshot(ChromeDriver driver) throws IOException {
@@ -44,7 +52,7 @@ class WebElementScreenshotSelJupTest {
 
         WebElement form = driver.findElement(By.tagName("form"));
         File screenshot = form.getScreenshotAs(OutputType.FILE);
-        Path destination = Paths.get("webelement-screenshot.png");
+        Path destination = too.resolveOutput("webelement-screenshot.png");
         Files.move(screenshot.toPath(), destination, REPLACE_EXISTING);
 
         assertThat(destination).exists();

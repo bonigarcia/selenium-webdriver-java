@@ -16,29 +16,37 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch05.print;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Base64;
-
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.testng.TestOutputOrganizerFactory;
 import org.openqa.selenium.Pdf;
 import org.openqa.selenium.PrintsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.print.PrintOptions;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Base64;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PrintEdgeNGTest {
 
+    static TestOutputOrganizer too;
+
     WebDriver driver;
+
+    @BeforeClass
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(PrintEdgeNGTest.class);
+    }
 
     @BeforeMethod
     public void setup() {
@@ -65,7 +73,7 @@ public class PrintEdgeNGTest {
 
         byte[] decodedImg = Base64.getDecoder()
                 .decode(pdfBase64.getBytes(StandardCharsets.UTF_8));
-        Path destinationFile = Paths.get("my-pdf.pdf");
+        Path destinationFile = too.resolveOutput("my-pdf.pdf");
         Files.write(destinationFile, decodedImg);
     }
 

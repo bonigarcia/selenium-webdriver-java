@@ -94,6 +94,8 @@ ext {
     springBootVersion = "3.1.5"
     appiumVersion = "9.0.0"
     restAssuredVersion = "5.3.1"
+
+    unittesthelperVersion = "0.2.2"
 }
 
 dependencies {
@@ -140,4 +142,29 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v114
     testImplementation 'org.seleniumhq.selenium:selenium-devtools-v114:4.12.1'
+
+    testImplementation("com.kazurayam:unittest-helper:${unittesthelperVersion}")
+}
+
+
+/*
+ * run the selection of test classes specified.
+ * This task should run faster than executing all tests.
+ */
+task testSelective(type: Test) {
+    useJUnit()
+
+    include '**/ch04/event_listeners/MyEventListener*'
+    include '**/ch04/screenshots/ScreenshotPng*'
+    include '**/ch04/screenshots/WebElementScreenshot*'
+    include '**/ch05/cdp/FullPageScreenshotChrome*'
+    include '**/ch05/cdp/FullPageScreenshotFirefox*'
+    include '**/ch05/print/PrintChrome*'
+    include '**/ch05/print/PrintEdge*'
+    include '**/ch05/print/PrintFirefox*'
+    include '**/ch09/accessibility/Accessibility*'
+    include '**/ch09/download/DownloadFirefox*'
+    include '**/ch09/download/DownloadHttpClient*'
+    include '**/ch09/performance/HarCreator*'
+    include '**/ch09/reporting/Reporting*'
 }

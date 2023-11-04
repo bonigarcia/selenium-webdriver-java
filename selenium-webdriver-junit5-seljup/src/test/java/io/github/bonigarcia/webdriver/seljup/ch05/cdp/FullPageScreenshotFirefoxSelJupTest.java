@@ -16,14 +16,10 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch05.cdp;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.Duration;
-
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.webdriver.seljup.TestOutputOrganizerFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -32,10 +28,23 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Duration;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SeleniumJupiter.class)
 class FullPageScreenshotFirefoxSelJupTest {
+
+    static TestOutputOrganizer too;
+
+    @BeforeAll
+    static void setupClass() {
+        too = TestOutputOrganizerFactory
+                .create(FullPageScreenshotFirefoxSelJupTest.class);
+    }
 
     @Test
     void testFullPageScreenshotFirefox(FirefoxDriver driver)
@@ -48,7 +57,8 @@ class FullPageScreenshotFirefoxSelJupTest {
 
         byte[] imageBytes = ((FirefoxDriver) driver)
                 .getFullPageScreenshotAs(OutputType.BYTES);
-        Path destination = Paths.get("fullpage-screenshot-firefox.png");
+        Path destination =
+                too.resolveOutput("fullpage-screenshot-firefox.png");
         Files.write(destination, imageBytes);
 
         assertThat(destination).exists();

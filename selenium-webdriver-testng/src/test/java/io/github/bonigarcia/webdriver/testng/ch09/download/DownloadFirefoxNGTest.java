@@ -19,12 +19,15 @@ package io.github.bonigarcia.webdriver.testng.ch09.download;
 import java.io.File;
 import java.time.Duration;
 
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.webdriver.testng.TestOutputOrganizerFactory;
 import org.awaitility.Awaitility;
 import org.awaitility.core.ConditionFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -32,14 +35,23 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DownloadFirefoxNGTest {
 
+    static TestOutputOrganizer too;
+
     WebDriver driver;
 
     File targetFolder;
 
+    @BeforeClass
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(DownloadFirefoxNGTest.class);
+    }
+
     @BeforeMethod
     public void setup() {
         FirefoxOptions options = new FirefoxOptions();
-        targetFolder = new File(".");
+
+        targetFolder = too.getOutputSubDirectory().toFile();
+
         options.addPreference("browser.download.dir",
                 targetFolder.getAbsolutePath());
         options.addPreference("browser.download.folderList", 2);

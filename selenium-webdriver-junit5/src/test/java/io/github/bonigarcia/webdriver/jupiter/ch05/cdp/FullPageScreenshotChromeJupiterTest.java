@@ -16,17 +16,11 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch05.cdp;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.Duration;
-import java.util.Base64;
-import java.util.Optional;
-
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.jupiter.TestOutputOrganizerFactory;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -40,13 +34,27 @@ import org.openqa.selenium.devtools.v118.page.model.Viewport;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Duration;
+import java.util.Base64;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class FullPageScreenshotChromeJupiterTest {
+
+    static TestOutputOrganizer too;
 
     WebDriver driver;
 
     DevTools devTools;
+
+    @BeforeAll
+    public static void setupClass() {
+        too = TestOutputOrganizerFactory.create(FullPageScreenshotChromeJupiterTest.class);
+    }
 
     @BeforeEach
     void setup() {
@@ -78,7 +86,7 @@ class FullPageScreenshotChromeJupiterTest {
                                 contentSize.getHeight(), 1)),
                         Optional.empty(), Optional.of(true),
                         Optional.of(false)));
-        Path destination = Paths.get("fullpage-screenshot-chrome.png");
+        Path destination = too.resolveOutput("fullpage-screenshot-chrome.png");
         Files.write(destination, Base64.getDecoder().decode(screenshotBase64));
 
         assertThat(destination).exists();

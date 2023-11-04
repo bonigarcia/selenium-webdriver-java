@@ -16,15 +16,10 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch05.print;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Base64;
-
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.webdriver.seljup.TestOutputOrganizerFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Pdf;
@@ -32,10 +27,23 @@ import org.openqa.selenium.PrintsPage;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.print.PrintOptions;
 
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Base64;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SeleniumJupiter.class)
 class PrintFirefoxSelJupTest {
+
+    static TestOutputOrganizer too;
+
+    @BeforeAll
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(PrintFirefoxSelJupTest.class);
+    }
 
     @Test
     void testPrint(FirefoxDriver driver) throws IOException {
@@ -49,7 +57,7 @@ class PrintFirefoxSelJupTest {
 
         byte[] decodedImg = Base64.getDecoder()
                 .decode(pdfBase64.getBytes(StandardCharsets.UTF_8));
-        Path destinationFile = Paths.get("my-pdf.pdf");
+        Path destinationFile = too.resolveOutput("my-pdf.pdf");
         Files.write(destinationFile, decodedImg);
     }
 
