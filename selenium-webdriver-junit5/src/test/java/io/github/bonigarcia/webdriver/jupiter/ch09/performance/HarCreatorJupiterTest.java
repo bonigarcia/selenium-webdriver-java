@@ -23,6 +23,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
@@ -36,6 +37,7 @@ import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.proxy.CaptureType;
 
+@Disabled("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
 class HarCreatorJupiterTest {
 
     WebDriver driver;

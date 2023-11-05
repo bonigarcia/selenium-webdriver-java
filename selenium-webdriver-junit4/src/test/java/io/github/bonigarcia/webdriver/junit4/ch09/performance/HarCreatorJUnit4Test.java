@@ -23,6 +23,7 @@ import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
@@ -36,6 +37,7 @@ import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.proxy.CaptureType;
 
+@Ignore("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
 public class HarCreatorJUnit4Test {
 
     WebDriver driver;
@@ -59,6 +61,8 @@ public class HarCreatorJUnit4Test {
 
         System.out.println("org.bouncycastle.operator.defaultSignatureNameFindler was loaded from " +
                 org.bouncycastle.operator.DefaultSignatureNameFinder.class.getProtectionDomain().getCodeSource());
+        System.out.println("org.bouncycastle.asn1.cms.CMSObjectIdentifiers as loaded from " +
+                org.bouncycastle.asn1.cms.CMSObjectIdentifiers.class.getProtectionDomain().getCodeSource());
     }
 
     @After
