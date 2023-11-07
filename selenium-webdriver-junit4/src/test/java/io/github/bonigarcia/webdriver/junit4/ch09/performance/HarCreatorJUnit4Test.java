@@ -37,7 +37,7 @@ import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.proxy.CaptureType;
 
-@Ignore("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
+//@Ignore("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
 public class HarCreatorJUnit4Test {
 
     WebDriver driver;
@@ -59,7 +59,9 @@ public class HarCreatorJUnit4Test {
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
 
-        System.out.println("org.bouncycastle.operator.defaultSignatureNameFindler was loaded from " +
+        System.out.println("net.lightbody.bmp.BrowserMobProxy was loaded from " +
+                BrowserMobProxy.class.getProtectionDomain().getCodeSource());
+        System.out.println("org.bouncycastle.operator.defaultSignatureNameFinder was loaded from " +
                 org.bouncycastle.operator.DefaultSignatureNameFinder.class.getProtectionDomain().getCodeSource());
         System.out.println("org.bouncycastle.asn1.cms.CMSObjectIdentifiers as loaded from " +
                 org.bouncycastle.asn1.cms.CMSObjectIdentifiers.class.getProtectionDomain().getCodeSource());

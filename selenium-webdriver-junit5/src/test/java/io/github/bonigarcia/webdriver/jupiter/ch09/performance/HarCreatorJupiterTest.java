@@ -37,7 +37,7 @@ import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.proxy.CaptureType;
 
-@Disabled("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
+//@Disabled("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
 class HarCreatorJupiterTest {
 
     WebDriver driver;

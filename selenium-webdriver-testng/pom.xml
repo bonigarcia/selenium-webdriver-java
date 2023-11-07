@@ -18,7 +18,9 @@
 
         <htmlunit.version>4.13.0</htmlunit.version>
         <awaitility.version>4.2.0</awaitility.version>
-        <browsermob.version>2.1.5</browsermob.version>
+
+        <browsermob.version>2.1.6-SNAPSHOT</browsermob.version>
+
         <zapclient.version>1.12.0</zapclient.version>
         <axel.version>4.8.0</axel.version>
         <datafaker.version>2.0.2</datafaker.version>

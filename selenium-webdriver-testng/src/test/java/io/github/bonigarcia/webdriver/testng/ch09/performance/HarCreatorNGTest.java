@@ -38,7 +38,7 @@ import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.proxy.CaptureType;
 
-@Ignore("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
+//@Ignore("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
 public class HarCreatorNGTest {
 
     WebDriver driver;
