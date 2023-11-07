@@ -16,32 +16,40 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch04.screenshots;
 
-import static java.lang.invoke.MethodHandles.lookup;
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.junit4.TestOutputOrganizerFactory;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static java.lang.invoke.MethodHandles.lookup;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class ScreenshotPngJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
+    static TestOutputOrganizer too;
+
     WebDriver driver;
+
+    @BeforeClass
+    public static void setupClass() {
+        too = TestOutputOrganizerFactory.create(ScreenshotPngJUnit4Test.class);
+    }
 
     @Before
     public void setup() {
@@ -61,7 +69,7 @@ public class ScreenshotPngJUnit4Test {
         File screenshot = ts.getScreenshotAs(OutputType.FILE);
         log.debug("Screenshot created on {}", screenshot);
 
-        Path destination = Paths.get("screenshot.png");
+        Path destination = too.resolveOutput("screenshot.png");
         Files.move(screenshot.toPath(), destination, REPLACE_EXISTING);
         log.debug("Screenshot moved to {}", destination);
 

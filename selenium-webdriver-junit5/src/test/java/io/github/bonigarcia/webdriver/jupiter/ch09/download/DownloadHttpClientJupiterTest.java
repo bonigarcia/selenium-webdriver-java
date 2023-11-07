@@ -20,7 +20,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.webdriver.jupiter.TestOutputOrganizerFactory;
 import org.apache.commons.io.FileUtils;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpUriRequestBase;
@@ -30,6 +33,7 @@ import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpException;
 import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -40,10 +44,20 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 class DownloadHttpClientJupiterTest {
 
+    static TestOutputOrganizer too;
+
     WebDriver driver;
+
+    Path targetFolder;
+
+    @BeforeAll
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(DownloadHttpClientJupiterTest.class);
+    }
 
     @BeforeEach
     void setup() {
+        targetFolder = too.getOutputSubDirectory();
         driver = WebDriverManager.chromedriver().create();
     }
 
@@ -58,12 +72,12 @@ class DownloadHttpClientJupiterTest {
                 "https://bonigarcia.dev/selenium-webdriver-java/download.html");
 
         WebElement pngLink = driver.findElement(By.xpath("(//a)[2]"));
-        File pngFile = new File(".", "webdrivermanager.png");
+        File pngFile = targetFolder.resolve("webdrivermanager.png").toFile();
         download(pngLink.getAttribute("href"), pngFile);
         assertThat(pngFile).exists();
 
         WebElement pdfLink = driver.findElement(By.xpath("(//a)[3]"));
-        File pdfFile = new File(".", "webdrivermanager.pdf");
+        File pdfFile = targetFolder.resolve("webdrivermanager.pdf").toFile();
         download(pdfLink.getAttribute("href"), pdfFile);
         assertThat(pdfFile).exists();
     }

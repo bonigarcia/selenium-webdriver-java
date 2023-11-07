@@ -18,6 +18,7 @@ package io.github.bonigarcia.webdriver.jupiter.ch05.print;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -25,7 +26,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.webdriver.jupiter.TestOutputOrganizerFactory;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Pdf;
@@ -38,7 +42,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 class PrintChromeJupiterTest {
 
+    static TestOutputOrganizer too;
+
     WebDriver driver;
+
+    @BeforeAll
+    public void setupClass() {
+        too = TestOutputOrganizerFactory.create(PrintChromeJupiterTest.class);
+    }
 
     @BeforeEach
     void setup() {
@@ -65,7 +76,7 @@ class PrintChromeJupiterTest {
 
         byte[] decodedImg = Base64.getDecoder()
                 .decode(pdfBase64.getBytes(StandardCharsets.UTF_8));
-        Path destinationFile = Paths.get("my-pdf.pdf");
+        Path destinationFile = too.resolveOutput("my-pdf.pdf");
         Files.write(destinationFile, decodedImg);
     }
 

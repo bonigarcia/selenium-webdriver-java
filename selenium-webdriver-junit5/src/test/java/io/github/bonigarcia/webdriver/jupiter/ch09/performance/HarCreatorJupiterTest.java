@@ -21,7 +21,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
 import java.io.IOException;
 
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.webdriver.jupiter.TestOutputOrganizerFactory;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -40,9 +43,16 @@ import net.lightbody.bmp.proxy.CaptureType;
 //@Disabled("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
 class HarCreatorJupiterTest {
 
+    static TestOutputOrganizer too;
+
     WebDriver driver;
 
     BrowserMobProxy proxy;
+
+    @BeforeAll
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(HarCreatorJupiterTest.class);
+    }
 
     @BeforeEach
     void setup() {
@@ -63,7 +73,7 @@ class HarCreatorJupiterTest {
     @AfterEach
     void teardown() throws IOException {
         Har har = proxy.getHar();
-        File harFile = new File("login.har");
+        File harFile = too.resolveOutput("login.har").toFile();
         har.writeTo(harFile);
 
         proxy.stop();

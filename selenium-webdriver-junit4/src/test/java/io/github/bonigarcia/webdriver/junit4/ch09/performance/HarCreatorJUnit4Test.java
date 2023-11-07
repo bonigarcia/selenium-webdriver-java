@@ -16,33 +16,40 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch09.performance;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.File;
-import java.io.IOException;
-
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.junit4.TestOutputOrganizerFactory;
+import net.lightbody.bmp.BrowserMobProxy;
+import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.client.ClientUtil;
+import net.lightbody.bmp.core.har.Har;
+import net.lightbody.bmp.proxy.CaptureType;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import net.lightbody.bmp.BrowserMobProxy;
-import net.lightbody.bmp.BrowserMobProxyServer;
-import net.lightbody.bmp.client.ClientUtil;
-import net.lightbody.bmp.core.har.Har;
-import net.lightbody.bmp.proxy.CaptureType;
+import java.io.File;
+import java.io.IOException;
 
-//@Ignore("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class HarCreatorJUnit4Test {
+
+    static TestOutputOrganizer too;
 
     WebDriver driver;
 
     BrowserMobProxy proxy;
+
+    @BeforeClass
+    public static void setupClass() {
+        too = TestOutputOrganizerFactory.create(HarCreatorJUnit4Test.class);
+    }
 
     @Before
     public void setup() {
@@ -70,7 +77,7 @@ public class HarCreatorJUnit4Test {
     @After
     public void teardown() throws IOException {
         Har har = proxy.getHar();
-        File harFile = new File("login.har");
+        File harFile = too.resolveOutput("login.har").toFile();
         har.writeTo(harFile);
 
         proxy.stop();

@@ -16,34 +16,40 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch09.performance;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.File;
-import java.io.IOException;
-
-import org.junit.jupiter.api.Disabled;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Proxy;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Ignore;
-import org.testng.annotations.Test;
-
+import com.kazurayam.unittest.TestOutputOrganizer;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.testng.TestOutputOrganizerFactory;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
 import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.proxy.CaptureType;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Proxy;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-//@Ignore("see https://github.com/kazurayam/selenium-webdriver-java/issues/25")
+import java.io.File;
+import java.io.IOException;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class HarCreatorNGTest {
+
+    static TestOutputOrganizer too;
 
     WebDriver driver;
 
     BrowserMobProxy proxy;
+
+    @BeforeClass
+    static void setupClass() {
+        too = TestOutputOrganizerFactory.create(HarCreatorNGTest.class);
+    }
 
     @BeforeMethod
     public void setup() {
@@ -64,7 +70,7 @@ public class HarCreatorNGTest {
     @AfterMethod
     public void teardown() throws IOException {
         Har har = proxy.getHar();
-        File harFile = new File("login.har");
+        File harFile = too.resolveOutput("login.har").toFile();
         har.writeTo(harFile);
 
         proxy.stop();

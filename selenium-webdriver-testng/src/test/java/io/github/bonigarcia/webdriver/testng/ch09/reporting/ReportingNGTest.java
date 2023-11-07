@@ -16,10 +16,11 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch09.reporting;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.lang.reflect.Method;
-
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.kazurayam.unittest.TestOutputOrganizer;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.webdriver.testng.TestOutputOrganizerFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -27,12 +28,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import java.lang.reflect.Method;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ReportingNGTest {
+
+    static TestOutputOrganizer too;
 
     WebDriver driver;
 
@@ -40,9 +42,11 @@ public class ReportingNGTest {
 
     @BeforeClass
     public void setupClass() {
+        too = TestOutputOrganizerFactory.create(ReportingNGTest.class);
         reports = new ExtentReports();
-        ExtentSparkReporter htmlReporter = new ExtentSparkReporter(
-                "extentReport.html");
+        ExtentSparkReporter htmlReporter =
+                new ExtentSparkReporter(
+                        too.resolveOutput("extentReport.html").toFile());
         reports.attachReporter(htmlReporter);
     }
 
