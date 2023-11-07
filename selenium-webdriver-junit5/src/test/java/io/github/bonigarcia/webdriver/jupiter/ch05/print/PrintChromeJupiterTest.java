@@ -47,7 +47,7 @@ class PrintChromeJupiterTest {
     WebDriver driver;
 
     @BeforeAll
-    public void setupClass() {
+    public static void setupClass() {
         too = TestOutputOrganizerFactory.create(PrintChromeJupiterTest.class);
     }
 
