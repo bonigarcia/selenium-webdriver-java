@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.junit4.ch09.download;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 import com.kazurayam.unittest.TestOutputOrganizer;
@@ -42,14 +43,15 @@ public class DownloadFirefoxJUnit4Test {
     File targetFolder;
 
     @BeforeClass
-    public static void setupClass() {
+    public static void setupClass() throws IOException {
         too = TestOutputOrganizerFactory.create(DownloadFirefoxJUnit4Test.class);
+        too.cleanOutputSubDirectory();
     }
 
     @Before
     public void setup() {
         FirefoxOptions options = new FirefoxOptions();
-        targetFolder = too.resolveOutput("dummy").getParent().toFile();
+        targetFolder = too.getOutputSubDirectory().toFile();
         options.addPreference("browser.download.dir",
                 targetFolder.getAbsolutePath());
         options.addPreference("browser.download.folderList", 2);
@@ -67,7 +69,7 @@ public class DownloadFirefoxJUnit4Test {
     }
 
     @Test
-    public void testDownloadFirefox() {
+    public void testDownloadFirefox() throws InterruptedException {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/download.html");
 
@@ -81,6 +83,8 @@ public class DownloadFirefoxJUnit4Test {
 
         File wdmDoc = new File(targetFolder, "webdrivermanager.pdf");
         await.until(() -> wdmDoc.exists());
+
+        Thread.sleep(3000);
     }
 
 }

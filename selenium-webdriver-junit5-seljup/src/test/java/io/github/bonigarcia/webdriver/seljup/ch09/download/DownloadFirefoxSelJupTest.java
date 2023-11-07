@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.seljup.ch09.download;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 import com.kazurayam.unittest.TestOutputOrganizer;
@@ -45,8 +46,9 @@ class DownloadFirefoxSelJupTest {
     FirefoxOptions options = new FirefoxOptions();
 
     @BeforeAll
-    static void setupClass() {
+    static void setupClass() throws IOException {
         too = TestOutputOrganizerFactory.create(DownloadFirefoxSelJupTest.class);
+        too.cleanOutputSubDirectory();
     }
 
     @BeforeEach
@@ -62,7 +64,7 @@ class DownloadFirefoxSelJupTest {
     }
 
     @Test
-    void testDownloadFirefox(FirefoxDriver driver) {
+    void testDownloadFirefox(FirefoxDriver driver) throws InterruptedException {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/download.html");
 
@@ -76,6 +78,8 @@ class DownloadFirefoxSelJupTest {
 
         File wdmDoc = new File(targetFolder, "webdrivermanager.pdf");
         await.until(() -> wdmDoc.exists());
+
+        Thread.sleep(3000);
     }
 
 }

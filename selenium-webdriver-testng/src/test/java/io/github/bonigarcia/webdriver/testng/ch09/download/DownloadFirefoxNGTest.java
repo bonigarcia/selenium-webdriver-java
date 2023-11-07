@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.testng.ch09.download;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 import com.kazurayam.unittest.TestOutputOrganizer;
@@ -42,8 +43,9 @@ public class DownloadFirefoxNGTest {
     File targetFolder;
 
     @BeforeClass
-    static void setupClass() {
+    static void setupClass() throws IOException {
         too = TestOutputOrganizerFactory.create(DownloadFirefoxNGTest.class);
+        too.cleanOutputSubDirectory();
     }
 
     @BeforeMethod
@@ -69,7 +71,7 @@ public class DownloadFirefoxNGTest {
     }
 
     @Test
-    public void testDownloadFirefox() {
+    public void testDownloadFirefox() throws InterruptedException {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/download.html");
 
@@ -83,6 +85,8 @@ public class DownloadFirefoxNGTest {
 
         File wdmDoc = new File(targetFolder, "webdrivermanager.pdf");
         await.until(() -> wdmDoc.exists());
+
+        Thread.sleep(3000);
     }
 
 }
