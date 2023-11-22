@@ -87,7 +87,7 @@ ext {
     junitPlatformVersion = "1.10.1"
     awaitilityVersion = "4.2.0"
     browsermobVersion = "2.1.5"
-    zapclientVersion = "1.12.0"
+    zapclientVersion = "1.13.0"
     axelVersion = "4.8.0"
     selenideVersion = "7.0.2"
     browserupProxyVersion = "2.1.2"
