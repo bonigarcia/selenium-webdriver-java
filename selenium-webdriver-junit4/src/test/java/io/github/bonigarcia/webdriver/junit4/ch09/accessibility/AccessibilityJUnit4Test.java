@@ -30,6 +30,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class AccessibilityJUnit4Test {
     }
 
     @Test
-    public void testAccessibility() {
+    public void testAccessibility() throws IOException {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
 
@@ -70,7 +71,7 @@ public class AccessibilityJUnit4Test {
         violations.forEach(rule -> {
             log.debug("{}", rule.toString());
         });
-        Path outputFile = too.resolveOutput("testAccessibility");
+        Path outputFile = too.getClassOutputDirectory().resolve("testAccessibility");
         AxeReporter.writeResultsToJsonFile(outputFile.toString(), result);
     }
 

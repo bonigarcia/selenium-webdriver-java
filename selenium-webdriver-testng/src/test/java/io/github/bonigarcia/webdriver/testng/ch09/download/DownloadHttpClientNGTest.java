@@ -56,8 +56,8 @@ public class DownloadHttpClientNGTest {
     }
 
     @BeforeMethod
-    public void setup() {
-        targetFolder = too.getOutputSubDirectory();
+    public void setup() throws IOException {
+        targetFolder = too.getClassOutputDirectory();
         driver = WebDriverManager.chromedriver().create();
     }
 

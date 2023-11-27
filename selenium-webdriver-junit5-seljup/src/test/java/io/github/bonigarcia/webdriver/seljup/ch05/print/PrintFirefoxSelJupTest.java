@@ -57,7 +57,8 @@ class PrintFirefoxSelJupTest {
 
         byte[] decodedImg = Base64.getDecoder()
                 .decode(pdfBase64.getBytes(StandardCharsets.UTF_8));
-        Path destinationFile = too.resolveOutput("my-pdf.pdf");
+        Path destinationFile =
+                too.getClassOutputDirectory().resolve("my-pdf.pdf");
         Files.write(destinationFile, decodedImg);
     }
 

@@ -43,15 +43,23 @@ public class MyEventListener implements WebDriverListener {
     @Override
     public void afterGet(WebDriver driver, String url) {
         WebDriverListener.super.afterGet(driver, url);
-        takeScreenshot(driver);
+        try {
+            takeScreenshot(driver);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void beforeQuit(WebDriver driver) {
-        takeScreenshot(driver);
+        try {
+            takeScreenshot(driver);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private void takeScreenshot(WebDriver driver) {
+    private void takeScreenshot(WebDriver driver) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File screenshot = ts.getScreenshotAs(OutputType.FILE);
         SessionId sessionId = ((RemoteWebDriver) driver).getSessionId();
@@ -62,7 +70,8 @@ public class MyEventListener implements WebDriverListener {
                 dateFormat.format(today), sessionId.toString());
         TestOutputOrganizer too =
                 TestOutputOrganizerFactory.create(MyEventListener.class);
-        Path destination = too.resolveOutput(screenshotFileName);
+        Path destination =
+                too.getClassOutputDirectory().resolve(screenshotFileName);
 
         try {
             Files.move(screenshot.toPath(), destination);

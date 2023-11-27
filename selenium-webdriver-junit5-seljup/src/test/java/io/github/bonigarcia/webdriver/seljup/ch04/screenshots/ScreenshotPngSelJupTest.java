@@ -59,7 +59,8 @@ class ScreenshotPngSelJupTest {
         File screenshot = ts.getScreenshotAs(OutputType.FILE);
         log.debug("Screenshot created on {}", screenshot);
 
-        Path destination = too.resolveOutput("screenshot.png");
+        Path destination =
+                too.getClassOutputDirectory().resolve("screenshot.png");
         Files.move(screenshot.toPath(), destination, REPLACE_EXISTING);
         log.debug("Screenshot moved to {}", destination);
 

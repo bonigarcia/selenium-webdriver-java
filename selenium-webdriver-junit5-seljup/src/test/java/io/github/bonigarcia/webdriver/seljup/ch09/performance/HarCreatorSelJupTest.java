@@ -75,7 +75,9 @@ class HarCreatorSelJupTest {
     @AfterEach
     void teardown() throws IOException {
         Har har = proxy.getHar();
-        File harFile = too.resolveOutput("login.har").toFile();
+        File harFile =
+                too.getClassOutputDirectory()
+                        .resolve("login.har").toFile();
         har.writeTo(harFile);
 
         proxy.stop();

@@ -56,8 +56,8 @@ class DownloadHttpClientJupiterTest {
     }
 
     @BeforeEach
-    void setup() {
-        targetFolder = too.getOutputSubDirectory();
+    void setup() throws IOException {
+        targetFolder = too.getClassOutputDirectory();
         driver = WebDriverManager.chromedriver().create();
     }
 

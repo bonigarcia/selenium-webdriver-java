@@ -6,7 +6,7 @@ public class TestOutputOrganizerFactory {
 
     public static TestOutputOrganizer create(Class clazz) {
         return new TestOutputOrganizer.Builder(clazz)
-                .subDirPath(clazz.getName())
+                .subDirPath(clazz)
                 // e.g, "io.github.bonigarcia.webdriver.junit5-seljup.ch04.screenshots.WebElementScreenshotJUnit4Test"
                 .build();
     }

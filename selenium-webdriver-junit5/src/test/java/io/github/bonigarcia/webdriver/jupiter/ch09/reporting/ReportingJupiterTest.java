@@ -29,6 +29,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ReportingJupiterTest {
@@ -40,12 +42,13 @@ class ReportingJupiterTest {
     static ExtentReports reports;
 
     @BeforeAll
-    static void setupClass() {
+    static void setupClass() throws IOException {
         too = TestOutputOrganizerFactory.create(ReportingJupiterTest.class);
         reports = new ExtentReports();
         ExtentSparkReporter htmlReporter =
                 new ExtentSparkReporter(
-                        too.resolveOutput("extentReport.html").toFile());
+                        too.getClassOutputDirectory()
+                                .resolve("extentReport.html").toFile());
         reports.attachReporter(htmlReporter);
     }
 

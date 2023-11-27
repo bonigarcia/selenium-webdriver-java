@@ -54,8 +54,8 @@ class DownloadHttpClientSelJupTest {
     }
 
     @BeforeEach
-    public void setup() {
-        targetFolder = too.getOutputSubDirectory();
+    public void setup() throws IOException {
+        targetFolder = too.getClassOutputDirectory();
     }
 
     @Test

@@ -28,6 +28,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -41,12 +42,13 @@ public class ReportingNGTest {
     ExtentReports reports;
 
     @BeforeClass
-    public void setupClass() {
+    public void setupClass() throws IOException {
         too = TestOutputOrganizerFactory.create(ReportingNGTest.class);
         reports = new ExtentReports();
         ExtentSparkReporter htmlReporter =
                 new ExtentSparkReporter(
-                        too.resolveOutput("extentReport.html").toFile());
+                        too.getClassOutputDirectory()
+                                .resolve("extentReport.html").toFile());
         reports.attachReporter(htmlReporter);
     }
 

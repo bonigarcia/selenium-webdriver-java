@@ -86,7 +86,7 @@ public class FullPageScreenshotChromeJUnit4Test {
                                 contentSize.getHeight(), 1)),
                         Optional.empty(), Optional.of(true),
                         Optional.of(false)));
-        Path destination = too.resolveOutput("fullpage-screenshot-chrome.png");
+        Path destination = too.getClassOutputDirectory().resolve("fullpage-screenshot-chrome.png");
         Files.write(destination, Base64.getDecoder().decode(screenshotBase64));
 
         assertThat(destination).exists();

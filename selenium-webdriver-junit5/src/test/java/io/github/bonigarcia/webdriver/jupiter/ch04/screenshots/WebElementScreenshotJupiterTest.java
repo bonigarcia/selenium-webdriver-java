@@ -69,7 +69,9 @@ class WebElementScreenshotJupiterTest {
 
         WebElement form = driver.findElement(By.tagName("form"));
         File screenshot = form.getScreenshotAs(OutputType.FILE);
-        Path destination = too.resolveOutput("webelement-screenshot.png");
+        Path destination =
+                too.getClassOutputDirectory()
+                        .resolve("webelement-screenshot.png");
         Files.move(screenshot.toPath(), destination, REPLACE_EXISTING);
 
         assertThat(destination).exists();

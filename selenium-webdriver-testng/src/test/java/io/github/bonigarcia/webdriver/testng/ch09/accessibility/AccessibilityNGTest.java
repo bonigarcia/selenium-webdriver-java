@@ -30,6 +30,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class AccessibilityNGTest {
     }
 
     @Test
-    public void testAccessibility() {
+    public void testAccessibility() throws IOException {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
 
@@ -70,7 +71,7 @@ public class AccessibilityNGTest {
         violations.forEach(rule -> {
             log.debug("{}", rule.toString());
         });
-        Path outputFile = too.resolveOutput("testAccessibility");
+        Path outputFile = too.getClassOutputDirectory().resolve("testAccessibility");
         AxeReporter.writeResultsToJsonFile(outputFile.toString(), result);
     }
 

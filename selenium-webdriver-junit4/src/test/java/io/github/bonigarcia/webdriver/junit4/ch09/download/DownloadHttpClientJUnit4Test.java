@@ -55,8 +55,8 @@ public class DownloadHttpClientJUnit4Test {
     }
 
     @Before
-    public void setup() {
-        targetFolder = too.resolveOutput("dummy").getParent().toFile();
+    public void setup() throws IOException {
+        targetFolder = too.getClassOutputDirectory().toFile();
         driver = WebDriverManager.chromedriver().create();
     }
 

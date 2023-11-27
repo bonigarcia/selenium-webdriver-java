@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.testng.ch09.download;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 import com.kazurayam.unittest.TestOutputOrganizer;
@@ -47,10 +48,10 @@ public class DownloadFirefoxNGTest {
     }
 
     @BeforeMethod
-    public void setup() {
+    public void setup() throws IOException {
         FirefoxOptions options = new FirefoxOptions();
 
-        targetFolder = too.getOutputSubDirectory().toFile();
+        targetFolder = too.getClassOutputDirectory().toFile();
 
         options.addPreference("browser.download.dir",
                 targetFolder.getAbsolutePath());

@@ -30,6 +30,8 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ReportingJUnit4Test {
@@ -44,12 +46,13 @@ public class ReportingJUnit4Test {
     static ExtentReports reports;
 
     @BeforeClass
-    public static void setupClass() {
+    public static void setupClass() throws IOException {
         too = TestOutputOrganizerFactory.create(ReportingJUnit4Test.class);
         reports = new ExtentReports();
         ExtentSparkReporter htmlReporter =
                 new ExtentSparkReporter(
-                        too.resolveOutput("extentReport.html").toFile());
+                        too.getClassOutputDirectory().
+                                resolve("extentReport.html").toFile());
         reports.attachReporter(htmlReporter);
     }
 

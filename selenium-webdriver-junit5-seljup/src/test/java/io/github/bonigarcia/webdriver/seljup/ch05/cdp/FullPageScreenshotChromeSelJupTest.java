@@ -71,7 +71,8 @@ class FullPageScreenshotChromeSelJupTest {
                         Optional.empty(), Optional.of(true),
                         Optional.of(false)));
         Path destination =
-                too.resolveOutput("fullpage-screenshot-chrome.png");
+                too.getClassOutputDirectory()
+                        .resolve("fullpage-screenshot-chrome.png");
         Files.write(destination, Base64.getDecoder().decode(screenshotBase64));
 
         assertThat(destination).exists();

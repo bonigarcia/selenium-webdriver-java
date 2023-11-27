@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.jupiter.ch09.download;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 import com.kazurayam.unittest.TestOutputOrganizer;
@@ -47,9 +48,9 @@ class DownloadFirefoxJupiterTest {
     }
 
     @BeforeEach
-    void setup() {
+    void setup() throws IOException {
         FirefoxOptions options = new FirefoxOptions();
-        targetFolder = too.getOutputSubDirectory().toFile();
+        targetFolder = too.getClassOutputDirectory().toFile();
         options.addPreference("browser.download.dir",
                 targetFolder.getAbsolutePath());
         options.addPreference("browser.download.folderList", 2);

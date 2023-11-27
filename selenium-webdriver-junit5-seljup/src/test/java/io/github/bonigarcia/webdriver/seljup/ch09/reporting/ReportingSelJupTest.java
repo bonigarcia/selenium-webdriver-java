@@ -30,6 +30,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SeleniumJupiter.class)
@@ -40,11 +42,13 @@ class ReportingSelJupTest {
     static ExtentReports reports;
 
     @BeforeAll
-    static void setupClass() {
+    static void setupClass() throws IOException {
         too = TestOutputOrganizerFactory.create(ReportingSelJupTest.class);
         reports = new ExtentReports();
         ExtentSparkReporter htmlReporter =
-                new ExtentSparkReporter(too.resolveOutput("extentReport.html").toFile());
+                new ExtentSparkReporter(
+                        too.getClassOutputDirectory()
+                                .resolve("extentReport.html").toFile());
         reports.attachReporter(htmlReporter);
     }
 

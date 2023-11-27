@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.seljup.ch09.download;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 import com.kazurayam.unittest.TestOutputOrganizer;
@@ -50,8 +51,8 @@ class DownloadFirefoxSelJupTest {
     }
 
     @BeforeEach
-    void setup() {
-        targetFolder = too.getOutputSubDirectory().toFile();
+    void setup() throws IOException {
+        targetFolder = too.getClassOutputDirectory().toFile();
 
         options.addPreference("browser.download.dir",
                 targetFolder.getAbsolutePath());

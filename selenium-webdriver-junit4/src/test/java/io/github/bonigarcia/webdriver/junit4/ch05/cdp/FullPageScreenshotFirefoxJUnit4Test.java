@@ -69,7 +69,8 @@ public class FullPageScreenshotFirefoxJUnit4Test {
 
         byte[] imageBytes = ((FirefoxDriver) driver)
                 .getFullPageScreenshotAs(OutputType.BYTES);
-        Path destination = too.resolveOutput("fullpage-screenshot-firefox.png");
+        Path destination = too.getClassOutputDirectory()
+                .resolve("fullpage-screenshot-firefox.png");
         Files.write(destination, imageBytes);
 
         assertThat(destination).exists();
