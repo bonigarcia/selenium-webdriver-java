@@ -95,7 +95,7 @@ ext {
     appiumVersion = "9.0.0"
     restAssuredVersion = "5.3.1"
 
-    unittesthelperVersion = "0.2.2"
+    unittesthelperVersion = "0.3.0"
 }
 
 dependencies {
