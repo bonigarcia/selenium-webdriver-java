@@ -90,7 +90,7 @@ ext {
     selenideVersion = "7.0.4"
     datafakerVersion = "2.0.2"
     extentreportsVersion = "5.1.1"
-    cucumberVersion = "7.14.1"
+    cucumberVersion = "7.15.0"
     springBootVersion = "3.2.0"
     appiumVersion = "9.0.0"
     restAssuredVersion = "5.4.0"
