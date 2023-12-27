@@ -109,12 +109,16 @@ dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
     testImplementation("org.testng:testng:${testNgVersion}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
-    testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}")
+    testImplementation("io.github.bonigarcia:webdrivermanager:${wdmVersion}") {
+        exclude group: "org.bouncycastle", module: "*"
+    }
 
     testImplementation("org.seleniumhq.selenium:htmlunit-driver:${htmlunitVersion}") {
         exclude group: "org.seleniumhq.selenium", module: "*"
     }
-    testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
+    testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}") {
+        exclude group: "org.bouncycastle", module: "*"
+    }
     testImplementation("org.awaitility:awaitility:${awaitilityVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}") {
         exclude group: "com.fasterxml.jackson.core", module: "*"
