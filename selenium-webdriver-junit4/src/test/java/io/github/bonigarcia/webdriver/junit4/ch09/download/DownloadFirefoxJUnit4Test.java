@@ -71,6 +71,7 @@ public class DownloadFirefoxJUnit4Test {
 
         File wdmDoc = new File(targetFolder, "webdrivermanager.pdf");
         await.until(() -> wdmDoc.exists());
+        await.await();
     }
 
 }
