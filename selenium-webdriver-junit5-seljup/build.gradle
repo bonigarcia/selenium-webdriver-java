@@ -107,13 +107,17 @@ dependencies {
 
     testImplementation("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter:${junit5Version}")
-    testImplementation("io.github.bonigarcia:selenium-jupiter:${selJupVersion}")
+    testImplementation("io.github.bonigarcia:selenium-jupiter:${selJupVersion}") {
+        exclude group: "org.bouncycastle", module: "*"
+    }
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
 
     testImplementation("org.seleniumhq.selenium:htmlunit-driver:${htmlunitVersion}") {
         exclude group: "org.seleniumhq.selenium", module: "*"
     }
-    testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}")
+    testImplementation("org.seleniumhq.selenium:selenium-grid:${seleniumVersion}") {
+        exclude group: "org.bouncycastle", module: "*"
+    }
     testImplementation("io.github.artsok:rerunner-jupiter:${rerunnerVersion}")
     testImplementation("org.awaitility:awaitility:${awaitilityVersion}")
     testImplementation("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
