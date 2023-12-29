@@ -31,14 +31,9 @@ import io.github.bonigarcia.seljup.SeleniumJupiter;
 @ExtendWith(SeleniumJupiter.class)
 class DockerChromeBetaSelJupTest {
 
-    {
-        System.setProperty("wdm.dockerDefaultArgs",
-                "--disable-gpu,--no-sandbox");
-    }
-
     @Test
     void testDockerChromeBeta(
-            @DockerBrowser(type = CHROME, version = "beta") WebDriver driver) {
+            @DockerBrowser(type = CHROME, version = "beta", args = "--disable-gpu,--no-sandbox") WebDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }

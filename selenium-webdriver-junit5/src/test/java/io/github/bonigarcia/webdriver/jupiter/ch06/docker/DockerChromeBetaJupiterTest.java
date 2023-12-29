@@ -37,9 +37,7 @@ class DockerChromeBetaJupiterTest {
     @BeforeEach
     void setupTest() {
         assumeThat(isDockerAvailable()).isTrue();
-        System.setProperty("wdm.dockerDefaultArgs",
-                "--disable-gpu,--no-sandbox");
-        driver = wdm.create();
+        driver = wdm.dockerDefaultArgs("--disable-gpu,--no-sandbox").create();
     }
 
     @AfterEach
