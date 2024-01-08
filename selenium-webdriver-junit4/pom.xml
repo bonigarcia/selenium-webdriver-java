@@ -22,7 +22,7 @@
         <zapclient.version>1.13.0</zapclient.version>
         <axel.version>4.8.0</axel.version>
         <selenide.version>7.0.4</selenide.version>
-        <datafaker.version>2.0.2</datafaker.version>
+        <datafaker.version>2.1.0</datafaker.version>
         <extentreports.version>5.1.1</extentreports.version>
         <allure.version>2.25.0</allure.version>
         <allure-maven.version>2.12.0</allure-maven.version>
