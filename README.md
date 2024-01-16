@@ -27,11 +27,7 @@ This repo uses Git tags to track the evolution of the codebase in time. These ta
 
 ## About
 
-selenium-webdriver-java (Copyright &copy; 2021-2023) is an open-source project created and maintained by [Boni Garcia], licensed under the terms of [Apache 2.0 License].
-
-If you like my work, please consider nominating me for the [GitHub Stars](https://stars.github.com/nominate/) program.
-
-<p align="center"><a href="https://stars.github.com/nominate/"> <img src="https://avatars.githubusercontent.com/u/61242156?s=200&v=4" width="100"/></a></p>
+selenium-webdriver-java (Copyright &copy; 2021-2024) is an open-source project created and maintained by [Boni Garcia], licensed under the terms of [Apache 2.0 License].
 
 [Logo]: https://bonigarcia.dev/selenium-webdriver-java/img/hands-on-icon.png
 [GitHub Repository]: https://github.com/bonigarcia/selenium-webdriver-java/
