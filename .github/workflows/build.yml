@@ -32,7 +32,7 @@ jobs:
       run: Xvfb $DISPLAY &
     - name: Run ${{ matrix.project }} tests with Maven
       if: matrix.build-tool == 'mvn'
-      uses: nick-invision/retry@v2.9.0
+      uses: nick-invision/retry@v3.0.0
       with:
         timeout_minutes: 30
         max_attempts: 3
@@ -41,7 +41,7 @@ jobs:
           mvn test -Dtest=!*Edge*,!*CrossBrowser*
     - name: Run ${{ matrix.project }} tests with Gradle
       if: matrix.build-tool == 'gradle'
-      uses: nick-invision/retry@v2.9.0
+      uses: nick-invision/retry@v3.0.0
       with:
         timeout_minutes: 30
         max_attempts: 3
