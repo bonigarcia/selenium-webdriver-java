@@ -79,7 +79,7 @@ ext {
 
     seleniumVersion  = "4.18.1"
     junit5Version = "5.10.2"
-    selJupVersion = "5.0.1"
+    selJupVersion = "5.1.0"
     assertjVersion  = "3.25.3"
 
     htmlunitVersion = "4.13.0"
