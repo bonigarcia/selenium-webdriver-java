@@ -17,7 +17,7 @@
         <wdm.version>5.7.0</wdm.version>
 
         <htmlunit.version>4.13.0</htmlunit.version>
-        <awaitility.version>4.2.0</awaitility.version>
+        <awaitility.version>4.2.1</awaitility.version>
         <browsermob.version>2.1.5</browsermob.version>
         <zapclient.version>1.13.0</zapclient.version>
         <axel.version>4.8.2</axel.version>
