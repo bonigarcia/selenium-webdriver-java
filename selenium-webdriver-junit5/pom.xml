@@ -23,7 +23,7 @@
         <browsermob.version>2.1.5</browsermob.version>
         <zapclient.version>1.13.0</zapclient.version>
         <axel.version>4.8.2</axel.version>
-        <selenide.version>7.2.1</selenide.version>
+        <selenide.version>7.2.2</selenide.version>
         <datafaker.version>2.1.0</datafaker.version>
         <extentreports.version>5.1.1</extentreports.version>
         <allure.version>2.26.0</allure.version>
