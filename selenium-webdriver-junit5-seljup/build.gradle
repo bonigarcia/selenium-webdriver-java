@@ -88,7 +88,7 @@ ext {
     awaitilityVersion = "4.2.1"
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.13.0"
-    axelVersion = "4.8.2"
+    axelVersion = "4.9.0"
     selenideVersion = "7.2.2"
     browserupProxyVersion = "2.1.2"
 
