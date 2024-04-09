@@ -24,7 +24,7 @@
         <selenide.version>7.2.3</selenide.version>
         <datafaker.version>2.1.0</datafaker.version>
         <extentreports.version>5.1.1</extentreports.version>
-        <allure.version>2.26.0</allure.version>
+        <allure.version>2.27.0</allure.version>
         <allure-maven.version>2.12.0</allure-maven.version>
         <cucumber.version>7.16.1</cucumber.version>
         <spring-boot.version>3.2.4</spring-boot.version>
