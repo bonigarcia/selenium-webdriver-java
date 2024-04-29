@@ -84,7 +84,7 @@ ext {
     logbackVersion  = "1.5.6"
 
     seleniumVersion  = "4.20.0"
-    testNgVersion = "7.10.1"
+    testNgVersion = "7.10.2"
     assertjVersion  = "3.25.3"
     wdmVersion = "5.8.0"
 
