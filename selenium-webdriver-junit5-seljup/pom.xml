@@ -21,7 +21,7 @@
         <junit-platform.version>1.10.2</junit-platform.version>
         <awaitility.version>4.2.1</awaitility.version>
         <browsermob.version>2.1.5</browsermob.version>
-        <zapclient.version>1.13.0</zapclient.version>
+        <zapclient.version>1.14.0</zapclient.version>
         <axel.version>4.9.0</axel.version>
         <selenide.version>7.3.1</selenide.version>
         <browserup-proxy.version>2.1.2</browserup-proxy.version>
