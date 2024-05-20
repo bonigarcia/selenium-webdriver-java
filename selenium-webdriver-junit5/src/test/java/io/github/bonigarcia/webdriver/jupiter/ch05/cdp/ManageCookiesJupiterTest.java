@@ -33,9 +33,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v122.network.Network;
-import org.openqa.selenium.devtools.v122.network.model.Cookie;
-import org.openqa.selenium.devtools.v122.storage.Storage;
+import org.openqa.selenium.devtools.v125.network.Network;
+import org.openqa.selenium.devtools.v125.network.model.Cookie;
+import org.openqa.selenium.devtools.v125.storage.Storage;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
