@@ -116,7 +116,7 @@
             <scope>test</scope>
             <exclusions>
                 <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <groupId>com.fasterxml.jackson.*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>

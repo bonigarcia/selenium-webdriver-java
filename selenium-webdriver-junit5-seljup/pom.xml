@@ -131,7 +131,7 @@
             <scope>test</scope>
             <exclusions>
                 <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <groupId>com.fasterxml.jackson.*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
                 <exclusion>
@@ -157,7 +157,7 @@
                     <artifactId>*</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <groupId>com.fasterxml.jackson.*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
@@ -189,7 +189,7 @@
             <scope>test</scope>
             <exclusions>
                 <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <groupId>com.fasterxml.jackson.*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
                 <exclusion>
@@ -251,7 +251,7 @@
             <version>${spring-boot.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <groupId>com.fasterxml.jackson.*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>

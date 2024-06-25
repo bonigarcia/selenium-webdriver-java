@@ -119,7 +119,7 @@ dependencies {
     }
     testImplementation("org.awaitility:awaitility:${awaitilityVersion}")
     testImplementation("net.lightbody.bmp:browsermob-core:${browsermobVersion}") {
-        exclude group: "com.fasterxml.jackson.core", module: "*"
+        exclude group: "com.fasterxml.jackson.*", module: "*"
     }
     testImplementation("org.zaproxy:zap-clientapi:${zapclientVersion}")
     testImplementation("com.deque.html.axe-core:selenium:${axelVersion}") {
