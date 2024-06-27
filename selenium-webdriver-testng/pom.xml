@@ -23,7 +23,7 @@
         <axel.version>4.9.1</axel.version>
         <datafaker.version>2.2.2</datafaker.version>
         <selenide.version>7.3.3</selenide.version>
-        <extentreports.version>5.1.1</extentreports.version>
+        <extentreports.version>5.1.2</extentreports.version>
         <allure.version>2.27.0</allure.version>
         <allure-maven.version>2.12.0</allure-maven.version>
         <cucumber.version>7.18.0</cucumber.version>
