@@ -28,7 +28,7 @@
         <extentreports.version>5.1.2</extentreports.version>
         <allure.version>2.28.0</allure.version>
         <allure-maven.version>2.12.0</allure-maven.version>
-        <cucumber.version>7.18.0</cucumber.version>
+        <cucumber.version>7.18.1</cucumber.version>
         <spring-boot.version>3.3.2</spring-boot.version>
         <appium.version>9.2.3</appium.version>
         <rest-assured.version>5.5.0</rest-assured.version>
