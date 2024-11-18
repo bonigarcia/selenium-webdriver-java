@@ -44,6 +44,7 @@ public class BasePage {
 
     public void setTimeoutSec(int timeoutSec) {
         this.timeoutSec = timeoutSec;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSec));
     }
 
     public void visit(String url) {
