@@ -19,7 +19,7 @@
         <htmlunit.version>4.13.0</htmlunit.version>
         <awaitility.version>4.2.2</awaitility.version>
         <browsermob.version>2.1.5</browsermob.version>
-        <zapclient.version>1.14.0</zapclient.version>
+        <zapclient.version>1.15.0</zapclient.version>
         <axel.version>4.10.1</axel.version>
         <selenide.version>7.7.0</selenide.version>
         <datafaker.version>2.4.2</datafaker.version>
