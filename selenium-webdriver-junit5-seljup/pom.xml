@@ -32,7 +32,7 @@
         <cucumber.version>7.21.1</cucumber.version>
         <spring-boot.version>3.4.2</spring-boot.version>
         <appium.version>9.4.0</appium.version>
-        <rest-assured.version>5.5.0</rest-assured.version>
+        <rest-assured.version>5.5.1</rest-assured.version>
 
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
 
