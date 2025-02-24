@@ -83,7 +83,7 @@ ext {
     wdmVersion = "5.9.3"
 
     htmlunitVersion = "4.13.0"
-    awaitilityVersion = "4.2.2"
+    awaitilityVersion = "4.3.0"
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.16.0"
     axelVersion = "4.10.1"
