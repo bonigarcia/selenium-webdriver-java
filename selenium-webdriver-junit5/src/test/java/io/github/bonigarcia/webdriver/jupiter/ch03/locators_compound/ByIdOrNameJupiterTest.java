@@ -47,8 +47,8 @@ class ByIdOrNameJupiterTest {
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
         WebElement fileElement = driver.findElement(new ByIdOrName("my-file"));
-        assertThat(fileElement.getAttribute("id")).isBlank();
-        assertThat(fileElement.getAttribute("name")).isNotBlank();
+        assertThat(fileElement.getDomProperty("id")).isBlank();
+        assertThat(fileElement.getDomProperty("name")).isNotBlank();
     }
 
 }

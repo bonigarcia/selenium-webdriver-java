@@ -70,7 +70,7 @@ class NetworkInterceptorChromeJupiterTest {
             driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
 
             int width = Integer.parseInt(driver.findElement(By.tagName("img"))
-                    .getAttribute("width"));
+                    .getDomProperty("width"));
             assertThat(width).isGreaterThan(80);
         }
     }

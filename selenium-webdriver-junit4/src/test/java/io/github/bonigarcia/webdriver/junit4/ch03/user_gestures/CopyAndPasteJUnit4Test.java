@@ -63,8 +63,8 @@ public class CopyAndPasteJUnit4Test {
                 .sendKeys(inputText, "a").sendKeys(inputText, "c")
                 .sendKeys(textarea, "v").build().perform();
 
-        assertThat(inputText.getAttribute("value"))
-                .isEqualTo(textarea.getAttribute("value"));
+        assertThat(inputText.getDomProperty("value"))
+                .isEqualTo(textarea.getDomProperty("value"));
     }
 
 }

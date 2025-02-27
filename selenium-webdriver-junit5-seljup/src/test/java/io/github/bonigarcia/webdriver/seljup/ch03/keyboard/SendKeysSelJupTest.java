@@ -46,10 +46,10 @@ class SendKeysSelJupTest {
         WebElement inputText = driver.findElement(By.name("my-text"));
         String textValue = "Hello World!";
         inputText.sendKeys(textValue);
-        assertThat(inputText.getAttribute("value")).isEqualTo(textValue);
+        assertThat(inputText.getDomProperty("value")).isEqualTo(textValue);
 
         inputText.clear();
-        assertThat(inputText.getAttribute("value")).isEmpty();
+        assertThat(inputText.getDomProperty("value")).isEmpty();
     }
 
 }

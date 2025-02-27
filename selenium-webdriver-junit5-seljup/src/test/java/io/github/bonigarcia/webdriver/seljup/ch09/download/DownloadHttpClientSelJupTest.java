@@ -47,12 +47,12 @@ class DownloadHttpClientSelJupTest {
 
         WebElement pngLink = driver.findElement(By.xpath("(//a)[2]"));
         File pngFile = new File(".", "webdrivermanager.png");
-        download(pngLink.getAttribute("href"), pngFile);
+        download(pngLink.getDomProperty("href"), pngFile);
         assertThat(pngFile).exists();
 
         WebElement pdfLink = driver.findElement(By.xpath("(//a)[3]"));
         File pdfFile = new File(".", "webdrivermanager.pdf");
-        download(pdfLink.getAttribute("href"), pdfFile);
+        download(pdfLink.getDomProperty("href"), pdfFile);
         assertThat(pdfFile).exists();
     }
 

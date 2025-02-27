@@ -42,11 +42,11 @@ class ByHtmlAttributesSelJupTest {
 
         // By id
         WebElement textById = driver.findElement(By.id("my-text-id"));
-        assertThat(textById.getAttribute("type")).isEqualTo("text");
+        assertThat(textById.getDomProperty("type")).isEqualTo("text");
         assertThat(textById.getDomAttribute("type")).isEqualTo("text");
         assertThat(textById.getDomProperty("type")).isEqualTo("text");
 
-        assertThat(textById.getAttribute("myprop")).isEqualTo("myvalue");
+        assertThat(textById.getDomProperty("myprop")).isEqualTo("myvalue");
         assertThat(textById.getDomAttribute("myprop")).isEqualTo("myvalue");
         assertThat(textById.getDomProperty("myprop")).isNull();
 
@@ -54,7 +54,7 @@ class ByHtmlAttributesSelJupTest {
         List<WebElement> byClassName = driver
                 .findElements(By.className("form-control"));
         assertThat(byClassName.size()).isPositive();
-        assertThat(byClassName.get(0).getAttribute("name"))
+        assertThat(byClassName.get(0).getDomProperty("name"))
                 .isEqualTo("my-text");
     }
 

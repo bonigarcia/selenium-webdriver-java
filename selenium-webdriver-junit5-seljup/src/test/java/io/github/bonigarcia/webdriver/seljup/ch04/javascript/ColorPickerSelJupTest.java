@@ -52,7 +52,7 @@ class ColorPickerSelJupTest {
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         WebElement colorPicker = driver.findElement(By.name("my-colors"));
-        String initColor = colorPicker.getAttribute("value");
+        String initColor = colorPicker.getDomProperty("value");
         log.debug("The initial color is {}", initColor);
 
         Color red = new Color(255, 0, 0, 1);
@@ -60,7 +60,7 @@ class ColorPickerSelJupTest {
                 "arguments[0].setAttribute('value', '%s');", red.asHex());
         js.executeScript(script, colorPicker);
 
-        String finalColor = colorPicker.getAttribute("value");
+        String finalColor = colorPicker.getDomProperty("value");
         log.debug("The final color is {}", finalColor);
         assertThat(finalColor).isNotEqualTo(initColor);
         assertThat(Color.fromString(finalColor)).isEqualTo(red);

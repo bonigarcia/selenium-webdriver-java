@@ -51,7 +51,7 @@ public class RelativeLocatorsJUnit4Test {
         WebElement link = driver.findElement(By.linkText("Return to index"));
         RelativeBy relativeBy = RelativeLocator.with(By.tagName("input"));
         WebElement readOnly = driver.findElement(relativeBy.above(link));
-        assertThat(readOnly.getAttribute("name")).isEqualTo("my-readonly");
+        assertThat(readOnly.getDomProperty("name")).isEqualTo("my-readonly");
     }
 
 }

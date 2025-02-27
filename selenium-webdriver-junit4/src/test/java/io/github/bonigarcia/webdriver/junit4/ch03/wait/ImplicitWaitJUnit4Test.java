@@ -50,7 +50,7 @@ public class ImplicitWaitJUnit4Test {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         WebElement landscape = driver.findElement(By.id("landscape"));
-        assertThat(landscape.getAttribute("src"))
+        assertThat(landscape.getDomProperty("src"))
                 .containsIgnoringCase("landscape");
     }
 

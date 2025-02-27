@@ -85,7 +85,7 @@ public class DatePickerNGTest {
         dayElement.click();
 
         // Get the final date on the input text
-        String oneYearBack = datePicker.getAttribute("value");
+        String oneYearBack = datePicker.getDomProperty("value");
         log.debug("Final date in date picker: {}", oneYearBack);
 
         // Assert that the expected date is equal to the one selected in the

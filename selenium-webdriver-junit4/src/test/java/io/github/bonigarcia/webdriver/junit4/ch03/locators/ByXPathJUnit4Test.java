@@ -65,12 +65,12 @@ public class ByXPathJUnit4Test {
 
         WebElement radio1 = driver
                 .findElement(By.xpath("//*[@type='radio' and @checked]"));
-        assertThat(radio1.getAttribute("id")).isEqualTo("my-radio-1");
+        assertThat(radio1.getDomProperty("id")).isEqualTo("my-radio-1");
         assertThat(radio1.isSelected()).isTrue();
 
         WebElement radio2 = driver
                 .findElement(By.xpath("//*[@type='radio' and not(@checked)]"));
-        assertThat(radio2.getAttribute("id")).isEqualTo("my-radio-2");
+        assertThat(radio2.getDomProperty("id")).isEqualTo("my-radio-2");
         assertThat(radio2.isSelected()).isFalse();
     }
 

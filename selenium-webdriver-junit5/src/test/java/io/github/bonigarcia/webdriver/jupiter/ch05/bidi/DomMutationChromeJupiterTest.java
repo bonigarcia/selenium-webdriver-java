@@ -78,7 +78,7 @@ class DomMutationChromeJupiterTest {
         js.executeScript(script, img);
 
         assertThat(latch.await(10, TimeUnit.SECONDS)).isTrue();
-        assertThat(seen.get().getElement().getAttribute("src"))
+        assertThat(seen.get().getElement().getDomProperty("src"))
                 .endsWith(newSrc);
     }
 

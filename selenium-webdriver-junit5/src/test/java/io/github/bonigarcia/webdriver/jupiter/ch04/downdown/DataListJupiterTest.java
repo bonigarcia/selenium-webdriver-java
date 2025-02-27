@@ -56,7 +56,7 @@ class DataListJupiterTest {
 
         WebElement option = driver
                 .findElement(By.xpath("//datalist/option[2]"));
-        String optionValue = option.getAttribute("value");
+        String optionValue = option.getDomProperty("value");
         datalist.sendKeys(optionValue);
 
         assertThat(optionValue).isEqualTo("New York");

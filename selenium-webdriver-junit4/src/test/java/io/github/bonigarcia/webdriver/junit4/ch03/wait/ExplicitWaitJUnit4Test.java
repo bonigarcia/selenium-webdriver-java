@@ -53,7 +53,7 @@ public class ExplicitWaitJUnit4Test {
 
         WebElement landscape = wait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("landscape")));
-        assertThat(landscape.getAttribute("src"))
+        assertThat(landscape.getDomProperty("src"))
                 .containsIgnoringCase("landscape");
     }
 

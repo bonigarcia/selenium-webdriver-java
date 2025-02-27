@@ -58,14 +58,14 @@ class SliderJupiterTest {
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
         WebElement slider = driver.findElement(By.name("my-range"));
-        String initValue = slider.getAttribute("value");
+        String initValue = slider.getDomProperty("value");
         log.debug("The initial value of the slider is {}", initValue);
 
         for (int i = 0; i < 5; i++) {
             slider.sendKeys(Keys.ARROW_RIGHT);
         }
 
-        String endValue = slider.getAttribute("value");
+        String endValue = slider.getDomProperty("value");
         log.debug("The final value of the slider is {}", endValue);
         assertThat(initValue).isNotEqualTo(endValue);
     }

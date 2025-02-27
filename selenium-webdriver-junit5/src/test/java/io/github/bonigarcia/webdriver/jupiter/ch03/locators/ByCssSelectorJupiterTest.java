@@ -65,12 +65,12 @@ class ByCssSelectorJupiterTest {
 
         WebElement checkbox1 = driver
                 .findElement(By.cssSelector("[type=checkbox]:checked"));
-        assertThat(checkbox1.getAttribute("id")).isEqualTo("my-check-1");
+        assertThat(checkbox1.getDomProperty("id")).isEqualTo("my-check-1");
         assertThat(checkbox1.isSelected()).isTrue();
 
         WebElement checkbox2 = driver
                 .findElement(By.cssSelector("[type=checkbox]:not(:checked)"));
-        assertThat(checkbox2.getAttribute("id")).isEqualTo("my-check-2");
+        assertThat(checkbox2.getDomProperty("id")).isEqualTo("my-check-2");
         assertThat(checkbox2.isSelected()).isFalse();
     }
 
