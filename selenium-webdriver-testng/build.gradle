@@ -75,7 +75,7 @@ allure {
 repositories {
     mavenCentral()
     maven {
-       url "https://plugins.gradle.org/m2/"
+       url = "https://plugins.gradle.org/m2/"
     }
 }
 
