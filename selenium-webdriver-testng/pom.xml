@@ -14,7 +14,7 @@
         <selenium.version>4.29.0</selenium.version>
         <testng.version>7.11.0</testng.version>
         <assertj.version>3.27.3</assertj.version>
-        <wdm.version>5.9.3</wdm.version>
+        <wdm.version>6.0.0-SNAPSHOT</wdm.version>
 
         <htmlunit.version>4.13.0</htmlunit.version>
         <awaitility.version>4.3.0</awaitility.version>
@@ -143,7 +143,7 @@
                     <groupId>org.seleniumhq.selenium</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
-            </exclusions>            
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.codeborne</groupId>
@@ -263,4 +263,16 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>oss.sonatype.org-snapshot</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

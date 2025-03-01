@@ -13,7 +13,7 @@
 
         <selenium.version>4.29.0</selenium.version>
         <junit5.version>5.12.0</junit5.version>
-        <selenium-jupiter.version>5.1.1</selenium-jupiter.version>
+        <selenium-jupiter.version>6.0.0-SNAPSHOT</selenium-jupiter.version>
         <assertj.version>3.27.3</assertj.version>
 
         <htmlunit.version>4.13.0</htmlunit.version>
@@ -312,4 +312,16 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>oss.sonatype.org-snapshot</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

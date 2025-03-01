@@ -72,6 +72,9 @@ repositories {
     maven {
        url = "https://plugins.gradle.org/m2/"
     }
+    maven {
+       url = 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
 }
 
 ext {
@@ -81,7 +84,7 @@ ext {
     seleniumVersion  = "4.29.0"
     junit5Version = "5.12.0"
     assertjVersion  = "3.27.3"
-    wdmVersion = "5.9.3"
+    wdmVersion = "6.0.0-SNAPSHOT"
 
     htmlunitVersion = "4.13.0"
     rerunnerVersion = "2.1.6"
