@@ -54,11 +54,9 @@ public class ByHtmlAttributesNGTest {
 
         // By id
         WebElement textById = driver.findElement(By.id("my-text-id"));
-        assertThat(textById.getDomProperty("type")).isEqualTo("text");
         assertThat(textById.getDomAttribute("type")).isEqualTo("text");
         assertThat(textById.getDomProperty("type")).isEqualTo("text");
 
-        assertThat(textById.getDomProperty("myprop")).isEqualTo("myvalue");
         assertThat(textById.getDomAttribute("myprop")).isEqualTo("myvalue");
         assertThat(textById.getDomProperty("myprop")).isNull();
 
