@@ -32,19 +32,11 @@ jobs:
       run: Xvfb $DISPLAY &
     - name: Run ${{ matrix.project }} tests with Maven
       if: matrix.build-tool == 'mvn'
-      uses: nick-invision/retry@v3.0.2
-      with:
-        timeout_minutes: 30
-        max_attempts: 3
-        command: |
-          cd selenium-webdriver-${{ matrix.project }}
-          mvn test -Dtest=!*Edge*,!*CrossBrowser*
+      run: |
+        cd selenium-webdriver-${{ matrix.project }}
+        mvn test -Dtest=!*Edge*,!*CrossBrowser*
     - name: Run ${{ matrix.project }} tests with Gradle
       if: matrix.build-tool == 'gradle'
-      uses: nick-invision/retry@v3.0.2
-      with:
-        timeout_minutes: 30
-        max_attempts: 3
-        command: |
-          cd selenium-webdriver-${{ matrix.project }}
-          ./gradlew test -PexcludeTests=**/*Edge*,**/*CrossBrowser*
+      run: |
+        cd selenium-webdriver-${{ matrix.project }}
+        ./gradlew test -PexcludeTests=**/*Edge*,**/*CrossBrowser*
