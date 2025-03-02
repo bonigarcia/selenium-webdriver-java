@@ -55,8 +55,11 @@ public class HelloWorldChromiumJUnit4Test {
     @Before
     public void setup() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-debugging-port=" + findFreePort());
         options.setBinary(browserPath.get().toFile());
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--remote-debugging-port=" + findFreePort());
         driver = new ChromeDriver(options);
     }
 
