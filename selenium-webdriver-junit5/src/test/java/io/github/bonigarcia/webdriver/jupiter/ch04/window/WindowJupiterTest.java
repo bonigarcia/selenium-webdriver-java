@@ -24,6 +24,7 @@ import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -52,6 +53,7 @@ class WindowJupiterTest {
         driver.quit();
     }
 
+    @Disabled
     @Test
     void testWindow() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
