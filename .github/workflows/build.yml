@@ -34,9 +34,9 @@ jobs:
       if: matrix.build-tool == 'mvn'
       run: |
         cd selenium-webdriver-${{ matrix.project }}
-        mvn test -Dtest=!*Edge*,!*CrossBrowser*
+        mvn test
     - name: Run ${{ matrix.project }} tests with Gradle
       if: matrix.build-tool == 'gradle'
       run: |
         cd selenium-webdriver-${{ matrix.project }}
-        ./gradlew test -PexcludeTests=**/*Edge*,**/*CrossBrowser*
+        ./gradlew test
