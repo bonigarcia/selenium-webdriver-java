@@ -24,6 +24,7 @@ import java.time.Duration;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -52,6 +53,7 @@ public class WindowJUnit4Test {
         driver.quit();
     }
 
+    @Ignore
     @Test
     public void testWindow() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");

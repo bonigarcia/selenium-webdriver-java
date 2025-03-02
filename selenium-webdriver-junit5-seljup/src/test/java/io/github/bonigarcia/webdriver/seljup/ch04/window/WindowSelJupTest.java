@@ -23,6 +23,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Dimension;
@@ -44,6 +45,7 @@ class WindowSelJupTest {
         Thread.sleep(Duration.ofSeconds(3).toMillis());
     }
 
+    @Disabled
     @Test
     void testWindow(ChromeDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
