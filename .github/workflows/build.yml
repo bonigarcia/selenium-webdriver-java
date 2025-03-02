@@ -38,7 +38,7 @@ jobs:
         max_attempts: 3
         command: |
           cd selenium-webdriver-${{ matrix.project }}
-          mvn test -Dtest
+          mvn test
     - name: Run ${{ matrix.project }} tests with Gradle
       if: matrix.build-tool == 'gradle'
       uses: nick-invision/retry@v3.0.2
