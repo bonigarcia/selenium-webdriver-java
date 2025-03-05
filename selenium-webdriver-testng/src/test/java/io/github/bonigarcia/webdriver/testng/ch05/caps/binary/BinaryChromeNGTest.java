@@ -42,7 +42,8 @@ public class BinaryChromeNGTest {
 
         ChromeOptions options = new ChromeOptions();
         options.setBinary(browserBinary.toFile());
-        driver = WebDriverManager.chromedriver().capabilities(options).create();
+        driver = WebDriverManager.chromedriver().capabilities(options)
+                .browserBinary(browserBinary.toString()).create();
     }
 
     @AfterMethod

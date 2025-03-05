@@ -19,34 +19,28 @@ package io.github.bonigarcia.webdriver.seljup.ch05.caps.binary;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-import io.github.bonigarcia.seljup.Options;
+import io.github.bonigarcia.seljup.Binary;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
 class BinaryChromeSelJupTest {
 
-    @Options
-    ChromeOptions options = new ChromeOptions();
+    static final String BROWSER_BINARY = "/usr/bin/google-chrome-beta";
 
     @BeforeEach
     void setup() {
-        Path browserBinary = Paths.get("/usr/bin/google-chrome-beta");
-        assumeThat(browserBinary).exists();
-
-        options.setBinary(browserBinary.toFile());
+        assumeThat(Paths.get(BROWSER_BINARY)).exists();
     }
 
     @Test
-    void testBinary(ChromeDriver driver) {
+    void testBinary(@Binary(BROWSER_BINARY) ChromeDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
