@@ -47,7 +47,7 @@ public class BasicLoginPage {
     }
 
     public boolean successBoxPresent() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         WebElement success = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(successBox));
         return success.isDisplayed();

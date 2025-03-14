@@ -19,6 +19,7 @@ package io.github.bonigarcia.webdriver.testng.ch07.page_objects;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -47,10 +48,14 @@ public class ExtendedLoginPage extends ExtendedBasePage {
     }
 
     public boolean successBoxPresent() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement success = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(successBox));
-        return success.isDisplayed();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        try {
+            WebElement success = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(successBox));
+            return success.isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
 }

@@ -18,6 +18,7 @@ package io.github.bonigarcia.webdriver.seljup.ch07.page_objects;
 
 import java.time.Duration;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -61,10 +62,14 @@ public class FactoryLoginPage extends ExtendedBasePage {
     }
 
     public boolean successBoxPresent() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement success = wait
-                .until(ExpectedConditions.visibilityOf(successBox));
-        return success.isDisplayed();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        try {
+            WebElement success = wait
+                    .until(ExpectedConditions.visibilityOf(successBox));
+            return success.isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
 }
