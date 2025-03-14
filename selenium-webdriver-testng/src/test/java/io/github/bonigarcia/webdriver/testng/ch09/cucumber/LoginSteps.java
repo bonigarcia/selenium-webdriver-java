@@ -16,10 +16,12 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch09.cucumber;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -45,7 +47,6 @@ public class LoginSteps {
     public void iLogin(String username, String password) {
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys(password);
-
     }
 
     @And("I click Submit")
@@ -56,8 +57,10 @@ public class LoginSteps {
     @Then("I should see the message {string}")
     public void iShouldSee(String result) {
         try {
-            String bodyText = driver.findElement(By.tagName("body")).getText();
-            assertThat(bodyText).contains(result);
+            WebDriverWait wait = new WebDriverWait(driver,
+                    Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                    By.tagName("body"), result));
         } finally {
             driver.quit();
         }
