@@ -16,10 +16,9 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch09.performance;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,6 +27,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.lightbody.bmp.BrowserMobProxy;
@@ -77,8 +78,9 @@ class HarCreatorJupiterTest {
         driver.findElement(By.id("password")).sendKeys("user");
         driver.findElement(By.cssSelector("button")).click();
 
-        String bodyText = driver.findElement(By.tagName("body")).getText();
-        assertThat(bodyText).contains("Login successful");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.tagName("body"), "Login successful"));
     }
 
 }
