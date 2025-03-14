@@ -16,8 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch08.parameterized;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import java.time.Duration;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +25,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
@@ -48,8 +49,9 @@ class ParameterizedSelJupTest {
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.cssSelector("button")).click();
 
-        String bodyText = driver.findElement(By.tagName("body")).getText();
-        assertThat(bodyText).contains(expectedText);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.tagName("body"), expectedText));
     }
 
 }

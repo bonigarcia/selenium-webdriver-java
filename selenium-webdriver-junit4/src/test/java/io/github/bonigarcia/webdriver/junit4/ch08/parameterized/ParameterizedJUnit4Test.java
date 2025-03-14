@@ -16,8 +16,7 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch08.parameterized;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -30,6 +29,8 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -73,8 +74,9 @@ public class ParameterizedJUnit4Test {
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.cssSelector("button")).click();
 
-        String bodyText = driver.findElement(By.tagName("body")).getText();
-        assertThat(bodyText).contains(expectedText);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.tagName("body"), expectedText));
     }
 
 }
