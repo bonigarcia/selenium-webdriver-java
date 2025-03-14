@@ -16,10 +16,14 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch07.page_objects;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FactoryLoginPage extends ExtendedBasePage {
 
@@ -57,7 +61,10 @@ public class FactoryLoginPage extends ExtendedBasePage {
     }
 
     public boolean successBoxPresent() {
-        return isDisplayed(successBox);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement success = wait
+                .until(ExpectedConditions.visibilityOf(successBox));
+        return success.isDisplayed();
     }
 
 }

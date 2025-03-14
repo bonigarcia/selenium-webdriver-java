@@ -16,12 +16,14 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch07.tests;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.time.Duration;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
@@ -37,7 +39,9 @@ class VanillaBasicLoginJupiterTest {
         driver.findElement(By.id("password")).sendKeys("user");
         driver.findElement(By.cssSelector("button")).click();
 
-        assertThat(driver.findElement(By.id("success")).isDisplayed()).isTrue();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.id("success")));
     }
 
     @Test
@@ -49,7 +53,9 @@ class VanillaBasicLoginJupiterTest {
         driver.findElement(By.id("password")).sendKeys("bad-password");
         driver.findElement(By.cssSelector("button")).click();
 
-        assertThat(driver.findElement(By.id("invalid")).isDisplayed()).isTrue();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.id("invalid")));
     }
 
 }
