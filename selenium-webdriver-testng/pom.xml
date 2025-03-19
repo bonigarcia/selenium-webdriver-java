@@ -9,7 +9,7 @@
 
     <properties>
         <slf4j.version>2.0.17</slf4j.version>
-        <logback.version>1.5.17</logback.version>
+        <logback.version>1.5.18</logback.version>
 
         <selenium.version>4.29.0</selenium.version>
         <testng.version>7.11.0</testng.version>
