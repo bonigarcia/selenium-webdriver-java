@@ -84,7 +84,7 @@ repositories {
 
 ext {
     slf4jVersion  = "2.0.17"
-    logbackVersion  = "1.5.17"
+    logbackVersion  = "1.5.18"
 
     seleniumVersion  = "4.29.0"
     testNgVersion = "7.11.0"
