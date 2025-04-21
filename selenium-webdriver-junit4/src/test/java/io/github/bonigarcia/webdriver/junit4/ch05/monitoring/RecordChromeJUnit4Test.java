@@ -17,12 +17,11 @@
 package io.github.bonigarcia.webdriver.junit4.ch05.monitoring;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.assertj.core.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
@@ -39,19 +38,13 @@ public class RecordChromeJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    static final int REC_TIMEOUT_SEC = 10;
-    static final int POLL_TIME_MSEC = 100;
-    static final String REC_FILENAME = "myRecordingChrome";
-    static final String REC_EXT = ".webm";
-
     WebDriver driver;
-    File targetFolder;
-    WebDriverManager wdm = WebDriverManager.chromedriver().watch();
+    WebDriverManager wdm;
 
     @Before
     public void setup() {
+        wdm = WebDriverManager.chromedriver().watch();
         driver = wdm.create();
-        targetFolder = new File(System.getProperty("user.home"), "Downloads");
     }
 
     @After
@@ -60,11 +53,11 @@ public class RecordChromeJUnit4Test {
     }
 
     @Test
-    public void testRecordChrome() throws InterruptedException {
+    public void testRecordChrome() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html");
 
-        wdm.startRecording(REC_FILENAME);
+        wdm.startRecording();
 
         // 1 + 3
         driver.findElement(By.xpath("//span[text()='1']")).click();
@@ -78,22 +71,10 @@ public class RecordChromeJUnit4Test {
 
         wdm.stopRecording();
 
-        long timeoutMs = System.currentTimeMillis()
-                + TimeUnit.SECONDS.toMillis(REC_TIMEOUT_SEC);
+        Path recordingPath = wdm.getRecordingPath();
+        assertThat(recordingPath).exists();
 
-        File recFile;
-        do {
-            recFile = new File(targetFolder, REC_FILENAME + REC_EXT);
-            if (System.currentTimeMillis() > timeoutMs) {
-                fail("Timeout of " + REC_TIMEOUT_SEC
-                        + " seconds waiting for recording " + recFile);
-                break;
-            }
-            Thread.sleep(POLL_TIME_MSEC);
-
-        } while (!recFile.exists());
-
-        log.debug("Recording available at {}", recFile);
+        log.debug("Recording available at {}", recordingPath);
     }
 
 }
