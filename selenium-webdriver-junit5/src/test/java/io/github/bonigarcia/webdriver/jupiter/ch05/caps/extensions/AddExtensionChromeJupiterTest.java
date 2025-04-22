@@ -42,7 +42,7 @@ class AddExtensionChromeJupiterTest {
     @BeforeEach
     void setup() throws URISyntaxException {
         Path extension = Paths
-                .get(ClassLoader.getSystemResource("dark-bg.crx").toURI());
+                .get(ClassLoader.getSystemResource("shade_dark_mode.crx").toURI());
         ChromeOptions options = new ChromeOptions();
         options.addExtensions(extension.toFile());
 

@@ -41,8 +41,8 @@ public class AddExtensionEdgeJUnit4Test {
 
     @Before
     public void setup() throws URISyntaxException {
-        Path extension = Paths
-                .get(ClassLoader.getSystemResource("dark-bg.crx").toURI());
+        Path extension = Paths.get(
+                ClassLoader.getSystemResource("shade_dark_mode.crx").toURI());
         EdgeOptions options = new EdgeOptions();
         options.addExtensions(extension.toFile());
 

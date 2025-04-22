@@ -44,8 +44,8 @@ class AddExtensionChromeSelJupTest {
 
     @BeforeEach
     void setup() throws URISyntaxException {
-        Path extension = Paths
-                .get(ClassLoader.getSystemResource("dark-bg.crx").toURI());
+        Path extension = Paths.get(
+                ClassLoader.getSystemResource("shade_dark_mode.crx").toURI());
         options.addExtensions(extension.toFile());
     }
 
