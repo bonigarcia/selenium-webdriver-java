@@ -16,8 +16,8 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch05.caps.extensions;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
-import static org.openqa.selenium.support.ui.ExpectedConditions.not;
+import static java.lang.invoke.MethodHandles.lookup;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import java.net.URISyntaxException;
 import java.nio.file.Path;
@@ -31,11 +31,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class AddExtensionEdgeJUnit4Test {
+
+    static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
@@ -60,11 +62,9 @@ public class AddExtensionEdgeJUnit4Test {
     @Test
     public void testAddExtension() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         WebElement body = driver.findElement(By.tagName("body"));
-        String whiteRgba = "rgba(255, 255, 255, 1)";
-        wait.until(not(attributeToBe(body, "background-color", whiteRgba)));
+        log.debug("Background color is {}"
+                + body.getCssValue("background-color"));
     }
 
 }

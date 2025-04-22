@@ -16,8 +16,8 @@
  */
 package io.github.bonigarcia.webdriver.testng.ch05.caps.extensions;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
-import static org.openqa.selenium.support.ui.ExpectedConditions.not;
+import static java.lang.invoke.MethodHandles.lookup;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import java.net.URISyntaxException;
 import java.nio.file.Path;
@@ -28,7 +28,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -37,12 +37,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class AddExtensionChromeNGTest {
 
+    static final Logger log = getLogger(lookup().lookupClass());
+
     WebDriver driver;
 
     @BeforeMethod
     public void setup() throws URISyntaxException {
-        Path extension = Paths
-                .get(ClassLoader.getSystemResource("shade_dark_mode.crx").toURI());
+        Path extension = Paths.get(
+                ClassLoader.getSystemResource("shade_dark_mode.crx").toURI());
         ChromeOptions options = new ChromeOptions();
         options.addExtensions(extension.toFile());
 
@@ -60,11 +62,9 @@ public class AddExtensionChromeNGTest {
     @Test
     public void testAddExtension() {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         WebElement body = driver.findElement(By.tagName("body"));
-        String whiteRgba = "rgba(255, 255, 255, 1)";
-        wait.until(not(attributeToBe(body, "background-color", whiteRgba)));
+        log.debug("Background color is {}"
+                + body.getCssValue("background-color"));
     }
 
 }

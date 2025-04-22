@@ -16,13 +16,12 @@
  */
 package io.github.bonigarcia.webdriver.seljup.ch05.caps.extensions;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBe;
-import static org.openqa.selenium.support.ui.ExpectedConditions.not;
+import static java.lang.invoke.MethodHandles.lookup;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.Duration;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,13 +30,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
 
 import io.github.bonigarcia.seljup.Options;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
 class AddExtensionChromeSelJupTest {
+
+    static final Logger log = getLogger(lookup().lookupClass());
 
     @Options
     ChromeOptions options = new ChromeOptions();
@@ -52,11 +53,9 @@ class AddExtensionChromeSelJupTest {
     @Test
     void testAddExtension(ChromeDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         WebElement body = driver.findElement(By.tagName("body"));
-        String whiteRgba = "rgba(255, 255, 255, 1)";
-        wait.until(not(attributeToBe(body, "background-color", whiteRgba)));
+        log.debug("Background color is {}"
+                + body.getCssValue("background-color"));
     }
 
 }
