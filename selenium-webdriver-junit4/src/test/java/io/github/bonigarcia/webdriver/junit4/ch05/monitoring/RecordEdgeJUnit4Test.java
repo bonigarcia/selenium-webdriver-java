@@ -43,7 +43,7 @@ public class RecordEdgeJUnit4Test {
 
     @Before
     public void setup() {
-        wdm = WebDriverManager.chromedriver().watch();
+        wdm = WebDriverManager.edgedriver().watch();
         driver = wdm.create();
     }
 
