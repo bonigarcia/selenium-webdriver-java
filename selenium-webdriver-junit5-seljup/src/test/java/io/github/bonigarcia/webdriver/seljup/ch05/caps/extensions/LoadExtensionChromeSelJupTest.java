@@ -23,6 +23,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -33,6 +34,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.seljup.Options;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@Disabled("--load-extension has been removed in Chrome +137")
 @ExtendWith(SeleniumJupiter.class)
 class LoadExtensionChromeSelJupTest {
 

@@ -23,6 +23,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.nio.file.Path;
 import java.time.Duration;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.By;
@@ -34,6 +35,7 @@ import org.slf4j.Logger;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 import io.github.bonigarcia.seljup.Watch;
 
+@Disabled("--load-extension has been removed in Chrome +137")
 class RecordChromeSelJupTest {
 
     static final Logger log = getLogger(lookup().lookupClass());

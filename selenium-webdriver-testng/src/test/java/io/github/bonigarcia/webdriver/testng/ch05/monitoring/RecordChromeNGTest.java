@@ -30,10 +30,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore("--load-extension has been removed in Chrome +137")
 public class RecordChromeNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
