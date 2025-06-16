@@ -69,9 +69,13 @@ public class DatePickerNGTest {
                 String.format("//th[contains(text(),'%d')]", currentYear)));
         monthElement.click();
 
-        // Click on the left arrow
-        WebElement arrowLeft = driver.findElement(By.cssSelector(
-                "div[class='datepicker-months'] th[class='prev']"));
+        // Get the element to look for with relative locator
+        WebElement yearElement = driver.findElement(By.xpath(
+                String.format("//th[@class='datepicker-switch' and text()='%d']", currentYear)));
+
+        // Click on the left arrow using relative locators
+        WebElement arrowLeft = driver.findElement(
+                RelativeLocator.with(By.tagName("th")).toLeftOf(yearElement));
         arrowLeft.click();
 
         // Click on the current month of that year
