@@ -18,7 +18,7 @@
 
         <htmlunit.version>4.13.0</htmlunit.version>
         <rerunner.version>2.1.6</rerunner.version>
-        <junit-platform.version>1.13.2</junit-platform.version>
+        <junit-platform.version>1.13.3</junit-platform.version>
         <awaitility.version>4.3.0</awaitility.version>
         <browsermob.version>2.1.5</browsermob.version>
         <zapclient.version>1.16.0</zapclient.version>
