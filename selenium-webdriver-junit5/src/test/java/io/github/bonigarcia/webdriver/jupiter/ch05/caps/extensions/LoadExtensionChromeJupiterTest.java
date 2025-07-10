@@ -25,7 +25,6 @@ import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +33,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled("--load-extension has been removed in Chrome +137")
 class LoadExtensionChromeJupiterTest {
 
     WebDriver driver;
@@ -44,6 +42,8 @@ class LoadExtensionChromeJupiterTest {
         Path extension = Paths
                 .get(ClassLoader.getSystemResource("web-extension").toURI());
         ChromeOptions options = new ChromeOptions();
+        options.addArguments(
+                "--disable-features=DisableLoadExtensionCommandLineSwitch");
         options.addArguments(
                 "--load-extension=" + extension.toAbsolutePath().toString());
 

@@ -25,7 +25,6 @@ import java.time.Duration;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,7 +34,6 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore("--load-extension has been removed in Chrome +137")
 public class RecordChromeJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());

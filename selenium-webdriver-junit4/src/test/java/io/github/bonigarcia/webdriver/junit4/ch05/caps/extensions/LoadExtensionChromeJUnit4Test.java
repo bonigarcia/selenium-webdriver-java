@@ -25,7 +25,6 @@ import java.time.Duration;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +33,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore("--load-extension has been removed in Chrome +137")
 public class LoadExtensionChromeJUnit4Test {
 
     WebDriver driver;
@@ -44,6 +42,8 @@ public class LoadExtensionChromeJUnit4Test {
         Path extension = Paths
                 .get(ClassLoader.getSystemResource("web-extension").toURI());
         ChromeOptions options = new ChromeOptions();
+        options.addArguments(
+                "--disable-features=DisableLoadExtensionCommandLineSwitch");
         options.addArguments(
                 "--load-extension=" + extension.toAbsolutePath().toString());
 
