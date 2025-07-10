@@ -62,7 +62,7 @@ class ExtraHeadersJupiterTest {
     @Test
     void testExtraHeaders() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty()));
+                Optional.empty(), Optional.empty()));
 
         String userName = "guest";
         String password = "guest";

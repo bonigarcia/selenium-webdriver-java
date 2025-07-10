@@ -61,7 +61,7 @@ public class ExtraHeadersJUnit4Test {
 
     @Test
     public void testExtraHeaders() {
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(),
+        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty(),
                 Optional.empty()));
 
         String userName = "guest";

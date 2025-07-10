@@ -64,7 +64,7 @@ public class BlockUrlNGTest {
     @Test
     public void testBlockUrl() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty()));
+                Optional.empty(), Optional.empty()));
 
         String urlToBlock = "https://bonigarcia.dev/selenium-webdriver-java/img/hands-on-icon.png";
         devTools.send(Network.setBlockedURLs(ImmutableList.of(urlToBlock)));

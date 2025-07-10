@@ -53,7 +53,7 @@ class ManageCookiesSelJupTest {
     @Test
     void testManageCookies(ChromeDriver driver, DevTools devTools) {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty()));
+                Optional.empty(), Optional.empty()));
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/cookies.html");
 

@@ -67,7 +67,7 @@ public class ManageCookiesNGTest {
     @Test
     public void testManageCookies() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty()));
+                Optional.empty(), Optional.empty()));
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/cookies.html");
 

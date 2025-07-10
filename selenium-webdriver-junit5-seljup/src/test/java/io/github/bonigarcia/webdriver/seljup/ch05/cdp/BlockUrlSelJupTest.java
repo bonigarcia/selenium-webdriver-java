@@ -50,7 +50,7 @@ class BlockUrlSelJupTest {
     @Test
     void testBlockUrl(ChromeDriver driver, DevTools devTools) {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty()));
+                Optional.empty(), Optional.empty()));
 
         String urlToBlock = "https://bonigarcia.dev/selenium-webdriver-java/img/hands-on-icon.png";
         devTools.send(Network.setBlockedURLs(ImmutableList.of(urlToBlock)));

@@ -59,7 +59,7 @@ public class EmulateNetworkConditionsNGTest {
     @Test
     public void testEmulateNetworkConditions() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty()));
+                Optional.empty(), Optional.empty()));
         devTools.send(Network.emulateNetworkConditions(false, 100, 50 * 1024,
                 50 * 1024, Optional.of(ConnectionType.CELLULAR3G),
                 Optional.empty(), Optional.empty(), Optional.empty()));

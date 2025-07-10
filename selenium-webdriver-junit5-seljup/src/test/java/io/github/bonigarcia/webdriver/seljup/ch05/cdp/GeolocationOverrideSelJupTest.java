@@ -44,7 +44,8 @@ class GeolocationOverrideSelJupTest {
     @Test
     void testGeolocationOverride(ChromeDriver driver, DevTools devTools) {
         devTools.send(Emulation.setGeolocationOverride(Optional.of(48.8584),
-                Optional.of(2.2945), Optional.of(100)));
+                Optional.of(2.2945), Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty(), Optional.of(100)));
 
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/geolocation.html");

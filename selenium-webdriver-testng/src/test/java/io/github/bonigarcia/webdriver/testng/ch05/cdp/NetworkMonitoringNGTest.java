@@ -58,7 +58,7 @@ public class NetworkMonitoringNGTest {
     @Test
     public void testNetworkMonitoring() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty()));
+                Optional.empty(), Optional.empty()));
 
         devTools.addListener(Network.requestWillBeSent(), request -> {
             log.debug("Request {}", request.getRequestId());

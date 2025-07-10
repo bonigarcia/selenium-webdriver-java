@@ -40,7 +40,7 @@ class NetworkMonitoringSelJupTest {
     @Test
     void testNetworkMonitoring(ChromeDriver driver, DevTools devTools) {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty()));
+                Optional.empty(), Optional.empty()));
 
         devTools.addListener(Network.requestWillBeSent(), request -> {
             log.debug("Request {}", request.getRequestId());
