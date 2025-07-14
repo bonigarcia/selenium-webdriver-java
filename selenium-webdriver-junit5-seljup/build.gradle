@@ -92,7 +92,7 @@ ext {
     selenideVersion = "7.9.4"
     browserupProxyVersion = "2.1.2"
 
-    datafakerVersion = "2.4.3"
+    datafakerVersion = "2.4.4"
     extentreportsVersion = "5.1.2"
     cucumberVersion = "7.25.0"
     springBootVersion = "3.5.3"
