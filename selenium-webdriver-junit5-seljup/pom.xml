@@ -14,7 +14,7 @@
         <selenium.version>4.34.0</selenium.version>
         <junit5.version>5.13.4</junit5.version>
         <selenium-jupiter.version>6.2.0</selenium-jupiter.version>
-        <assertj.version>3.27.3</assertj.version>
+        <assertj.version>3.27.4</assertj.version>
 
         <htmlunit.version>4.13.0</htmlunit.version>
         <rerunner.version>2.1.6</rerunner.version>
