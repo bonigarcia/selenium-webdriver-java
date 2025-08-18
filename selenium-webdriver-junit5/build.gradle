@@ -96,7 +96,7 @@ ext {
     cucumberVersion = "7.27.0"
     springBootVersion = "3.5.4"
     appiumVersion = "10.0.0"
-    restAssuredVersion = "5.5.5"
+    restAssuredVersion = "5.5.6"
 }
 
 dependencies {
