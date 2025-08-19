@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class CrossBrowserDriverProvider implements ArgumentsProvider {
+public class CrossBrowserProvider implements ArgumentsProvider {
 
     @Override
     public Stream<? extends Arguments> provideArguments(
