@@ -94,7 +94,7 @@ ext {
 
     datafakerVersion = "2.4.4"
     extentreportsVersion = "5.1.2"
-    cucumberVersion = "7.27.2"
+    cucumberVersion = "7.28.0"
     springBootVersion = "3.5.5"
     appiumVersion = "10.0.0"
     restAssuredVersion = "5.5.6"
