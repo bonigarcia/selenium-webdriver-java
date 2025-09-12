@@ -28,7 +28,7 @@
         <datafaker.version>2.4.4</datafaker.version>
         <extentreports.version>5.1.2</extentreports.version>
         <allure.version>2.29.1</allure.version>
-        <allure-maven.version>2.15.2</allure-maven.version>
+        <allure-maven.version>2.16.0</allure-maven.version>
         <cucumber.version>7.28.2</cucumber.version>
         <spring-boot.version>3.5.5</spring-boot.version>
         <appium.version>10.0.0</appium.version>
