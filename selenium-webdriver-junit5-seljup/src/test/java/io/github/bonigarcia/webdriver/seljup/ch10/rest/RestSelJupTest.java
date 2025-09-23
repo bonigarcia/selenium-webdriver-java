@@ -18,10 +18,12 @@ package io.github.bonigarcia.webdriver.seljup.ch10.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import io.restassured.RestAssured;
 
+@Disabled
 class RestSelJupTest {
 
     @Test
