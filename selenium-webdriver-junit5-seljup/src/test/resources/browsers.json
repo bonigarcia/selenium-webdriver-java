@@ -16,7 +16,7 @@
       [
          {
             "type": "firefox-in-docker",
-            "version": "93"
+            "version": "beta"
          }
       ]
    ]
