@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch04.downdown;
+package io.github.bonigarcia.webdriver.junit4.ch04.dropdown;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

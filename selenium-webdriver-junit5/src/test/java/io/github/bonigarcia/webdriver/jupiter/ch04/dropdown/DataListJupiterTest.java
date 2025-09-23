@@ -14,32 +14,32 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.testng.ch04.downdown;
+package io.github.bonigarcia.webdriver.jupiter.ch04.dropdown;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.openqa.selenium.WebElement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class SelectNGTest {
+class DataListJupiterTest {
 
     WebDriver driver;
 
-    @BeforeMethod
-    public void setup() {
+    @BeforeEach
+    void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 
-    @AfterMethod
-    public void teardown() throws InterruptedException {
+    @AfterEach
+    void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
 
@@ -47,16 +47,19 @@ public class SelectNGTest {
     }
 
     @Test
-    public void test() {
+    void testDatalist() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
-        Select select = new Select(driver.findElement(By.name("my-select")));
-        String optionLabel = "Three";
-        select.selectByVisibleText(optionLabel);
+        WebElement datalist = driver.findElement(By.name("my-datalist"));
+        datalist.click();
 
-        assertThat(select.getFirstSelectedOption().getText())
-                .isEqualTo(optionLabel);
+        WebElement option = driver
+                .findElement(By.xpath("//datalist/option[2]"));
+        String optionValue = option.getDomProperty("value");
+        datalist.sendKeys(optionValue);
+
+        assertThat(optionValue).isEqualTo("New York");
     }
 
 }

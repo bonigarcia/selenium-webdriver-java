@@ -14,31 +14,31 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.junit4.ch04.downdown;
+package io.github.bonigarcia.webdriver.testng.ch04.dropdown;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class SelectJUnit4Test {
+public class SelectNGTest {
 
     WebDriver driver;
 
-    @Before
+    @BeforeMethod
     public void setup() {
         driver = WebDriverManager.chromedriver().create();
     }
 
-    @After
+    @AfterMethod
     public void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());

@@ -14,32 +14,40 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.seljup.ch04.downdown;
+package io.github.bonigarcia.webdriver.testng.ch04.dropdown;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-@ExtendWith(SeleniumJupiter.class)
-class DataListSelJupTest {
+public class DataListNGTest {
 
-    @AfterEach
-    void teardown() throws InterruptedException {
+    WebDriver driver;
+
+    @BeforeMethod
+    public void setup() {
+        driver = WebDriverManager.chromedriver().create();
+    }
+
+    @AfterMethod
+    public void teardown() throws InterruptedException {
         // FIXME: pause for manual browser inspection
         Thread.sleep(Duration.ofSeconds(3).toMillis());
+
+        driver.quit();
     }
 
     @Test
-    void testDatalist(ChromeDriver driver) {
+    public void testDatalist() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 
