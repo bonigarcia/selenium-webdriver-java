@@ -12,6 +12,26 @@ This repository contains a comprehensive collection of examples about [Selenium]
 
 This repo has been implemented as a multi-module project (using [Maven] and [Gradle] as build tools) composed of tests based on different frameworks: [JUnit 4], [JUnit 5] (alone or extended with [Selenium-Jupiter]), and [TestNG].
 
+## Table of contents
+
+[Hands-On Selenium WebDriver with Java] is organized as follows. All the examples presented in this book are available in this repo, organized by packages corresponding to each chapter.
+
+Part I. Introduction
+1. A Primer on Selenium
+2. Preparing for Testing
+
+Part II. The Selenium WebDriver API
+3. WebDriver Fundamentals
+4. Browser-Agnostic Features
+5. Browser-Specific Manipulation
+6. Remote WebDriver
+
+Part III. Advanced Concepts
+7. The Page Object Model (POM)
+8. Testing Framework Specifics
+9. Third-Party Integrations
+10. Beyond Selenium
+
 ## Practice site
 
 This repo also contains a [Practice site], i.e., a representative set of sample web pages used as the system under test (SUT) in the Selenium WebDriver test examples. This site is hosted using [GitHub Pages].
