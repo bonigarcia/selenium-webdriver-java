@@ -16,17 +16,20 @@ This repo has been implemented as a multi-module project (using [Maven] and [Gra
 
 [Hands-On Selenium WebDriver with Java] is organized as follows. All the examples presented in this book are available in this repo, organized by packages corresponding to each chapter.
 
-Part I. Introduction
+**Part I. Introduction**
+
 1. A Primer on Selenium
 2. Preparing for Testing
 
-Part II. The Selenium WebDriver API
+**Part II. The Selenium WebDriver API**
+
 3. WebDriver Fundamentals
 4. Browser-Agnostic Features
 5. Browser-Specific Manipulation
 6. Remote WebDriver
 
-Part III. Advanced Concepts
+**Part III. Advanced Concepts**
+
 7. The Page Object Model (POM)
 8. Testing Framework Specifics
 9. Third-Party Integrations
