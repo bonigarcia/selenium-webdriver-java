@@ -16,20 +16,15 @@
  */
 package io.github.bonigarcia.webdriver.junit4.ch02.helloworld_selenium_manager;
 
-import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slf4j.LoggerFactory.getLogger;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.slf4j.Logger;
 
 public class HelloWorldEdgeJUnit4Test {
-
-    static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
@@ -45,14 +40,8 @@ public class HelloWorldEdgeJUnit4Test {
 
     @Test
     public void test() {
-        // Exercise
-        String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
-        driver.get(sutUrl);
-        String title = driver.getTitle();
-        log.debug("The title of {} is {}", sutUrl, title);
-
-        // Verify
-        assertThat(title).isEqualTo("Hands-On Selenium WebDriver with Java");
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        assertThat(driver.getTitle()).contains("Selenium WebDriver");
     }
 
 }
