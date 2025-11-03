@@ -12,7 +12,7 @@
         <logback.version>1.5.20</logback.version>
 
         <selenium.version>4.38.0</selenium.version>
-        <junit5.version>6.0.0</junit5.version>
+        <junit5.version>6.0.1</junit5.version>
         <assertj.version>3.27.6</assertj.version>
         <wdm.version>6.3.2</wdm.version>
 
