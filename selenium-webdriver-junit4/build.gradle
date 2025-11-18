@@ -87,7 +87,7 @@ ext {
     browsermobVersion = "2.1.5"
     zapclientVersion = "1.16.0"
     axelVersion = "4.11.0"
-    selenideVersion = "7.12.0"
+    selenideVersion = "7.12.1"
     datafakerVersion = "2.5.3"
     extentreportsVersion = "5.1.2"
     cucumberVersion = "7.31.0"
