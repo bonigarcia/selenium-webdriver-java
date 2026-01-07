@@ -79,7 +79,7 @@ ext {
     logbackVersion  = "1.5.23"
 
     seleniumVersion  = "4.39.0"
-    junit5Version = "6.0.1"
+    junit5Version = "6.0.2"
     assertjVersion  = "3.27.6"
     wdmVersion = "6.3.3"
 
