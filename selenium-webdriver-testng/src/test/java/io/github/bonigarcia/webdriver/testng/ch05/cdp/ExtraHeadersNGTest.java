@@ -39,7 +39,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore
+@Ignore("Since the online service does not accept many consecutive requests")
 public class ExtraHeadersNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());

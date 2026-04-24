@@ -39,7 +39,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore
+@Ignore("Since the online service does not accept many consecutive requests")
 public class ExtraHeadersJUnit4Test {
 
     static final Logger log = getLogger(lookup().lookupClass());

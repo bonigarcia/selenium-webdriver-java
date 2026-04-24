@@ -29,7 +29,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@Disabled
+@Disabled("Since the online service does not accept many consecutive requests")
 @ExtendWith(SeleniumJupiter.class)
 class BasicAuthChromeSelJupTest {
 

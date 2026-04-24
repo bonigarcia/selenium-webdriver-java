@@ -32,7 +32,7 @@ import org.openqa.selenium.WebElement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Ignore
+@Ignore("Since the online service does not accept many consecutive requests")
 public class BasicAuthChromeJUnit4Test {
 
     WebDriver driver;

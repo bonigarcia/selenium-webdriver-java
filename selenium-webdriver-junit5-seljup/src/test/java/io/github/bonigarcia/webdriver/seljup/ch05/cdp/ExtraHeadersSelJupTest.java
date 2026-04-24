@@ -34,7 +34,7 @@ import org.openqa.selenium.devtools.v147.network.model.Headers;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
-@Disabled
+@Disabled("Since the online service does not accept many consecutive requests")
 @ExtendWith(SeleniumJupiter.class)
 class ExtraHeadersSelJupTest {
 

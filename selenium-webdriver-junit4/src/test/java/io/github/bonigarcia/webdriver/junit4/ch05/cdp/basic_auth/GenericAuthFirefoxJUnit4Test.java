@@ -22,6 +22,7 @@ import java.time.Duration;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +30,7 @@ import org.openqa.selenium.WebElement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore("Since the online service does not accept many consecutive requests")
 public class GenericAuthFirefoxJUnit4Test {
 
     WebDriver driver;

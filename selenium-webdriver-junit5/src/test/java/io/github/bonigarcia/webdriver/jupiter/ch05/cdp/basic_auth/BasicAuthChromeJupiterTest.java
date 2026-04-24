@@ -32,7 +32,7 @@ import org.openqa.selenium.WebElement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled
+@Disabled("Since the online service does not accept many consecutive requests")
 class BasicAuthChromeJupiterTest {
 
     WebDriver driver;

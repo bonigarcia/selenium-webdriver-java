@@ -39,7 +39,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled
+@Disabled("Since the online service does not accept many consecutive requests")
 class ExtraHeadersJupiterTest {
 
     static final Logger log = getLogger(lookup().lookupClass());

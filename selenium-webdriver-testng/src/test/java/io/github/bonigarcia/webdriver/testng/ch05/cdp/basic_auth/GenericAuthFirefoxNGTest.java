@@ -25,10 +25,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore("Since the online service does not accept many consecutive requests")
 public class GenericAuthFirefoxNGTest {
 
     WebDriver driver;
