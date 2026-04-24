@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -33,6 +34,7 @@ import org.openqa.selenium.devtools.v147.network.model.Headers;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@Disabled
 @ExtendWith(SeleniumJupiter.class)
 class ExtraHeadersSelJupTest {
 

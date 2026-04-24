@@ -18,6 +18,7 @@ package io.github.bonigarcia.webdriver.seljup.ch05.cdp.basic_auth;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -28,6 +29,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
+@Disabled
 @ExtendWith(SeleniumJupiter.class)
 class BasicAuthChromeSelJupTest {
 

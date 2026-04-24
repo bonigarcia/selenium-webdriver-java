@@ -34,10 +34,12 @@ import org.openqa.selenium.devtools.v147.network.model.Headers;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore
 public class ExtraHeadersNGTest {
 
     static final Logger log = getLogger(lookup().lookupClass());

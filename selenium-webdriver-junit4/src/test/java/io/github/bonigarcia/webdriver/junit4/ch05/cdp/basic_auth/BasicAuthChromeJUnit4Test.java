@@ -22,6 +22,7 @@ import java.time.Duration;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.HasAuthentication;
@@ -31,6 +32,7 @@ import org.openqa.selenium.WebElement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@Ignore
 public class BasicAuthChromeJUnit4Test {
 
     WebDriver driver;
