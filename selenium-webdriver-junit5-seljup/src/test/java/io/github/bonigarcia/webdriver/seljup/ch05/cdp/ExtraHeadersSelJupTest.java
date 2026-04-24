@@ -28,8 +28,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v138.network.Network;
-import org.openqa.selenium.devtools.v138.network.model.Headers;
+import org.openqa.selenium.devtools.v147.network.Network;
+import org.openqa.selenium.devtools.v147.network.model.Headers;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
@@ -39,7 +39,7 @@ class ExtraHeadersSelJupTest {
     @Test
     void testExtraHeaders(ChromeDriver driver, DevTools devTools) {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty()));
+                Optional.empty(), Optional.empty(), Optional.empty()));
 
         String userName = "guest";
         String password = "guest";

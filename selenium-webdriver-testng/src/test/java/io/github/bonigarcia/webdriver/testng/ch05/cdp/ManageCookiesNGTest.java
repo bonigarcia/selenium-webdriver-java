@@ -30,9 +30,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v138.network.Network;
-import org.openqa.selenium.devtools.v138.network.model.Cookie;
-import org.openqa.selenium.devtools.v138.storage.Storage;
+import org.openqa.selenium.devtools.v147.network.Network;
+import org.openqa.selenium.devtools.v147.network.model.Cookie;
+import org.openqa.selenium.devtools.v147.storage.Storage;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -67,7 +67,7 @@ public class ManageCookiesNGTest {
     @Test
     public void testManageCookies() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty()));
+                Optional.empty(), Optional.empty(), Optional.empty()));
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/cookies.html");
 

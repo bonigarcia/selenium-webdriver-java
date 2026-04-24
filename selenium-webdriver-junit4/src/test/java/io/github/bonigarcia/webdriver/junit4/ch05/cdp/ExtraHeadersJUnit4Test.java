@@ -32,8 +32,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v138.network.Network;
-import org.openqa.selenium.devtools.v138.network.model.Headers;
+import org.openqa.selenium.devtools.v147.network.Network;
+import org.openqa.selenium.devtools.v147.network.model.Headers;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -61,8 +61,8 @@ public class ExtraHeadersJUnit4Test {
 
     @Test
     public void testExtraHeaders() {
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty(),
-                Optional.empty()));
+        devTools.send(Network.enable(Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty(), Optional.empty()));
 
         String userName = "guest";
         String password = "guest";

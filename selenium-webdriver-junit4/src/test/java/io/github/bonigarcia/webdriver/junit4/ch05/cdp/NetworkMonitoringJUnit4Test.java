@@ -28,8 +28,8 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v138.network.Network;
-import org.openqa.selenium.devtools.v138.network.model.Headers;
+import org.openqa.selenium.devtools.v147.network.Network;
+import org.openqa.selenium.devtools.v147.network.model.Headers;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -58,7 +58,7 @@ public class NetworkMonitoringJUnit4Test {
     @Test
     public void testNetworkMonitoring() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty()));
+                Optional.empty(), Optional.empty(), Optional.empty()));
 
         devTools.addListener(Network.requestWillBeSent(), request -> {
             log.debug("Request {}", request.getRequestId());

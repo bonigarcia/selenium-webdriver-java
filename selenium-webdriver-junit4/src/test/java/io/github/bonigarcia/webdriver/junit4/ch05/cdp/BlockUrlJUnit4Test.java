@@ -21,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.After;
@@ -29,11 +30,10 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v138.network.Network;
-import org.openqa.selenium.devtools.v138.network.model.BlockedReason;
+import org.openqa.selenium.devtools.v147.network.Network;
+import org.openqa.selenium.devtools.v147.network.model.BlockPattern;
+import org.openqa.selenium.devtools.v147.network.model.BlockedReason;
 import org.slf4j.Logger;
-
-import com.google.common.collect.ImmutableList;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -64,10 +64,13 @@ public class BlockUrlJUnit4Test {
     @Test
     public void testBlockUrl() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty()));
+                Optional.empty(), Optional.empty(), Optional.empty()));
 
         String urlToBlock = "https://bonigarcia.dev/selenium-webdriver-java/img/hands-on-icon.png";
-        devTools.send(Network.setBlockedURLs(ImmutableList.of(urlToBlock)));
+        List<BlockPattern> blockedPatterns = List
+                .of(new BlockPattern(urlToBlock, true));
+        devTools.send(Network.setBlockedURLs(Optional.of(blockedPatterns),
+                Optional.empty()));
 
         devTools.addListener(Network.loadingFailed(), loadingFailed -> {
             BlockedReason reason = loadingFailed.getBlockedReason().get();

@@ -29,8 +29,8 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v138.network.Network;
-import org.openqa.selenium.devtools.v138.network.model.ConnectionType;
+import org.openqa.selenium.devtools.v147.network.Network;
+import org.openqa.selenium.devtools.v147.network.model.ConnectionType;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -59,7 +59,7 @@ public class EmulateNetworkConditionsJUnit4Test {
     @Test
     public void testEmulateNetworkConditions() {
         devTools.send(Network.enable(Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty()));
+                Optional.empty(), Optional.empty(), Optional.empty()));
         devTools.send(Network.emulateNetworkConditions(false, 100, 50 * 1024,
                 50 * 1024, Optional.of(ConnectionType.CELLULAR3G),
                 Optional.empty(), Optional.empty(), Optional.empty()));

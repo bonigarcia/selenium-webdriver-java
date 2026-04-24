@@ -38,6 +38,7 @@ class AlertJupiterTest {
     @BeforeEach
     void setup() {
         driver = WebDriverManager.chromedriver().create();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterEach
@@ -52,10 +53,11 @@ class AlertJupiterTest {
     void testAlert() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         driver.findElement(By.id("my-alert")).click();
-        wait.until(ExpectedConditions.alertIsPresent());
+        //wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         assertThat(alert.getText()).isEqualTo("Hello world!");
         alert.accept();
@@ -65,10 +67,11 @@ class AlertJupiterTest {
     void testAlert2() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.id("my-alert")).click();
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        //Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         assertThat(alert.getText()).isEqualTo("Hello world!");
         alert.accept();
     }
