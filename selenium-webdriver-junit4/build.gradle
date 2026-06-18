@@ -88,7 +88,7 @@ ext {
     zapclientVersion = "1.17.0"
     axelVersion = "4.11.3"
     selenideVersion = "7.16.2"
-    datafakerVersion = "2.5.4"
+    datafakerVersion = "2.6.0"
     extentreportsVersion = "5.1.2"
     cucumberVersion = "7.34.3"
     springBootVersion = "4.1.0"
