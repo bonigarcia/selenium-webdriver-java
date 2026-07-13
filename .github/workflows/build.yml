@@ -30,6 +30,29 @@ jobs:
     - name: Start Xvfb on Linux
       if: matrix.os == 'ubuntu-latest'
       run: Xvfb $DISPLAY &
+    - name: Install Edge dependencies
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          libx11-6 \
+          libx11-xcb1 \
+          libxcomposite1 \
+          libxcursor1 \
+          libxdamage1 \
+          libxext6 \
+          libxfixes3 \
+          libxi6 \
+          libxrandr2 \
+          libxrender1 \
+          libxss1 \
+          libxtst6 \
+          libnss3 \
+          libgconf-2-4 \
+          libappindicator1 \
+          libindicator7 \
+          libgbm1 \
+          libpangocairo-1.0-0
     - name: Run ${{ matrix.project }} tests with Maven
       if: matrix.build-tool == 'mvn'
       uses: nick-invision/retry@v4.0.0
