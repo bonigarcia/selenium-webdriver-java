@@ -10,47 +10,50 @@ on:
 jobs:
   tests:
     strategy:
+      fail-fast: false
       matrix:
         project: [ junit4, junit5, junit5-seljup, testng ]
         build-tool: [ mvn, gradle ]
         os: [ ubuntu-latest ]
         java: [ 17 ]
+
     runs-on: ${{ matrix.os }}
-    env:
-      DISPLAY: :99
 
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v7
+
     - name: Set up Java ${{ matrix.java }}
       uses: actions/setup-java@v5
       with:
-        distribution: 'temurin'
+        distribution: temurin
         java-version: ${{ matrix.java }}
-    - name: Start Xvfb on Linux
+        cache: ${{ matrix.build-tool == 'mvn' && 'maven' || 'gradle' }}
+
+    - name: Prepare browser environment on Linux
       if: matrix.os == 'ubuntu-latest'
-      run: Xvfb $DISPLAY &
-    - name: Install Edge dependencies
-      if: matrix.os == 'ubuntu-latest'
+      shell: bash
       run: |
-        sudo apt-get update
-        sudo apt-get install -y \
-          libx11-6 \
-          libx11-xcb1 \
-          libxcomposite1 \
-          libxcursor1 \
-          libxdamage1 \
-          libxext6 \
-          libxfixes3 \
-          libxi6 \
-          libxrandr2 \
-          libxrender1 \
-          libxss1 \
-          libxtst6 \
-          libnss3 \
-          libindicator7 \
-          libgbm1 \
-          libpangocairo-1.0-0
+        if sysctl kernel.apparmor_restrict_unprivileged_userns \
+            > /dev/null 2>&1; then
+          sudo sysctl -w \
+            kernel.apparmor_restrict_unprivileged_userns=0
+        fi
+
+        echo "Installed browser versions:"
+
+        if command -v google-chrome > /dev/null 2>&1; then
+          google-chrome --version
+        fi
+
+        if command -v microsoft-edge > /dev/null 2>&1; then
+          microsoft-edge --version
+        fi
+
+        if command -v firefox > /dev/null 2>&1; then
+          firefox --version
+        fi
+
     - name: Run ${{ matrix.project }} tests with Maven
       if: matrix.build-tool == 'mvn'
       uses: nick-invision/retry@v4.0.0
@@ -59,7 +62,11 @@ jobs:
         max_attempts: 3
         command: |
           cd selenium-webdriver-${{ matrix.project }}
-          mvn test
+          xvfb-run \
+            --auto-servernum \
+            --server-args="-screen 0 1920x1080x24 -ac" \
+            mvn -B test
+
     - name: Run ${{ matrix.project }} tests with Gradle
       if: matrix.build-tool == 'gradle'
       uses: nick-invision/retry@v4.0.0
@@ -68,4 +75,8 @@ jobs:
         max_attempts: 3
         command: |
           cd selenium-webdriver-${{ matrix.project }}
-          ./gradlew test
+          chmod +x gradlew
+          xvfb-run \
+            --auto-servernum \
+            --server-args="-screen 0 1920x1080x24 -ac" \
+            ./gradlew test
