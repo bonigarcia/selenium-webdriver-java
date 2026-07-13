@@ -11,7 +11,7 @@
         <slf4j.version>2.0.18</slf4j.version>
         <logback.version>1.5.38</logback.version>
 
-        <selenium.version>4.45.0</selenium.version>
+        <selenium.version>4.46.0</selenium.version>
         <junit5.version>6.1.2</junit5.version>
         <selenium-jupiter.version>6.3.2</selenium-jupiter.version>
         <assertj.version>3.27.7</assertj.version>
