@@ -48,8 +48,6 @@ jobs:
           libxss1 \
           libxtst6 \
           libnss3 \
-          libgconf-2-4 \
-          libappindicator1 \
           libindicator7 \
           libgbm1 \
           libpangocairo-1.0-0
