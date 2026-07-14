@@ -26,7 +26,7 @@ public class RestNGTest {
 
     @Test
     public void testRest() {
-        HttpBinGet get = RestAssured.get("https://httpbin.org/get").then()
+        HttpBinGet get = RestAssured.get("https://httpbun.com/get").then()
                 .assertThat().statusCode(200).extract().as(HttpBinGet.class);
 
         assertThat(get.getHeaders()).containsKey("Accept-Encoding");
