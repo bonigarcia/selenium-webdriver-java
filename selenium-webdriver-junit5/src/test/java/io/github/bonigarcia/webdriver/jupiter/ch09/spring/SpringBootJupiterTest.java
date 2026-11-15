@@ -28,7 +28,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import io.cucumber.java.After;
+import org.junit.jupiter.api.AfterEach;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.webdriver.SpringBootDemoApp;
 
@@ -47,9 +47,11 @@ class SpringBootJupiterTest {
         driver = WebDriverManager.chromedriver().create();
     }
 
-    @After
+    @AfterEach
     void teardown() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
     @Test
