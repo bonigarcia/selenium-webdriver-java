@@ -30,8 +30,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -44,13 +43,9 @@ public class AddExtensionFirefoxJUnit4Test {
     public void setup() throws URISyntaxException {
         Path extension = Paths
                 .get(ClassLoader.getSystemResource("dark-bg.xpi").toURI());
-        FirefoxOptions options = new FirefoxOptions();
-        FirefoxProfile profile = new FirefoxProfile();
-        profile.addExtension(extension.toFile());
-        options.setProfile(profile);
 
-        driver = WebDriverManager.firefoxdriver().capabilities(options)
-                .create();
+        driver = WebDriverManager.firefoxdriver().create();
+        ((FirefoxDriver) driver).installExtension(extension);
     }
 
     @After

@@ -24,36 +24,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.github.bonigarcia.seljup.Options;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 
 @ExtendWith(SeleniumJupiter.class)
 class AddExtensionFirefoxSelJupTest {
 
-    @Options
-    FirefoxOptions options = new FirefoxOptions();
-
-    @BeforeEach
-    void setup() throws URISyntaxException {
+    @Test
+    void testAddExtension(FirefoxDriver driver) throws URISyntaxException {
         Path extension = Paths
                 .get(ClassLoader.getSystemResource("dark-bg.xpi").toURI());
-        FirefoxProfile profile = new FirefoxProfile();
-        profile.addExtension(extension.toFile());
-        options.setProfile(profile);
-    }
+        driver.installExtension(extension);
 
-    @Test
-    void testAddExtension(FirefoxDriver driver) {
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
