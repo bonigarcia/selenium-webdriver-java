@@ -38,7 +38,7 @@ public class DeviceEmulationChromeJUnit4Test {
     public void setup() {
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> mobileEmulation = new HashMap<>();
-        mobileEmulation.put("deviceName", "iPhone 6/7/8");
+        mobileEmulation.put("deviceName", "iPhone 12 Pro");
         options.setExperimentalOption("mobileEmulation", mobileEmulation);
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();

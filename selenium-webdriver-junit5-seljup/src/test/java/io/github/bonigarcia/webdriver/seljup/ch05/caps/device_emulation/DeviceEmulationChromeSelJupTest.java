@@ -39,7 +39,7 @@ class DeviceEmulationChromeSelJupTest {
     @BeforeEach
     void setup() {
         Map<String, Object> mobileEmulation = new HashMap<>();
-        mobileEmulation.put("deviceName", "iPhone 6/7/8");
+        mobileEmulation.put("deviceName", "iPhone 12 Pro");
         options.setExperimentalOption("mobileEmulation", mobileEmulation);
     }
 
