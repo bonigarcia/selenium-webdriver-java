@@ -60,12 +60,17 @@ jobs:
       with:
         timeout_minutes: 30
         max_attempts: 3
+        retry_wait_seconds: 60
         command: |
           cd selenium-webdriver-${{ matrix.project }}
           xvfb-run \
             --auto-servernum \
             --server-args="-screen 0 1920x1080x24 -ac" \
-            mvn -B test
+            mvn -B test \
+              -Daether.connector.http.retryHandler.count=6 \
+              -Daether.connector.http.retryHandler.interval=10000 \
+              -Daether.connector.http.retryHandler.intervalMax=120000 \
+              -Daether.connector.http.retryHandler.serviceUnavailable=429,503
 
     - name: Run ${{ matrix.project }} tests with Gradle
       if: matrix.build-tool == 'gradle'
@@ -73,6 +78,7 @@ jobs:
       with:
         timeout_minutes: 30
         max_attempts: 3
+        retry_wait_seconds: 60
         command: |
           cd selenium-webdriver-${{ matrix.project }}
           chmod +x gradlew
